@@ -1,11 +1,19 @@
 import React from 'react'
-import Layout from '../components/layout'
+import '../components/layout_404.css'
 
 const NotFoundPage = () => (
-  <Layout>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
+  <>
+    <div class="q">
+      <div class="c">
+        <div class="_404">404</div>
+        <div class="_1">THE PAGE</div>
+        <div class="_2">WAS NOT FOUND</div>
+        <a class="btn" href="/">
+          Git reset HEAD~ --hard
+        </a>
+      </div>
+      </div>
+  </>
 )
 
 export default NotFoundPage
