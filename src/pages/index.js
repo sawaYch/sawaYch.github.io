@@ -6,13 +6,19 @@ import Image from '../components/image'
 
 const IndexPage = () => (
   <Layout>
-    <h1>Hi people</h1>
+    {/* <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
     <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
       <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    </div> */}
+    <h1>If you gaze long into an abyss, the abyss also gazes into you</h1>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/sawaYch">Github</a>
+    <h4>Repositories</h4>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/sawaYch/Keil-colorScheme-Monokai" >Keil-colorScheme-Monokai</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/sawaYch/KeilHelper-for-Sublime">KeilHelper-for-Sublime</a>
+    {/* <Link to="/page-2/">Go to page 2</Link>  */}
+
   </Layout>
 )
 
