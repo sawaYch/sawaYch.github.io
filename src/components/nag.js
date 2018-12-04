@@ -10,6 +10,9 @@ const Nag = () => (
             <span className="curlyb">{'}'}</span>
         </div>
         <div className="name">Sawa.Y</div>
+        <div className="typewriter">
+            <h1>Penguin and the man.</h1>
+        </div>
     </div>
 )
 

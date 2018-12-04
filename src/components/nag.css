@@ -11,12 +11,14 @@
     background-size: 15vh 15vh;
     margin-left: auto;
     margin-right: auto;
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 2s; /* Firefox < 16 */
-    -ms-animation: fadein 2s; /* Internet Explorer */
-    -o-animation: fadein 2s; /* Opera < 12.1 */
-    animation: fadein 2s;
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 3s; /* Firefox < 16 */
+    -ms-animation: fadein 3s; /* Internet Explorer */
+    -o-animation: fadein 3s; /* Opera < 12.1 */
+    animation: fadein 3s;
 }
+
+
 
 @keyframes fadein {
     from { opacity: 0; }
@@ -51,8 +53,14 @@
     width:100%;
     margin-top: auto;
     display: block;
-    padding-top: 30vh;
+    padding-top: 20vh;
 
+}
+
+@media only screen and (min-width: 768px){
+    .navbox{
+        padding-top: 30vh;
+    }
 }
 
 .gh_name{
@@ -91,4 +99,39 @@
     -o-transition: color 0.5s ease-out;
     transition: color 0.5s ease-out;
 }
+
+.typewriter h1 {
+    font-size: 14px;
+    text-align: center;
+    width: 45vw;
+    display: block;
+    position: relative;
+    padding-top: 15px;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid #27afe6; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+        typing 4s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+@media only screen and (min-width: 768px){
+.typewriter h1 {
+    font-size: 2em;
+  }
+}
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 45vw; }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color:#27afe6; }
+  }
 
