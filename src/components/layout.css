@@ -6,8 +6,10 @@ html {
 body {
   margin: 0;
   overflow: hidden;
-  /* background: #333333; */
+  background: linear-gradient(90deg, #1370fb 19px, transparent 1%) center, linear-gradient(#1370fb 19px, transparent 1%) center, #3882e8;
+  background-size: 22px 22px;
 }
+
 article,
 aside,
 details,

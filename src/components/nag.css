@@ -9,8 +9,7 @@
     background-image: url("../images/avator.png");
     background-repeat: no-repeat;
     background-size: 15vh 15vh;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 3s; /* Firefox < 16 */
     -ms-animation: fadein 3s; /* Internet Explorer */
@@ -64,6 +63,7 @@
 }
 
 .gh_name{
+    color: white;
     font-size: 2em;
     text-align: center;
     display: block;
@@ -72,6 +72,7 @@
 }
 
 .name{
+    color: white;
     font-size: 1em;
     text-align: center;
     display: block;
@@ -102,6 +103,7 @@
 
 .typewriter h1 {
     font-size: 14px;
+    color:white;
     text-align: center;
     width: 45vw;
     display: block;
