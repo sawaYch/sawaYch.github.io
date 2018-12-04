@@ -9,7 +9,7 @@ const NotFoundPage = () => (
         <div class="_1">THE PAGE</div>
         <div class="_2">WAS NOT FOUND</div>
         <a class="btn" href="/">
-          Git reset HEAD~ --hard
+          BACK TO THE EARTH
         </a>
       </div>
       </div>
