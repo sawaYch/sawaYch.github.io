@@ -3,6 +3,7 @@ module.exports = {
     title: 'Work in Progress',
   },
   plugins: [
+    'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
