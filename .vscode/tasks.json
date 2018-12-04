@@ -1,0 +1,12 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "gatsbyJs: dev",
+            "type": "shell",
+            "command": "gatsby develop -H 10.0.0.103 -p 8000",
+        }
+    ]
+}

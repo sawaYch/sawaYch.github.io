@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 // import Image from '../components/image'
 import Nag from '../components/nag';
 import Lnk from '../components/lnk';
+import SideBar from '../components/sidebar'
 
 const IndexPage = () => (
   <Layout>
@@ -15,6 +16,7 @@ const IndexPage = () => (
     </Helmet>
     <Nag />
     <Lnk />
+    <SideBar />
     
 
   </Layout>
