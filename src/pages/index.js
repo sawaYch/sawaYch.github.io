@@ -13,20 +13,16 @@ const IndexPage = () => (
     <Helmet>
       <meta charSet='utf-8' />
       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css' />
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css' />
     </Helmet>
     <Nag />
     <Lnk />
     <SideBar />
-    <span onClick={openSideBar}>open</span>
 
     
 
   </Layout>
 )
 
-function openSideBar(){
-  document.getElementById("leftSideNav").style.width = "50px";
-
-}
 
 export default IndexPage
