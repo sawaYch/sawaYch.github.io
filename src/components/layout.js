@@ -26,13 +26,13 @@ const Layout = ({ children }) => (
             { name: 'keywords', content: 'sample, something' },
           ]}
         >
-          <html lang="en" />
+          <html lang='en' />
         </Helmet>
         {/* bad design, don;t use this header */}
         {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
         <div
           style={{
-            margin: '0 auto',
+            margin: '0',
             maxWidth: 960,
             padding: '0px 1.0875rem 1.45rem',
             paddingTop: 0,
