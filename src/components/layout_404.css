@@ -76,6 +76,12 @@
   background: #111111;
 }
 
+body404 {
+  margin: 0;
+  overflow: hidden;
+  background: unset;
+}
+
 
 /* Desktop view */
 @media only screen and (min-width: 768px){
