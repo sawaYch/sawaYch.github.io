@@ -17,9 +17,16 @@ const IndexPage = () => (
     <Nag />
     <Lnk />
     <SideBar />
+    <span onClick={openSideBar}>open</span>
+
     
 
   </Layout>
 )
+
+function openSideBar(){
+  document.getElementById("leftSideNav").style.width = "50px";
+
+}
 
 export default IndexPage

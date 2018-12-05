@@ -1,3 +1,36 @@
-.bar_container{
-    display: block;
+.sidenav {
+    height: 100%;
+    width: 0; /* inital=0*/
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #444; /* Black*/
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sidenav a {
+    text-decoration: none;
+    color: #eeeeee;
+    display: absolute;
+    right: 10px;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.sidenav .cubeItem {
+    position: absolute;
+    top: 58px;
+    right: 10px;
 }
