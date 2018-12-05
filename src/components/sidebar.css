@@ -31,6 +31,20 @@
 
 .sidenav .cubeItem {
     position: absolute;
-    top: 58px;
+    top: 42vh;
     right: 10px;
+}
+
+.sidenav .aboutItem {
+    position: absolute;
+    top: 49vh;
+    right: 10px;
+    color: mediumslateblue;
+}
+
+.sidenav .articleItem {
+    position: absolute;
+    top: 35vh;
+    right: 10px;
+    color: greenyellow;
 }

@@ -1,8 +1,7 @@
 import React from 'react'
 import './sidebar.css'
-import { IoIosCloseCircle } from "react-icons/io";
-import { IoMdCube } from "react-icons/io";
-
+import { IoIosCloseCircle, IoMdCube, IoIosJournal } from "react-icons/io";
+import { GoPerson } from "react-icons/go";
 
 
 const cubeStyle = {
@@ -18,6 +17,13 @@ const SideBar = () => (
     <a className='cubeItem' href='#'>
       <IoMdCube size={32} style={cubeStyle} />
     </a>
+    <a className='aboutItem' href='#'>
+      <GoPerson size={32} />
+    </a>
+    <a className='articleItem' href='#'>
+      <IoIosJournal size={32} />
+    </a>
+    
   </div>
 )
 
