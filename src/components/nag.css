@@ -48,7 +48,7 @@
 }
 
 .navbox{
-    width:100%;
+    width:100vw;
     margin-top: auto;
     display: block;
     padding-top: 20vh;
