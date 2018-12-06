@@ -13,23 +13,14 @@ const svgShadowDrop = {
 };
 
 const SideBar = () => (
-  <OutsideAlerter />
+  <SideNav />
 )
 
-function closeSideBar(){
-  document.getElementById("leftSideNav").style.width = "0";
-}
 
-
-function openSideBar(){
-  document.getElementById("leftSideNav").style.width = "50px";
-
-}
-
-class OutsideAlerter extends React.Component {
+class SideNav extends React.Component {
   constructor(props) {
     super(props);
-    this.visible = false;
+    this.state = {visible: false};
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -51,31 +42,45 @@ class OutsideAlerter extends React.Component {
 
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      closeSideBar();
+      this.closeSideBar();
     }
   }
 
   handleKeyPress(event) {
+    console.log(event)
     if(event.key == 'Enter'){
-      if (this.visible == false){
-        openSideBar();
-        this.visible = true;
+      if (this.state.visible == false){
+        this.openSideBar();
       }else{
-        closeSideBar();
-        this.visible = false;
+        this.closeSideBar();
       }
     }
   }
 
+  openSideBar = () =>{
+    document.getElementById("leftSideNav").style.width = "50px";
+    this.setState({
+      visible: true
+    });
+  }
+
+  closeSideBar  = () =>{
+    document.getElementById("leftSideNav").style.width = "0px";
+    this.setState({
+      visible: false
+    });
+  }
+
+ 
   render() {
     return <div ref={this.setWrapperRef}> 
-      <div className='tab' onClick={openSideBar}>
+      <div className='tab' onClick={this.openSideBar}>
         <div className='halfCircle'>
           <IoMdMore size={32} style={svgShadowDrop} />
         </div>
       </div>
       <div id='leftSideNav' className='sidenav'>
-        <a href='javascript:void(0)' className='closebtn' onClick={closeSideBar}>
+        <a className='closebtn' onClick={this.closeSideBar}>
           <IoIosCloseCircle size={32} />
         </a>
         <a data-balloon='Playground' data-balloon-pos='right' className='cubeItem' href='#'>
@@ -91,6 +96,5 @@ class OutsideAlerter extends React.Component {
     </div>;
   }
 }
-
 
 export default SideBar
