@@ -4,9 +4,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "gatsbyJs: dev",
+            "label": "gatsbyJs: dev Intranet Host",
             "type": "shell",
             "command": "gatsby develop -H 10.0.0.103 -p 8000",
+        },
+        {
+            "label": "gatsbyJs: dev Local Host",
+            "type": "shell",
+            "command": "gatsby develop",
         }
     ]
 }

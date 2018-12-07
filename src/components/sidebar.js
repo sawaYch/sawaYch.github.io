@@ -7,6 +7,7 @@ import {
   IoMdMore,
 } from 'react-icons/io'
 import { GoPerson } from 'react-icons/go'
+import { Link } from 'gatsby'
 
 // const cubeStyle = {
 //   color: "orange",
@@ -85,30 +86,35 @@ class SideNav extends React.Component {
           <a className='closebtn' onClick={this.closeSideBar}>
             <IoIosCloseCircle size={32} />
           </a>
-          <a
-            data-balloon='Playground'
-            data-balloon-pos='right'
-            className='cubeItem'
-            href='#'
-          >
-            <IoMdCube size={32} />
-          </a>
-          <a
-            data-balloon='About Sawa'
-            data-balloon-pos='right'
-            className='aboutItem'
-            href='#'
-          >
-            <GoPerson size={32} />
-          </a>
-          <a
-            data-balloon='Blog'
-            data-balloon-pos='right'
-            className='articleItem'
-            href='#'
-          >
-            <IoIosJournal size={32} />
-          </a>
+          <Link to='/playground/'>
+            <a
+              data-balloon='Playground'
+              data-balloon-pos='right'
+              className='cubeItem'
+              href='#'
+            >
+              <IoMdCube size={32} />
+            </a>
+          </Link>
+          <Link to='/about/'>
+            <a
+              data-balloon='About Sawa'
+              data-balloon-pos='right'
+              className='aboutItem'
+            >
+              <GoPerson size={32} />
+            </a>
+          </Link>
+          <Link to='/blog/'>
+            <a
+              data-balloon='Blog'
+              data-balloon-pos='right'
+              className='articleItem'
+              href='#'
+            >
+              <IoIosJournal size={32} />
+            </a>
+          </Link>
         </div>
       </div>
     )
