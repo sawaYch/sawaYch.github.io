@@ -91,7 +91,6 @@ class SideNav extends React.Component {
               data-balloon='Playground'
               data-balloon-pos='right'
               className='cubeItem'
-              href='#'
             >
               <IoMdCube size={32} />
             </a>
@@ -109,8 +108,7 @@ class SideNav extends React.Component {
             <a
               data-balloon='Blog'
               data-balloon-pos='right'
-              className='articleItem'
-              href='#'
+              className='articleItem'            
             >
               <IoIosJournal size={32} />
             </a>
