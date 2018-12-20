@@ -4,7 +4,7 @@
   position: relative;
   width: 15vh;
   height: 15vh;
-  border-radius: 50px;
+  border-radius: 50%;
   border: 2px solid #27afe6;
   background-image: url('../images/avator.png');
   background-repeat: no-repeat;
@@ -116,21 +116,32 @@
   transition: color 0.5s ease-out;
 }
 
+.twcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.typewriter {
+  text-align: center;
+  display: inline-block;
+ 
+}
+
 .typewriter h1 {
   font-size: 14px;
   color: white;
-  text-align: center;
-  width: 45vw;
-  display: block;
-  position: relative;
   padding-top: 15px;
+  display: block;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: 0.15em solid #27afe6; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 0.15em; /* Adjust as needed */
-  animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
+
 
 @media only screen and (min-width: 768px) {
   .typewriter h1 {
@@ -144,7 +155,7 @@
     width: 0;
   }
   to {
-    width: 45vw;
+    width: 100%;
   }
 }
 

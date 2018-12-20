@@ -61,7 +61,7 @@ class SideNav extends React.Component {
   }
 
   openSideBar = () => {
-    document.getElementById('leftSideNav').style.width = '50px'
+    document.getElementById('leftSideNav').style.width = '7vh'
     this.setState({
       visible: true,
     })
@@ -79,39 +79,39 @@ class SideNav extends React.Component {
       <div ref={this.setWrapperRef}>
         <div className='tab' onClick={this.openSideBar}>
           <div className='halfCircle'>
-            <IoMdMore size={32} style={svgShadowDrop} />
+            <IoMdMore size={'5vh'} style={svgShadowDrop} />
           </div>
         </div>
         <div id='leftSideNav' className='sidenav'>
           <a className='closebtn' onClick={this.closeSideBar}>
-            <IoIosCloseCircle size={32} />
+            <IoIosCloseCircle size={'5vh'} />
           </a>
           <Link to='/playground/'>
-            <a
+            <div 
               data-balloon='Playground'
               data-balloon-pos='right'
               className='cubeItem'
             >
-              <IoMdCube size={32} />
-            </a>
+              <IoMdCube size={'5vh'} />
+            </div>
           </Link>
           <Link to='/about/'>
-            <a
+            <div
               data-balloon='About Sawa'
               data-balloon-pos='right'
               className='aboutItem'
             >
-              <GoPerson size={32} />
-            </a>
+              <GoPerson size={'5vh'} />
+            </div>
           </Link>
           <Link to='/blog/'>
-            <a
+            <div
               data-balloon='Blog'
               data-balloon-pos='right'
               className='articleItem'            
             >
-              <IoIosJournal size={32} />
-            </a>
+              <IoIosJournal size={'5vh'} />
+            </div>
           </Link>
         </div>
       </div>

@@ -6,6 +6,26 @@
   text-align: center;
 }
 
+.menuItemFirst {
+  text-align: center;
+  position: relative;
+  display: block;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50px;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 8vh 8vh;
+  float: left;
+  margin-left: 0px;
+  transition: 0.3s;
+  -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 3s; /* Firefox < 16 */
+  -ms-animation: fadein 3s; /* Internet Explorer */
+  -o-animation: fadein 3s; /* Opera < 12.1 */
+  animation: fadein 3s;
+}
+
 .menuItem {
   text-align: center;
   position: relative;
@@ -91,5 +111,18 @@
 }
 
 .menuItem:hover {
+  color: white;
+}
+
+.menuItemFirst a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menuItemFirst:hover {
+  background-color: #27afe6;
+}
+
+.menuItemFirst:hover {
   color: white;
 }

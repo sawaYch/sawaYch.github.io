@@ -10,7 +10,7 @@ import { Animated } from 'react-animated-css'
 const Lnk = () => (
   <span className='menubox'>
     <Animated
-      className='menuItem'
+      className='menuItemFirst'
       animationIn='bounceInUp'
       animationOut='fadeOut'
       isVisible
@@ -21,7 +21,7 @@ const Lnk = () => (
         href='https://github.com/sawaYch'
       >
         <div className='child'>
-          <FaGithubAlt size={32} />
+          <FaGithubAlt size={'5vh'} />
         </div>
       </a>
     </Animated>
@@ -37,7 +37,7 @@ const Lnk = () => (
         href='https://www.facebook.com/Chak.Yeung.93'
       >
         <div className='child'>
-          <FaFacebookF size={32} />
+          <FaFacebookF size={'5vh'} />
         </div>
       </a>
     </Animated>
@@ -53,7 +53,7 @@ const Lnk = () => (
         href='https://my.playstation.com/profile/HKGSawa'
       >
         <div className='child'>
-          <FaPlaystation size={32} />
+          <FaPlaystation size={'5vh'} />
         </div>
       </a>
     </Animated>
@@ -64,7 +64,7 @@ const Lnk = () => (
       isVisible
     >
       <div className='child'>
-        <FaMailBulk size={32} />
+        <FaMailBulk size={'5vh'} />
       </div>
     </Animated>
     <Animated
@@ -74,7 +74,7 @@ const Lnk = () => (
       isVisible
     >
       <div className='child'>
-        <FaRss size={32} />
+        <FaRss size={'5vh'} />
       </div>
     </Animated>
   </span>
