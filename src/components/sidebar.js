@@ -1,10 +1,13 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+import { navigate } from "gatsby"
 import './sidebar.css'
 import {
   IoIosCloseCircle,
   IoMdCube,
   IoIosJournal,
   IoMdMore,
+  IoIosDesktop
 } from 'react-icons/io'
 import { GoPerson } from 'react-icons/go'
 import { Link } from 'gatsby'
@@ -23,7 +26,10 @@ const SideBar = () => <SideNav />
 class SideNav extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { visible: false, currentItemIndex: 0 }
+    this.state = { 
+      visible: false, 
+      currentItemIndex: 0
+    }
     this.setWrapperRef = this.setWrapperRef.bind(this)
     this.handleClickOutside = this.handleClickOutside.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
@@ -50,23 +56,31 @@ class SideNav extends React.Component {
   }
 
   handleKeyPress(event) {
-    console.log(event)
     if (event.key == 'Enter') {
       if (this.state.visible == false) {
         this.openSideBar()
       } else {
         this.closeSideBar()
       }
-    }else if (event.key == 'w' && this.state.visible == true ) {
+    }
+    else if (event.key == 'w' && this.state.visible == true ) {
       this.setState({
-        currentItemIndex : (this.state.currentItemIndex + 3 - 1) % 3
+        currentItemIndex : (this.state.currentItemIndex + 4 - 1) % 4,
       });
+      this.updateSelection()
     }
     else if (event.key == 's' && this.state.visible == true) {
       this.setState({
-        currentItemIndex : (this.state.currentItemIndex + 1) % 3
+        currentItemIndex : (this.state.currentItemIndex + 1) % 4,
       });
+      this.updateSelection()
     }
+    else if (event.key == 'd' && this.state.visible == true) {
+      var routeMap = ['/','/blog/', '/playground/', '/about/']
+      navigate(routeMap[this.state.currentItemIndex])
+    }
+
+    
   }
 
   openSideBar = () => {
@@ -83,6 +97,15 @@ class SideNav extends React.Component {
     })
   }
 
+  updateSelection = () => {
+    var nameMap = ['homeItem','articleItem','cubeItem','aboutItem']
+    var colorMap = ['#27afe6','greenyellow', 'orange', 'MediumOrchid']
+    for(var i = 0; i < 4; ++i){
+      ReactDOM.findDOMNode(this).getElementsByClassName(nameMap[i])[0].style.color=colorMap[i]
+    }
+    ReactDOM.findDOMNode(this).getElementsByClassName(nameMap[this.state.currentItemIndex])[0].style.color='white'
+  }
+
   render() {
     return (
       <div ref={this.setWrapperRef}>
@@ -96,7 +119,7 @@ class SideNav extends React.Component {
             <IoIosCloseCircle size={'5vh'} />
           </a>
           <Link to='/playground/'>
-            <div 
+            <div
               data-balloon='Playground'
               data-balloon-pos='right'
               className='cubeItem'
@@ -120,6 +143,15 @@ class SideNav extends React.Component {
               className='articleItem'            
             >
               <IoIosJournal size={'5vh'} />
+            </div>
+          </Link>
+          <Link to='/'>
+            <div
+              data-balloon='Index'
+              data-balloon-pos='right'
+              className='homeItem'            
+            >
+              <IoIosDesktop size={'5vh'} />
             </div>
           </Link>
         </div>

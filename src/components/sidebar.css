@@ -30,11 +30,13 @@
   /* right: 1vh; */
 }
 
+
 .sidenav .cubeItem {
   position: absolute;
   top: 42vh;
   right: 1vh;
   color: orange;
+  transition: color 0.7s;
 }
 
 .sidenav .aboutItem {
@@ -42,6 +44,7 @@
   top: 49vh;
   right: 1vh;
   color: MediumOrchid;
+  transition: color 0.7s;
 }
 
 .sidenav .articleItem {
@@ -49,6 +52,15 @@
   top: 35vh;
   right: 1vh;
   color: greenyellow;
+  transition: color 0.7s;
+}
+
+.sidenav .homeItem {
+  position: absolute;
+  top: 28vh;
+  right: 1vh;
+  color: #27afe6 ;
+  transition: color 0.7s;
 }
 
 .tab {
