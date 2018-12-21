@@ -63,9 +63,13 @@ const Lnk = () => (
       animationOut='fadeOut'
       isVisible
     >
-      <div className='child'>
-        <FaMailBulk size={'5vh'} />
-      </div>
+      <a       
+        href='mailto:chyeungam@connect.ust.hk'
+      >
+        <div className='child'>
+          <FaMailBulk size={'5vh'} />
+        </div>
+      </a>
     </Animated>
     <Animated
       className='menuItem'
