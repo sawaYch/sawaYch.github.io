@@ -23,7 +23,7 @@ const SideBar = () => <SideNav />
 class SideNav extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { visible: false }
+    this.state = { visible: false, currentItemIndex: 0 }
     this.setWrapperRef = this.setWrapperRef.bind(this)
     this.handleClickOutside = this.handleClickOutside.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
@@ -57,6 +57,15 @@ class SideNav extends React.Component {
       } else {
         this.closeSideBar()
       }
+    }else if (event.key == 'w' && this.state.visible == true ) {
+      this.setState({
+        currentItemIndex : (this.state.currentItemIndex + 3 - 1) % 3
+      });
+    }
+    else if (event.key == 's' && this.state.visible == true) {
+      this.setState({
+        currentItemIndex : (this.state.currentItemIndex + 1) % 3
+      });
     }
   }
 
