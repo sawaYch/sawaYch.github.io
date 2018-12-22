@@ -1,11 +1,11 @@
 import React from 'react'
 import { Helmet } from "react-helmet"
-
 import Layout from '../components/layout'
 import Nag from '../components/nag';
 import Lnk from '../components/lnk';
 import SideBar from '../components/sidebar'
 import CmdPalette from '../components/cmdpalette'
+
 
 const IndexPage = () => (
   <Layout>

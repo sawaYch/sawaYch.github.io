@@ -1,6 +1,5 @@
 import React from 'react'
 import '../components/layout_404.css'
-import Layout from '../components/layout'
 
 const NotFoundPage = () => (
   <div className='body404'>

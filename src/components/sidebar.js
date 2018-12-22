@@ -77,7 +77,8 @@ class SideNav extends React.Component {
     }
     else if (event.key == 'd' && this.state.visible == true) {
       var routeMap = ['/','/blog/', '/playground/', '/about/']
-      navigate(routeMap[this.state.currentItemIndex])
+      this.closeSideBar()
+      setTimeout( function() { navigate(routeMap[this.state.currentItemIndex]) }.bind(this), 300 );
     }
 
     

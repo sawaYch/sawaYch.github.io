@@ -1,6 +1,8 @@
 import React from 'react'
-
+import { CSSTransition, transit } from "react-css-transition";
 import './nag.css'
+
+
 const Nag = () => (
   <div className='navbox'>
     <div className='avator' />

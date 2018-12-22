@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'Benthol';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Benthol.ttf'); /* IE9 Compat Modes */
+  src: url('../fonts/Benthol.ttf') format('truetype') /* Safari, Android, iOS */
+}
+
+
+@font-face {
+  font-family: 'AvenirNextLTPro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/AvenirNextLTPro-Regular.otf'); /* IE9 Compat Modes */
+  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('opentype') /* Safari, Android, iOS */
+}
+
+
+.container {
+  display: block;
+  background: white;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 5vh;
+  padding: 5vw;
+  border-radius: 1em;
+}
+
+.doc {
+  font-family: AvenirNextLTPro;
+  font-size: 1em;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  text-align: justify;
+}
+
+.aboutback {
+  text-align: center;
+  margin-top: 7vh;
+}
+
+.aboutback a{
+  display: inline-block;
+  height: 7vh;
+  position: relative;
+  transition: 0.3s;
+}
+
+.aboutback a:hover {
+  color: #27afe6;
+}
