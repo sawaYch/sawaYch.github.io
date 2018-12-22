@@ -17,12 +17,14 @@
 
 
 .container {
+  font-family: AvenirNextLTPro;
   display: block;
   background: white;
   width: 80%;
   height: 100%;
   margin: 0 auto;
   margin-top: 5vh;
+  margin-bottom: 5vh;
   padding: 5vw;
   border-radius: 1em;
 }
@@ -30,8 +32,25 @@
 .doc {
   font-family: AvenirNextLTPro;
   font-size: 1em;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  margin: 0px 15px 20px;
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.doc .part1 {
+  margin-right: 2vh;
+  font-weight: bold;
+  flex: 1 1 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  text-align: left;
+}
+.doc .part2 {
+  margin-right: 2vh;
+  
   text-align: justify;
 }
 
