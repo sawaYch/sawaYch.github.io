@@ -3,13 +3,6 @@ module.exports = {
     title: 'Penguin and the man.',
   },
   plugins: [
-    'gatsby-plugin-page-transitions',
-    {
-      resolve: 'gatsby-plugin-page-transitions',
-      options: {
-        transitionTime: 500
-      }
-    },
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
