@@ -4,9 +4,10 @@ import Nag from '../components/nag';
 import Lnk from '../components/lnk';
 import SideBar from '../components/sidebar'
 import CmdPalette from '../components/cmdpalette'
+import Layout from '../components/layout';
 
 const IndexPage = () => (
-  <div>
+  <Layout>
     <Helmet>
       <meta charSet='utf-8' />
       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css' />
@@ -16,7 +17,7 @@ const IndexPage = () => (
     <Lnk />
     <SideBar />
     <CmdPalette />
-  </div>
+  </Layout>
 )
 
 
