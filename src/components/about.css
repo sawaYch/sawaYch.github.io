@@ -100,15 +100,6 @@ body {
   background-size: 22px 22px;
 }
 
-html {
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-::-webkit-scrollbar {
-  width: 0px;  /* remove scrollbar space */
-  background: transparent;  /* optional: just make scrollbar invisible */
-}
-
 .chartBox {
   height: 40vh; 
   width: 40vh;
@@ -214,4 +205,8 @@ html {
   color: white;
   text-align: center;
   font-size: 10px;
+}
+
+.abttopic {
+  font-family: Benthol;
 }
