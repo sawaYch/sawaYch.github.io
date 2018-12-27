@@ -7,9 +7,24 @@
   overflow: hidden;
 }
 
-::-webkit-scrollbar { 
+
+body {
+  margin: 0 !important;
+  overflow: hidden;
+  background: linear-gradient(90deg, #1370fb 19px, transparent 1%) center, linear-gradient(#1370fb 19px, transparent 1%) center, #3882e8;
+  background-size: 22px 22px;
+}
+
+html {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
   display: none; 
 }
+
 
 .c {
   text-align: center;

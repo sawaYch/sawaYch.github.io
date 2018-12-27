@@ -85,8 +85,7 @@ const AboutPage = () => (
           <li>Others: Debian & Arch-branch Linux, Git, Bash, Docker, STM32 Standard Peripheral Library, Qt, Gtk, WPF, WordPress CMS</li>
         </ul>
         <h2><center>Experiences</center></h2>
-        <div className='list-type2'>
-
+        <div className='listtype2'>
           <ul>
             <li><a>2017-2018 HKUST Robotics Team Member - Robocon (War Dragon)</a></li>
             <li><a>2017 Inter-Tertiary-Institute Capture the Flag (CTF) contest ASTRI x iChunQiu</a></li>
@@ -98,10 +97,13 @@ const AboutPage = () => (
           <Link to='/'>
             <IoIosArrowDropleftCircle size={'7vh'} />
           </Link>
-        </div>
+        </div>        
+      </div>
+      <div className='footer'>
+          sawaYch@2018 v1.0.3
       </div>
     </PageTransition>
-    <SideBar />
+    <SideBar />    
   </div>
 )
 

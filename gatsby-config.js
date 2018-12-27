@@ -16,8 +16,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'Penguin and the man.',
+        short_name: 'SawaWebhop',
         start_url: '/',
         background_color: '#4285f4',
         theme_color: '#4285f4',
@@ -25,6 +25,5 @@ module.exports = {
         icon: 'src/images/icon.png', // This path is relative to the root of the site.
       },
     },
-    'gatsby-plugin-offline',
   ],
 }

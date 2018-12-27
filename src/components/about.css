@@ -1,9 +1,17 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(90deg, #1370fb 19px, transparent 1%) center, linear-gradient(#1370fb 19px, transparent 1%) center, #3882e8;
+  background-size: 22px 22px;
+}
+
+
 @font-face {
   font-family: 'Benthol';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/Benthol.ttf'); /* IE9 Compat Modes */
-  src: url('../fonts/Benthol.ttf') format('truetype') /* Safari, Android, iOS */
+  src: url('../fonts/Benthol.ttf');
+  src: url('../fonts/Benthol.ttf') format('truetype') 
 }
 
 
@@ -11,8 +19,8 @@
   font-family: 'AvenirNextLTPro';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/AvenirNextLTPro-Regular.otf'); /* IE9 Compat Modes */
-  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('opentype') /* Safari, Android, iOS */
+  src: url('../fonts/AvenirNextLTPro-Regular.otf');
+  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('opentype')
 }
 
 
@@ -27,6 +35,7 @@
   margin-bottom: 5vh;
   padding: 5vw;
   border-radius: 1em;
+  margin-bottom: 100px;
 }
 
 .aboutTopBanner {
@@ -137,12 +146,12 @@ html {
   to   { opacity: 1; }
 }
 
-.list-type2{
+.listtype2{
   width:70vw;
   margin:0 auto;
 }
   
-  .list-type2 ul{
+  .listtype2 ul{
   counter-reset: li;
   list-style: none;
   *list-style: decimal;
@@ -152,11 +161,11 @@ html {
   margin-bottom: 4em;
   }
   
-  .list-type2 ul ul{
+  .listtype2 ul ul{
   margin: 0 0 0 2em;
   }
   
-  .list-type2 a{
+  .listtype2 a{
   position: relative;
   display: block;
   padding: .4em .4em .4em 2em;
@@ -173,14 +182,14 @@ html {
     counter-increment: myCounter;
   }
 
-  .list-type2 a:hover{
+  .listtype2 a:hover{
   background: #d6d4d4;
   text-decoration:none;
   transform: scale(1.1);
   color: #3882e8;
   }
   
-  .list-type2 a:before{
+  .listtype2 a:before{
   content: counter(myCounter, decimal-leading-zero);;
   position: absolute;
   left: -1.3em;
@@ -195,3 +204,14 @@ html {
   font-weight: bold;
   color:#FFF;
   }
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+}
