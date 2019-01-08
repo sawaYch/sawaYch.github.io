@@ -6,7 +6,7 @@
         {
             "label": "gatsbyJs: dev Intranet Host",
             "type": "shell",
-            "command": "gatsby develop -H 10.0.0.103 -p 8000",
+            "command": "gatsby develop -H `ip addr show dev wlx503eaa8607ba | grep inet | awk '{print $2}' | cut -d/ -f 1 | cut -d$\"\n\" -f1` -p 8000"
         },
         {
             "label": "gatsbyJs: dev Local Host",
