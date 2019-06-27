@@ -1,10 +1,10 @@
 .sidenav {
-  height: 100%;
+  height: 110%;
   width: 0; /* inital=0*/
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 1000; /* Stay on top */
   top: 0; /* Stay at the top */
-  left: 0;
+  right: 0;
   /* overflow-x: hidden; */
   padding-top: 60px;
   transition: 0.5s;
@@ -16,7 +16,7 @@
   text-decoration: none;
   color: #eeeeee;
   display: absolute;
-  right: 10px;
+  left: 10px;
   transition: 0.3s;
 }
 
@@ -34,7 +34,7 @@
 .sidenav .cubeItem {
   position: absolute;
   top: 42vh;
-  right: 1vh;
+  left: 1vh;
   color: orange;
   transition: color 0.7s;
 }
@@ -42,7 +42,7 @@
 .sidenav .aboutItem {
   position: absolute;
   top: 49vh;
-  right: 1vh;
+  left: 1vh;
   color: #f92672;
   transition: color 0.7s;
 }
@@ -50,7 +50,7 @@
 .sidenav .articleItem {
   position: absolute;
   top: 35vh;
-  right: 1vh;
+  left: 1vh;
   color: greenyellow;
   transition: color 0.7s;
 }
@@ -58,7 +58,7 @@
 .sidenav .homeItem {
   position: absolute;
   top: 28vh;
-  right: 1vh;
+  left: 1vh;
   color: #27afe6 ;
   transition: color 0.7s;
 }
@@ -66,20 +66,22 @@
 .tab {
   position: absolute;
   top: 5vh;
-  left: 0px;
+  right: -5vh;
   height: 9vh;
   width: 9vh;
   text-align: center;
   display: table-cell;
   vertical-align: middle;
+  position: fixed;
+  z-index: 10;
 }
 
 .halfCircle {
   text-align: center;
   display: table-cell;
   vertical-align: middle;
-  border-bottom-right-radius: 9vh;
-  border-top-right-radius: 9vh;
+  border-bottom-left-radius: 9vh;
+  border-top-left-radius: 9vh;
   height: 9vh;
   width: 5vh;
   background: white;
@@ -110,7 +112,7 @@
 
   /* Position the tooltip text - see examples below! */
   position: absolute;
-  z-index: 1;
+  z-index: 10;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

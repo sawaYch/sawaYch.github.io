@@ -81,11 +81,6 @@ const AboutPage = () => (
                 />
             </div>
           </LazyLoad>
-          <ul>
-            <li>Language: HTML5, CSS3, Javascript, ES5, PHP, SQL, LaTex, Lua, C, C++, C#, Java, Python, Visual Basic, Delphi(Pascal)</li>
-            <li>Framework: GatsbyJs, Jekyll, ReactJs, Flask, CodeIgniter</li>
-            <li>Others: Debian & Arch-branch Linux, Git, Bash, Docker, STM32 Standard Peripheral Library, Qt, Gtk, WPF, WordPress CMS</li>
-          </ul>
           <h2 className='abttopic'><center>Experiences</center></h2>
           <div className='listtype2'>
             <ul>
@@ -100,9 +95,6 @@ const AboutPage = () => (
               <IoIosArrowDropleftCircle size={'7vh'} />
             </Link>
           </div>        
-        </div>
-        <div className='footer'>
-          sawaYch@2018 v1.0.3
         </div>
       </Layout>
     </PageTransition>

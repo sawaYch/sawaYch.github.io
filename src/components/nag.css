@@ -78,6 +78,9 @@
   width: 100vw;
   margin-top: auto;
   display: block;
+  position: absolute;
+  z-index: 3;
+
   padding-top: 20vh;
 }
 
@@ -106,7 +109,7 @@
 }
 
 .curlyb {
-  font-size: 3ex;
+  font-size: 7vh;
   color: #27afe6;
   text-shadow: 1px 1px #06668b, 2px 2px #06668b, 3px 3px #06668b;
 }

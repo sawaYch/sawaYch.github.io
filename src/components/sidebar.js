@@ -75,7 +75,7 @@ class SideNav extends React.Component {
       });
       this.updateSelection()
     }
-    else if (event.key == 'd' && this.state.visible == true) {
+    else if (event.key == 'a' && this.state.visible == true) {
       var routeMap = ['/','/blog/', '/playground/', '/about/']
       this.closeSideBar()
       setTimeout( function() { navigate(routeMap[this.state.currentItemIndex]) }.bind(this), 300 );
@@ -122,7 +122,7 @@ class SideNav extends React.Component {
           <Link to='/playground/'>
             <div
               data-balloon='Playground'
-              data-balloon-pos='right'
+              data-balloon-pos='left'
               className='cubeItem'
             >
               <IoMdCube size={'5vh'} />
@@ -131,7 +131,7 @@ class SideNav extends React.Component {
           <Link to='/about/'>
             <div
               data-balloon='About Sawa'
-              data-balloon-pos='right'
+              data-balloon-pos='left'
               className='aboutItem'
             >
               <GoPerson size={'5vh'} />
@@ -140,7 +140,7 @@ class SideNav extends React.Component {
           <Link to='/blog/'>
             <div
               data-balloon='Blog'
-              data-balloon-pos='right'
+              data-balloon-pos='left'
               className='articleItem'            
             >
               <IoIosJournal size={'5vh'} />
@@ -149,7 +149,7 @@ class SideNav extends React.Component {
           <Link to='/'>
             <div
               data-balloon='Index'
-              data-balloon-pos='right'
+              data-balloon-pos='left'
               className='homeItem'            
             >
               <IoIosDesktop size={'5vh'} />
