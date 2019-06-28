@@ -7,6 +7,11 @@ import { IoIosArrowDropleftCircle } from "react-icons/io";
 import {Radar} from 'react-chartjs-2';
 import LazyLoad from 'react-lazyload';
 import Layout from '../components/layout'
+import { FaGithubAlt } from 'react-icons/fa'
+import { FaFacebookF } from 'react-icons/fa'
+import { FaMailBulk } from 'react-icons/fa'
+import Img from 'gatsby-image'
+import { StaticQuery, graphql } from 'gatsby'
 
 const data = {
   labels: ['Embedded System', 'FrontEnd', 'BackEnd', 'Language', 'Algorithm'],
@@ -47,21 +52,47 @@ const AboutPage = () => (
           <div className='aboutTopBanner' />
           <h2 className='abttopic'><center>Something About Me</center></h2>
           <div className='doc'>
-            <p className='part1'> 
-            Hi ! I'm Sawa, a Computer Science Engineering Student from Hong Kong. 
-            Love to combine technology with creative ideas. 
+            <p className='greeting'> 
+            Hello! my name is Sawa. 
             </p>
-            <p className='part2'>
-            I'm currently doing my bachelor degree in The Hong Kong University of Science and 
-            Technology. I am slightly obsessed with algorithm & CTF. Also with background in
-            Network and System Administration (and I love Linux 😎) 
+            <p className='bluebox'>
+            I am a Computer Science Student from Hong Kong. <br/>
+            Love to combine technology with creative ideas.<br/>
+            Currently doing my bachelor degree in The Hong Kong University of Science and Technology. <br/>
+            I am slightly obsessed with algorithm & CTF. <br/>
+            Also with background in Network and System Administration (and I love Linux 😎),  and I know a little bit about Robotics and Embedded System.
             </p>
-            <p className='part2'>
-            Furthermore, I know a little bit about Robotics and Embedded System.
-            When I’m not coding, I enjoy reading manga, watching anime and playing console games 😀
-            Sometimes I go cycling and badminton with my buddies.
+            <p className='emailbox'>
+              <a       
+                href='mailto:chyeungam@connect.ust.hk'
+              >
+                  <FaMailBulk color={'white'} size={'3vh'} />
+              </a>
+              <span className="email">&nbsp; chyeungam@connect.ust.hk</span>
             </p>
+            <p className='emailbox'>
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                href='https://github.com/sawaYch'
+              >
+              <FaGithubAlt color={'white'} size={'3vh'} />
+              </a>
+              <span className="email">&nbsp; sawaYch</span>
+            </p>
+
+            <p className='emailbox'>
+            <a
+              target='_blank'
+              rel='noopener noreferrer'
+              href='https://www.facebook.com/Chak.Yeung.93'
+            >
+                <FaFacebookF color={'white'} size={'3vh'} />
+            </a>
+            </p>
+            
           </div>
+          
           <h2 className='abttopic'><center>Skills</center></h2>
           <LazyLoad height={'50vh'}>
             <div className='chartBox'>
@@ -84,22 +115,23 @@ const AboutPage = () => (
           <h2 className='abttopic'><center>Experiences</center></h2>
           <div className='listtype2'>
             <ul>
-              <li><a>2017-2018 HKUST Robotics Team Member - Robocon (War Dragon)</a></li>
+              <li><a>2018 HKUST Robotics Team Member - Robocon (War Dragon)</a></li>
               <li><a>2017 Inter-Tertiary-Institute Capture the Flag (CTF) contest ASTRI x iChunQiu</a></li>
               <li><a>2016 Microsoft Azure Training Program - Cloud Admin & Apps on Cloud Platform</a></li>
             </ul>
           </div>
-
-          <div className='aboutback'>
+         <div className='aboutback'>
             <Link to='/'>
               <IoIosArrowDropleftCircle size={'7vh'} />
             </Link>
-          </div>        
+          </div>
         </div>
       </Layout>
     </PageTransition>
     <SideBar />    
   </div>
 )
+
+
 
 export default AboutPage

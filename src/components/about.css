@@ -27,8 +27,8 @@ body {
 .container {
   font-family: AvenirNextLTPro;
   display: block;
-  background: white;
-  width: 80%;
+  background-color: white;
+  width: 90%;
   height: 100%;
   margin: 0 auto;
   margin-top: 5vh;
@@ -38,6 +38,32 @@ body {
   margin-bottom: 100px;
   box-shadow: 0 0 1vh black;
 }
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  .container {
+    width: 70%;
+  }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .container {
+    width: 70%;
+  }
+}
+
 
 .aboutTopBanner {
   border-top-left-radius: 1em;
@@ -52,8 +78,21 @@ body {
   box-shadow: 0 4px 2px -2px gray;
 }
 
+.qrcode {
+  background-image: url('../images/qrcode.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 15vh 15vh;
+  display: block;
+  position: relative;
+  width: 15vh;
+  height: 15vh;
+  text-align: center;
+  margin: auto;
+}
+
 .doc {
-  font-family: AvenirNextLTPro;
+  font-family:  Helvetica;
   font-size: 1em;
   margin: 0px 15px 20px;
   display: flex;
@@ -62,19 +101,51 @@ body {
   flex-wrap: wrap;
 }
 
-.doc .part1 {
+.doc .greeting {
   margin-right: 2vh;
   font-weight: bold;
   flex: 1 1 0%;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0%;
-  text-align: left;
+  text-align: center;
+  color: #7aafff;
+  font-size: 1.5em;
+  font-weight: 900;
+  line-height: 1.9em;
 }
-.doc .part2 {
+.doc .bluebox {
   margin-right: 2vh;
-  
-  text-align: justify;
+  background: #3686ff;
+  border-radius: 2vh;
+  padding: 2vh;
+  text-align: center;
+  color: white;
+}
+
+
+
+.doc .emailbox {
+  margin-right: 2vh;
+  background: #c691f8;
+  border-radius: 2vh;
+  padding: 2vh;
+  text-align: center;
+  color: white;
+  transition: 0.3s;
+  -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 3s; /* Firefox < 16 */
+  -ms-animation: fadein 3s; /* Internet Explorer */
+  -o-animation: fadein 3s; /* Opera < 12.1 */
+  animation: fadein 3s;
+}
+
+.emailbox:hover{
+  background: rgb(83, 83, 83);
+}
+
+.email {
+  vertical-align: super;
 }
 
 .aboutback {
@@ -139,7 +210,7 @@ body {
 }
 
 .listtype2{
-  width:70vw;
+  width:80%;
   margin:0 auto;
 }
   
