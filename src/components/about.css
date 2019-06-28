@@ -39,6 +39,53 @@ body {
   box-shadow: 0 0 1vh black;
 }
 
+.chartBox {
+  height: 30vh; 
+  width: 30vh;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 2vh;
+  margin-bottom: 5vh;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+   -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+       animation: fadein 2s;
+}
+
+
+.footer {
+  display: block;
+  position: relative;
+  background: rgb(120, 120, 120);
+  width: 90vw;
+  left: -5vw;
+  bottom: -2vw;
+  height: 5vh;
+}
+
+
+.qrcode {
+  background-image: url('../images/qrcode.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  background-size: 5vh 5vh;
+  width: 5vh;
+  height: 5vh;
+  margin-left: 5vh;
+}
+
+.footer_sign {
+  height: 5vh;
+  color : white;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  padding:  1.5vh;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
@@ -49,7 +96,30 @@ body {
   .container {
     width: 70%;
   }
-  
+  .chartBox {
+    width: 50vh;
+    height: 50vh;
+  }
+  .footer {
+    width: 70vw;
+    bottom: -4vw;
+    /* height: 12vh; */
+
+  }
+  /* .qrcode {
+    
+    background-size: 12vh 12vh;
+    width: 12vh;
+    height: 12vh;
+    margin-left: 12vh;
+
+  } */
+
+  /* .footer_sign {
+    margin: 0 ;
+    height: 12vh;
+    padding:  5vh;
+  } */
 }
 
 /* 
@@ -62,6 +132,30 @@ body {
   .container {
     width: 70%;
   }
+  .chartBox {
+    width: 50vh;
+    height: 50vh;
+  }
+  .footer {
+    background: #1370fb;
+    width: 70vw;
+    bottom: -4vw;
+    /* height: 12vh; */
+
+
+  }
+  /* .qrcode {
+    background-size: 12vh 12vh;
+    width: 12vh;
+    height: 12vh;
+    margin-left: 12vh;
+
+  }
+  .footer_sign {
+    margin: 0 auto;
+    height: 12vh;
+    padding:  5vh;
+  } */
 }
 
 
@@ -78,18 +172,6 @@ body {
   box-shadow: 0 4px 2px -2px gray;
 }
 
-.qrcode {
-  background-image: url('../images/qrcode.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 15vh 15vh;
-  display: block;
-  position: relative;
-  width: 15vh;
-  height: 15vh;
-  text-align: center;
-  margin: auto;
-}
 
 .doc {
   font-family:  Helvetica;
@@ -127,7 +209,7 @@ body {
 
 .doc .emailbox {
   margin-right: 2vh;
-  background: #c691f8;
+  background: rgb(83, 83, 83);
   border-radius: 2vh;
   padding: 2vh;
   text-align: center;
@@ -141,7 +223,7 @@ body {
 }
 
 .emailbox:hover{
-  background: rgb(83, 83, 83);
+  background: rgb(120, 120, 120);
 }
 
 .email {
@@ -172,19 +254,6 @@ body {
   background-size: 22px 22px;
 }
 
-.chartBox {
-  height: 30vh; 
-  width: 30vh;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 2vh;
-  margin-bottom: 5vh;
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 2s; /* Firefox < 16 */
-   -ms-animation: fadein 2s; /* Internet Explorer */
-    -o-animation: fadein 2s; /* Opera < 12.1 */
-       animation: fadein 2s;
-}
 
 @keyframes fadein {
   from { opacity: 0; }

@@ -14,7 +14,7 @@ import Img from 'gatsby-image'
 import { StaticQuery, graphql } from 'gatsby'
 
 const data = {
-  labels: ['Embedded System', 'FrontEnd', 'BackEnd', 'Language', 'Algorithm'],
+  labels: ['Misc.', 'FrontEnd', 'BackEnd', 'Language', 'Algorithm'],
   datasets: [
     {
       label: 'Skill Points',
@@ -105,8 +105,11 @@ const AboutPage = () => (
                       beginAtZero: true,
                       max: 10,
                       display: false,
-                      maxTicksLimit: 4
-                    },                  
+                      maxTicksLimit: 4,
+                    },
+                    pointLabels: {
+                      fontSize: 14
+                    }         
                   }
                 }}
                 />
@@ -120,10 +123,16 @@ const AboutPage = () => (
               <li><a>2016 Microsoft Azure Training Program - Cloud Admin & Apps on Cloud Platform</a></li>
             </ul>
           </div>
-         <div className='aboutback'>
+          <div className='aboutback'>
             <Link to='/'>
               <IoIosArrowDropleftCircle size={'7vh'} />
             </Link>
+          </div>
+          <div className='footer'>
+            <a href={'/'} className='qrcode'/>
+            <div className='footer_sign'>
+              © {new Date().getFullYear()} sawaYch❤️<a class="ft-a" href="https://www.gatsbyjs.org">GatsbyJS</a>
+            </div>
           </div>
         </div>
       </Layout>
