@@ -8,7 +8,7 @@ body {
   margin: 0;
   overflow: hidden;
   background-color: #1370fb;
-  background-image: url(http://scarbroughstudios.com/img/codepen.svg);
+  background-image: url('../images/background.svg');
   background-position: center center;
   background-size: 500px;
   /* background: linear-gradient(90deg, #1370fb 19px, transparent 1%) center, linear-gradient(#1370fb 19px, transparent 1%) center, #388bff;
