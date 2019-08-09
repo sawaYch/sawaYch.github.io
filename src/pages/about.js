@@ -13,6 +13,7 @@ import { FaMailBulk } from 'react-icons/fa'
 import Img from 'gatsby-image'
 import { StaticQuery, graphql } from 'gatsby'
 
+
 const data = {
   labels: ['Misc.', 'FrontEnd', 'BackEnd', 'Language', 'Algorithm'],
   datasets: [
@@ -131,7 +132,7 @@ const AboutPage = () => (
           <div className='footer'>
             <a href={'/'} className='qrcode'/>
             <div className='footer_sign'>
-              © {new Date().getFullYear()} sawaYch❤️<a class="ft-a" href="https://www.gatsbyjs.org">GatsbyJS</a>
+              © {new Date().getFullYear()} sawaYch❤️<a className="ft-a" href="https://www.gatsbyjs.org">GatsbyJS</a>
             </div>
           </div>
         </div>

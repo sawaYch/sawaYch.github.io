@@ -7,9 +7,9 @@ import {
   IoMdCube,
   IoIosJournal,
   IoMdMore,
-  IoIosDesktop
+  IoIosDesktop,
+  IoMdPerson
 } from 'react-icons/io'
-import { GoPerson } from 'react-icons/go'
 import { Link } from 'gatsby'
 
 // const cubeStyle = {
@@ -134,7 +134,7 @@ class SideNav extends React.Component {
               data-balloon-pos='left'
               className='aboutItem'
             >
-              <GoPerson size={'5vh'} />
+              <IoMdPerson size={'5vh'} />
             </div>
           </Link>
           <Link to='/blog/'>
@@ -154,7 +154,7 @@ class SideNav extends React.Component {
             >
               <IoIosDesktop size={'5vh'} />
             </div>
-          </Link>
+          </Link> 
         </div>
       </div>
     )
