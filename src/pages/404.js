@@ -1,19 +1,13 @@
-import React from 'react'
-import '../components/layout_404.css'
+import * as React from "react";
+import Layout from "../components/Layout";
 
 const NotFoundPage = () => (
-  <div className='body404'>
-    <div className='q'>
-      <div className='c'>
-        <div className='_404'>404</div>
-        <div className='_1'>THE PAGE</div>
-        <div className='_2'>WAS NOT FOUND</div>
-        <a className='btn' href='/'>
-        BACK TO THE EARTH
-        </a>
-      </div>
+  <Layout>
+    <div>
+      <h1>NOT FOUND</h1>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
     </div>
-  </div>
-)
+  </Layout>
+);
 
-export default NotFoundPage
+export default NotFoundPage;

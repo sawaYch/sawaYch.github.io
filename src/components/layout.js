@@ -1,55 +1,58 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
-// import Header from './header'
-import './layout.css'
+import * as React from "react";
+import { Helmet } from "react-helmet";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import "./all.sass";
+import useSiteMetadata from "./SiteMetadata";
+import { withPrefix } from "gatsby";
 
+const TemplateWrapper = ({ children }) => {
+  const { title, description } = useSiteMetadata();
+  return (
+    <div>
+      <Helmet>
+        <html lang="en" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        >
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <html lang='en' />
-        </Helmet>
-        {/* bad design, don;t use this header */}
-        {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-        <div
-          style={{
-            margin: '0',
-            padding: '0px',
-            paddingTop: 0,
-          }}
-        >
-          {children}
-          {/* <footer>
-          © {new Date().getFullYear()} sawaYch❤️<a class="ft-a" href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer> */}
-        </div>
-      </>
-    )}
-  />
-)
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={`${withPrefix("/")}img/apple-touch-icon.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href={`${withPrefix("/")}img/favicon-32x32.png`}
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href={`${withPrefix("/")}img/favicon-16x16.png`}
+          sizes="16x16"
+        />
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+        <link
+          rel="mask-icon"
+          href={`${withPrefix("/")}img/safari-pinned-tab.svg`}
+          color="#ff4400"
+        />
+        <meta name="theme-color" content="#fff" />
 
-export default Layout
+        <meta property="og:type" content="business.business" />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content="/" />
+        <meta
+          property="og:image"
+          content={`${withPrefix("/")}img/og-image.jpg`}
+        />
+      </Helmet>
+      <Navbar />
+      <div>{children}</div>
+      <Footer />
+    </div>
+  );
+};
+
+export default TemplateWrapper;
