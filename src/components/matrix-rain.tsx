@@ -1,42 +1,44 @@
 import { useRef, useEffect, useMemo, useCallback } from 'react';
 import cn from 'classnames';
 import tw from 'twin.macro';
+import { interval } from 'd3';
+import { useResizeDetector } from 'react-resize-detector';
 
 interface MatrixRainProps {
   matrixKey?: string;
   className?: string;
-  width?: number;
-  height?: number;
   size?: number;
 }
 
-const MatrixRainContainer = tw.div`border border-dracula-aro w-fit select-none`;
+const MatrixRainContainer = tw.div`border border-dracula-aro bg-dracula-aro w-full h-full select-none pointer-events-none`;
 
 const MatrixRain = ({
   matrixKey = 'matrix',
   className,
-  width,
-  height,
   size = 16,
 }: MatrixRainProps) => {
   const ref = useRef<HTMLCanvasElement>(null);
+  const {
+    width: canvasWidth,
+    height: canvasHeight,
+    ref: containerRef,
+  } = useResizeDetector();
   const keyName = useMemo(() => `mrl-${matrixKey}`, [matrixKey]);
-  const canvasWidth = useMemo(() => width ?? window.innerWidth, [width]);
-  const canvasHeight = useMemo(() => height ?? window.innerHeight, [height]);
+
   const katakana =
     'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
   const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const number = '0123456789';
   const alphabet = katakana + latin + number;
 
-  const columns = canvasWidth / size;
+  const columns = canvasWidth ?? 0 / size;
   const rainDrops: number[] = useMemo(() => [], []);
 
   const initCanvas = useCallback(() => {
     const canvas = ref.current;
     if (canvas == null) return;
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width = canvasWidth ?? 0;
+    canvas.height = canvasHeight ?? 0;
     for (let x = 0; x < columns; x += 1) {
       rainDrops[x] = 1;
     }
@@ -60,7 +62,6 @@ const MatrixRain = ({
     const updateRainDrop = rainDrops;
 
     for (let i = 0; i < rainDrops.length; i += 1) {
-      // randomize the string of characters to render
       const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
       context.fillText(text, i * size, rainDrops[i] * size);
 
@@ -73,22 +74,22 @@ const MatrixRain = ({
 
   useEffect(() => {
     initCanvas();
-    const interval = setInterval(renderMatrix, 30);
+    const autoAnimation = interval(renderMatrix, 50);
+
     return () => {
-      clearInterval(interval);
+      autoAnimation.stop();
     };
   }, [initCanvas, renderMatrix]);
 
   return (
-    <MatrixRainContainer>
-      <canvas
-        key={keyName}
-        className={cn(
-          'border-t-0 border-b-8 border-x-8 border-dracula-darker',
-          className
-        )}
-        ref={ref}
-      />
+    <MatrixRainContainer
+      ref={containerRef}
+      className={cn(
+        'border-t-0 border-b-8 border-x-8 border-dracula-darker',
+        className
+      )}
+    >
+      <canvas key={keyName} ref={ref} />
     </MatrixRainContainer>
   );
 };
