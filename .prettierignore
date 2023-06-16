@@ -1,0 +1,4 @@
+public
+.cache
+*.json
+src/gatsby-types.d.ts
