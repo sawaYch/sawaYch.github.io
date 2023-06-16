@@ -36,7 +36,7 @@ export const Head = (props: PageProps<DataProps>) => {
 
 const IndexPage: React.FC<PageProps<DataProps>> = () => (
   <Layout>
-    <MatrixRain width={360} height={240} size={12}/>
+    <MatrixRain width={360} height={240} size={12} />
     <SpecCard />
   </Layout>
 );

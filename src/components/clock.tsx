@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { CgAppleWatch } from '@react-icons/all-files/cg/CGAppleWatch';
+import { CgAppleWatch } from '@react-icons/all-files/cg/CgAppleWatch';
 import { useEffect, useMemo, useState } from 'react';
 import tw from 'twin.macro';
 
@@ -22,11 +22,15 @@ const Clock = () => {
     };
   }, []);
 
-  const currentTimeZone = useMemo(() => Intl.DateTimeFormat()
-      .resolvedOptions()
-      .timeZone.replace('_', ' ')
-      .split('/')
-      .pop(), []);
+  const currentTimeZone = useMemo(
+    () =>
+      Intl.DateTimeFormat()
+        .resolvedOptions()
+        .timeZone.replace('_', ' ')
+        .split('/')
+        .pop(),
+    []
+  );
 
   return (
     <ClockContainer>

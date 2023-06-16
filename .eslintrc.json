@@ -14,7 +14,6 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
-    "import/no-unresolved": [2, { "caseSensitive": false }],
     "no-use-before-define": "off",
     "react/prop-types": "off",
     "react/require-default-props": "off",

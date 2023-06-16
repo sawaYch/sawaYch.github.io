@@ -20,15 +20,15 @@ const IconLink = ({
   icon,
   isExternalLink = false,
 }: IconLinkProps): ReactElement => (
-    <LinkContainer>
-      {isExternalLink ? (
-        <a href={target} target="_blank" rel="noopener noreferrer">
-          {icon}
-        </a>
-      ) : (
-        <Link to={target}>{icon}</Link>
-      )}
-    </LinkContainer>
-  );
+  <LinkContainer>
+    {isExternalLink ? (
+      <a href={target} target="_blank" rel="noopener noreferrer">
+        {icon}
+      </a>
+    ) : (
+      <Link to={target}>{icon}</Link>
+    )}
+  </LinkContainer>
+);
 
 export default IconLink;
