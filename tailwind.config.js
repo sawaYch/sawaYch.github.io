@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: 'Cubic',
+        secondary: 'Ku',
+        graph: 'KuGraph'
       },
     },
   },

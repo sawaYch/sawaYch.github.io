@@ -38,26 +38,26 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           className="layout"
           layouts={{
             lg: [
-              { i: 'matrixRain', x: 0, y: 0, w: 4, h: 2, minW: 4, maxW: 4 },
+              { i: 'matrixRain', x: 0, y: 0, w: 4, h: 2, minW: 1, maxW: 12 },
+              {
+                i: 'location',
+                x: 4,
+                y: 0,
+                w: 2,
+                h: 2,
+                minW: 2,
+                maxW: 4,
+                minH: 2,
+              },
               {
                 i: 'specCard',
                 x: 4,
                 y: 0,
-                w: 5,
+                w: 4,
                 h: 3,
                 minW: 4,
                 maxW: 6,
                 minH: 3,
-              },
-              {
-                i: 'location',
-                x: 0,
-                y: 1,
-                w: 2,
-                h: 2,
-                minW: 2,
-                maxW: 3,
-                minH: 2,
               },
               { i: 'd', x: 0, y: 1, w: 3, h: 2, minW: 3, maxW: 3 },
             ],

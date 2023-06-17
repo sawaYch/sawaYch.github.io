@@ -9,6 +9,16 @@
   src: url('/fonts/cubic.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'Ku';
+  src: url('/fonts/ku.ttf');
+}
+
+@font-face {
+  font-family: 'KuGraph';
+  src: url('/fonts/kug.ttf');
+}
+
 html,
 body {
   width: 100%;

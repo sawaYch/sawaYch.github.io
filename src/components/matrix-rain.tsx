@@ -27,7 +27,7 @@ const MatrixRain = ({
 
   const katakana =
     'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-  const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnobqrstuvwxyz';
   const number = '0123456789';
   const alphabet = katakana + latin + number;
 
@@ -57,7 +57,7 @@ const MatrixRain = ({
     context.fillStyle = 'rgba(40, 42, 54, 0.08)';
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = '#fb31a5';
-    context.font = `${size}px Cubic`;
+    context.font = `${size}px kuGraph`;
 
     const updateRainDrop = rainDrops;
 

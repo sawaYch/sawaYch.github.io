@@ -23,6 +23,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'topojson',
+        path: `${__dirname}/src/topojson`,
+      },
+    },
     'gatsby-plugin-postcss',
     'gatsby-plugin-styled-components',
     {
