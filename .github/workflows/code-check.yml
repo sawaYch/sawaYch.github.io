@@ -1,5 +1,8 @@
 name: Code Check
-on: [push]
+on:
+  push:
+  workflow_call:
+
 jobs:
   code-check:
     name: Code Check
