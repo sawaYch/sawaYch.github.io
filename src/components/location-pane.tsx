@@ -54,25 +54,13 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
     setRotation(newRotation);
   }, [rotation]);
 
-  const [enableAnimation, setEnableAnimation] = useState(true);
-
   useEffect(() => {
     const autoAnimation = timer(startAnimation);
-
-    if (enableAnimation) {
-      autoAnimation.restart(startAnimation);
-    } else {
-      autoAnimation.stop();
-    }
 
     return () => {
       autoAnimation.stop();
     };
-  }, [startAnimation, enableAnimation]);
-
-  const handleClick = useCallback(() => {
-    setEnableAnimation((prev) => !prev);
-  }, [setEnableAnimation]);
+  }, [startAnimation]);
 
   return (
     <ComposableMap
@@ -80,7 +68,6 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
         'p-8 border border-dracula-aro select-none bg-dracula-darker w-full h-full',
         className
       )}
-      onClick={handleClick}
       // @ts-ignore
       projection={projection()}
     >
@@ -98,16 +85,16 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
         }
       </Geographies>
       <Marker coordinates={center}>
-        <circle r={10} fill="#ff5555" />
+        <circle r={15} fill="#ff5555" />
         <text
           textAnchor="right"
           x="25"
           y="-10"
           fill="#ff5555"
-          fontSize="6rem"
+          fontSize="8rem"
           fontWeight="bold"
         >
-          🏠
+          👾
         </text>
       </Marker>
     </ComposableMap>
