@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import MatrixRain from '../components/matrix-rain';
 import SpecCard from '../components/spec-card';
 import LocationPane from '../components/location-pane';
+import GithubContributionMap from '../components/github-contribution-chart';
 
 interface DataProps {
   site: {
@@ -45,6 +46,9 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => (
     </div>
     <div key="location">
       <LocationPane center={[114.1694, 22.3193]} />
+    </div>
+    <div key="ghMap">
+      <GithubContributionMap />
     </div>
   </Layout>
 );

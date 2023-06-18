@@ -59,7 +59,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                 maxW: 6,
                 minH: 3,
               },
-              { i: 'd', x: 0, y: 1, w: 3, h: 2, minW: 3, maxW: 3 },
+              { i: 'ghMap', x: 0, y: 1, w: 4, h: 2, minH: 2, minW: 4 },
             ],
           }}
           width={layoutWidth}
