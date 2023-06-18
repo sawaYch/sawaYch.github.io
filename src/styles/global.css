@@ -4,6 +4,28 @@
 @import '/node_modules/react-grid-layout/css/styles.css';
 @import '/node_modules/react-resizable/css/styles.css';
 
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #71779f;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+
 @font-face {
   font-family: 'Cubic';
   src: url('/fonts/cubic.woff2') format('woff2');

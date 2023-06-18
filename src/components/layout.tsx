@@ -11,7 +11,7 @@ import tw from 'twin.macro';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import BackgroundContainer from './background-container';
 
-const StyledMain = tw.main`flex-auto ml-4 mt-4 mb-4 pr-4 overflow-hidden hover:overflow-y-auto space-y-2`;
+const StyledMain = tw.main`flex-auto ml-4 pt-2 pb-2 pr-4 overflow-y-scroll overflow-x-hidden space-y-2`;
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   const ref = useRef<HTMLElement>(null);
