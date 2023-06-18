@@ -77,14 +77,20 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
                 null
               )
               .typeString(
-                '<span style="background-color: #3b425a">Void Dojo</span> ...'
+                '<span style="background-color: #3b425a">Void Dojo</span>'
               )
+              .pauseFor(1000)
+              .typeString(' . ')
+              .pauseFor(1000)
+              .typeString(' . ')
+              .pauseFor(1000)
+              .typeString(' . ')
               .pauseFor(2000)
               .typeString(`<span>Eureka! </span>`)
               .pauseFor(2000)
               .deleteAll(1)
               .typeString(
-                `<span style="color:#ff79c6; font-weight: bold;">→ </span>[<span style="color:#ffb86c">${center[0]}, ${center[1]}</span>]`
+                `<span style="color:#ff79c6; font-weight: bold;">→ </span>[<span style="color:#bd93f9">${center[0]}, ${center[1]}</span>]`
               )
               .pauseFor(3000)
               .deleteAll(1)

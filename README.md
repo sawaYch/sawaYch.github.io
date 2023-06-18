@@ -8,7 +8,8 @@
 </div><div align="center" style="font-size:1em">Personal site boilerplate based on <a href="https://github.com/gatsbyjs/gatsby-starter-minimal-ts" target="_blank" rel="noopener noreferrer">Gatsby Minimal TypeScript Starter</a></div>
 
 ---
-
+[![Code Check](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/code-check.yml/badge.svg?branch=develop)](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/code-check.yml)
+[![Deploy Gatsby SSG](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/deploy.yml)  
 This repository is not intended to be used as a Gatsby theme.  
 Instead, it serves as a boilerplate specifically designed for deploying Gatsby SSG sites to GitHub Pages (github.io).
 
