@@ -1,49 +1,73 @@
 <p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  <a href="https://github.com/sawaYch/sawaYch.github.io/tree/develop">
+    <img alt="icon" src="./src/images/favicon.png" width="60" />
   </a>
 </p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+<div align="center" style="font-size:1.5em">
+  SawaYch.github.io
+</div><div align="center" style="font-size:1em">Personal site boilerplate based on <a href="https://github.com/gatsbyjs/gatsby-starter-minimal-ts" target="_blank" rel="noopener noreferrer">Gatsby Minimal TypeScript Starter</a></div>
+
+---
+
+This repository is not intended to be used as a Gatsby theme.  
+Instead, it serves as a boilerplate specifically designed for deploying Gatsby SSG sites to GitHub Pages (github.io).
 
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
+1. **Clone this repo**
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+   ```shell
+   # clone this repo
+   git clone https://github.com/sawaYch/sawaYch.github.io.git gatsby-site-boilerplate
+   ```
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+2. **Restore dependencies**
 
-2.  **Start developing.**
+   Navigate into your new site’s directory, prepare to develop locally.
 
-    Navigate into your new site’s directory and start it up.
+   ```shell
+   cd gatsby-site-boilerplate/
+   npm ci
+   ```
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+3. **Start developing**
 
-3.  **Open the code and start customizing!**
+   Start it up.
 
-    Your site is now running at http://localhost:8000!
+   ```shell
+   npm start
+   ```
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+4. **Open the code and start customizing!**
 
-4.  **Learn more**
+   Your site is now running at http://localhost:8000!
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+   Edit `src/pages/index.tsx` to see your site update in real-time!
 
-## 🚀 Quick start (Netlify)
+## 🧰 Deploy
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+This site are design to use SSG (Static Site Generation) and deploy to github.io page.  
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+By default, this repo use:  
+  - `develop` branch storing site codebase
+  - `master` branch for the source hosting of Gatsby SSG bundled result.  
+
+Deploy this site using **npm script** or **github action**.
+
+1. **Npm**
+
+   Please config git credential and the remote upstream first.
+
+   Then run this command to deploy:
+
+   ```shell
+   npm run deploy
+   ```
+
+2. **Github Action**
+
+   Checkout the yaml file `.github/workflows/deploy.yml`.
+
+   It is a manually triggered action.
+
+   You will need an github access token of your repo, with _repo write_ permission.
