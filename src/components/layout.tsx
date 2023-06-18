@@ -11,7 +11,7 @@ import tw from 'twin.macro';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import BackgroundContainer from './background-container';
 
-const StyledMain = tw.main`flex-auto ml-4 pt-2 pb-2 pr-4 overflow-y-scroll overflow-x-hidden space-y-2`;
+const StyledMain = tw.main`flex-auto pt-2 pb-2 pr-8 overflow-y-scroll overflow-x-hidden space-y-2`;
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   const ref = useRef<HTMLElement>(null);
@@ -33,42 +33,57 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <BackgroundContainer>
       <Slice alias="header" />
-      <StyledMain ref={ref}>
-        <ResponsiveGridLayout
-          className="layout"
-          layouts={{
-            lg: [
-              { i: 'matrixRain', x: 0, y: 0, w: 4, h: 2, minW: 1, maxW: 12 },
-              {
-                i: 'location',
-                x: 4,
-                y: 0,
-                w: 2,
-                h: 2,
-                minW: 2,
-                maxW: 4,
-                minH: 2,
-              },
-              {
-                i: 'specCard',
-                x: 4,
-                y: 0,
-                w: 4,
-                h: 3,
-                minW: 4,
-                maxW: 6,
-                minH: 3,
-              },
-              { i: 'ghMap', x: 0, y: 1, w: 4, h: 2, minH: 2, minW: 4 },
-            ],
-          }}
-          width={layoutWidth}
-          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-          cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-          rowHeight={rowHeight}
-        >
-          {children}
-        </ResponsiveGridLayout>
+      <StyledMain
+        ref={ref}
+        className="bg-sunset bg-cover backdrop-blur bg-center"
+      >
+        <div className="backdrop-blur-sm w-screen h-screen">
+          <ResponsiveGridLayout
+            className="layout"
+            layouts={{
+              lg: [
+                { i: 'matrixRain', x: 0, y: 0, w: 4, h: 2, minW: 1, maxW: 12 },
+                {
+                  i: 'location',
+                  x: 4,
+                  y: 0,
+                  w: 2,
+                  h: 2,
+                  minW: 2,
+                  maxW: 4,
+                  minH: 2,
+                },
+                {
+                  i: 'specCard',
+                  x: 4,
+                  y: 0,
+                  w: 4,
+                  h: 3,
+                  minW: 4,
+                  maxW: 6,
+                  minH: 3,
+                },
+                {
+                  i: 'ghMap',
+                  x: 0,
+                  y: 1,
+                  w: 4,
+                  h: 2,
+                  minH: 2,
+                  maxH: 2,
+                  maxW: 4,
+                  minW: 4,
+                },
+              ],
+            }}
+            width={layoutWidth}
+            breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+            cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+            rowHeight={rowHeight}
+          >
+            {children}
+          </ResponsiveGridLayout>
+        </div>
       </StyledMain>
       <Slice alias="footer" />
     </BackgroundContainer>

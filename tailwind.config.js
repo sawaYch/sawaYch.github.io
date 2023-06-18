@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        sunset: "url('../images/bg.png')",
+      },
       fontFamily: {
         primary: 'Cubic',
         secondary: 'Ku',
