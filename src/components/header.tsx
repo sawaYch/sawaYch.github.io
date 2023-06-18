@@ -13,7 +13,7 @@ const Header = () => (
     <TopBar>
       <StaticImage
         className="border-2 rounded-md border-dracula-dark-600 bg-dracula-buffy-200"
-        src="../images/favicon.png"
+        src="../images/favicon.webp"
         alt="Void Dojo"
         layout="fixed"
         width={24}

@@ -35,14 +35,22 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       <Slice alias="header" />
       <StyledMain
         ref={ref}
-        className="bg-sunset bg-cover backdrop-blur bg-center"
+        className="bg-sunset bg-cover backdrop-blur bg-center  transition-all ease-in duration-500"
       >
-        <div className="backdrop-blur-sm w-screen h-screen">
+        <div className="backdrop-blur-sm w-screen h-screen mix-blend-normal">
           <ResponsiveGridLayout
             className="layout"
             layouts={{
               lg: [
-                { i: 'matrixRain', x: 0, y: 0, w: 4, h: 2, minW: 1, maxW: 12 },
+                {
+                  i: 'matrixRain',
+                  x: 0,
+                  y: 0,
+                  w: 4,
+                  h: 2,
+                  minW: 1,
+                  maxW: 12,
+                },
                 {
                   i: 'location',
                   x: 4,

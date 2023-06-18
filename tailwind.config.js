@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        sunset: "url('../images/bg.png')",
+        sunset: "url('../images/bg.webp')",
       },
       fontFamily: {
         primary: 'Cubic',

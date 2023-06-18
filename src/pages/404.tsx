@@ -6,7 +6,11 @@ import BackgroundContainer from '../components/background-container';
 const NotFoundPage: React.FC<PageProps> = () => (
   <BackgroundContainer>
     <div className="flex flex-col items-center justify-center h-screen">
-      <StaticImage src="../images/home.png" alt="back to home" layout="fixed" />
+      <StaticImage
+        src="../images/home.webp"
+        alt="back to home"
+        layout="fixed"
+      />
       <h1 className="text-[5rem]">404 Error</h1>
       <span>Sorry 😔, page not found</span>
       <Link

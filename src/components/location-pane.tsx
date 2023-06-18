@@ -68,7 +68,7 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
   const circles = [geoCircle().center(center).radius(2)()];
 
   return (
-    <div className="h-full w-full pl-4 pr-4 pb-8 border border-dracula-aro select-none bg-dracula-darker">
+    <div className="h-full w-full pl-4 pr-4 pb-8 border border-dracula-aro bg-opacity-60 select-none bg-dracula-darker">
       <div className="text-xs mt-2">
         <Typewriter
           onInit={(typewriter) => {

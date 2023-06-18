@@ -10,7 +10,7 @@ interface MatrixRainProps {
   size?: number;
 }
 
-const MatrixRainContainer = tw.div`border border-dracula-aro bg-dracula-aro w-full h-full select-none pointer-events-none`;
+const MatrixRainContainer = tw.div`border border-dracula-aro bg-opacity-60  bg-dracula-aro w-full h-full select-none pointer-events-none`;
 
 const MatrixRain = ({
   matrixKey = 'matrix',

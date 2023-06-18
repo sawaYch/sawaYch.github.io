@@ -23,7 +23,7 @@ const GithubContributionMap = () => {
   );
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-dracula-darker border border-dracula-aro p-4">
+    <div className="w-full h-full flex flex-col items-center justify-center bg-opacity-70 bg-dracula-darker border border-dracula-aro p-4">
       <div className="flex w-full justify-center items-center">
         <GridLoader color="#bd93f9" size={2} />
         <hr className="grow ml-2 mr-2 border-dracula-dark border border-dashed" />

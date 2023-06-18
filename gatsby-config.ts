@@ -40,7 +40,7 @@ const config: GatsbyConfig = {
         start_url: '/',
         background_color: '#222222',
         theme_color: '#bd93f9     ',
-        icon: 'src/images/favicon.png',
+        icon: 'src/images/favicon.webp',
       },
     },
     `gatsby-plugin-mdx`,
