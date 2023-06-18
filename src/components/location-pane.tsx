@@ -33,7 +33,9 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
 
   const scale = 225;
 
-  const [rotation, setRotation] = useState<[number, number, number]>([0, 0, 0]);
+  const [rotation, setRotation] = useState<[number, number, number]>([
+    0, -15, 10,
+  ]);
 
   const projection = useCallback(
     () =>
@@ -42,15 +44,14 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
         .translate([384, 300])
         .scale(scale)
         .center([0, 0])
-        .clipAngle(90)
-        .precision(0.1),
+        .precision(1),
     [rotation]
   );
 
   const startAnimation = useCallback(() => {
     const newRotation: [number, number, number] = [
-      rotation[0] + 0.5,
-      rotation[1] - 0.1,
+      rotation[0] + 1.5,
+      rotation[1],
       rotation[2],
     ];
     setRotation(newRotation);
@@ -90,7 +91,7 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
               .pauseFor(2000)
               .deleteAll(1)
               .typeString(
-                `<span style="color:#ff79c6; font-weight: bold;">→ </span>[<span style="color:#bd93f9">${center[0]}, ${center[1]}</span>]`
+                `<span style="color:#ff79c6; font-weight: bold;">→ </span>[<span style="background-color:#3b425a; color: #fff">${center[0]}</span> , <span style="background-color:#3b425a; color: #fff">${center[1]}</span>]`
               )
               .pauseFor(3000)
               .deleteAll(1)
