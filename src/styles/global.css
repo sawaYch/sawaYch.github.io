@@ -25,23 +25,22 @@
   background: transparent;
 }
 
-
 @font-face {
   font-family: 'Cubic';
-  src: url('/fonts/cubic.woff2') format('woff2');
-  font-display: swap
+  src: url('/fonts/cubic.woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Ku';
   src: url('/fonts/ku.ttf');
-  font-display: swap
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'KuGraph';
   src: url('/fonts/kug.ttf');
-  font-display: swap
+  font-display: swap;
 }
 
 html,

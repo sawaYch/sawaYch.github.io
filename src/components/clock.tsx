@@ -6,7 +6,7 @@ import tw from 'twin.macro';
 const ClockContainer = tw.div`flex items-center`;
 
 const Clock = () => {
-  const dayFormat = 'DD/MM/YYYY ddd HH:mm:ss A';
+  const dayFormat = 'DD/MM/YYYY ddd HH:mm A';
 
   const [currentDateTime, setCurrentDateTime] = useState<string>(
     dayjs().format(dayFormat)
@@ -15,7 +15,7 @@ const Clock = () => {
   useEffect(() => {
     const interval = setInterval(
       () => setCurrentDateTime(dayjs().format(dayFormat)),
-      1000
+      60000
     );
     return () => {
       clearInterval(interval);

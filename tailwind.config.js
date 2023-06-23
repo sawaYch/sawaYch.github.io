@@ -7,12 +7,18 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        sunset: "url('../images/bg.webp')",
+        pattern: "url('../images/circuit.svg')",
+      },
+      backdropBlur: {
+        xs: '1px',
+      },
+      opacity: {
+        '05': '.065',
       },
       fontFamily: {
         primary: 'Cubic',
         secondary: 'Ku',
-        graph: 'KuGraph'
+        graph: 'KuGraph',
       },
     },
   },

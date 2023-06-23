@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 import { StaticImage } from 'gatsby-plugin-image';
 import Spec from '../content/spec.mdx';
 
-const CardContainer = tw.div`flex backdrop-blur-md bg-dracula-darker bg-opacity-60 h-full p-4 text-xs border select-none pointer-events-none border-dracula-aro items-center justify-center `;
+const CardContainer = tw.div`flex bg-dracula-darker bg-opacity-60 h-full p-4 text-xs border select-none pointer-events-none border-dracula-aro items-center justify-center `;
 
 const SpecCard = () => (
   <CardContainer>

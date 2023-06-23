@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
 import GitHubCalendar from 'react-github-calendar';
-import { GridLoader } from 'react-spinners';
 import { animated, useSpring } from 'react-spring';
-import Tooltip from '@mui/material/Tooltip';
 
 const GithubContributionMap = () => {
   const theme = useMemo(
@@ -23,12 +21,7 @@ const GithubContributionMap = () => {
   );
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-opacity-70 bg-dracula-darker border border-dracula-aro p-4">
-      <div className="flex w-full justify-center items-center">
-        <GridLoader color="#bd93f9" size={2} />
-        <hr className="grow ml-2 mr-2 border-dracula-dark border border-dashed" />
-        <GridLoader color="#bd93f9" size={2} />
-      </div>
+    <div className="w-full h-full flex flex-col items-center justify-center bg-opacity-60 bg-dracula-darker border border-dracula-aro p-4">
       <div className="my-1">
         <GitHubCalendar
           username="sawaych"
@@ -42,28 +35,17 @@ const GithubContributionMap = () => {
               {activity.count === 0 ? (
                 block
               ) : (
-                <Tooltip
-                  title={`${activity.count} energy earns on ${activity.date}`}
-                  placement="top"
-                  arrow
+                <animated.g
+                  id={activity.date}
+                  key={activity.date}
+                  style={props}
                 >
-                  <animated.g
-                    id={activity.date}
-                    key={activity.date}
-                    style={props}
-                  >
-                    {block}
-                  </animated.g>
-                </Tooltip>
+                  {block}
+                </animated.g>
               )}
             </>
           )}
         />
-      </div>
-      <div className="flex w-full justify-center items-center">
-        <GridLoader color="#bd93f9" size={2} />
-        <hr className="grow ml-2 mr-2 border-dracula-dark border border-dashed" />
-        <GridLoader color="#bd93f9" size={2} />
       </div>
     </div>
   );

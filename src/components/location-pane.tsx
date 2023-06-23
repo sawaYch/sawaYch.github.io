@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import {
   ComposableMap,
   Geographies,
@@ -7,7 +7,6 @@ import {
   Marker,
 } from 'react-simple-maps';
 import { scaleLinear } from 'd3-scale';
-import { timer } from 'd3';
 import { geoOrthographic, geoCircle } from 'd3-geo';
 import cn from 'classnames';
 import Typewriter from 'typewriter-effect';
@@ -33,37 +32,16 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
 
   const scale = 225;
 
-  const [rotation, setRotation] = useState<[number, number, number]>([
-    0, -15, 10,
-  ]);
-
   const projection = useCallback(
     () =>
       geoOrthographic()
-        .rotate(rotation)
+        .rotate([-100, -15, 10])
         .translate([384, 300])
         .scale(scale)
         .center([0, 0])
         .precision(1),
-    [rotation]
+    []
   );
-
-  const startAnimation = useCallback(() => {
-    const newRotation: [number, number, number] = [
-      rotation[0] + 1.5,
-      rotation[1],
-      rotation[2],
-    ];
-    setRotation(newRotation);
-  }, [rotation]);
-
-  useEffect(() => {
-    const autoAnimation = timer(startAnimation);
-
-    return () => {
-      autoAnimation.stop();
-    };
-  }, [startAnimation]);
 
   const circles = [geoCircle().center(center).radius(2)()];
 
@@ -165,7 +143,7 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
             textAnchor="right"
             x="5"
             y="-5"
-            fill="#ff5555"
+            filter="url(#sofGlow)"
             fontSize="8rem"
             fontWeight="bold"
           >
