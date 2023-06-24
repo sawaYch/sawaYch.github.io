@@ -6,11 +6,12 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Slice } from 'gatsby';
 import tw from 'twin.macro';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import BackgroundContainer from './background-container';
+import Header from './header';
+import Footer from './footer';
 
 const StyledMain = tw.main`flex-auto overflow-x-hidden`;
 
@@ -33,16 +34,16 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <BackgroundContainer>
-      <Slice alias="header" />
-      <StaticImage
-        className="opacity-05 fixed w-screen h-screen"
-        src="../images/girl.webp"
-        alt="background images"
-        layout="fullWidth"
-      />
+      <Header />
       <StyledMain ref={ref} className="bg-pattern">
+        <StaticImage
+          className="!absolute top-0 left-0 opacity-05 w-screen h-screen"
+          src="../images/girl.webp"
+          alt="background images"
+          layout="fullWidth"
+        />
         <ResponsiveGridLayout
-          className="layout"
+          className="layout relative"
           layouts={{
             lg: [
               {
@@ -95,7 +96,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           {children}
         </ResponsiveGridLayout>
       </StyledMain>
-      <Slice alias="footer" />
+      <Footer />
     </BackgroundContainer>
   );
 };

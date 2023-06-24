@@ -9,9 +9,8 @@ const Footer = () => (
   <footer>
     <BottomBar>
       <div className="items-center justify-center text-center">
-        © {new Date().getFullYear()},{' '}
+        © {new Date().getFullYear()},
         <span className="text-dracula-buffy">Sawa</span>
-        {` `}
         <br />
         Built with <span className="text-dracula-purple">Gatsby.js</span>
         <br />

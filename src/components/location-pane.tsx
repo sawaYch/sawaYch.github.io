@@ -10,7 +10,7 @@ import { scaleLinear } from 'd3-scale';
 import { geoOrthographic, geoCircle } from 'd3-geo';
 import cn from 'classnames';
 import Typewriter from 'typewriter-effect';
-import worldJson from '../topojson/world.json';
+import worldJson from '../topojson/world-continents.json';
 
 interface LocationPaneProps {
   center: [number, number]; // [lon, lat]; [114.1694, 22.3193] hong kong

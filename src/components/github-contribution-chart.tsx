@@ -21,32 +21,20 @@ const GithubContributionMap = () => {
   );
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-opacity-60 bg-dracula-darker border border-dracula-aro p-4">
-      <div className="my-1">
-        <GitHubCalendar
-          username="sawaych"
-          hideColorLegend
-          hideTotalCount
-          blockRadius={14}
-          style={{ color: '#d3b6fc' }}
-          theme={theme}
-          renderBlock={(block, activity) => (
-            <>
-              {activity.count === 0 ? (
-                block
-              ) : (
-                <animated.g
-                  id={activity.date}
-                  key={activity.date}
-                  style={props}
-                >
-                  {block}
-                </animated.g>
-              )}
-            </>
-          )}
-        />
-      </div>
+    <div className="w-full h-full flex flex-col my-1 items-center justify-center bg-opacity-60 bg-dracula-darker border border-dracula-aro p-4">
+      <GitHubCalendar
+        username="sawaych"
+        hideColorLegend
+        hideTotalCount
+        blockRadius={14}
+        style={{ color: '#d3b6fc' }}
+        theme={theme}
+        renderBlock={(block, activity) => (
+          <animated.g id={activity.date} key={activity.date} style={props}>
+            {block}
+          </animated.g>
+        )}
+      />
     </div>
   );
 };

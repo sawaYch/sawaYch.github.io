@@ -1,15 +1,13 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
 
-const GithubContributionMap = lazy(
-  () => import('../components/github-contribution-chart')
-);
-const LocationPane = lazy(() => import('../components/location-pane'));
-const SpecCard = lazy(() => import('../components/spec-card'));
-const MatrixRain = lazy(() => import('../components/matrix-rain'));
-const Layout = lazy(() => import('../components/layout'));
+import GithubContributionMap from '../components/github-contribution-chart';
+import LocationPane from '../components/location-pane';
+import SpecCard from '../components/spec-card';
+import MatrixRain from '../components/matrix-rain';
+import Layout from '../components/layout';
 
 interface DataProps {
   site: {
