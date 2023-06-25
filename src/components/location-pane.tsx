@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import {
   ComposableMap,
   Geographies,
@@ -32,26 +32,28 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
 
   const scale = 225;
 
+  const [rotation] = useState<[number, number, number]>([-100, -15, 10]);
+
   const projection = useCallback(
     () =>
       geoOrthographic()
-        .rotate([-100, -15, 10])
+        .rotate(rotation)
         .translate([384, 300])
         .scale(scale)
         .center([0, 0])
-        .precision(1),
-    []
+        .precision(0.1),
+    [rotation]
   );
 
   const circles = [geoCircle().center(center).radius(2)()];
 
   return (
-    <PaneContainer className="pl-4 pr-4 pb-8 select-none pointer-events-none">
-      <div className="text-xs mt-2">
-        <span className="text-dracula-pink font-bold">→ </span>[
+    <PaneContainer className="pb-8 pl-4 pr-4 pointer-events-none select-none">
+      <div className="mt-2 text-xs">
+        <span className="font-bold text-dracula-pink">→ </span>[
         <span className="text-dracula-light bg-dracula-dark">{center[0]}</span>,
-        <span className="text-dracula-light bg-dracula-dark">{center[1]}</span>:
-        HK ]
+        <span className="text-dracula-light bg-dracula-dark">{center[1]}</span>{' '}
+        🇭🇰 ]
       </div>
 
       <ComposableMap

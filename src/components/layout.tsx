@@ -43,7 +43,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           layout="fullWidth"
         />
         <ResponsiveGridLayout
-          className="layout relative"
+          className="relative layout"
           layouts={{
             lg: [
               {
