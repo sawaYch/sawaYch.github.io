@@ -10,7 +10,7 @@ const Clock = () => {
   const dayFormat = 'DD/MM/YYYY ddd HH:mm:ss A';
 
   const [currentDateTime, setCurrentDateTime] = useState<string>(
-    dayjs().format(dayFormat)
+    '01/01/1900 Sun 00:00:00 AM'
   );
 
   const setInterval = useAnimationInterval();

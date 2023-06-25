@@ -13,7 +13,7 @@ module.exports = {
         xs: '1px',
       },
       opacity: {
-        '05': '.065',
+        '05': '.069',
       },
       fontFamily: {
         primary: 'Cubic',

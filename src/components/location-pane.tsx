@@ -9,7 +9,6 @@ import {
 import { scaleLinear } from 'd3-scale';
 import { geoOrthographic, geoCircle } from 'd3-geo';
 import cn from 'classnames';
-import Typewriter from 'typewriter-effect';
 import worldJson from '../topojson/world-continents.json';
 import PaneContainer from './pane-container';
 
@@ -49,35 +48,10 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
   return (
     <PaneContainer className="pl-4 pr-4 pb-8 select-none pointer-events-none">
       <div className="text-xs mt-2">
-        <Typewriter
-          onInit={(typewriter) => {
-            typewriter
-              .pasteString(
-                `<span style="color:#ff79c6; font-weight: bold;">→ </span>`,
-                null
-              )
-              .typeString(
-                '<span style="background-color: #3b425a">Void Dojo</span>'
-              )
-              .pauseFor(1000)
-              .typeString(' . ')
-              .pauseFor(1000)
-              .typeString(' . ')
-              .pauseFor(1000)
-              .typeString(' . ')
-              .pauseFor(2000)
-              .typeString(`<span>Eureka! </span>`)
-              .pauseFor(2000)
-              .deleteAll(1)
-              .typeString(
-                `<span style="color:#ff79c6; font-weight: bold;">→ </span>[<span style="background-color:#3b425a; color: #fff">${center[0]}</span> , <span style="background-color:#3b425a; color: #fff">${center[1]}</span>]`
-              )
-              .pauseFor(3000)
-              .deleteAll(1)
-              .start();
-          }}
-          options={{ cursor: '█', loop: true, delay: 75 }}
-        />
+        <span className="text-dracula-pink font-bold">→ </span>[
+        <span className="text-dracula-light bg-dracula-dark">{center[0]}</span>,
+        <span className="text-dracula-light bg-dracula-dark">{center[1]}</span>:
+        HK ]
       </div>
 
       <ComposableMap

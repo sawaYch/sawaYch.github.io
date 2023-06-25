@@ -3,10 +3,10 @@ import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import IconLink from './icon-link';
 
-const BottomBar = tw.div`flex select-none justify-center pl-2 pr-2 pt-1 pb-1 bg-dracula-darker shadow-md text-xs items-center`;
+const BottomBar = tw.div`flex select-none justify-center pl-2 pr-2 pt-1 pb-1 bg-dracula-darker text-xs items-center`;
 
 const Footer = () => (
-  <footer>
+  <footer className="z-50">
     <BottomBar>
       <div className="items-center justify-center text-center">
         © {new Date().getFullYear()},
@@ -19,11 +19,13 @@ const Footer = () => (
             target="https://github.com/sawaYch"
             isExternalLink
             icon={<FaGithubAlt size="1rem" />}
+            ariaLabel="github"
           />
           <IconLink
             target="https://twitter.com/SawaYch"
             isExternalLink
             icon={<FaTwitter size="1rem" />}
+            ariaLabel="twitter"
           />
         </div>
       </div>

@@ -7,6 +7,7 @@ interface HeadProps {
 
 const Head = ({ title, description, image, author }: HeadProps) => (
   <>
+    <html lang="en" />
     <meta charSet="utf-8" />
     <title>{title}</title>
     <meta property="og:title" content={title} />

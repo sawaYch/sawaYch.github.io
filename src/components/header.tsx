@@ -9,7 +9,7 @@ const TopBar = tw.div`flex select-none justify-between pl-2 pr-2 pt-1 pb-1 bg-dr
 const StatusPane = tw.div`flex items-center space-x-1.5`;
 
 const Header = () => (
-  <header>
+  <header className="z-50">
     <TopBar>
       <StaticImage
         className="border-2 rounded-md border-dracula-dark-600 bg-dracula-buffy-200"

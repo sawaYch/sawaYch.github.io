@@ -6,6 +6,7 @@ interface IconLinkProps {
   target: string;
   icon?: ReactElement;
   isExternalLink?: boolean;
+  ariaLabel?: string;
 }
 
 const LinkContainer = tw.div`
@@ -19,10 +20,16 @@ const IconLink = ({
   target,
   icon,
   isExternalLink = false,
+  ariaLabel,
 }: IconLinkProps): ReactElement => (
   <LinkContainer>
     {isExternalLink ? (
-      <a href={target} target="_blank" rel="noopener noreferrer">
+      <a
+        href={target}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={ariaLabel}
+      >
         {icon}
       </a>
     ) : (

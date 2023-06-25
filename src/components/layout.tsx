@@ -37,7 +37,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       <Header />
       <StyledMain ref={ref} className="bg-pattern">
         <StaticImage
-          className="!absolute top-0 left-0 opacity-05 w-screen h-screen"
+          className="!absolute top-0 left-0 opacity-05 w-screen h-screen select-none pointer-events-none"
           src="../images/girl.webp"
           alt="background images"
           layout="fullWidth"
