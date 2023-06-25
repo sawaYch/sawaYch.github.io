@@ -4,18 +4,17 @@ const useAnimationInterval = () => {
   const mySetInterval = useCallback(
     (callback: (_timer: number) => void, interval: number) => {
       let timer;
-      const { now } = Date;
-      let startTime = now();
+      let startTime = Date.now();
       let endTime = startTime;
       const loop = () => {
-        timer = window.requestAnimationFrame(loop);
-        endTime = now();
+        timer = requestAnimationFrame(loop);
+        endTime = Date.now();
         if (endTime - startTime >= interval) {
-          startTime = now();
+          startTime = Date.now();
           callback(timer);
         }
       };
-      timer = window.requestAnimationFrame(loop);
+      timer = requestAnimationFrame(loop);
       return timer;
     },
     []

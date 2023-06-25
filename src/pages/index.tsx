@@ -2,8 +2,7 @@ import React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
-
-import GithubContributionMap from '../components/github-contribution-chart';
+// import GithubContributionMap from '../components/github-contribution-chart';
 import LocationPane from '../components/location-pane';
 import SpecCard from '../components/spec-card';
 import MatrixRain from '../components/matrix-rain';
@@ -48,9 +47,9 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => (
     <div key="location">
       <LocationPane center={[114.1694, 22.3193]} />
     </div>
-    <div key="ghMap">
+    {/* <div key="ghMap">
       <GithubContributionMap />
-    </div>
+    </div> */}
   </Layout>
 );
 export default IndexPage;

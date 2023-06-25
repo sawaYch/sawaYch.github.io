@@ -43,44 +43,51 @@ const MatrixRain = ({
 
   const setInterval = useAnimationInterval();
 
+  const requestRef = useRef<number>();
+  const fpsCounter = useRef<number>(0);
+
   const renderMatrix = useCallback(
     (_t: number) => {
-      const canvas = ref.current;
-      if (canvas == null) {
-        return;
-      }
-      const context = canvas.getContext('2d');
-      if (context == null) {
-        return;
-      }
-
-      context.fillStyle = 'rgba(40, 42, 54, 0.08)';
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      context.fillStyle = '#fb31a5';
-      context.font = `${size}px kuGraph`;
-
-      const updateRainDrop = rainDrops;
-
-      for (let i = 0; i < rainDrops.length; i += 1) {
-        const text = alphabet.charAt(
-          Math.floor(Math.random() * alphabet.length)
-        );
-        context.fillText(text, i * size, rainDrops[i] * size);
-
-        if (rainDrops[i] * size > canvas.height && Math.random() > 0.975) {
-          updateRainDrop[i] = 0;
+      if (fpsCounter.current % 2 === 0) {
+        const canvas = ref.current;
+        if (canvas == null) {
+          return;
         }
-        updateRainDrop[i] += 1;
+        const context = canvas.getContext('2d');
+        if (context == null) {
+          return;
+        }
+
+        context.fillStyle = 'rgba(40, 42, 54, 0.08)';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = '#fb31a5';
+        context.font = `${size}px kuGraph`;
+
+        const updateRainDrop = rainDrops;
+
+        for (let i = 0; i < rainDrops.length; i += 1) {
+          const text = alphabet.charAt(
+            Math.floor(Math.random() * alphabet.length)
+          );
+          context.fillText(text, i * size, rainDrops[i] * size);
+
+          if (rainDrops[i] * size > canvas.height && Math.random() > 0.975) {
+            updateRainDrop[i] = 0;
+          }
+          updateRainDrop[i] += 1;
+        }
       }
+      fpsCounter.current += 1;
+      requestRef.current = requestAnimationFrame(renderMatrix);
     },
     [size, rainDrops, alphabet]
   );
 
   useEffect(() => {
     initCanvas();
-    const requestId = setInterval(renderMatrix, 75);
+    requestRef.current = requestAnimationFrame(renderMatrix);
     return () => {
-      cancelAnimationFrame(requestId);
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
   }, [initCanvas, renderMatrix, setInterval]);
 

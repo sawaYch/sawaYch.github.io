@@ -17,7 +17,6 @@ module.exports = {
       },
       fontFamily: {
         primary: 'Cubic',
-        secondary: 'Ku',
         graph: 'KuGraph',
       },
     },

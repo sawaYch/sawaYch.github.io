@@ -33,12 +33,6 @@
 }
 
 @font-face {
-  font-family: 'Ku';
-  src: url('/fonts/ku.ttf');
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'KuGraph';
   src: url('/fonts/kug.ttf');
   font-display: swap;
