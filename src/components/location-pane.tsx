@@ -11,6 +11,7 @@ import { geoOrthographic, geoCircle } from 'd3-geo';
 import cn from 'classnames';
 import Typewriter from 'typewriter-effect';
 import worldJson from '../topojson/world-continents.json';
+import PaneContainer from './pane-container';
 
 interface LocationPaneProps {
   center: [number, number]; // [lon, lat]; [114.1694, 22.3193] hong kong
@@ -46,7 +47,7 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
   const circles = [geoCircle().center(center).radius(2)()];
 
   return (
-    <div className="h-full w-full pl-4 pr-4 pb-8 border border-dracula-aro bg-opacity-60 select-none bg-dracula-darker">
+    <PaneContainer className="pl-4 pr-4 pb-8 select-none pointer-events-none">
       <div className="text-xs mt-2">
         <Typewriter
           onInit={(typewriter) => {
@@ -151,7 +152,7 @@ const LocationPane = ({ center, className }: LocationPaneProps) => {
           </text>
         </Marker>
       </ComposableMap>
-    </div>
+    </PaneContainer>
   );
 };
 

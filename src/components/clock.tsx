@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { CgAppleWatch } from '@react-icons/all-files/cg/CgAppleWatch';
 import { useEffect, useMemo, useState } from 'react';
 import tw from 'twin.macro';
+import useAnimationInterval from '../utils/use-animation-Interval';
 
 const ClockContainer = tw.div`flex items-center`;
 
@@ -12,15 +13,17 @@ const Clock = () => {
     dayjs().format(dayFormat)
   );
 
+  const setInterval = useAnimationInterval();
+
   useEffect(() => {
-    const interval = setInterval(
+    const requestId = setInterval(
       () => setCurrentDateTime(dayjs().format(dayFormat)),
       1000
     );
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(requestId);
     };
-  }, []);
+  }, [setInterval]);
 
   const currentTimeZone = useMemo(
     () =>

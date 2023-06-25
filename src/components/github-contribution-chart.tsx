@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import GitHubCalendar from 'react-github-calendar';
 import { animated, useSpring } from 'react-spring';
+import PaneContainer from './pane-container';
 
 const GithubContributionMap = () => {
   const theme = useMemo(
@@ -21,7 +22,7 @@ const GithubContributionMap = () => {
   );
 
   return (
-    <div className="w-full h-full flex flex-col my-1 items-center justify-center bg-opacity-60 bg-dracula-darker border border-dracula-aro p-4">
+    <PaneContainer className="flex flex-col my-1 items-center justify-center p-4">
       <GitHubCalendar
         username="sawaych"
         hideColorLegend
@@ -35,7 +36,7 @@ const GithubContributionMap = () => {
           </animated.g>
         )}
       />
-    </div>
+    </PaneContainer>
   );
 };
 

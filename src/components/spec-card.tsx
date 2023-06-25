@@ -1,11 +1,9 @@
-import tw from 'twin.macro';
 import { StaticImage } from 'gatsby-plugin-image';
 import Spec from '../content/spec.mdx';
-
-const CardContainer = tw.div`flex bg-dracula-darker bg-opacity-60 h-full p-4 text-xs border select-none pointer-events-none border-dracula-aro items-center justify-center `;
+import PaneContainer from './pane-container';
 
 const SpecCard = () => (
-  <CardContainer>
+  <PaneContainer className="flex p-4 text-xs select-none pointer-events-none items-center justify-center">
     <div className="flex flex-row items-center justify-center">
       <StaticImage
         src="../images/computer.webp"
@@ -16,7 +14,7 @@ const SpecCard = () => (
       />
       <Spec />
     </div>
-  </CardContainer>
+  </PaneContainer>
 );
 
 export default SpecCard;
