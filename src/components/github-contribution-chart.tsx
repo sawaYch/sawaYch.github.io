@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import GitHubCalendar from 'react-github-calendar';
 import { animated, useSpring } from 'react-spring';
 import PaneContainer from './pane-container';
@@ -20,6 +20,14 @@ const GithubContributionMap = () => {
     }),
     []
   );
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <PaneContainer className="flex flex-col my-1 items-center justify-center p-4">

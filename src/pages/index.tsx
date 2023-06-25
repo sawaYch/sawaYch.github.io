@@ -39,9 +39,9 @@ export const Head = (props: PageProps<DataProps>) => {
 
 const IndexPage: React.FC<PageProps<DataProps>> = () => (
   <Layout>
-    {/* <div key="matrixRain">
+    <div key="matrixRain">
       <MatrixRain size={12} />
-    </div> */}
+    </div>
     <div key="specCard">
       <SpecCard />
     </div>

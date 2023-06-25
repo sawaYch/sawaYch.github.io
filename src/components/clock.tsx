@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { CgAppleWatch } from '@react-icons/all-files/cg/CgAppleWatch';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState, Suspense, useEffect } from 'react';
 import tw from 'twin.macro';
 import useAnimationInterval from '../utils/use-animation-Interval';
 
@@ -12,8 +12,11 @@ const Clock = () => {
   const [currentDateTime, setCurrentDateTime] = useState<string>(
     '01/01/1900 Sun 00:00:00 AM'
   );
+  const [mounted, setMounted] = useState(false);
 
   const setInterval = useAnimationInterval();
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const requestId = setInterval(
@@ -35,10 +38,16 @@ const Clock = () => {
     []
   );
 
+  if (!mounted) return null;
+
   return (
     <ClockContainer>
       <CgAppleWatch size="1.2em" />
-      {currentDateTime} | {currentTimeZone}
+      <time>
+        <Suspense fallback={null}>
+          {currentDateTime} | {currentTimeZone}
+        </Suspense>
+      </time>
     </ClockContainer>
   );
 };
