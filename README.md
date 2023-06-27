@@ -1,6 +1,9 @@
 <p align="center">
-  <a href="https://github.com/sawaYch/sawaYch.github.io/tree/develop">
+  <a href="https://github.com/sawaYch/sawaYch.github.io">
     <img alt="icon" src="./src/images/favicon.webp" width="60" />
+  </a>
+  <a href="https://www.gatsbyjs.com">
+    <img alt="icon" src="./src/images/gatsby.svg" width="60" />
   </a>
 </p>
 <div align="center" style="font-size:1.5em">

@@ -196,6 +196,7 @@ const ActivityHeatMap = ({
         if (contribution.value !== 0) {
           svgComponentRect = (
             <Tooltip
+              key={`contribution-${componentKey}`}
               role="tooltip"
               title={`${contribution.value} energy earns on ${contribution.date}`}
               placement="top"

@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
 import GithubContributionMap from '../components/github-contribution-chart';
-import LocationPane from '../components/location-pane';
-import SpecCard from '../components/spec-card';
 import MatrixRain from '../components/matrix-rain';
 import Layout from '../components/layout';
 
@@ -36,20 +34,31 @@ export const Head = (props: PageProps<DataProps>) => {
   return <SEOHead {...data.site.siteMetadata} />;
 };
 
-const IndexPage: React.FC<PageProps<DataProps>> = () => (
-  <Layout>
-    <div key="matrixRain">
-      <MatrixRain size={12} />
-    </div>
-    <div key="specCard">
-      <SpecCard />
-    </div>
-    <div key="location">
-      <LocationPane center={[114.1694, 22.3193]} />
-    </div>
-    <div key="ghMap">
-      <GithubContributionMap />
-    </div>
-  </Layout>
-);
+const IndexPage: React.FC<PageProps<DataProps>> = () => {
+  const disableContextMenuOfImage = useCallback((e: MouseEvent) => {
+    if ((e.target as HTMLElement).tagName === 'IMG') {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('contextmenu', disableContextMenuOfImage);
+
+    return () => {
+      document.removeEventListener('contextmenu', disableContextMenuOfImage);
+    };
+  }, [disableContextMenuOfImage]);
+
+  return (
+    <Layout>
+      <div key="matrixRain">
+        <MatrixRain size={12} />
+      </div>
+      <div key="ghMap">
+        <GithubContributionMap />
+      </div>
+    </Layout>
+  );
+};
 export default IndexPage;
