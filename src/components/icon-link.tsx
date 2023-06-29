@@ -10,7 +10,7 @@ interface IconLinkProps {
 }
 
 const LinkContainer = tw.div`
-  hover:text-dracula-dracula
+  hover:text-dracula-dracula-200
   transition-all
   duration-500
   select-none

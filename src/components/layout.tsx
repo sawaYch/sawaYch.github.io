@@ -57,6 +57,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       _element: HTMLElement
     ) => {
       event.stopPropagation();
+      event.preventDefault();
     },
     []
   );
@@ -105,34 +106,14 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                   maxW: 10,
                 },
                 {
-                  i: 'location',
-                  x: 4,
-                  y: 0,
-                  w: 2,
-                  h: 2,
-                  minW: 2,
-                  maxW: 4,
-                  minH: 2,
-                },
-                {
-                  i: 'specCard',
-                  x: 4,
-                  y: 0,
-                  w: 4,
-                  h: 3,
-                  minW: 4,
-                  maxW: 6,
-                  minH: 3,
-                },
-                {
                   i: 'ghMap',
                   x: 0,
                   y: 1,
-                  w: 4,
+                  w: 3,
                   h: 1,
                   minH: 1,
                   maxH: 3,
-                  maxW: 6,
+                  maxW: 3,
                   minW: 1,
                 },
               ],
@@ -164,6 +145,10 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
             cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
             compactType={null} // free position
             onDrag={handleDragResizeStopPropagation}
+            onDragStop={handleDragResizeStopPropagation}
+            onDragStart={handleDragResizeStopPropagation}
+            onResizeStart={handleDragResizeStopPropagation}
+            onResizeStop={handleDragResizeStopPropagation}
             onResize={handleDragResizeStopPropagation}
             rowHeight={rowHeight}
           >
