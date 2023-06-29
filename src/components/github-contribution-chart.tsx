@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
+import ActivityCalendar from 'react-activity-calendar';
+import Tooltip from '@mui/material/Tooltip';
+import { animated, useSpring } from 'react-spring';
 import PaneContainer from './pane-container';
-import ActivityHeatMap from './activity-heat-map';
 import Spinner from './spinner';
 
 type Level = 0 | 1 | 2 | 3 | 4;
@@ -50,28 +51,54 @@ const GithubContributionMap = () => {
     githubContributionApi
   );
 
-  const currentDate = useMemo(() => dayjs().format('YYYY-MM-DD'), []);
-
-  const transformedData: {
-    [date: string]: number;
-  } = useMemo(() => {
-    const d = data?.contributions.map((x) => ({ [x.date]: x.count }));
-    if (d == null) return null;
-    return Object.assign({}, ...d);
-  }, [data]);
+  const [props] = useSpring(
+    () => ({
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+      config: { tension: 350, friction: 250 },
+    }),
+    []
+  );
 
   if (!mounted) return null;
 
   return (
     <PaneContainer className="flex flex-col items-center justify-center p-4 my-1">
-      {isLoading ? (
+      {isLoading || data?.contributions == null ? (
         <Spinner />
       ) : (
-        <ActivityHeatMap
-          values={transformedData}
-          until={currentDate}
-          radius={14}
+        <ActivityCalendar
+          data={data.contributions}
+          hideTotalCount
+          hideColorLegend
+          colorScheme="dark"
+          blockRadius={14}
           blockSize={10}
+          fontSize={10}
+          theme={{
+            dark: ['#383838', '#4D455D', '#bd93f9', '#ff79c6', '#ffb86c'],
+          }}
+          renderBlock={(block, activity) => {
+            const cellContent = (
+              <animated.g role="img" style={props}>
+                {block}
+              </animated.g>
+            );
+
+            if (activity.count === 0) {
+              return cellContent;
+            }
+            return (
+              <Tooltip
+                role="tooltip"
+                title={`${activity.count} energy earns on ${activity.date}`}
+                placement="top"
+                arrow
+              >
+                {cellContent}
+              </Tooltip>
+            );
+          }}
         />
       )}
     </PaneContainer>

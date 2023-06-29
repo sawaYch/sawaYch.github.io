@@ -2,14 +2,18 @@ import {
   FC,
   PropsWithChildren,
   useCallback,
-  useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
 import tw from 'twin.macro';
-import { Responsive, WidthProvider } from 'react-grid-layout';
+import {
+  Responsive,
+  WidthProvider,
+  ItemCallback,
+  Layout as RGLLayout,
+} from 'react-grid-layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import { IoMdCube } from '@react-icons/all-files/io/IoMdCube';
 import PullToRefresh from 'react-simple-pull-to-refresh';
@@ -23,9 +27,7 @@ const StyledMain = tw.main`flex-auto overflow-x-hidden overscroll-none`;
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   const ref = useRef<HTMLElement>(null);
-
   const [, setMainSectionReload] = useState(0);
-
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   useLayoutEffect(() => {
@@ -45,22 +47,19 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     setMainSectionReload((prev) => prev + 1);
   }, []);
 
-  const disableContextMenuOfBgPattern = useCallback((e: MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, []);
-
-  useEffect(() => {
-    const currentRef = ref.current;
-    currentRef?.addEventListener('contextmenu', disableContextMenuOfBgPattern);
-
-    return () => {
-      currentRef?.removeEventListener(
-        'contextmenu',
-        disableContextMenuOfBgPattern
-      );
-    };
-  }, [disableContextMenuOfBgPattern]);
+  const handleDragResizeStopPropagation: ItemCallback = useCallback(
+    (
+      _layout: RGLLayout[],
+      _oldItem: RGLLayout,
+      _newItem: RGLLayout,
+      _placeholder: RGLLayout,
+      event: MouseEvent,
+      _element: HTMLElement
+    ) => {
+      event.stopPropagation();
+    },
+    []
+  );
 
   return (
     <BackgroundContainer>
@@ -100,10 +99,10 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                   i: 'matrixRain',
                   x: 0,
                   y: 0,
-                  w: 4,
-                  h: 2,
+                  w: 10,
+                  h: 1,
                   minW: 1,
-                  maxW: 12,
+                  maxW: 10,
                 },
                 {
                   i: 'location',
@@ -130,17 +129,42 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                   x: 0,
                   y: 1,
                   w: 4,
-                  h: 2,
-                  minH: 2,
-                  maxH: 2,
+                  h: 1,
+                  minH: 1,
+                  maxH: 3,
+                  maxW: 6,
+                  minW: 1,
+                },
+              ],
+              xs: [
+                {
+                  i: 'matrixRain',
+                  x: 0,
+                  y: 0,
+                  w: 4,
+                  h: 1,
+                  minW: 1,
                   maxW: 4,
-                  minW: 4,
+                },
+                {
+                  i: 'ghMap',
+                  x: 0,
+                  y: 1,
+                  w: 3,
+                  h: 1,
+                  minH: 1,
+                  maxH: 3,
+                  maxW: 3,
+                  minW: 1,
                 },
               ],
             }}
             width={layoutWidth}
             breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
             cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+            compactType={null} // free position
+            onDrag={handleDragResizeStopPropagation}
+            onResize={handleDragResizeStopPropagation}
             rowHeight={rowHeight}
           >
             {children}

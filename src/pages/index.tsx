@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { DragEventHandler, useCallback, useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
@@ -44,18 +44,22 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
 
   useEffect(() => {
     document.addEventListener('contextmenu', disableContextMenuOfImage);
-
     return () => {
       document.removeEventListener('contextmenu', disableContextMenuOfImage);
     };
   }, [disableContextMenuOfImage]);
 
+  const handleDragStart: DragEventHandler<HTMLDivElement> = useCallback((e) => {
+    e.stopPropagation();
+    e.preventDefault();
+  }, []);
+
   return (
     <Layout>
-      <div key="matrixRain">
+      <div key="matrixRain" onDragStart={handleDragStart}>
         <MatrixRain size={12} />
       </div>
-      <div key="ghMap">
+      <div key="ghMap" onDragStart={handleDragStart}>
         <GithubContributionMap />
       </div>
     </Layout>

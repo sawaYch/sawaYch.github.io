@@ -3,7 +3,6 @@ import tw from 'twin.macro';
 import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import IconLink from './icon-link';
-import Clock from './clock';
 
 const TopBar = tw.div`flex select-none justify-between pl-2 pr-4 pt-1 pb-1 bg-dracula-darker shadow-md text-xs items-center`;
 const StatusPane = tw.div`flex items-center space-x-1.5`;
@@ -21,7 +20,6 @@ const Header = () => (
           height={24}
         />
       </div>
-      <Clock />
       <StatusPane>
         <div className="flex items-center justify-center gap-x-2">
           <IconLink
