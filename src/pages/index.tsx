@@ -4,6 +4,8 @@ import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
 import Layout from '../components/layout';
 import SpecCard from '../components/spec-card';
+import CharacterCard from '../components/character-card';
+import Banner from '../components/banner';
 
 interface DataProps {
   site: {
@@ -50,7 +52,9 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
 
   return (
     <Layout>
+      <Banner />
       <SpecCard className="mt-8 transform skew-y-6 shadow-2xl" />
+      <CharacterCard className="!w-4/5" />
     </Layout>
   );
 };

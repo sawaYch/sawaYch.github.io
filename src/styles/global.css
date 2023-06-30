@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply font-primary text-2xl font-bold md:text-4xl text-dracula-buffy;
+  }
+
+  h2 {
+    @apply font-primary text-xl font-bold md:text-3xl text-dracula-dracula mb-4;
+  }
+
+  h3 {
+    @apply font-primary text-lg font-bold md:text-2xl text-dracula-buffy mb-2;
+  }
+
+  h4 {
+    @apply font-primary text-base font-bold md:text-lg;
+  }
+
+  body {
+    @apply font-primary text-sm md:text-sm;
+  }
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
