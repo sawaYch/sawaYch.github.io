@@ -4,6 +4,7 @@ module.exports = {
     './src/pages/**/*.{js,jsx,ts,tsx}',
     './src/components/**/*.{js,jsx,ts,tsx}',
     './src/content/**/*.mdx',
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -17,7 +18,7 @@ module.exports = {
         xs: '1px',
       },
       opacity: {
-        'bg': '.12',
+        bg: '.12',
       },
       fontFamily: {
         primary: 'Cubic',
@@ -26,5 +27,8 @@ module.exports = {
     },
   },
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require
-  plugins: [require('tailwind-dracula')('dracula', true)],
+  plugins: [
+    require('tailwind-dracula')('dracula', true),
+    require('flowbite/plugin'),
+  ],
 };

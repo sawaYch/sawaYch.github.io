@@ -20,7 +20,7 @@ const PaneContainer = React.forwardRef<
       {props.withFrame ? (
         <StyledPaneContainerBody className={props.className} ref={ref}>
           <div className="flex flex-col">
-            <div className="flex items-center justify-end w-full h-4 bg-dracula-dracula-700 gap-x-1">
+            <div className="flex items-center justify-end w-full h-4 bg-dracula-dracula-500 gap-x-1">
               <FaRegWindowMinimize />
               <FaRegWindowRestore />
               <FaRegWindowClose />

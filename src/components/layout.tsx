@@ -38,7 +38,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
         <div className="absolute top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" />
         <MatrixRain
           size={12}
-          className="opacity-40 w-screen h-custom absolute !border-0 bottom-0 pointer-events-none select-none z-30"
+          className="absolute top-0 left-0 z-20 !w-screen border pointer-events-none select-none h-custom opacity-40"
         />
         <div className="relative z-40 flex flex-col items-center justify-center w-screen">
           {children}
