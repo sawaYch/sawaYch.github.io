@@ -27,6 +27,7 @@ const Head = ({ title, description, image, author }: HeadProps) => (
     {image ? <meta name="twitter:image" content={image.url} /> : null}
     {author ? <meta name="author" content={author} /> : null}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff79c6" />
   </>
 );
 

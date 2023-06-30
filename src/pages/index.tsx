@@ -1,8 +1,7 @@
-import React, { DragEventHandler, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
-import GithubContributionMap from '../components/github-contribution-chart';
 import MatrixRain from '../components/matrix-rain';
 import Layout from '../components/layout';
 
@@ -49,19 +48,9 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
     };
   }, [disableContextMenuOfImage]);
 
-  const handleDragStart: DragEventHandler<HTMLDivElement> = useCallback((e) => {
-    e.stopPropagation();
-    e.preventDefault();
-  }, []);
-
   return (
     <Layout>
-      <div key="matrixRain" onDragStart={handleDragStart}>
-        <MatrixRain size={12} />
-      </div>
-      <div key="ghMap" onDragStart={handleDragStart}>
-        <GithubContributionMap />
-      </div>
+      <MatrixRain size={12} className="w-full h-full !border-0 opacity-40" />
     </Layout>
   );
 };
