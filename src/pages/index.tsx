@@ -2,8 +2,8 @@ import React, { useCallback, useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
-import MatrixRain from '../components/matrix-rain';
 import Layout from '../components/layout';
+import SpecCard from '../components/spec-card';
 
 interface DataProps {
   site: {
@@ -50,7 +50,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
 
   return (
     <Layout>
-      <MatrixRain size={12} className="w-full h-full !border-0 opacity-40" />
+      <SpecCard className="mt-8 transform skew-y-6 shadow-2xl" />
     </Layout>
   );
 };

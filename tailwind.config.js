@@ -3,9 +3,13 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,jsx,ts,tsx}',
     './src/components/**/*.{js,jsx,ts,tsx}',
+    './src/content/**/*.mdx',
   ],
   theme: {
     extend: {
+      height: {
+        custom: 'calc(100vh + 24rem)', // Adjust the calculation as per your needs
+      },
       backgroundImage: {
         pattern: "url('../images/circuit.svg')",
       },

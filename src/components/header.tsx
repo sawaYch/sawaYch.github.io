@@ -5,7 +5,7 @@ import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
 import IconLink from './icon-link';
 
-const TopBar = tw.div`flex select-none justify-between bg-dracula-darker shadow-md text-xs`;
+const TopBar = tw.div`flex select-none justify-between bg-dracula-darker/70 shadow-md text-xs`;
 const StatusPane = tw.div`flex items-center justify-center gap-x-2 pl-4 pr-4 bg-dracula-pink-400/70`;
 
 const Header = () => (
