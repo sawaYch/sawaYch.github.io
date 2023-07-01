@@ -22,9 +22,12 @@ const Header = () => (
             height={24}
           />
         </div>
-        <IoMdGitBranch size="1.7rem" />
-        <span className="pr-2">VoidDojo</span>
-        <div className="flex items-center justify-center h-full pl-2 pr-2 bg-dracula-purple-600/70">
+        <IoMdGitBranch
+          size="1.7rem"
+          className="pointer-events-none select-none"
+        />
+        <span className="pr-2 pointer-events-none select-none">VoidDojo</span>
+        <div className="flex items-center justify-center h-full pl-2 pr-2 pointer-events-none select-none bg-dracula-purple-600/70">
           Master
         </div>
       </div>

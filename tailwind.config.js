@@ -23,6 +23,8 @@ module.exports = {
       },
       fontFamily: {
         primary: 'Cubic',
+        ku: 'Ku',
+        block: 'CubicBlock',
         graph: 'KuGraph',
       },
     },

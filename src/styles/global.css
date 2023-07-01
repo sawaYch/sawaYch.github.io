@@ -57,6 +57,18 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Ku';
+  src: url('/fonts/ku.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CubicBlock';
+  src: url('/fonts/cubicblock_s.ttf');
+  font-display: swap;
+}
+
 html,
 body {
   width: 100%;
@@ -66,4 +78,22 @@ body {
   overflow: hidden;
   background-color: #373a4d;
   touch-action: none;
+}
+
+.wt-text-shadow {
+  text-shadow: 
+    1px 1px 0 #ff79c6,
+    2px 2px 0 #ff79c6,
+    3px 3px 0 #ff79c6,
+    4px 4px 0 #ff79c6;
+}
+
+
+.vd-text-shadow {
+  text-shadow: 
+    4px 0px 0 #555555,
+    5px 1px 0 #ff79c6,
+    6px 1px 0 #ff79c6,
+    7px 1px 0 #ff79c6,
+    8px 1px 0 #ff79c6;
 }

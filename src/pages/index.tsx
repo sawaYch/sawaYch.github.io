@@ -49,12 +49,11 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
       document.removeEventListener('contextmenu', disableContextMenuOfImage);
     };
   }, [disableContextMenuOfImage]);
-
   return (
     <Layout>
       <Banner />
-      <SpecCard className="mt-8 transform skew-y-6 shadow-2xl" />
       <CharacterCard className="!w-4/5" />
+      <SpecCard className="my-[10rem] skew-y-6 shadow-2xl" />
     </Layout>
   );
 };

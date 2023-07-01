@@ -1,6 +1,7 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import cn from 'classnames';
 import tw from 'twin.macro';
+import { motion } from 'framer-motion';
 import AboutMe from '../content/about-me.mdx';
 import PaneContainer from './pane-container';
 
@@ -10,25 +11,44 @@ interface CharacterCardProps {
 
 const PaneColumn = tw.div`flex flex-col items-start content-start justify-start grow m-4`;
 
-const CharacterCard = ({ className }: CharacterCardProps) => {
-  const a = 1;
-
-  return (
+const CharacterCard = ({ className }: CharacterCardProps) => (
+  <motion.div
+    className="flex justify-center w-screen h-fit item-center"
+    variants={{
+      offscreen: {
+        opacity: 0,
+        scale: 0.5,
+      },
+      onscreen: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: 0.5,
+        },
+      },
+    }}
+    initial="offscreen"
+    whileInView="onscreen"
+    viewport={{ once: true, amount: 0 }}
+  >
     <PaneContainer
-      className={cn('flex flex-row items-start justify-center', className)}
+      className={cn(
+        'flex flex-col md:flex-row items-start justify-center',
+        className
+      )}
     >
       <PaneColumn>
         <AboutMe />
       </PaneColumn>
       <PaneColumn>
-        <StaticImage
-          className="self-start pointer-events-none select-none rounded-xl"
-          src="../images/avatar.webp"
-          alt="Void Dojo"
-          layout="fixed"
-          width={192}
-          height={192}
-        />
+        <div className="w-full lg:w-1/3">
+          <StaticImage
+            className="self-start pointer-events-none select-none rounded-xl"
+            src="../images/avatar.webp"
+            alt="Void Dojo"
+            layout="fullWidth"
+          />
+        </div>
         <h4 className="mt-6">CONNECT WITH ME</h4>
         <a
           className="underline hover:text-dracula-darker-300"
@@ -50,7 +70,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => {
         </a>
       </PaneColumn>
     </PaneContainer>
-  );
-};
+  </motion.div>
+);
 
 export default CharacterCard;
