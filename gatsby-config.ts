@@ -12,6 +12,7 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    'gatsby-remark-images',
     'gatsby-plugin-fix-fouc',
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
@@ -43,7 +44,6 @@ const config: GatsbyConfig = {
         icon: 'src/images/favicon.webp',
       },
     },
-    `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -56,6 +56,22 @@ const config: GatsbyConfig = {
       options: {
         name: `content`,
         path: `${__dirname}/src/content`,
+      },
+    },
+    `gatsby-remark-images`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        root: __dirname,
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 500,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
       },
     },
   ],

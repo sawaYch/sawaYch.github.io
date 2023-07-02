@@ -19,7 +19,7 @@ const SpecCard = ({ className }: SpecCardProps) => {
 
   return (
     <motion.div
-      className="flex justify-center scale-50 md:scale-100 item-center h-fit w-fit"
+      className="flex justify-center item-center"
       variants={{
         offscreen: {
           opacity: 0,
@@ -39,7 +39,7 @@ const SpecCard = ({ className }: SpecCardProps) => {
       initial="offscreen"
       whileInView="onscreen"
       layout="position"
-      viewport={{ once: false, amount: 0 }}
+      viewport={{ once: true }}
     >
       <PaneContainer
         className={cn(

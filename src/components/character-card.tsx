@@ -14,7 +14,7 @@ const PaneColumn = tw.div`flex flex-col items-start content-start justify-start 
 
 const CharacterCard = ({ className }: CharacterCardProps) => (
   <motion.div
-    className="flex justify-center w-screen h-fit item-center"
+    className="flex justify-center w-1/2 portrait:w-4/5 item-center"
     variants={{
       offscreen: {
         opacity: 0,
@@ -30,19 +30,19 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
     }}
     initial="offscreen"
     whileInView="onscreen"
-    viewport={{ once: false, amount: 0 }}
+    viewport={{ once: true }}
   >
     <PaneContainer
       className={cn(
-        'flex flex-col md:flex-row items-start justify-center',
+        'flex flex-col md:flex-row items-start xs:items-center justify-center',
         className
       )}
     >
       <PaneColumn>
         <AboutMe />
       </PaneColumn>
-      <PaneColumn className="!items-center !justify-center !w-fit !m-0">
-        <div className="w-1/3">
+      <PaneColumn className="!items-center !justify-center !w-fit portrait:!w-full !m-0">
+        <div className="w-1/3 pt-4">
           <StaticImage
             className="self-start pointer-events-none select-none rounded-xl"
             src="../images/avatar.webp"
@@ -69,7 +69,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
         >
           Twitter
         </a>
-        <SpecCard className="mt-[2rem] skew-y-6 shadow-2xl" />
+        <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl aspect-video" />
       </PaneColumn>
     </PaneContainer>
   </motion.div>

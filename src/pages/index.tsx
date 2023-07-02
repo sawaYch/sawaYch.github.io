@@ -51,7 +51,8 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
   return (
     <Layout>
       <Banner />
-      <CharacterCard className="!w-4/5" />
+      <CharacterCard />
+      <div className="h-[12rem]" />
     </Layout>
   );
 };
