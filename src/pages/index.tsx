@@ -3,7 +3,6 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import SEOHead from '../components/head';
 import Layout from '../components/layout';
-import SpecCard from '../components/spec-card';
 import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
 
@@ -53,7 +52,6 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
     <Layout>
       <Banner />
       <CharacterCard className="!w-4/5" />
-      <SpecCard className="my-[10rem] skew-y-6 shadow-2xl" />
     </Layout>
   );
 };

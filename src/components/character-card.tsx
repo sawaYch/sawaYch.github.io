@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import { motion } from 'framer-motion';
 import AboutMe from '../content/about-me.mdx';
 import PaneContainer from './pane-container';
+import SpecCard from './spec-card';
 
 interface CharacterCardProps {
   className?: string;
@@ -29,7 +30,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
     }}
     initial="offscreen"
     whileInView="onscreen"
-    viewport={{ once: true, amount: 0 }}
+    viewport={{ once: false, amount: 0 }}
   >
     <PaneContainer
       className={cn(
@@ -40,8 +41,8 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
       <PaneColumn>
         <AboutMe />
       </PaneColumn>
-      <PaneColumn>
-        <div className="w-full lg:w-1/3">
+      <PaneColumn className="!items-center !justify-center !w-fit !m-0">
+        <div className="w-1/3">
           <StaticImage
             className="self-start pointer-events-none select-none rounded-xl"
             src="../images/avatar.webp"
@@ -68,6 +69,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
         >
           Twitter
         </a>
+        <SpecCard className="mt-[2rem] skew-y-6 shadow-2xl" />
       </PaneColumn>
     </PaneContainer>
   </motion.div>
