@@ -69,7 +69,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
         >
           Twitter
         </a>
-        <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl aspect-video" />
+        <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl" />
       </PaneColumn>
     </PaneContainer>
   </motion.div>

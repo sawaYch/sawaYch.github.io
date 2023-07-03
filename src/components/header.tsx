@@ -3,6 +3,7 @@ import tw from 'twin.macro';
 import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
+import { DarkThemeToggle } from 'flowbite-react';
 import IconLink from './icon-link';
 
 const TopBar = tw.div`flex select-none justify-between bg-dracula-darker/70 shadow-md text-xs`;
@@ -31,21 +32,24 @@ const Header = () => (
           Master
         </div>
       </div>
-      <StatusPane>
-        <IconLink
-          target="https://github.com/sawaYch"
-          isExternalLink
-          icon={<FaGithubAlt size="1rem" />}
-          ariaLabel="github"
-        />
-        |
-        <IconLink
-          target="https://twitter.com/SawaYch"
-          isExternalLink
-          icon={<FaTwitter size="1rem" />}
-          ariaLabel="twitter"
-        />
-      </StatusPane>
+      <div className="flex">
+        <DarkThemeToggle className="flex items-center justify-center w-10 p-0 transition-all border-0 rounded-none pointer-events-none select-none focus:ring-0" />
+        <StatusPane>
+          <IconLink
+            target="https://github.com/sawaYch"
+            isExternalLink
+            icon={<FaGithubAlt size="1rem" />}
+            ariaLabel="github"
+          />
+          |
+          <IconLink
+            target="https://twitter.com/SawaYch"
+            isExternalLink
+            icon={<FaTwitter size="1rem" />}
+            ariaLabel="twitter"
+          />
+        </StatusPane>
+      </div>
     </TopBar>
   </header>
 );

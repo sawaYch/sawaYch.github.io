@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
+import tw from 'twin.macro';
 import SEOHead from '../components/head';
 import Layout from '../components/layout';
 import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
+import VoidTimeline from '../components/void-timeline';
 
 interface DataProps {
   site: {
@@ -29,6 +31,8 @@ export const query = graphql`
   }
 `;
 
+const Placeholder = tw.div`h-[12rem]`;
+
 export const Head = (props: PageProps<DataProps>) => {
   const { data } = props;
   return <SEOHead {...data.site.siteMetadata} />;
@@ -52,7 +56,9 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
     <Layout>
       <Banner />
       <CharacterCard />
-      <div className="h-[12rem]" />
+      <Placeholder />
+      <VoidTimeline />
+      <Placeholder />
     </Layout>
   );
 };
