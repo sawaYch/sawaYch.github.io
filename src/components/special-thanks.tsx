@@ -9,13 +9,11 @@ const SpecialThanks = () => (
     variants={{
       offscreen: {
         x: 100,
-        rotate: 270,
         opacity: 0,
       },
       onscreen: {
         x: 0,
         opacity: 1,
-        rotate: 0,
         transition: {
           type: 'spring',
           stiffness: 100,

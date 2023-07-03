@@ -79,9 +79,7 @@ const VoidTimelineItem = ({
         <Timeline.Content>
           <Timeline.Time theme={customTimeTheme}>{time}</Timeline.Time>
           <Timeline.Title theme={customTitleTheme}>{title}</Timeline.Title>
-          <Timeline.Body theme={customBodyTheme}>
-            <p>{body}</p>
-          </Timeline.Body>
+          <Timeline.Body theme={customBodyTheme}>{body}</Timeline.Body>
         </Timeline.Content>
       </Timeline.Item>
     </motion.div>

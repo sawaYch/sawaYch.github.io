@@ -16,7 +16,7 @@ const VoidTimeline = () => {
     {
       time: 'Unknown',
       title: 'Born',
-      body: 'A wild little Sawa has born! 👶',
+      body: 'A wild little Sawa was born! 👶',
       icon: FaBaby,
     },
     {

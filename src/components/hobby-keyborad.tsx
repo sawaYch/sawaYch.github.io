@@ -29,7 +29,7 @@ const HobbyKeyboard = () => (
       <FaKeyboard size="2rem" className="z-50 ml-2 text-dracula-purple-200" />
     </div>
     <div className="mb-4">
-      All these are my collections 😆 Most of them are soldering on my own.
+      All these are my collections 😆 Most of them are soldering by me.
     </div>
     <PaneContainer className="!w-fit !h-fit !bg-dracula-dark/30 !backdrop-blur-sm">
       <Carousel className="w-[30rem] h-[24rem]">
@@ -39,6 +39,7 @@ const HobbyKeyboard = () => (
             src="../images/dz60.webp"
             alt="dz60"
             layout="fullWidth"
+            placeholder="blurred"
           />
           <span className="mt-8 text-3xl bold font-ku">KDB DZ60</span>
         </div>
@@ -48,6 +49,7 @@ const HobbyKeyboard = () => (
             src="../images/mojo68.webp"
             alt="mojo68"
             layout="fullWidth"
+            placeholder="blurred"
           />
           <span className="mr-8 -mt-8 text-3xl bold font-ku">MOJO68</span>
         </div>
@@ -57,6 +59,7 @@ const HobbyKeyboard = () => (
             src="../images/sofle.webp"
             alt="sofle"
             layout="fullWidth"
+            placeholder="blurred"
           />
           <span className="mr-8 text-3xl bold font-ku">Sofle Keyboard</span>
         </div>
@@ -66,6 +69,7 @@ const HobbyKeyboard = () => (
             src="../images/dilemma.webp"
             alt="dilemma"
             layout="fullWidth"
+            placeholder="blurred"
           />
           <span className="mr-8 text-3xl bold font-ku">Dilemma@Bastard</span>
         </div>
