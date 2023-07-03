@@ -24,7 +24,7 @@ const SpecCard = ({ className }: SpecCardProps) => {
         offscreen: {
           opacity: 0,
           scale: isBelowMd ? 0 : 0.85,
-          x: -200,
+          x: -50,
         },
         onscreen: {
           x: 0,

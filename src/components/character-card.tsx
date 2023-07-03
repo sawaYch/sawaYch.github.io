@@ -34,7 +34,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
   >
     <PaneContainer
       className={cn(
-        'flex flex-col md:flex-row items-start xs:items-center justify-center',
+        'flex flex-col md:flex-row items-start xs:items-center justify-center !backdrop-blur-md !bg-dracula-dark/10',
         className
       )}
     >

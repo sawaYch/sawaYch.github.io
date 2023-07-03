@@ -1,5 +1,8 @@
 name: Deploy Gatsby SSG
 on:
+  push: 
+    branches:
+      - develop
   workflow_dispatch: {}
 
 jobs:
