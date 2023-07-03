@@ -50,7 +50,7 @@ const SpecialThanks = () => (
         </div>
         <div className="flex items-center justify-center flex-1">
           <div className="flex flex-col items-center justify-center">
-            <div className="w-[8rem] h-[8rem] rounded-full bg-dracula-green-100 overflow-auto inline select-none pointer-events-none">
+            <div className="inline w-full h-full overflow-auto rounded-full pointer-events-none select-none bg-dracula-green-100">
               <a
                 href="https://youtube.com/@kuiro0723"
                 target="_blank"
@@ -73,14 +73,14 @@ const SpecialThanks = () => (
               aria-label="Kurio youtube channel link"
             >
               <AiFillYoutube size="2rem" className="text-dracula-red" />
-              Youtube Channel Link
+              Youtube Channel
             </a>
           </div>
         </div>
       </div>
-      <h4>Sample:</h4>
+      <h4>Preview:</h4>
       <h5>Ku</h5>
-      <div>
+      <div className="flex flex-wrap items-center w-full">
         <span className="text-2xl font-ku">Lorem&nbsp;</span>
         <span className="text-xl font-ku">ipsum&nbsp;</span>
         <span className="text-lg font-ku">dolor&nbsp;</span>
@@ -88,7 +88,7 @@ const SpecialThanks = () => (
         <span className="text-sm font-ku">amet&nbsp;</span>
       </div>
       <h5>Ku Graph</h5>
-      <div>
+      <div className="flex flex-wrap items-center w-full">
         <span className="text-2xl font-graph">Lorem&nbsp;</span>
         <span className="text-xl font-graph">ipsum&nbsp;</span>
         <span className="text-lg font-graph">dolor&nbsp;</span>

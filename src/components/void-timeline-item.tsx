@@ -62,7 +62,7 @@ const VoidTimelineItem = ({
           opacity: 1,
           transition: {
             duration: 0.5,
-            delay: (order ?? 1) * 1,
+            delay: (order ?? 1) * 0.5,
           },
         },
       }}
