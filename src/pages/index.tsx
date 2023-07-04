@@ -9,7 +9,8 @@ import Banner from '../components/banner';
 import VoidTimeline from '../components/void-timeline';
 import SpecialThanks from '../components/special-thanks';
 import HobbyKeyboard from '../components/hobby-keyborad';
-import Skills from '../components/skills';
+import Pulse from '../components/pulse';
+import Events from '../components/events';
 
 interface DataProps {
   site: {
@@ -60,9 +61,11 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
       <Banner />
       <CharacterCard />
       <Placeholder />
-      <Skills />
+      <Pulse />
       <Placeholder />
       <VoidTimeline />
+      <Placeholder />
+      <Events />
       <Placeholder />
       <HobbyKeyboard />
       <Placeholder />
