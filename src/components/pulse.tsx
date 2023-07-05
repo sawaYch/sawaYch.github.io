@@ -3,9 +3,9 @@ import PaneContainer from './pane-container';
 
 const Pulse = () => (
   <div className="w-fit">
-    <div className="flex">
-      <div className="flex flex-col items-center justify-start">
-        <div className="w-[18rem] h-[1.5rem] -mb-10 bg-dracula-green-400/30 -skew-x-12 backdrop-blur-sm" />
+    <div className="flex items-center justify-center">
+      <div className="w-fit">
+        <div className="-mx-10 h-[1.5rem] -mb-8 bg-dracula-green-400/30 -skew-x-12 backdrop-blur-sm" />
         <div className="flex">
           <h2 className="z-50 !text-dracula-green-300">Pulse</h2>{' '}
           <FaReact size="2rem" className="z-50 ml-2 text-dracula-dark-200" />

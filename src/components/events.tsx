@@ -6,7 +6,7 @@ import { FaUniversity } from '@react-icons/all-files/fa/FaUniversity';
 import tw from 'twin.macro';
 import PaneContainer from './pane-container';
 
-const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-2 h-[38rem] auto-rows-max auto-cols-max`;
+const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-1 sm:grid-cols-2 h-[38rem] auto-rows-max auto-cols-max`;
 
 const StyledUnorderedList = tw.ul`list-disc list-inside`;
 
@@ -136,15 +136,19 @@ const Events = () => {
   ];
 
   return (
-    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-start !justify-center !w-3/4">
+    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center !w-3/4">
       <div className="flex flex-col items-center justify-center">
-        <div className="w-[24rem] h-[1.5rem] -mb-10 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
-        <div className="flex">
-          <h2 className="z-50 !text-dracula-buffy-100">Events & Achievement</h2>{' '}
-          <BsCalendarFill
-            size="2rem"
-            className="z-50 ml-2 text-dracula-buffy-200"
-          />
+        <div className="w-fit">
+          <div className="h-[1.5rem] -mb-8 -mx-10 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
+          <div className="flex">
+            <h2 className="z-50 !text-dracula-buffy-100">
+              Events & Achievement
+            </h2>{' '}
+            <BsCalendarFill
+              size="2rem"
+              className="z-50 ml-2 text-dracula-buffy-200"
+            />
+          </div>
         </div>
       </div>
       <Tabs.Group

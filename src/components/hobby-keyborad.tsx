@@ -23,10 +23,12 @@ const HobbyKeyboard = () => (
     whileInView="onscreen"
     viewport={{ once: true, amount: 0 }}
   >
-    <div className="w-[18rem] h-[1.5rem] -mb-10 bg-dracula-purple-400/30 -skew-x-12 backdrop-blur-sm" />
-    <div className="flex">
-      <h2 className="z-50">DIY KEYBOARDS </h2>{' '}
-      <FaKeyboard size="2rem" className="z-50 ml-2 text-dracula-purple-200" />
+    <div className="w-fit">
+      <div className="h-[1.5rem] -mb-8 -mx-10 bg-dracula-purple-400/30 -skew-x-12 backdrop-blur-sm" />
+      <div className="flex">
+        <h2 className="z-50">DIY KEYBOARDS </h2>{' '}
+        <FaKeyboard size="2rem" className="z-50 ml-2 text-dracula-purple-200" />
+      </div>
     </div>
     <div className="mb-4">
       All these are my collections 😆 Most of them are soldering by me.
