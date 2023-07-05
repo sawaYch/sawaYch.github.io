@@ -1,5 +1,4 @@
 import { FaReact } from '@react-icons/all-files/fa/FaReact';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PaneContainer from './pane-container';
 
 const Pulse = () => (
@@ -14,9 +13,10 @@ const Pulse = () => (
       </div>
     </div>
     <PaneContainer className="!w-fit !h-fit xs:w-screen !bg-dracula-dark/30 !backdrop-blur-sm p-4">
-      <LazyLoadImage
+      <img
         src="https://raw.githubusercontent.com/sawaYch/sawaYch/main/github-metrics.svg"
         alt="metrics"
+        loading="lazy"
       />
     </PaneContainer>
   </div>

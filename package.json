@@ -44,7 +44,6 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.5.2",
-    "react-lazy-load-image-component": "^1.6.0",
     "react-resize-detector": "^9.1.0",
     "react-zoom-pan-pinch": "^3.1.0",
     "styled-components": "^6.0.1",
