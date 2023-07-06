@@ -11,6 +11,7 @@ import SpecialThanks from '../components/special-thanks';
 import HobbyKeyboard from '../components/hobby-keyborad';
 import Pulse from '../components/pulse';
 import Events from '../components/events';
+import Oshinoko from '../components/oshinoko';
 
 interface DataProps {
   site: {
@@ -68,6 +69,8 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
       <Events />
       <Placeholder />
       <HobbyKeyboard />
+      <Placeholder />
+      <Oshinoko />
       <Placeholder />
       <SpecialThanks />
       <Placeholder />

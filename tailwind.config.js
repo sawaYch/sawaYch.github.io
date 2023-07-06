@@ -30,7 +30,7 @@ module.exports = {
       },
       animation: {
         'spin-slow': 'spin 3s linear infinite',
-      }
+      },
     },
   },
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require
