@@ -72,6 +72,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
       <Placeholder />
       <Oshinoko />
       <Placeholder />
+      <Placeholder />
       <SpecialThanks />
       <Placeholder />
     </Layout>
