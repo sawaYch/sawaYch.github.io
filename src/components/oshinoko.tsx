@@ -7,7 +7,7 @@ import { GiSparkles } from '@react-icons/all-files/gi/GiSparkles';
 import { Modal } from 'flowbite-react';
 import { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player/lazy';
 import PaneContainer from './pane-container';
 
 const Oshinoko = () => {
