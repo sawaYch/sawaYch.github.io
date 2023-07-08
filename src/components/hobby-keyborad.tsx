@@ -43,7 +43,7 @@ const HobbyKeyboard = () => (
             layout="fullWidth"
             placeholder="blurred"
           />
-          <span className="mt-8 text-3xl bold font-ku">KDB DZ60</span>
+          <span className="mt-8 text-3xl bold font-ku">KBD DZ60</span>
         </div>
         <div className="w-[14rem] h-[14rem] rounded-full bg-dracula-orange">
           <StaticImage

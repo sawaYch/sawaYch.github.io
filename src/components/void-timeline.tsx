@@ -44,9 +44,10 @@ const VoidTimeline = () => {
             native layer
           </IndentText>
           <IndentText>
-            Experience in Popular form validation and schema libraries
+            Experience in popular form validation and schema libraries, e.g.
+            React Hook Form, Formik, Zod, Yup
           </IndentText>
-          <li className="ml-4">.Net core developer</li>
+          <li className="ml-4">.Net developer</li>
           <IndentText>
             Experience in .Net6, EntityFramework, Dapper, Microsoft SQL Server
           </IndentText>
