@@ -1,10 +1,23 @@
-import { PropsWithChildren, FC } from 'react';
+import { PropsWithChildren, FC, useMemo } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const queryClient = new QueryClient();
-
-const RootElement: FC<PropsWithChildren> = ({ children }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+const RootElement: FC<PropsWithChildren> = ({ children }) => {
+  const queryClient = useMemo(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            structuralSharing: false,
+            refetchOnWindowFocus: false,
+            retry: false,
+          },
+        },
+      }),
+    []
+  );
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
 
 export default RootElement;

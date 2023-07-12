@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import tw from 'twin.macro';
+import { useQuery } from '@tanstack/react-query';
 import SEOHead from '../components/head';
 import Layout from '../components/layout';
 import CharacterCard from '../components/character-card';
@@ -12,6 +13,7 @@ import HobbyKeyboard from '../components/hobby-keyborad';
 import Pulse from '../components/pulse';
 import Events from '../components/events';
 import Oshinoko from '../components/oshinoko';
+import fetchUploadedFiles from '../apis/fetch-uploaded-files';
 
 interface DataProps {
   site: {
@@ -50,6 +52,9 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
       e.stopPropagation();
     }
   }, []);
+
+  // test cms api
+  useQuery(['users'], fetchUploadedFiles);
 
   useEffect(() => {
     document.addEventListener('contextmenu', disableContextMenuOfImage);
