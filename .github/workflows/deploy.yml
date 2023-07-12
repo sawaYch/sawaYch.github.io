@@ -10,6 +10,7 @@ jobs:
     uses: ./.github/workflows/code-check.yml
 
   deploy:
+    environment: github-pages
     name: Deploy
     needs: code-check
     runs-on: ubuntu-latest
@@ -17,7 +18,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Gatsby Publish
+        env:
+          GATSBY_API_BASE_URL: ${{ secrets.GATSBY_API_BASE_URL }}
+          GATSBY_API_TOKEN: ${{ secrets.GATSBY_API_TOKEN }}
         uses: enriikke/gatsby-gh-pages-action@v2.2.1
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
-    

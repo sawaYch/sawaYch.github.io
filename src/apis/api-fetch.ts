@@ -1,7 +1,7 @@
 const ApiFetch = (endpoint: string) =>
-  fetch(`${process.env.API_BASE_URL}${endpoint}`, {
+  fetch(`${process.env.GATSBY_API_BASE_URL}${endpoint}`, {
     headers: {
-      Authorization: `Bearer ${process.env.API_TOKEN}`,
+      Authorization: `Bearer ${process.env.GATSBY_API_TOKEN}`,
     },
   });
 
