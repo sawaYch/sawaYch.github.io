@@ -112,7 +112,9 @@ const Oshinoko = () => {
     },
     content: {
       // fix mobile dismiss issue
-      base: 'absolute h-fit w-full p-4 md:h-auto',
+      base: 'absolute top-0 h-fit w-full p-4 md:h-auto sm:top-auto',
+      inner:
+        'relative rounded-lg bg-white shadow dark:bg-gray-700 flex flex-col max-h-[80vh] overflow-y-auto',
     },
   };
 
