@@ -1,13 +1,20 @@
 import {
   FC,
   PropsWithChildren,
+  RefObject,
+  useCallback,
+  useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
 import tw from 'twin.macro';
 import { StaticImage } from 'gatsby-plugin-image';
-import { Flowbite } from 'flowbite-react';
+import { Flowbite, Button } from 'flowbite-react';
+import { isIPad13, isTablet } from 'react-device-detect';
+import cn from 'classnames';
+import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import MatrixRain from './matrix-rain';
 import BackgroundContainer from './background-container';
 import Header from './header';
@@ -19,12 +26,52 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   const ref = useRef<HTMLElement>(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
   useLayoutEffect(() => {
     if (ref.current != null) {
       setWidth(ref.current.offsetWidth);
       setHeight(ref.current.offsetHeight);
     }
   }, [height, width]);
+
+  const scrollToTop = useCallback(() => {
+    if (ref.current == null) return;
+    ref.current.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
+  useEffect(() => {
+    // Button is displayed after scrolling for 500 pixels
+    const toggleVisibility = () => {
+      if (ref.current == null) return;
+
+      if (ref.current.scrollTop > 500) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+    let copyRef: RefObject<HTMLElement> | null = null;
+    if (ref.current != null) {
+      copyRef = ref;
+      ref.current.addEventListener('scroll', toggleVisibility);
+    }
+    return () => {
+      if (copyRef?.current != null) {
+        copyRef.current.removeEventListener('scroll', toggleVisibility);
+      }
+    };
+  }, []);
+
+  const buttonCustomTheme = useMemo(
+    () => ({
+      base: 'group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 focus:outline-none bg-dracula-dark',
+    }),
+    []
+  );
 
   return (
     <Flowbite>
@@ -44,6 +91,19 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           />
           <div className="relative z-40 flex flex-col items-center justify-center w-screen">
             {children}
+            {isVisible ? (
+              <Button
+                onClick={scrollToTop}
+                theme={buttonCustomTheme}
+                className={cn('fixed w-12 h-12 right-4 bottom-8', {
+                  'bottom-12': isIPad13 || isTablet,
+                })}
+                pill
+                color="dark"
+              >
+                <FaChevronUp size={20} />
+              </Button>
+            ) : null}
           </div>
         </StyledMain>
         <Footer />
