@@ -65,8 +65,8 @@ const ApplicationPane = () => {
           <div className="w-fit">
             <div className="h-[1.5rem] -mb-8 -mx-8 bg-dracula-purple-400/30 -skew-x-12 backdrop-blur-sm" />
             <div className="flex">
-              <div className="z-50 !text-dracula-purple-100 text-[2.4rem]">
-                Applications<span className="animate-ping">█</span>
+              <div className="z-50 !text-dracula-purple-100 text-[2.4rem] uppercase">
+                Modules<span className="animate-ping">█</span>
               </div>
             </div>
           </div>
