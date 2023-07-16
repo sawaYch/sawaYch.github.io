@@ -5,10 +5,11 @@ import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaUniversity } from '@react-icons/all-files/fa/FaUniversity';
 import tw from 'twin.macro';
 import PaneContainer from './pane-container';
+import CTFTimeBadge from './ctftime-badge';
 
 const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-1 sm:grid-cols-2 h-[38rem] auto-rows-max auto-cols-max`;
 
-const StyledUnorderedList = tw.ul`list-disc list-inside`;
+const StyledUnorderedList = tw.ul`list-disc list-inside mt-2`;
 
 const CardTitle = tw.h5`font-bold tracking-tight text-gray-900 dark:text-dracula-purple-300`;
 const CardContent = tw.div`font-normal text-gray-700 dark:text-gray-400`;
@@ -99,6 +100,7 @@ const Events = () => {
         <>
           <span>Nov. 2022</span>
           <div>Team HKVTBER@MYA🐼_SAI3_JAT1</div>
+          <CTFTimeBadge link="https://ctftime.org/event/1722" />
           <StyledUnorderedList>
             <li>Open Division Ranking: 10 th place/ 73 teams</li>
             <li>Overall Division Ranking: 30th place/ 310 teams</li>
@@ -112,6 +114,7 @@ const Events = () => {
         <>
           <span>Nov. 2021</span>
           <div>Team FlowerTea</div>
+          <CTFTimeBadge link="https://ctftime.org/event/1432" />
           <StyledUnorderedList>
             <li>Open Division Ranking: 16 th place/ 64 teams</li>
             <li>Overall Division Ranking: 38 th place/ 240 teams</li>
@@ -125,9 +128,10 @@ const Events = () => {
         <>
           <span>Aug. 2020</span>
           <div>Team T0061</div>
+          <CTFTimeBadge link="https://ctftime.org/event/1145" />
           <StyledUnorderedList>
             <li>
-              36<sup>th</sup> place
+              37<sup>th</sup> place
             </li>
           </StyledUnorderedList>
         </>
