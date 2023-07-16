@@ -21,7 +21,7 @@ interface OshinokoProps {
 
 const Oshinoko = ({ data }: OshinokoProps) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [selectedKey, setSelectedKey] = useState<string>(oshinokoData[0].key);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const customModalTheme = {
     root: {
@@ -37,7 +37,7 @@ const Oshinoko = ({ data }: OshinokoProps) => {
 
   const handleClick = useCallback((k: string) => {
     setOpenModal((prev) => !prev);
-    setSelectedKey(k);
+    setSelectedIndex(oshinokoData.findIndex((it) => it.key === k));
   }, []);
 
   const oshinokoImageNode = useMemo(
@@ -97,11 +97,7 @@ const Oshinoko = ({ data }: OshinokoProps) => {
           >
             DD
           </a>
-          &nbsp;😎
-        </div>
-        <div className="flex w-1/2">
-          With captivating personality, infectious energy, and incredible
-          talent, bringing joy and encouragement to the audience.
+          &nbsp;😎 !!!
         </div>
       </div>
       <div className="relative w-screen mt-10 h-[24rem]">
@@ -109,9 +105,9 @@ const Oshinoko = ({ data }: OshinokoProps) => {
           {oshinokoImageNode}
         </div>
       </div>
-      {/* <Modal>
+      <Modal
         dismissible
-        show={openModal}
+        show={openModal && selectedIndex !== -1}
         onClose={() => setOpenModal(false)}
         theme={customModalTheme}
       >
@@ -132,43 +128,41 @@ const Oshinoko = ({ data }: OshinokoProps) => {
           whileInView="onscreen"
           viewport={{ once: false, amount: 0 }}
         >
-          <Modal.Header>{hkvtuberCardData[selectedIndex].name}</Modal.Header>
+          <Modal.Header>{oshinokoData[selectedIndex].name}</Modal.Header>
           <Modal.Body>
             {openModal ? (
               <LiteYouTubeEmbed
                 // @ts-ignore nextline
                 autoplay={false}
-                id={hkvtuberCardData[selectedIndex].video ?? ''}
+                id={oshinokoData[selectedIndex].video ?? ''}
                 title=""
               />
             ) : null}
             <div className="flex bg-dracula-darker-900 rounded-2xl">
               <LiteYouTubeEmbed
-                id={hkvtuberCardData[selectedIndex].video ?? ''}
+                id={oshinokoData[selectedIndex].video ?? ''}
                 title=""
               />
             </div>
           </Modal.Body>
           <Modal.Footer>
             <div className="text-dracula-light">
-              <div className="mb-2">
-                {hkvtuberCardData[selectedIndex].content}
-              </div>
-              {hkvtuberCardData[selectedIndex].youtubeUrl ? (
+              <div className="mb-2">{oshinokoData[selectedIndex].content}</div>
+              {oshinokoData[selectedIndex].youtubeUrl ? (
                 <div className="flex gap-x-1">
                   <FaYoutubeSquare size="1.2rem" className="text-dracula-red" />
                   <a
                     className="underline hover:text-dracula-darker-300"
-                    href={hkvtuberCardData[selectedIndex].youtubeUrl}
+                    href={oshinokoData[selectedIndex].youtubeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="youtube link"
                   >
-                    {hkvtuberCardData[selectedIndex].youtubeUrl}
+                    {oshinokoData[selectedIndex].youtubeUrl}
                   </a>
                 </div>
               ) : null}
-              {hkvtuberCardData[selectedIndex].twitterUrl ? (
+              {oshinokoData[selectedIndex].twitterUrl ? (
                 <div className="flex gap-x-1">
                   <FaTwitterSquare
                     size="1.2rem"
@@ -176,16 +170,16 @@ const Oshinoko = ({ data }: OshinokoProps) => {
                   />
                   <a
                     className="underline hover:text-dracula-darker-300"
-                    href={hkvtuberCardData[selectedIndex].twitterUrl}
+                    href={oshinokoData[selectedIndex].twitterUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="twitter link"
                   >
-                    {hkvtuberCardData[selectedIndex].twitterUrl}
+                    {oshinokoData[selectedIndex].twitterUrl}
                   </a>
                 </div>
               ) : null}
-              {hkvtuberCardData[selectedIndex].instagramUrl ? (
+              {oshinokoData[selectedIndex].instagramUrl ? (
                 <div className="flex gap-x-1">
                   <FaInstagramSquare
                     size="1.2rem"
@@ -193,19 +187,19 @@ const Oshinoko = ({ data }: OshinokoProps) => {
                   />
                   <a
                     className="underline hover:text-dracula-darker-300"
-                    href={hkvtuberCardData[selectedIndex].instagramUrl}
+                    href={oshinokoData[selectedIndex].instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="instagram link"
                   >
-                    {hkvtuberCardData[selectedIndex].instagramUrl}
+                    {oshinokoData[selectedIndex].instagramUrl}
                   </a>
                 </div>
               ) : null}
             </div>
           </Modal.Footer>
         </motion.div>
-      </Modal> */}
+      </Modal>
     </PaneContainer>
   );
 };
