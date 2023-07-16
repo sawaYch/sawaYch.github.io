@@ -16,7 +16,7 @@ import { isIPad13, isTablet } from 'react-device-detect';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { FaCube } from '@react-icons/all-files/fa/FaCube';
-import { motion, useCycle } from 'framer-motion';
+import { motion, useCycle, useScroll, useSpring } from 'framer-motion';
 import MatrixRain from './matrix-rain';
 import BackgroundContainer from './background-container';
 import Header from './header';
@@ -114,6 +114,13 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     []
   );
 
+  const { scrollYProgress } = useScroll({ container: ref, target: ref });
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 20,
+    restDelta: 0.001,
+  });
+
   return (
     <Flowbite>
       <BackgroundContainer>
@@ -130,6 +137,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
             size={12}
             className="absolute top-0 left-0 z-20 !w-screen border pointer-events-none select-none h-custom opacity-40"
           />
+          <motion.div className="progress-bar z-[90]" style={{ scaleX }} />
           <div
             className={cn(
               'relative z-40 flex flex-col items-center justify-center w-screen',

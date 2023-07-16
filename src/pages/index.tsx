@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useCallback, useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
@@ -27,7 +28,27 @@ interface DataProps {
 }
 
 export const query = graphql`
-  {
+  query AllFileAndSiteData {
+    allFile(
+      filter: {
+        extension: { regex: "/(png)/" }
+        relativeDirectory: { eq: "oshinoko" }
+      }
+    ) {
+      edges {
+        node {
+          id
+          name
+          childImageSharp {
+            gatsbyImageData(
+              width: 196
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
+      }
+    }
     site {
       siteMetadata {
         author
@@ -45,7 +66,9 @@ export const Head = (props: PageProps<DataProps>) => {
   return <SEOHead {...data.site.siteMetadata} />;
 };
 
-const IndexPage: React.FC<PageProps<DataProps>> = () => {
+const IndexPage: React.FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
+  data,
+}: PageProps<Queries.AllFileAndSiteDataQuery>) => {
   const disableContextMenuOfImage = useCallback((e: MouseEvent) => {
     if ((e.target as HTMLElement).tagName === 'IMG') {
       e.preventDefault();
@@ -75,7 +98,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = () => {
       <Placeholder />
       <HobbyKeyboard />
       <Placeholder />
-      <Oshinoko />
+      <Oshinoko data={data} />
       <Placeholder />
       <Placeholder />
       <SpecialThanks />
