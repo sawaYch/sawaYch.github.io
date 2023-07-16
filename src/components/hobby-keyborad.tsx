@@ -65,7 +65,7 @@ const HobbyKeyboard = () => (
           />
           <span className="mr-8 text-3xl bold font-ku">Sofle Keyboard</span>
         </div>
-        <div className="w-[14rem] h-[14rem] rounded-full bg-dracula-cyan">
+        <div className="w-[14rem] h-[14rem] rounded-full bg-dracula-cyan-700">
           <StaticImage
             className="scale-150 drop-shadow-[0_8px_8px_rgba(139,233,253,0.8)]"
             src="../images/dilemma.webp"
@@ -74,6 +74,16 @@ const HobbyKeyboard = () => (
             placeholder="blurred"
           />
           <span className="mr-8 text-3xl bold font-ku">Dilemma@Bastard</span>
+        </div>
+        <div className="w-[14rem] h-[14rem] rounded-full bg-dracula-buffy">
+          <StaticImage
+            className="scale-150 drop-shadow-[0_8px_8px_rgba(255,121,198,0.8)] mt-8"
+            src="../images/ergodox-ez.webp"
+            alt="ergodox-ez"
+            layout="fullWidth"
+            placeholder="blurred"
+          />
+          <span className="mr-8 text-3xl bold font-ku">Ergodox EZ@ZSA</span>
         </div>
       </Carousel>
     </PaneContainer>
