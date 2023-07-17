@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
 import { FaYoutubeSquare } from '@react-icons/all-files/fa/FaYoutubeSquare';
 import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
-import { motion } from 'framer-motion';
+import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
+import { AnimatePresence, motion } from 'framer-motion';
 import ReactPlayer from 'react-player/lazy';
-import { Modal } from 'flowbite-react';
+import { Spinner } from 'flowbite-react';
 import oshinokoData from './oshinoko-data';
 
 interface OshinokoCharacterPaneProps {
@@ -67,60 +69,101 @@ const OshinokoCharacterPane = ({
   selectedData,
   onClose,
 }: OshinokoCharacterPaneProps) => {
-  const customModalTheme = {
-    root: {
-      base: 'fixed top-0 right-0 left-0 z-50 h-modal h-screen overflow-y-auto overflow-x-hidden md:inset-0 md:h-full',
-    },
-    content: {
-      // fix mobile dismiss issue
-      base: 'absolute top-0 h-fit w-full p-4 md:h-auto sm:top-auto',
-      inner:
-        'relative rounded-lg bg-white shadow dark:bg-gray-700 flex flex-col max-h-[80vh] overflow-y-auto',
-    },
-  };
-
-  if (!isOpen || selectedData == null) return null;
-
+  const [videoReady, setVideoReady] = useState(false);
   return (
-    <Modal
-      dismissible
-      show={isOpen && selectedData !== null}
-      onClose={onClose}
-      theme={customModalTheme}
-    >
-      <motion.div
-        variants={{
-          offscreen: {
-            opacity: 0,
-          },
-          onscreen: {
-            opacity: 1,
-            transition: {
-              type: 'spring',
-              stiffness: 100,
+    <AnimatePresence>
+      {!isOpen || selectedData == null ? null : (
+        <motion.div
+          onClick={onClose}
+          variants={{
+            offscreen: {
+              opacity: 0,
+              x: 200,
             },
-          },
-        }}
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: false, amount: 0 }}
-      >
-        <Modal.Header>{selectedData.name}</Modal.Header>
-        <Modal.Body>
-          {isOpen ? (
-            <ReactPlayer url={selectedData.video} className="w-32" />
-          ) : null}
-        </Modal.Body>
-        <Modal.Footer>
-          {selectedData.content}
-          <SocialLink
-            twitter={selectedData?.twitterUrl}
-            instagram={selectedData?.instagramUrl}
-            youtube={selectedData?.youtubeUrl}
-          />
-        </Modal.Footer>
-      </motion.div>
-    </Modal>
+            onscreen: {
+              opacity: 1,
+              x: 0,
+              transition: {
+                type: 'spring',
+                stiffness: 200,
+                damping: 20,
+              },
+            },
+            exit: {
+              opacity: 0,
+              x: -50,
+              transition: {
+                duration: 0.3,
+              },
+            },
+          }}
+          initial="offscreen"
+          whileInView="onscreen"
+          exit="exit"
+          viewport={{ once: false, amount: 0 }}
+          className={`touch-none fixed right-0 left-0 bottom-0 z-50 h-modal overflow-y-auto !overflow-x-hidden md:inset-0 md:h-full backdrop-blur-md ${selectedData.modalColor} bg-opacity-20`}
+        >
+          <button
+            aria-label="Close"
+            type="button"
+            onClick={onClose}
+            className="!fixed mt-2 right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+          >
+            <HiOutlineX aria-hidden className="w-6 h-6" />
+          </button>
+          <motion.div
+            variants={{
+              offscreen: {
+                opacity: 0,
+                x: 200,
+              },
+              onscreen: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  type: 'spring',
+                  stiffness: 200,
+                  damping: 20,
+                },
+              },
+              exit: {
+                opacity: 0,
+                x: -50,
+                transition: {
+                  duration: 0.3,
+                },
+              },
+            }}
+            initial="offscreen"
+            whileInView="onscreen"
+            exit="exit"
+            viewport={{ once: false, amount: 0 }}
+          >
+            {isOpen ? (
+              <div className="flex items-center justify-center h-fit w-fit">
+                <ReactPlayer
+                  url={selectedData.video}
+                  pip
+                  width="100%"
+                  style={{
+                    display: videoReady ? 'flex' : 'none',
+                  }}
+                  onReady={() => setVideoReady(true)}
+                  onError={() => setVideoReady(false)}
+                />
+                {!videoReady && <Spinner />}
+              </div>
+            ) : null}
+            {selectedData.content}
+            <SocialLink
+              twitter={selectedData?.twitterUrl}
+              instagram={selectedData?.instagramUrl}
+              youtube={selectedData?.youtubeUrl}
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

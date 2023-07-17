@@ -42,7 +42,7 @@ const Oshinoko = ({ data }: OshinokoProps) => {
           <div
             onClick={() => handleClick(item.key)}
             className={cn(
-              'absolute w-48 h-48 overflow-hidden transition-colors rotate-45 bg-transparent border-2 rounded-lg scale-50 sm:scale-75 my-2 mx-2',
+              'absolute w-48 h-48 overflow-hidden transition-all rotate-45 bg-transparent border-2 rounded-lg scale-50 sm:scale-75 my-2 mx-2',
               item.frameColor,
               item.positioning
             )}
@@ -89,11 +89,11 @@ const Oshinoko = ({ data }: OshinokoProps) => {
             >
               DD
             </a>
-            &nbsp;😎 !!!
+            &nbsp;😎
           </div>
         </div>
         <div className="relative w-screen mt-10 h-[24rem]">
-          <div className="absolute p-2 left-[50%] -translate-x-72">
+          <div className="absolute p-2  left-[50%] -translate-x-[11.5rem] sm:-translate-x-72">
             {oshinokoImageNode}
           </div>
         </div>

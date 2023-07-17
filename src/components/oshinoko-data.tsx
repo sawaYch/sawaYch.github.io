@@ -10,6 +10,7 @@ import IntroKuiro from '../content/intro-kuiro.mdx';
 const oshinokoData = [
   {
     key: 'mya',
+    modalColor: 'bg-[#fd9a98]',
     frameColor: 'border-[#fd9a98] hover:bg-[#fd9a98] active:bg-[#fd9a98]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(253,154,152,0.5)]',
     twitterUrl: 'https://twitter.com/MyaVtuber',
@@ -21,7 +22,8 @@ const oshinokoData = [
   },
   {
     key: 'gummy',
-    positioning: 'top-28 left-[7.25rem]',
+    modalColor: 'bg-[#805e5a]',
+    positioning: 'top-20 left-20 sm:top-28 sm:left-[7.25rem]',
     frameColor: 'border-[#805e5a] hover:bg-[#805e5a] active:bg-[#805e5a]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(128,94,90,0.5)]',
     twitterUrl: 'https://twitter.com/gummy_forest',
@@ -33,7 +35,8 @@ const oshinokoData = [
   },
   {
     key: 'june',
-    positioning: 'left-56',
+    modalColor: 'bg-[#bd93f9]',
+    positioning: 'left-[9.375rem] sm:left-56',
     frameColor: 'border-[#bd93f9] hover:bg-[#bd93f9] active:bg-[#bd93f9]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(189,147,249,0.5)]',
     twitterUrl: 'https://twitter.com/June_Tgtk',
@@ -45,7 +48,8 @@ const oshinokoData = [
   },
   {
     key: 'uno',
-    positioning: 'top-28 left-[20.75rem]',
+    modalColor: 'bg-[#8be9fd]',
+    positioning: 'top-[9.5rem] sm:top-28 sm:left-[20.75rem]',
     frameColor: 'border-[#8be9fd] hover:bg-[#8be9fd] active:bg-[#8be9fd]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(139,233,253,0.5)]',
     twitterUrl: 'https://twitter.com/kami46UNO',
@@ -57,7 +61,8 @@ const oshinokoData = [
   },
   {
     key: 'ruri',
-    positioning: 'top-[13.5rem]',
+    modalColor: 'bg-[#f8f8f2]',
+    positioning: 'top-56 left-20 sm:top-[13.5rem] sm:left-2',
     frameColor: 'border-[#f8f8f2] hover:bg-[#f8f8f2] active:bg-[#f8f8f2]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(255,255,255,0.5)]',
     twitterUrl: 'https://twitter.com/ruri_mashiro',
@@ -69,7 +74,9 @@ const oshinokoData = [
   },
   {
     key: 'miho',
-    positioning: 'top-[20rem] left-[7.25rem]',
+    modalColor: 'bg-[#d3b6fc]',
+    positioning:
+      'left-[9.375rem] top-[9.5rem] sm:top-[20rem] sm:left-[7.25rem]',
     frameColor: 'border-[#d3b6fc] hover:bg-[#d3b6fc] active:bg-[#d3b6fc]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(211,182,252,0.5)]',
     twitterUrl: 'https://twitter.com/kurohatamiho',
@@ -80,7 +87,8 @@ const oshinokoData = [
   },
   {
     key: 'kurio',
-    positioning: 'top-[13.5rem] left-[14rem]',
+    modalColor: 'bg-[#97feb1]',
+    positioning: 'top-[18.5rem] sm:top-[13.5rem] sm:left-[14rem]',
     frameColor: 'border-[#97feb1] hover:bg-[#97feb1] active:bg-[#97feb1]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(145,254,178,0.5)]',
     twitterUrl: 'https://twitter.com/kuiro0723',
@@ -92,7 +100,9 @@ const oshinokoData = [
   },
   {
     key: 'sora',
-    positioning: 'top-[20rem] left-[20.75rem]',
+    modalColor: 'bg-[#8f9bc3]',
+    positioning:
+      'left-[9.375rem] top-[18.5rem] sm:top-[20rem] sm:left-[20.75rem]',
     frameColor: 'border-[#8f9bc3] hover:bg-[#8f9bc3] active:bg-[#8f9bc3]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(143,155,195,0.5)]',
     twitterUrl: 'https://twitter.com/hasakaki_sora',
