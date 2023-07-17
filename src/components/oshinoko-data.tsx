@@ -16,7 +16,7 @@ const oshinokoData = [
     youtubeUrl: 'https://www.youtube.com/@mya.',
     instagramUrl: 'https://www.instagram.com/mya_vtuber',
     name: '米亞 | Mya',
-    video: '47mJVG8LNfE',
+    video: 'https://www.youtube.com/watch?v=47mJVG8LNfE',
     content: <IntroMya />,
   },
   {
@@ -28,7 +28,7 @@ const oshinokoData = [
     youtubeUrl: 'https://www.youtube.com/@gummyz',
     instagramUrl: 'https://www.instagram.com/gummy_forest',
     name: '甘米 | Gummy',
-    video: 'x7-X9snnEZI',
+    video: 'https://www.youtube.com/watch?v=x7-X9snnEZI',
     content: <IntroGummy />,
   },
   {
@@ -40,7 +40,7 @@ const oshinokoData = [
     youtubeUrl: 'https://www.youtube.com/@june_tgtk',
     instagramUrl: 'https://www.instagram.com/june_tgtk',
     name: '咎月ジュネ | June',
-    video: 'ne3C7IQBco8',
+    video: 'https://www.youtube.com/watch?v=ne3C7IQBco8',
     content: <IntroJune />,
   },
   {
@@ -52,7 +52,7 @@ const oshinokoData = [
     youtubeUrl: 'https://www.youtube.com/@kami46UNO',
     instagramUrl: 'https://www.instagram.com/kami46uno',
     name: '神白ウノ | Uno',
-    video: 'moSy45_zn0c',
+    video: 'https://www.youtube.com/watch?v=moSy45_zn0c',
     content: <IntroUno />,
   },
   {
@@ -64,7 +64,7 @@ const oshinokoData = [
     youtubeUrl: 'https://www.youtube.com/@MashiroRuri',
     instagramUrl: 'https://www.instagram.com/mashirorurii',
     name: '真白瑠璃 | Ruri',
-    video: 'qf3b1_gT4SI',
+    video: 'https://www.youtube.com/watch?v=qf3b1_gT4SI',
     content: <IntroRuri />,
   },
   {
@@ -75,7 +75,7 @@ const oshinokoData = [
     twitterUrl: 'https://twitter.com/kurohatamiho',
     youtubeUrl: 'https://www.youtube.com/@kurohatamiho',
     name: '黑佃みほ | Miho',
-    video: '6shSnZrVhL0',
+    video: 'https://www.youtube.com/watch?v=6shSnZrVhL0',
     content: <IntroMiho />,
   },
   {
@@ -87,7 +87,7 @@ const oshinokoData = [
     youtubeUrl: 'https://www.youtube.com/@kuiro0723',
     instagramUrl: 'https://www.instagram.com/kub_live_',
     name: '古洢蘿 | Kuiro',
-    video: 'KeJB2RvxPwE',
+    video: 'https://www.youtube.com/watch?v=KeJB2RvxPwE',
     content: <IntroKuiro />,
   },
   {
@@ -99,7 +99,7 @@ const oshinokoData = [
     youtubeUrl: 'https://www.youtube.com/@hasakakisora',
     instagramUrl: 'https://www.instagram.com/hasakaki_sora',
     name: '羽榊そら | 羽榊天音 | Sora',
-    video: 'e293yhqB8Jo',
+    video: 'https://www.youtube.com/watch?v=e293yhqB8Jo',
     content: <IntroSora />,
   },
 ];
