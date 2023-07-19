@@ -1,3 +1,4 @@
+import React, { ReactElement } from 'react';
 import IntroMya from '../content/intro-mya.mdx';
 import IntroGummy from '../content/intro-gummy.mdx';
 import IntroRuri from '../content/intro-ruri.mdx';
@@ -7,7 +8,22 @@ import IntroJune from '../content/intro-june.mdx';
 import IntroSora from '../content/intro-sora.mdx';
 import IntroKuiro from '../content/intro-kuiro.mdx';
 
-const oshinokoData = [
+interface OshinokoData {
+  imageData?: any;
+  key: string;
+  positioning?: string;
+  modalColor?: string;
+  frameColor?: string;
+  shadowColor?: string;
+  twitterUrl?: string;
+  youtubeUrl?: string;
+  instagramUrl?: string;
+  name?: string;
+  video?: string;
+  content?: ReactElement | React.JSX.Element;
+}
+
+const oshinokoData: OshinokoData[] = [
   {
     key: 'mya',
     modalColor: 'bg-[#fd9a98]',
@@ -108,7 +124,7 @@ const oshinokoData = [
     twitterUrl: 'https://twitter.com/hasakaki_sora',
     youtubeUrl: 'https://www.youtube.com/@hasakakisora',
     instagramUrl: 'https://www.instagram.com/hasakaki_sora',
-    name: '羽榊そら | 羽榊天音 | Sora',
+    name: '羽榊そら | Sora',
     video: 'https://www.youtube.com/watch?v=e293yhqB8Jo',
     content: <IntroSora />,
   },

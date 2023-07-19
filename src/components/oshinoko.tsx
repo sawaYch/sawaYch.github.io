@@ -21,10 +21,16 @@ const Oshinoko = ({ data }: OshinokoProps) => {
     (typeof oshinokoData)[0] | undefined
   >();
 
-  const handleClick = useCallback((k: string) => {
-    setOpenModal((prev) => !prev);
-    setSelectData(oshinokoData.find((it) => it.key === k));
-  }, []);
+  const handleClick = useCallback(
+    (k?: string) => {
+      setOpenModal((prev) => !prev);
+      const imageData = data.allFile.edges.find((it) => it.node.name === k);
+      const characterData = oshinokoData.find((it) => it.key === k);
+      if (characterData == null || characterData.key == null) return;
+      setSelectData({ ...characterData, imageData });
+    },
+    [data.allFile.edges]
+  );
 
   const onClose = useCallback(() => {
     setOpenModal(false);
