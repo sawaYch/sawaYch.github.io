@@ -90,9 +90,7 @@ const OshinokoCharacterPane = ({
         x: 0,
         opacity: 1,
         transition: {
-          type: 'spring',
-          stiffness: 400,
-          damping: 40,
+          duration: 0.3,
           staggerChildren: 0.5,
           delayChildren: 0.5,
         },
@@ -145,7 +143,7 @@ const OshinokoCharacterPane = ({
           >
             <HiOutlineX aria-hidden className="w-6 h-6" />
           </button>
-          <div className="touch-scroll h-[100vh] overflow-auto z-[61]">
+          <div className="touch-scroll min-h-[100vh] overflow-auto z-[61]">
             <motion.div className="flex items-center justify-center w-screen h-[12rem]">
               <motion.div variants={retroTvItem}>
                 {isOpen ? (
