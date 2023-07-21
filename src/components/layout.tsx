@@ -152,7 +152,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                 onClick={scrollToTop}
                 theme={buttonCustomTheme}
                 className={cn(
-                  '!z-[90] fixed w-12 h-12 right-4 bottom-20 mb-2',
+                  '!z-[59] fixed w-12 h-12 right-4 bottom-20 mb-2',
                   {
                     'bottom-24': isIPad13 || isTablet,
                   }
@@ -168,7 +168,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                 onClick={toggleAppMenu}
                 theme={buttonCustomTheme}
                 className={cn(
-                  '!z-[90] fixed w-12 h-12 right-4 bottom-8 transition-colors',
+                  '!z-[59] fixed w-12 h-12 right-4 bottom-8 transition-colors',
                   {
                     'bottom-12': isIPad13 || isTablet,
                     '!bg-dracula-dark-800': isOpen,
@@ -195,7 +195,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
               </Button>
               <motion.div
                 className={cn(
-                  '!z-[60] fixed top-0 bottom-0 left-0 w-screen h-screen py-12 bg-dracula-darker/80 backdrop-blur-sm'
+                  '!z-[58] fixed top-0 bottom-0 left-0 w-screen h-screen py-12 bg-dracula-darker/80 backdrop-blur-sm'
                 )}
                 variants={sidebar}
                 onAnimationComplete={onAnimationComplete}
