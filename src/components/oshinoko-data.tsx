@@ -8,6 +8,22 @@ import IntroMiho from '../content/intro-miho.mdx';
 import IntroJune from '../content/intro-june.mdx';
 import IntroSora from '../content/intro-sora.mdx';
 import IntroKuiro from '../content/intro-kuiro.mdx';
+import IntroMumuki from '../content/intro-mumuki.mdx';
+
+export enum StreamTypeEnum {
+  Independent = '個人勢',
+  Group = '社團勢',
+  Enterprise = '企業勢',
+  VType = 'V TYPE',
+  Sing = '歌回',
+  Game = '遊戲',
+  Chat = '雜談',
+  Project = '企劃類',
+  Collab = '多人聯動',
+  MusicalComposition = '音樂創作',
+  Drawing = '繪圖',
+  Handmade = '手作',
+}
 
 interface OshinokoData {
   imageData?: any;
@@ -22,6 +38,8 @@ interface OshinokoData {
   name?: string;
   video?: string;
   content?: ReactElement | React.JSX.Element;
+  streamType: StreamTypeEnum[];
+  stat: number[];
 }
 
 const oshinokoData: OshinokoData[] = [
@@ -40,6 +58,16 @@ const oshinokoData: OshinokoData[] = [
     name: '米亞 | Mya',
     video: 'https://www.youtube.com/watch?v=47mJVG8LNfE',
     content: <IntroMya />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.MusicalComposition,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Project,
+      StreamTypeEnum.Sing,
+      StreamTypeEnum.Game,
+      StreamTypeEnum.Drawing,
+    ],
+    stat: [4, 5, 4.5, 3.5, 5, 3.5, 3.5, 3.5],
   },
   {
     key: 'gummy',
@@ -57,6 +85,17 @@ const oshinokoData: OshinokoData[] = [
     name: '甘米 | Gummy',
     video: 'https://www.youtube.com/watch?v=x7-X9snnEZI',
     content: <IntroGummy />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.MusicalComposition,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Project,
+      StreamTypeEnum.Sing,
+      StreamTypeEnum.Drawing,
+      StreamTypeEnum.Handmade,
+      StreamTypeEnum.VType,
+    ],
+    stat: [4, 3, 2, 3.5, 4, 5, 4.5, 4],
   },
   {
     key: 'june',
@@ -74,6 +113,15 @@ const oshinokoData: OshinokoData[] = [
     name: '咎月ジュネ | June',
     video: 'https://www.youtube.com/watch?v=ne3C7IQBco8',
     content: <IntroJune />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Sing,
+      StreamTypeEnum.Game,
+      StreamTypeEnum.Collab,
+      StreamTypeEnum.Drawing,
+    ],
+    stat: [4, 3.5, 2.5, 3, 4, 3.5, 3.5, 4],
   },
   {
     key: 'uno',
@@ -91,6 +139,15 @@ const oshinokoData: OshinokoData[] = [
     name: '神白ウノ | Uno',
     video: 'https://www.youtube.com/watch?v=moSy45_zn0c',
     content: <IntroUno />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Project,
+      StreamTypeEnum.Sing,
+      StreamTypeEnum.Game,
+      StreamTypeEnum.Drawing,
+    ],
+    stat: [4, 3.5, 3, 3, 3, 3, 3.5, 3.5],
   },
   {
     key: 'ruri',
@@ -108,6 +165,13 @@ const oshinokoData: OshinokoData[] = [
     name: '真白瑠璃 | Ruri',
     video: 'https://www.youtube.com/watch?v=qf3b1_gT4SI',
     content: <IntroRuri />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Game,
+      StreamTypeEnum.Collab,
+    ],
+    stat: [3.5, 3.5, 2, 4, 3, 3, 3.5, 2],
   },
   {
     key: 'miho',
@@ -125,6 +189,12 @@ const oshinokoData: OshinokoData[] = [
     name: '黑佃みほ | Miho',
     video: 'https://www.youtube.com/watch?v=6shSnZrVhL0',
     content: <IntroMiho />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Game,
+    ],
+    stat: [3, 2.5, 2.5, 3.5, 3.5, 3, 3.5, 3.5],
   },
   {
     key: 'kurio',
@@ -142,6 +212,16 @@ const oshinokoData: OshinokoData[] = [
     name: '古洢蘿 | Kuiro',
     video: 'https://www.youtube.com/watch?v=KeJB2RvxPwE',
     content: <IntroKuiro />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Game,
+      StreamTypeEnum.Collab,
+      StreamTypeEnum.Drawing,
+      StreamTypeEnum.Project,
+      StreamTypeEnum.Handmade,
+    ],
+    stat: [2.5, 3, 3.5, 3.5, 3, 3, 3.5, 3],
   },
   {
     key: 'sora',
@@ -160,6 +240,37 @@ const oshinokoData: OshinokoData[] = [
     name: '羽榊そら | Sora',
     video: 'https://www.youtube.com/watch?v=e293yhqB8Jo',
     content: <IntroSora />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Game,
+      StreamTypeEnum.Project,
+      StreamTypeEnum.Sing,
+    ],
+    stat: [3.5, 4, 3, 3, 4, 3.5, 3.5, 3],
+  },
+  {
+    key: 'mumuki',
+    modalColor: 'bg-[#6ebbbf]',
+    positioning: 'left-20 top-[23rem] sm:top-[26.5rem] sm:left-56',
+    frameColor: 'border-[#6ebbbf] hover:bg-[#6ebbbf] active:bg-[#6ebbbf]',
+    shadowColor: 'drop-shadow-[8px_0px_0px_rgba(110,187,191,0.5)]',
+    twitterUrl: isIOS
+      ? 'twitter://user?id=litemumuki'
+      : 'https://twitter.com/litemumuki',
+    youtubeUrl: isIOS
+      ? 'youtube://youtube.com/@liteMumuki'
+      : 'https://www.youtube.com/@liteMumuki',
+    name: '淺茉 | Mumuki',
+    video: 'https://www.youtube.com/watch?v=mPrUn6xTu1g',
+    content: <IntroMumuki />,
+    streamType: [
+      StreamTypeEnum.Chat,
+      StreamTypeEnum.Independent,
+      StreamTypeEnum.Game,
+      StreamTypeEnum.Sing,
+    ],
+    stat: [4, 3.5, 3, 3, 4.5, 3.5, 3.5, 3.5],
   },
 ];
 
