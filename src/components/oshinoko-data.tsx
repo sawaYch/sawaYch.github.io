@@ -67,7 +67,7 @@ const oshinokoData: OshinokoData[] = [
       StreamTypeEnum.Game,
       StreamTypeEnum.Drawing,
     ],
-    stat: [4, 5, 4.5, 3.5, 5, 3.5, 3.5, 3.5],
+    stat: [4, 5, 4.5, 3.5, 5, 3.5, 5, 3.5],
   },
   {
     key: 'gummy',
@@ -95,7 +95,7 @@ const oshinokoData: OshinokoData[] = [
       StreamTypeEnum.Handmade,
       StreamTypeEnum.VType,
     ],
-    stat: [4, 3, 2, 3.5, 4, 5, 4.5, 4],
+    stat: [4, 3, 2, 3.5, 4, 5, 5, 4],
   },
   {
     key: 'june',
@@ -121,7 +121,7 @@ const oshinokoData: OshinokoData[] = [
       StreamTypeEnum.Collab,
       StreamTypeEnum.Drawing,
     ],
-    stat: [4, 3.5, 2.5, 3, 4, 3.5, 3.5, 4],
+    stat: [4, 3.5, 2.5, 3, 4, 3.5, 4, 4],
   },
   {
     key: 'uno',
@@ -147,7 +147,7 @@ const oshinokoData: OshinokoData[] = [
       StreamTypeEnum.Game,
       StreamTypeEnum.Drawing,
     ],
-    stat: [4, 3.5, 3, 3, 3, 3, 3.5, 3.5],
+    stat: [4, 3.5, 3, 3, 3, 3, 4, 3.5],
   },
   {
     key: 'ruri',
@@ -221,7 +221,7 @@ const oshinokoData: OshinokoData[] = [
       StreamTypeEnum.Project,
       StreamTypeEnum.Handmade,
     ],
-    stat: [2.5, 3, 3.5, 3.5, 3, 3, 3.5, 3],
+    stat: [2.5, 3, 3.5, 3.5, 3, 3, 3, 3],
   },
   {
     key: 'sora',

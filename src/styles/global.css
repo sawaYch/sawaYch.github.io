@@ -218,3 +218,13 @@ iframe {
   letter-spacing: var(--letter-spacing);
   padding: calc(--stroke-width / 2);
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #924ff2;
+}
+
+::selection {
+  color: white;
+  background: #924ff2;
+}
