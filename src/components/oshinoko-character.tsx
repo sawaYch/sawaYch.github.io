@@ -1,6 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { MouseEventHandler, useCallback, useMemo, useState } from 'react';
+import {
+  MouseEventHandler,
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
 import { FaYoutubeSquare } from '@react-icons/all-files/fa/FaYoutubeSquare';
 import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
@@ -50,6 +58,11 @@ interface SocialLinkProps {
 interface StatChartProps {
   data: number[];
   color: string;
+  chartDownloadFileName: string;
+}
+
+interface IStatChartHandler {
+  downloadChart: MouseEventHandler<HTMLDivElement>;
 }
 
 interface StreamTypeBadgesProps {
@@ -143,82 +156,109 @@ const StreamTypeBadges = ({ data }: StreamTypeBadgesProps) => {
   );
 };
 
-const StatChart = ({ data, color }: StatChartProps) => {
-  const rgb = useMemo(() => {
-    let colorHex = color;
-    colorHex = color.replace(/[[\]#-]+|bg/g, '');
-    const r = parseInt(colorHex.slice(0, 2), 16);
-    const g = parseInt(colorHex.slice(2, 4), 16);
-    const b = parseInt(colorHex.slice(4, 6), 16);
-    return { r, g, b };
-  }, [color]);
+const StatChart = forwardRef<IStatChartHandler, StatChartProps>(
+  ({ data, chartDownloadFileName, color }: StatChartProps, ref) => {
+    const rgb = useMemo(() => {
+      let colorHex = color;
+      colorHex = color.replace(/[[\]#-]+|bg/g, '');
+      const r = parseInt(colorHex.slice(0, 2), 16);
+      const g = parseInt(colorHex.slice(2, 4), 16);
+      const b = parseInt(colorHex.slice(4, 6), 16);
+      return { r, g, b };
+    }, [color]);
 
-  const mappedData = useMemo(() => {
-    const category = [
-      'キャラ絵',
-      '雜談力',
-      '企画力',
-      '頭脳',
-      '笑い',
-      '魅力',
-      '好感度',
-      '声',
-    ];
+    const mappedData = useMemo(() => {
+      const category = [
+        'キャラ絵',
+        '雜談力',
+        '企画力',
+        '頭脳',
+        '笑い',
+        '魅力',
+        '好感度',
+        '声',
+      ];
 
-    return {
-      labels: category,
-      datasets: [
-        {
-          label: 'Level',
-          data,
-          fill: true,
-          backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`,
-          borderColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b})`,
-          pointBackgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b})`,
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b})`,
-        },
-      ],
-    };
-  }, [data, rgb.b, rgb.g, rgb.r]);
+      return {
+        labels: category,
+        datasets: [
+          {
+            label: 'Level',
+            data,
+            fill: true,
+            backgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`,
+            borderColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b})`,
+            pointBackgroundColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b})`,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b})`,
+          },
+        ],
+      };
+    }, [data, rgb.b, rgb.g, rgb.r]);
 
-  return (
-    <div className="flex w-80 h-80">
-      <Radar
-        data={mappedData}
-        options={{
-          responsive: true,
-          scales: {
-            r: {
-              max: 5,
-              min: 0,
-              beginAtZero: true,
-              grid: {
-                color: '#222',
-              },
-              angleLines: {
-                color: '#555',
-              },
-              pointLabels: {
-                font: {
-                  size: 14,
-                  weight: '700',
+    const chartRef = useRef<any>(null);
+
+    const downloadChart: MouseEventHandler<HTMLDivElement> = useCallback(
+      (evt) => {
+        evt.stopPropagation();
+        if (chartRef?.current == null) {
+          return;
+        }
+        const link = document.createElement('a');
+        link.download = `${chartDownloadFileName}-stat.png`;
+        link.href = chartRef?.current.toBase64Image();
+        link.click();
+      },
+      [chartDownloadFileName, chartRef]
+    );
+
+    useImperativeHandle(
+      ref,
+      () => ({
+        downloadChart,
+      }),
+      [downloadChart]
+    );
+
+    return (
+      <div className="flex cursor-pointer w-80 h-80">
+        <Radar
+          ref={chartRef}
+          data={mappedData}
+          options={{
+            responsive: true,
+            scales: {
+              r: {
+                max: 5,
+                min: 0,
+                beginAtZero: true,
+                grid: {
+                  color: '#222',
                 },
-                color: '#ddd',
-              },
-              ticks: {
-                stepSize: 1,
-                display: false,
+                angleLines: {
+                  color: '#555',
+                },
+                pointLabels: {
+                  font: {
+                    size: 14,
+                    weight: '700',
+                  },
+                  color: '#ddd',
+                },
+                ticks: {
+                  stepSize: 1,
+                  display: false,
+                },
               },
             },
-          },
-          plugins: { legend: { display: false } },
-        }}
-      />
-    </div>
-  );
-};
+            plugins: { legend: { display: false } },
+          }}
+        />
+      </div>
+    );
+  }
+);
 
 const OshinokoCharacterPane = ({
   isOpen,
@@ -282,6 +322,19 @@ const OshinokoCharacterPane = ({
   const forceStopPropagation: MouseEventHandler<HTMLDivElement> = useCallback(
     (evt) => {
       evt.stopPropagation();
+    },
+    []
+  );
+
+  const chartRef = useRef<IStatChartHandler>(null);
+
+  const handleDownloadChart: MouseEventHandler<HTMLDivElement> = useCallback(
+    (evt) => {
+      evt.stopPropagation();
+      if (chartRef?.current == null) {
+        return;
+      }
+      chartRef.current.downloadChart(evt);
     },
     []
   );
@@ -398,8 +451,7 @@ const OshinokoCharacterPane = ({
                     <hr className="flex w-64" />
                   </div>
                   <div className="flex flex-col items-center justify-center p-4 text-xs italic">
-                    p.s. This is a personal subjective opinion, categories ref.
-                    to
+                    p.s. Personal subjective opinion, categories ref. to
                     <a
                       className="underline"
                       href="https://tuber-review.com/youtubers/1503"
@@ -408,9 +460,17 @@ const OshinokoCharacterPane = ({
                     >
                       Yotuber世論調查
                     </a>
+                    <div
+                      className="px-2 my-2 underline uppercase cursor-pointer bg-dracula-dark"
+                      onClick={handleDownloadChart}
+                    >
+                      *Export Chart*
+                    </div>
                     <StatChart
+                      ref={chartRef}
                       data={selectedData.stat}
                       color={selectedData.modalColor ?? '#222'}
+                      chartDownloadFileName={selectedData.name ?? 'chart'}
                     />
                   </div>
                 </motion.div>
