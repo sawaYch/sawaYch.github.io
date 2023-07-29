@@ -222,7 +222,7 @@ const StatChart = forwardRef<IStatChartHandler, StatChartProps>(
     );
 
     return (
-      <div className="flex cursor-pointer w-80 h-80">
+      <div className="flex w-80 h-80">
         <Radar
           ref={chartRef}
           data={mappedData}
