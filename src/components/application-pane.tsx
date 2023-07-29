@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
+import { Link } from 'gatsby';
 import { ReactElement, useMemo } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
+import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
 
@@ -10,6 +12,7 @@ interface AppNavigationType {
   name: string;
   cubeColor?: CubeColorType;
   icon?: ReactElement;
+  link?: string;
 }
 
 const ApplicationPane = () => {
@@ -31,6 +34,14 @@ const ApplicationPane = () => {
       cubeColor: 'purple',
       name: 'Blog',
       icon: <BiBookBookmark size="3.5rem" />,
+      link: '/blogs',
+    },
+    {
+      id: 'artwork',
+      cubeColor: 'buffy',
+      name: 'Artwork',
+      icon: <FaPaintBrush size="3.5rem" />,
+      link: '/artworks',
     },
     {
       id: 'reserved_1',
@@ -73,7 +84,9 @@ const ApplicationPane = () => {
         </motion.div>
         <div className="grid grid-cols-3 sm:grid-cols-4 place-items-center">
           {appNavigationData.map((i) => (
-            <MenuItem key={i.id} {...i} />
+            <Link to={i.link ?? '/404'}>
+              <MenuItem key={i.id} {...i} />
+            </Link>
           ))}
         </div>
       </motion.div>

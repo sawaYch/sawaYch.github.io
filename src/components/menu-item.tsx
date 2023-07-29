@@ -25,9 +25,15 @@ interface MenuItemProps {
   cubeColor?: CubeColorType;
   icon?: ReactElement;
   name: string;
+  onClick?: () => void;
 }
 
-const MenuItem = ({ cubeColor = 'purple', name, icon }: MenuItemProps) => {
+const MenuItem = ({
+  cubeColor = 'purple',
+  name,
+  icon,
+  onClick,
+}: MenuItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isItemHover, setIsItemHover] = useState(false);
 
@@ -46,6 +52,7 @@ const MenuItem = ({ cubeColor = 'purple', name, icon }: MenuItemProps) => {
       className="flex flex-col items-center justify-center"
       variants={variants}
       ref={ref}
+      onClick={onClick}
     >
       <div className="transition-transform active:scale-90 hover:scale-105">
         <Cube color={cubeColor} icon={icon} />
