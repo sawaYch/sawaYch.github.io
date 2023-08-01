@@ -38,6 +38,7 @@
     "gatsby-plugin-mdx": "^5.11.0",
     "gatsby-plugin-sharp": "^5.11.0",
     "gatsby-plugin-styled-components": "^6.11.0",
+    "gatsby-plugin-twitter": "^5.11.0",
     "gatsby-remark-images": "^7.11.0",
     "gatsby-source-filesystem": "^5.11.0",
     "gatsby-transformer-remark": "^6.11.0",
@@ -50,6 +51,7 @@
     "react-lite-youtube-embed": "^2.3.52",
     "react-player": "^2.12.0",
     "react-resize-detector": "^9.1.0",
+    "react-twitter-embed": "^4.0.4",
     "styled-components": "^6.0.1",
     "tailwind-dracula": "^1.1.0",
     "twin.macro": "^3.3.1"

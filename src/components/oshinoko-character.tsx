@@ -18,6 +18,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import cn from 'classnames';
 import { isMobile } from 'react-device-detect';
 import { Badge } from 'flowbite-react';
+import { useResizeDetector } from 'react-resize-detector';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -28,6 +29,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 import ReactPlayer from 'react-player/lazy';
 import Spinner from './spinner';
@@ -339,6 +341,12 @@ const OshinokoCharacterPane = ({
     []
   );
 
+  const {
+    width: snsWidth,
+    height: snsHeight,
+    ref: containerRef,
+  } = useResizeDetector();
+
   return (
     <AnimatePresence>
       {!isOpen || selectedData == null ? null : (
@@ -354,6 +362,7 @@ const OshinokoCharacterPane = ({
             </button>
           </motion.div>
           <motion.div
+            ref={containerRef}
             onClick={onClose}
             variants={container}
             initial="offscreen"
@@ -474,6 +483,35 @@ const OshinokoCharacterPane = ({
                     />
                   </div>
                 </motion.div>
+                {selectedData.twitterUrl && snsWidth && snsHeight && (
+                  <motion.div
+                    onClick={stopPropagation}
+                    variants={retroTvItem}
+                    className="flex flex-col items-center justify-center"
+                  >
+                    <div className="flex items-center justify-center gap-x-2">
+                      <div className="flex px-4 text-lg uppercase -skew-x-12 bg-dracula-dark">
+                        <span>SNS</span>
+                      </div>
+                      <hr className="flex w-64" />
+                    </div>
+                    <div className="mt-4 mb-12">
+                      <TwitterTimelineEmbed
+                        sourceType="url"
+                        url={selectedData.twitterUrl}
+                        noHeader
+                        noFooter
+                        noScrollbar
+                        options={{
+                          tweetLimit: 10,
+                          dnt: true,
+                          width: 400,
+                          height: 400,
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                )}
               </div>
               <motion.div className="absolute left-1/2 -translate-x-1/2 top-10 text-[2rem] sm:text-[3rem] z-[51] oshinoko-character-name whitespace-nowrap uppercase">
                 {selectedData?.name}
