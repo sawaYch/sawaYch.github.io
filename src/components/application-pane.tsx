@@ -4,6 +4,7 @@ import { ReactElement, useMemo } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
+import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
 
@@ -29,6 +30,13 @@ const ApplicationPane = () => {
   );
 
   const appNavigationData: AppNavigationType[] = [
+    {
+      id: 'home',
+      cubeColor: 'dark',
+      name: 'Home',
+      icon: <FaHome size="3.5rem" />,
+      link: '/',
+    },
     {
       id: 'blog',
       cubeColor: 'purple',
@@ -84,7 +92,7 @@ const ApplicationPane = () => {
         </motion.div>
         <div className="grid grid-cols-3 sm:grid-cols-4 place-items-center">
           {appNavigationData.map((i) => (
-            <Link to={i.link ?? '/404'}>
+            <Link key={i.id} to={i.link ?? '/404'}>
               <MenuItem key={i.id} {...i} />
             </Link>
           ))}
