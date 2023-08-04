@@ -213,7 +213,7 @@ const ArtworksPage = () => {
                 className={cn('object-scale-down w-[80vw] h-[80vh]', {
                   '!h-[70vh]': isMobile,
                 })}
-                src={artwork.images[0].url}
+                src={artwork.images[0].formats.medium.url}
                 alt={artwork.images[0].alternativeText}
                 loader={
                   <div className="flex flex-col items-center justify-center w-full h-full">
