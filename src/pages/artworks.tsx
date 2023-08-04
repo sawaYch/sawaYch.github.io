@@ -7,6 +7,8 @@ import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
 import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { useCallback, useMemo, useState, MouseEventHandler } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'classnames';
 import { isMobile } from 'react-device-detect';
@@ -225,9 +227,14 @@ const ArtworksPage = () => {
                   </div>
                 }
               />
-              <div className="fixed z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm">
-                <div className="mb-2">{artwork.updatedAt}</div>
-                <div>{artwork.caption}</div>
+              <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm">
+                <div className="flex justify-between mb-2">
+                  <div className="font-bold">{artwork.name}</div>
+                  <div className="italic">{artwork.updatedAt}</div>
+                </div>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {artwork.caption}
+                </ReactMarkdown>
               </div>
             </motion.div>
           </motion.div>

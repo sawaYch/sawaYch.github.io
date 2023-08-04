@@ -52,8 +52,10 @@
     "react-image": "^4.1.0",
     "react-intersection-observer": "^9.5.2",
     "react-lite-youtube-embed": "^2.3.52",
+    "react-markdown": "^8.0.7",
     "react-player": "^2.12.0",
     "react-resize-detector": "^9.1.0",
+    "remark-gfm": "^3.0.1",
     "styled-components": "^6.0.1",
     "tailwind-dracula": "^1.1.0",
     "twin.macro": "^3.3.1"
