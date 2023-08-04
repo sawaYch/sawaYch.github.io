@@ -4,13 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
 import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
-import {
-  useCallback,
-  useMemo,
-  useState,
-  MouseEventHandler,
-  useRef,
-} from 'react';
+import { useCallback, useMemo, useState, MouseEventHandler } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'classnames';
 import { Img } from 'react-image';
@@ -44,8 +38,6 @@ const ArtworksPage = () => {
     useCallback(() => {
       setArtwork(undefined);
     }, []);
-
-  const fullImageRef = useRef<HTMLImageElement>(null);
 
   const onArtworkDownload = useCallback((url: string, name: string) => {
     saveAs(url, name);
@@ -159,26 +151,27 @@ const ArtworksPage = () => {
                 evt.stopPropagation();
               }}
             >
-              <button
-                aria-label="Close"
-                type="button"
-                onClick={onArtworkClose}
-                className="fixed z-[61] top-4 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <HiOutlineX aria-hidden className="w-6 h-6" />
-              </button>
-              <button
-                aria-label="Download"
-                type="button"
-                onClick={() =>
-                  onArtworkDownload(artwork.images[0].url, artwork.name)
-                }
-                className="fixed z-[61] top-14 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <HiDownload aria-hidden className="w-6 h-6" />
-              </button>
+              <div className="fixed flex items-center justify-center rounded-lg h-[4.9rem] w-9 top-4 right-4 bg-dracula-darker">
+                <button
+                  aria-label="Close"
+                  type="button"
+                  onClick={onArtworkClose}
+                  className="fixed z-[61] top-4 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  <HiOutlineX aria-hidden className="w-6 h-6" />
+                </button>
+                <button
+                  aria-label="Download"
+                  type="button"
+                  onClick={() =>
+                    onArtworkDownload(artwork.images[0].url, artwork.name)
+                  }
+                  className="fixed z-[61] top-14 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  <HiDownload aria-hidden className="w-6 h-6" />
+                </button>
+              </div>
               <Img
-                ref={fullImageRef}
                 className={cn('object-scale-down w-[80vw] h-[80vh]')}
                 src={artwork.images[0].url}
                 alt={artwork.images[0].alternativeText}
