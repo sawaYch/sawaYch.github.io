@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
 import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
+import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
+import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { useCallback, useMemo, useState, MouseEventHandler } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'classnames';
@@ -155,7 +157,7 @@ const ArtworksPage = () => {
                 evt.stopPropagation();
               }}
             >
-              <div className="fixed flex items-center justify-center rounded-lg h-[4.9rem] w-9 top-4 right-4 bg-dracula-darker">
+              <div className="fixed flex items-center justify-center rounded-lg h-[4.9rem] w-9 top-4 right-4 bg-dracula-darker-800">
                 <button
                   aria-label="Close"
                   type="button"
@@ -175,6 +177,36 @@ const ArtworksPage = () => {
                   <HiDownload aria-hidden className="w-6 h-6" />
                 </button>
               </div>
+              <button
+                aria-label="left"
+                type="button"
+                onClick={() => {
+                  const currentIndex = data?.findIndex(
+                    (it) => it.id === artwork.id
+                  );
+                  if (currentIndex == null) return;
+                  setArtwork(
+                    data?.[(currentIndex - 1 + data.length) % data.length]
+                  );
+                }}
+                className="fixed z-[61] top-72 w-fit h-fit left-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                <FaAngleLeft aria-hidden className="w-6 h-6" />
+              </button>
+              <button
+                aria-label="right"
+                type="button"
+                onClick={() => {
+                  const currentIndex = data?.findIndex(
+                    (it) => it.id === artwork.id
+                  );
+                  if (currentIndex == null) return;
+                  setArtwork(data?.[(currentIndex + 1) % data.length]);
+                }}
+                className="fixed z-[61] top-72 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                <FaAngleRight aria-hidden className="w-6 h-6" />
+              </button>
               <Img
                 className={cn('object-scale-down w-[80vw] h-[80vh]', {
                   '!h-[70vh]': isMobile,
