@@ -5,6 +5,7 @@ import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
+import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
 
@@ -50,6 +51,13 @@ const ApplicationPane = () => {
       name: 'Artwork',
       icon: <FaPaintBrush size="3.5rem" />,
       link: '/artworks',
+    },
+    {
+      id: 'gallery',
+      cubeColor: 'yellow',
+      name: 'Gallery',
+      icon: <IoIosImages size="3.5rem" />,
+      link: '/gallery',
     },
     {
       id: 'reserved_1',

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-export type CubeColorType = 'purple' | 'red' | 'buffy' | 'dark';
+export type CubeColorType = 'purple' | 'red' | 'buffy' | 'dark' | 'yellow';
 
 interface CubeProps {
   color?: CubeColorType;
@@ -36,6 +36,13 @@ export const cubeColorMap = {
     'bg-dracula-dark-300',
     'from-dracula-dark-400',
     'to-dracula-dark-400',
+  ],
+  yellow: [
+    'bg-dracula-yellow-700',
+    'bg-dracula-yellow-900',
+    'bg-dracula-yellow-800',
+    'from-dracula-yellow-900',
+    'to-dracula-yellow-900',
   ],
 };
 
