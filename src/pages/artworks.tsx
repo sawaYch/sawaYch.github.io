@@ -7,6 +7,7 @@ import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
 import { useCallback, useMemo, useState, MouseEventHandler } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'classnames';
+import { isMobile } from 'react-device-detect';
 import { Img } from 'react-image';
 import { saveAs } from 'file-saver';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
@@ -146,7 +147,10 @@ const ArtworksPage = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="absolute w-[80vw] h-[80vh] left-0 right-0 top-0 ml-auto mr-auto translate-y-[10vh] bg-dracula-dark z-[60] rounded-lg"
+              className={cn(
+                'absolute w-[80vw] h-[80vh] left-0 right-0 top-0 ml-auto mr-auto translate-y-[10vh] bg-dracula-dark z-[60] rounded-lg',
+                { '!h-[70vh]': isMobile }
+              )}
               onClick={(evt) => {
                 evt.stopPropagation();
               }}
@@ -172,7 +176,9 @@ const ArtworksPage = () => {
                 </button>
               </div>
               <Img
-                className={cn('object-scale-down w-[80vw] h-[80vh]')}
+                className={cn('object-scale-down w-[80vw] h-[80vh]', {
+                  '!h-[70vh]': isMobile,
+                })}
                 src={artwork.images[0].url}
                 alt={artwork.images[0].alternativeText}
                 loader={
