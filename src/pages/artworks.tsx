@@ -3,8 +3,19 @@
 import { useQuery } from '@tanstack/react-query';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
-import { useCallback, useMemo, useState, MouseEventHandler } from 'react';
-import { motion } from 'framer-motion';
+import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
+import {
+  useCallback,
+  useMemo,
+  useState,
+  MouseEventHandler,
+  useRef,
+} from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import cn from 'classnames';
+import { Img } from 'react-image';
+import { saveAs } from 'file-saver';
+import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import Layout from '../components/layout';
 import fetchArtworks, { ArtworkData } from '../apis/fetch-artworks';
 import Spinner from '../components/spinner';
@@ -33,6 +44,12 @@ const ArtworksPage = () => {
     useCallback(() => {
       setArtwork(undefined);
     }, []);
+
+  const fullImageRef = useRef<HTMLImageElement>(null);
+
+  const onArtworkDownload = useCallback((url: string, name: string) => {
+    saveAs(url, name);
+  }, []);
 
   return (
     <Layout>
@@ -92,30 +109,99 @@ const ArtworksPage = () => {
             ))}
         </motion.div>
       )}
-      {artwork && (
-        <div
-          className="fixed top-0 z-[51] w-screen h-screen bg-dracula-darker/30 backdrop-blur-sm"
-          onClick={() => {
-            setArtwork(undefined);
-          }}
-        >
-          <div
-            className="absolute w-[80vw] h-[80vh] left-0 right-0 top-0 ml-auto mr-auto translate-y-[10vh] bg-dracula-dark z-[60] rounded-lg"
-            onClick={(evt) => {
-              evt.stopPropagation();
+      <AnimatePresence>
+        {artwork && (
+          <motion.div
+            variants={{
+              open: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                  y: { stiffness: 10, velocity: -1000 },
+                },
+              },
+              closed: {
+                y: 50,
+                opacity: 0,
+                transition: {
+                  y: { stiffness: 10 },
+                },
+              },
+            }}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed top-0 z-[51] w-screen h-screen bg-dracula-darker/30 backdrop-blur-sm"
+            onClick={() => {
+              setArtwork(undefined);
             }}
           >
-            <button
-              aria-label="Close"
-              type="button"
-              onClick={onArtworkClose}
-              className="fixed z-[61] top-4 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+            <motion.div
+              variants={{
+                open: {
+                  opacity: 1,
+                  transition: {
+                    y: { stiffness: 10, velocity: -1000 },
+                  },
+                },
+                closed: {
+                  opacity: 0,
+                  transition: {
+                    y: { stiffness: 10 },
+                  },
+                },
+              }}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="absolute w-[80vw] h-[80vh] left-0 right-0 top-0 ml-auto mr-auto translate-y-[10vh] bg-dracula-dark z-[60] rounded-lg"
+              onClick={(evt) => {
+                evt.stopPropagation();
+              }}
             >
-              <HiOutlineX aria-hidden className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-      )}
+              <button
+                aria-label="Close"
+                type="button"
+                onClick={onArtworkClose}
+                className="fixed z-[61] top-4 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                <HiOutlineX aria-hidden className="w-6 h-6" />
+              </button>
+              <button
+                aria-label="Download"
+                type="button"
+                onClick={() =>
+                  onArtworkDownload(artwork.images[0].url, artwork.name)
+                }
+                className="fixed z-[61] top-14 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                <HiDownload aria-hidden className="w-6 h-6" />
+              </button>
+              <Img
+                ref={fullImageRef}
+                className={cn('object-scale-down w-[80vw] h-[80vh]')}
+                src={artwork.images[0].url}
+                alt={artwork.images[0].alternativeText}
+                loader={
+                  <div className="flex flex-col items-center justify-center w-full h-full">
+                    <Spinner className="!w-24 !h-24" />
+                  </div>
+                }
+                unloader={
+                  <div className="flex flex-col items-center justify-center h-full">
+                    <FcRemoveImage size="5rem" />
+                    <div>Fail to load image</div>
+                  </div>
+                }
+              />
+              <div className="fixed z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm">
+                <div className="mb-2">{artwork.updatedAt}</div>
+                <div>{artwork.caption}</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Layout>
   );
 };

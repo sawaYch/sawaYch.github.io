@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import ApiFetch from './api-fetch';
 
 type format = 'thumbnail' | 'medium' | 'small' | 'large';
@@ -24,6 +25,7 @@ export interface ArtworkData {
   name: string;
   caption: string;
   images: CMSImage[];
+  updatedAt: string;
 }
 
 const appendAssetUrl = (input: {
@@ -50,6 +52,7 @@ const fetchArtworks = async () => {
       id: d.id,
       name: d.attributes.name,
       caption: d.attributes.caption,
+      updatedAt: dayjs(d.attributes.updatedAt).format('DD/MM/YYYY HH:mm A'),
       images: d.attributes.image.data.map((img: any) => ({
         name: img.attributes.name,
         alternativeText: img.attributes.alternativeText,
