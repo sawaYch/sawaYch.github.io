@@ -126,7 +126,7 @@ const ArtworksPage = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 z-[51] w-screen h-screen bg-dracula-darker/30 backdrop-blur-sm"
+            className="fixed top-0 z-[51] w-screen h-screen bg-dracula-darker/30 backdrop-blur-sm touch-none"
             onClick={() => {
               setArtwork(undefined);
             }}
@@ -157,7 +157,7 @@ const ArtworksPage = () => {
                 evt.stopPropagation();
               }}
             >
-              <div className="fixed flex items-center justify-center rounded-lg h-[4.9rem] w-9 top-4 right-4 bg-dracula-darker-800">
+              <div className="fixed flex items-center justify-center rounded-lg h-[4.7rem] w-9 top-4 right-4 bg-dracula-darker-800">
                 <button
                   aria-label="Close"
                   type="button"
@@ -189,7 +189,7 @@ const ArtworksPage = () => {
                     data?.[(currentIndex - 1 + data.length) % data.length]
                   );
                 }}
-                className="fixed z-[61] top-72 w-fit h-fit left-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="fixed z-[61] top-1/2 w-fit h-fit left-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 <FaAngleLeft aria-hidden className="w-6 h-6" />
               </button>
@@ -203,7 +203,7 @@ const ArtworksPage = () => {
                   if (currentIndex == null) return;
                   setArtwork(data?.[(currentIndex + 1) % data.length]);
                 }}
-                className="fixed z-[61] top-72 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="fixed z-[61] top-1/2 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 <FaAngleRight aria-hidden className="w-6 h-6" />
               </button>
