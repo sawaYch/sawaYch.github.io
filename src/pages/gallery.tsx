@@ -237,7 +237,7 @@ const GalleryPage = () => {
                 }
               />
 
-              <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm">
+              <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">
                 {gallery.images.length > 1 && (
                   <Pagination
                     className="self-center mb-2 -mt-2"
@@ -272,7 +272,10 @@ const GalleryPage = () => {
                   <div className="font-bold">{gallery.name}</div>
                   <div className="italic">{gallery.updatedAt}</div>
                 </div>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  className="flex text-xs break-all"
+                >
                   {gallery.captions}
                 </ReactMarkdown>
               </div>

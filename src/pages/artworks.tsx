@@ -232,7 +232,10 @@ const ArtworksPage = () => {
                   <div className="font-bold">{artwork.name}</div>
                   <div className="italic">{artwork.updatedAt}</div>
                 </div>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  className="flex text-xs break-all"
+                >
                   {artwork.caption}
                 </ReactMarkdown>
               </div>
