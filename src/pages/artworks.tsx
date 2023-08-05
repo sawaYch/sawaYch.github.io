@@ -228,7 +228,7 @@ const ArtworksPage = () => {
                 }
               />
               <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm">
-                <div className="flex justify-between mb-2">
+                <div className="flex flex-col justify-between mb-2 sm:flex-row">
                   <div className="font-bold">{artwork.name}</div>
                   <div className="italic">{artwork.updatedAt}</div>
                 </div>

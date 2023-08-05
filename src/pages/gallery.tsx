@@ -268,7 +268,7 @@ const GalleryPage = () => {
                     totalPages={gallery.images.length}
                   />
                 )}
-                <div className="flex justify-between mb-2">
+                <div className="flex flex-col justify-between mb-2 sm:flex-row">
                   <div className="font-bold">{gallery.name}</div>
                   <div className="italic">{gallery.updatedAt}</div>
                 </div>
