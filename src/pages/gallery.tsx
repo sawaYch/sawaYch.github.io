@@ -6,6 +6,8 @@ import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
 import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
 import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
+import { AiFillCaretDown } from '@react-icons/all-files/ai/AiFillCaretDown';
+import { AiFillCaretUp } from '@react-icons/all-files/ai/AiFillCaretUp';
 import { useCallback, useMemo, useState, MouseEventHandler } from 'react';
 import { Pagination } from 'flowbite-react';
 import ReactMarkdown from 'react-markdown';
@@ -246,7 +248,7 @@ const GalleryPage = () => {
                   setOpenDesc((prev) => !prev);
                 }}
               >
-                ⯅
+                <AiFillCaretUp size="1.2rem" />
               </div>
               {openDesc && (
                 <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">
@@ -259,7 +261,7 @@ const GalleryPage = () => {
                       }}
                       className="flex z-[61] mb-2 w-fit h-fit rounded-lg bg-transparent px-4 text-sm text-gray-400 border-dracula-dark-600 border hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      ▼
+                      <AiFillCaretDown size="1.2rem" />
                     </button>
                     {gallery.images.length > 1 && (
                       <Pagination
