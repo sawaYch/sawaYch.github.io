@@ -34,6 +34,7 @@ const ArtworksPage = () => {
     []
   );
   const [artwork, setArtwork] = useState<ArtworkData | undefined>();
+  const [openDesc, setOpenDesc] = useState(true);
 
   const handleOpenFullImage = useCallback((d: ArtworkData) => {
     setArtwork(d);
@@ -227,18 +228,41 @@ const ArtworksPage = () => {
                   </div>
                 }
               />
-              <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm">
-                <div className="flex flex-col justify-between mb-2 sm:flex-row">
-                  <div className="font-bold">{artwork.name}</div>
-                  <div className="italic">{artwork.updatedAt}</div>
-                </div>
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  className="flex text-xs break-all"
-                >
-                  {artwork.caption}
-                </ReactMarkdown>
+              <div
+                className={cn(
+                  'fixed z-[61] left-4 bottom-0 bg-dracula-darker w-fit h-8 py-1 px-4 cursor-pointer flex justify-center items-center rounded-t-md text-dracula-dark-300 text-lg sm:text-2xl pt-2 select-none',
+                  { hidden: openDesc }
+                )}
+                onClick={() => {
+                  setOpenDesc((prev) => !prev);
+                }}
+              >
+                ⯅
               </div>
+              {openDesc && (
+                <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">
+                  <button
+                    aria-label="hide"
+                    type="button"
+                    onClick={() => {
+                      setOpenDesc((prev) => !prev);
+                    }}
+                    className="z-[61] mb-2 w-fit h-fit rounded-lg bg-transparent px-4 text-sm text-gray-400 border-dracula-dark-600 border hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    ▼
+                  </button>
+                  <div className="flex flex-col justify-between mb-2 sm:flex-row">
+                    <div className="font-bold">{artwork.name}</div>
+                    <div className="italic">{artwork.updatedAt}</div>
+                  </div>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    className="flex text-xs break-all"
+                  >
+                    {artwork.caption}
+                  </ReactMarkdown>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}

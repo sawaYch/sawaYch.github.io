@@ -35,6 +35,7 @@ const GalleryPage = () => {
     []
   );
   const [gallery, setGallery] = useState<GalleryData | undefined>();
+  const [openDesc, setOpenDesc] = useState(true);
 
   const [previewCurrentPage, setPreviewCurrentPage] = useState(1);
 
@@ -236,49 +237,73 @@ const GalleryPage = () => {
                   </div>
                 }
               />
-
-              <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">
-                {gallery.images.length > 1 && (
-                  <Pagination
-                    className="self-center mb-2 -mt-2"
-                    theme={{
-                      pages: {
-                        previous: {
-                          base: 'rounded-l-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
-                          icon: 'h-4 w-4',
-                        },
-                        next: {
-                          base: 'rounded-r-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
-                          icon: 'h-4 w-4',
-                        },
-                        selector: {
-                          base: 'w-12 bg-dracula-darker text-gray-500 enabled:hover:bg-dracula-gray-100 enabled:hover:text-gray-700',
-                          active:
-                            'bg-dracula-purple-200 text-dracula-purple-600 hover:bg-dracula-purple-300 hover:text-dracula-purple-700',
-                        },
-                      },
-                    }}
-                    currentPage={previewCurrentPage}
-                    layout="pagination"
-                    onPageChange={(page) => {
-                      setPreviewCurrentPage(page);
-                    }}
-                    nextLabel="→"
-                    previousLabel="←"
-                    totalPages={gallery.images.length}
-                  />
+              <div
+                className={cn(
+                  'fixed z-[61] left-4 bottom-0 bg-dracula-darker w-fit h-8 py-1 px-4 cursor-pointer flex justify-center items-center rounded-t-md text-dracula-dark-300 text-lg sm:text-2xl pt-2 select-none',
+                  { hidden: openDesc }
                 )}
-                <div className="flex flex-col justify-between mb-2 sm:flex-row">
-                  <div className="font-bold">{gallery.name}</div>
-                  <div className="italic">{gallery.updatedAt}</div>
-                </div>
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  className="flex text-xs break-all"
-                >
-                  {gallery.captions}
-                </ReactMarkdown>
+                onClick={() => {
+                  setOpenDesc((prev) => !prev);
+                }}
+              >
+                ⯅
               </div>
+              {openDesc && (
+                <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">
+                  <div className="flex justify-between">
+                    <button
+                      aria-label="hide"
+                      type="button"
+                      onClick={() => {
+                        setOpenDesc((prev) => !prev);
+                      }}
+                      className="flex z-[61] mb-2 w-fit h-fit rounded-lg bg-transparent px-4 text-sm text-gray-400 border-dracula-dark-600 border hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      ▼
+                    </button>
+                    {gallery.images.length > 1 && (
+                      <Pagination
+                        className="flex self-center mb-2 -mt-2"
+                        theme={{
+                          pages: {
+                            previous: {
+                              base: 'rounded-l-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
+                              icon: 'h-4 w-4',
+                            },
+                            next: {
+                              base: 'rounded-r-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
+                              icon: 'h-4 w-4',
+                            },
+                            selector: {
+                              base: 'w-12 bg-dracula-darker text-gray-500 enabled:hover:bg-dracula-gray-100 enabled:hover:text-gray-700',
+                              active:
+                                'bg-dracula-purple-200 text-dracula-purple-600 hover:bg-dracula-purple-300 hover:text-dracula-purple-700',
+                            },
+                          },
+                        }}
+                        currentPage={previewCurrentPage}
+                        layout="navigation"
+                        onPageChange={(page) => {
+                          setPreviewCurrentPage(page);
+                        }}
+                        nextLabel="→"
+                        previousLabel="←"
+                        totalPages={gallery.images.length}
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-col justify-between mb-2 sm:flex-row">
+                    <div className="font-bold">{gallery.name}</div>
+                    <div className="italic">{gallery.updatedAt}</div>
+                  </div>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    className="flex text-xs break-all"
+                  >
+                    {gallery.captions}
+                  </ReactMarkdown>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
