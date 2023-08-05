@@ -37,7 +37,7 @@ const MatrixRain = ({
     canvas.width = canvasWidth ?? 0;
     canvas.height = canvasHeight ?? 0;
     for (let x = 0; x < columns; x += 1) {
-      rainDrops[x] = 1;
+      rainDrops[x] = 255;
     }
   }, [canvasHeight, canvasWidth, columns, rainDrops]);
 
