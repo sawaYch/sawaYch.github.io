@@ -1,15 +1,15 @@
 import ApiFetch from './api-fetch';
 
-interface TagData {
+interface CategoryData {
   id: number;
   name: string;
   color: string;
 }
 
-const fetchTags = async () => {
-  const res = await ApiFetch('/tags');
+const fetchCategories = async () => {
+  const res = await ApiFetch('/categories');
   const jsonData = await res.json();
-  const data: TagData[] = jsonData.data.map((it: any) => ({
+  const data: CategoryData[] = jsonData.data.map((it: any) => ({
     id: it.id,
     name: it.attributes.name,
     color: it.attributes.color,
@@ -17,4 +17,4 @@ const fetchTags = async () => {
   return data;
 };
 
-export default fetchTags;
+export default fetchCategories;

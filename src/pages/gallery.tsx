@@ -222,7 +222,7 @@ const GalleryPage = () => {
                 <FaAngleRight aria-hidden className="w-6 h-6" />
               </button>
               <Img
-                className={cn('object-scale-down w-[80vw] h-[80vh]', {
+                className={cn('object-scale-down w-[80vw] h-[80vh] pb-6', {
                   '!h-[70vh]': isMobile,
                 })}
                 src={gallery.images[previewCurrentPage - 1].formats.medium.url}
@@ -241,14 +241,17 @@ const GalleryPage = () => {
               />
               <div
                 className={cn(
-                  'fixed z-[61] left-4 bottom-0 bg-dracula-darker w-fit h-8 py-1 px-4 cursor-pointer flex justify-center items-center rounded-t-md text-dracula-dark-300 text-lg sm:text-2xl pt-2 select-none',
+                  'fixed z-[61] left-4 bottom-0 bg-dracula-darker w-fit h-fit px-4 cursor-pointer flex pt-1 justify-center items-center rounded-t-md text-dracula-dark-300 select-none',
                   { hidden: openDesc }
                 )}
                 onClick={() => {
                   setOpenDesc((prev) => !prev);
                 }}
               >
-                <AiFillCaretUp size="1.2rem" />
+                <AiFillCaretUp
+                  size="1.2rem"
+                  className="hover:text-dracula-dark-100"
+                />
               </div>
               {openDesc && (
                 <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">

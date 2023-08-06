@@ -1,10 +1,12 @@
 import { ReactElement } from 'react';
+import cn from 'classnames';
 
 export type CubeColorType = 'purple' | 'red' | 'buffy' | 'dark' | 'yellow';
 
 interface CubeProps {
   color?: CubeColorType;
   icon?: ReactElement;
+  className?: string;
 }
 
 // side, front, top
@@ -46,8 +48,13 @@ export const cubeColorMap = {
   ],
 };
 
-const Cube = ({ color = 'purple', icon }: CubeProps) => (
-  <div className="relative flex items-center justify-center w-[120px] h-[120px] rounded-md scale-50 transition-transform">
+const Cube = ({ color = 'purple', icon, className }: CubeProps) => (
+  <div
+    className={cn(
+      'relative flex items-center justify-center w-[120px] h-[120px] rounded-md scale-50 transition-transform',
+      className
+    )}
+  >
     <div className="-translate-y-24 -translate-x-[4.5rem]">
       <div
         className={`${cubeColorMap[color][0]} absolute w-[80px] h-[80px] transform-gpu -rotate-[30deg] -skew-x-[30deg] translate-x-[64.5px] translate-y-[79.7px] scale-y-[0.864] transition-transform duration-500 ease-in-out justify-center items-center flex`}
