@@ -107,7 +107,7 @@ const GalleryPage = () => {
                     },
                   },
                   closed: {
-                    y: 50,
+                    y: 25,
                     opacity: 0,
                     transition: {
                       y: { stiffness: 10 },
@@ -139,7 +139,7 @@ const GalleryPage = () => {
                 },
               },
               closed: {
-                y: 50,
+                y: 25,
                 opacity: 0,
                 transition: {
                   y: { stiffness: 10 },
@@ -230,7 +230,7 @@ const GalleryPage = () => {
                         className={cn(
                           'object-scale-down w-[80vw] h-[75vh] pb-6',
                           {
-                            '!h-[70vh]': isMobile,
+                            '!h-[60vh]': isMobile,
                           }
                         )}
                         src={
