@@ -1,6 +1,6 @@
 import ApiFetch from './api-fetch';
 
-interface TagData {
+export interface TagData {
   id: number;
   name: string;
   color: string;

@@ -1,6 +1,7 @@
 import { Badge, Pagination } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
+import { FaRegFrownOpen } from '@react-icons/all-files/fa/FaRegFrownOpen';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import cn from 'classnames';
@@ -24,22 +25,17 @@ const BlogsPage = () => {
     fetchCategories
   );
 
-  const { data: blogData, isLoading: blogDataIsLoading } = useQuery(
-    ['blogs'],
-    fetchBlogs
-  );
+  const defaultPagingSize = 3;
 
-  const [selectedTag, setSelectedTag] = useState<string | undefined>();
-  const [selectedCategory, setSelectedCategory] = useState<
-    string | undefined
-  >();
+  const [selectedTag, setSelectedTag] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
 
   const handleTagSelection = useCallback(
     (tag: string) => {
-      if (tag === selectedTag) {
-        setSelectedTag(undefined);
+      if (selectedTag.includes(tag)) {
+        setSelectedTag((prev) => prev?.filter((t) => t !== tag));
       } else {
-        setSelectedTag(tag);
+        setSelectedTag((prev) => [...prev, tag]);
       }
     },
     [selectedTag]
@@ -47,13 +43,26 @@ const BlogsPage = () => {
 
   const handleCategorySelection = useCallback(
     (category: string) => {
-      if (category === selectedCategory) {
-        setSelectedCategory(undefined);
+      if (selectedCategory.includes(category)) {
+        setSelectedCategory((prev) => prev?.filter((t) => t !== category));
       } else {
-        setSelectedCategory(category);
+        setSelectedCategory((prev) => [...prev, category]);
       }
     },
     [selectedCategory]
+  );
+
+  const { data: blogData, isLoading: blogDataIsLoading } = useQuery(
+    [
+      `blogs-${currentPage}-${defaultPagingSize}-${selectedTag}-${selectedCategory}`,
+    ],
+    () =>
+      fetchBlogs({
+        page: currentPage,
+        pageSize: defaultPagingSize,
+        tags: selectedTag,
+        categories: selectedCategory,
+      })
   );
 
   return (
@@ -79,7 +88,7 @@ const BlogsPage = () => {
       <div className="flex flex-col gap-4 sm:flex-row">
         <div className="w-64 p-4 border rounded-lg border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
           Tags
-          <div className="flex w-1/2 gap-1 pt-2 uppercase">
+          <div className="flex flex-wrap gap-1 pt-2 uppercase">
             {tagDataIsLoading && <Spinner />}
             {tagData?.map((it) => (
               <Badge
@@ -89,7 +98,7 @@ const BlogsPage = () => {
                   'inline cursor-pointer hover:bg-dracula-dark-300 transition-all select-none',
                   {
                     'shadow-[0_1px_4px_4px_rgba(0,0,0,0.3)] shadow-dracula-pink':
-                      selectedTag === it.name,
+                      selectedTag.includes(it.name),
                   }
                 )}
                 onClick={() => {
@@ -103,7 +112,7 @@ const BlogsPage = () => {
         </div>
         <div className="w-64 p-4 border rounded-lg border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
           Categories
-          <div className="flex w-1/2 gap-1 pt-2 uppercase">
+          <div className="flex flex-wrap gap-1 pt-2 uppercase">
             {categoryDataIsLoading && <Spinner />}
             {categoryData?.map((it) => (
               <Badge
@@ -113,7 +122,7 @@ const BlogsPage = () => {
                   'inline cursor-pointer hover:bg-dracula-dark-300 transition-all select-none',
                   {
                     'shadow-[0_1px_4px_4px_rgba(0,0,0,0.3)] shadow-dracula-pink':
-                      selectedCategory === it.name,
+                      selectedCategory.includes(it.name),
                   }
                 )}
                 onClick={() => {
@@ -127,27 +136,37 @@ const BlogsPage = () => {
         </div>
       </div>
       <div className="mt-4 text-3xl font-bold uppercase text-dracula-dark-200">
-        Latest
+        Catalog
       </div>
       <hr className="w-48 h-1 mx-auto my-2 border-0 rounded bg-gradient-to-r from-pink-500 to-violet-500" />
       {blogDataIsLoading && <Spinner className="!w-12 !h-12 mt-4" />}
-      <motion.div
-        variants={{
-          open: {
-            transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-          },
-          closed: {
-            transition: { staggerChildren: 0.05, staggerDirection: -1 },
-          },
-        }}
-        initial="closed"
-        animate="open"
-        className="grid grid-cols-1 gap-10 px-10 mt-2 mb-8 sm:grid-cols-3"
-      >
-        {blogData?.blogData.map((it) => (
-          <BlogCard key={it.id} data={it} />
-        ))}
-      </motion.div>
+
+      {blogData?.blogData.length === 0 ? (
+        <div className="flex flex-col items-center justify-center w-full uppercase min-h-[20rem]">
+          <div className="flex gap-2">
+            <FaRegFrownOpen size="1.2rem" />
+            No post is found !
+          </div>
+        </div>
+      ) : (
+        <motion.div
+          variants={{
+            open: {
+              transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+            },
+            closed: {
+              transition: { staggerChildren: 0.05, staggerDirection: -1 },
+            },
+          }}
+          initial="closed"
+          animate="open"
+          className="grid grid-cols-1 gap-10 px-10 mt-2 mb-8 sm:grid-cols-3"
+        >
+          {blogData?.blogData.map((it) => (
+            <BlogCard key={it.id} data={it} />
+          ))}
+        </motion.div>
+      )}
       <Pagination
         className="flex self-center mb-8"
         theme={{
@@ -174,7 +193,7 @@ const BlogsPage = () => {
         }}
         nextLabel="→"
         previousLabel="←"
-        totalPages={100}
+        totalPages={blogData?.pagination.pageCount ?? 1}
       />
     </Layout>
   );

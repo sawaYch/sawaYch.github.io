@@ -31,8 +31,28 @@ export interface BlogIndexData {
   };
 }
 
-const fetchBlogs = async () => {
-  const res = await ApiFetch('/articles?populate=*');
+interface FetchBlogQueryParam {
+  page: number;
+  pageSize: number;
+  tags: string[];
+  categories: string[];
+}
+
+const fetchBlogs = async ({
+  page,
+  pageSize,
+  tags,
+  categories,
+}: FetchBlogQueryParam) => {
+  const tagFilter = tags
+    .map((t, idx) => `&filters[$and][${idx}][tags][name][$contains]=${t}`)
+    .join('');
+  const categoryFilter = categories
+    .map((c, idx) => `&filters[$and][${idx}][tags][name][$contains]=${c}`)
+    .join('');
+  const res = await ApiFetch(
+    `/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
+  );
   const jsonData = await res.json();
   const blogData: BlogData[] = jsonData.data.map((it: any) => ({
     id: it.id,
@@ -57,7 +77,7 @@ const fetchBlogs = async () => {
       page: jsonData.meta.pagination.page,
       pageSize: jsonData.meta.pagination.pageSize,
       pageCount: jsonData.meta.pagination.pageCount,
-      total: jsonData.meta.pagination.pageTotal,
+      total: jsonData.meta.pagination.total,
     },
   };
   return data;
