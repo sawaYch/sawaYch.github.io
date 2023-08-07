@@ -19,6 +19,7 @@ export interface BlogData {
   updatedAt: string;
   tags: BlogTag[];
   categories: BlogCategory[];
+  cover: string;
 }
 
 export interface BlogIndexData {
@@ -45,10 +46,10 @@ const fetchBlogs = async ({
   categories,
 }: FetchBlogQueryParam) => {
   const tagFilter = tags
-    .map((t, idx) => `&filters[$and][${idx}][tags][name][$contains]=${t}`)
+    .map((t, idx) => `&filters[$or][${idx}][tags][name][$contains]=${t}`)
     .join('');
   const categoryFilter = categories
-    .map((c, idx) => `&filters[$and][${idx}][tags][name][$contains]=${c}`)
+    .map((c, idx) => `&filters[$or][${idx}][categories][name][$contains]=${c}`)
     .join('');
   const res = await ApiFetch(
     `/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
@@ -69,8 +70,10 @@ const fetchBlogs = async ({
       name: c.attributes.name,
       color: c.attributes.color,
     })),
+    cover: `${process.env.GATSBY_API_BASE_URL?.slice(0, -4)}${
+      it.attributes.cover.data.attributes.formats.thumbnail.url
+    }`,
   }));
-
   const data = {
     blogData,
     pagination: {

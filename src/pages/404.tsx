@@ -11,7 +11,7 @@ const NotFoundPage: React.FC<PageProps> = () => (
         alt="back to home"
         layout="fixed"
       />
-      <h1 className="text-[5rem] mt-4">404 Error</h1>
+      <h1 className="text-[3rem] sm:text-[5rem] mt-4">404 Error</h1>
       <span>Sorry 😔, page not found</span>
       <Link
         className="pl-2 pr-2 mt-4 border-2 border-dracula-buffy hover:bg-dracula-buffy"
