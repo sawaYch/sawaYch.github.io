@@ -8,7 +8,18 @@ import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { AiFillCaretDown } from '@react-icons/all-files/ai/AiFillCaretDown';
 import { AiFillCaretUp } from '@react-icons/all-files/ai/AiFillCaretUp';
-import { useCallback, useMemo, useState, MouseEventHandler } from 'react';
+import {
+  useCallback,
+  useMemo,
+  useState,
+  MouseEventHandler,
+  useRef,
+} from 'react';
+import {
+  TransformWrapper,
+  TransformComponent,
+  ReactZoomPanPinchRef,
+} from 'react-zoom-pan-pinch';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -21,6 +32,7 @@ import Layout from '../components/layout';
 import fetchArtworks, { ArtworkData } from '../apis/fetch-artworks';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
+import ImagePanControls from '../components/image-pan-control';
 
 const ArtworksPage = () => {
   const { data, isLoading, isError } = useQuery(['artworks'], fetchArtworks);
@@ -35,6 +47,7 @@ const ArtworksPage = () => {
     }),
     []
   );
+  const transformComponentRef = useRef<ReactZoomPanPinchRef | null>(null);
   const [artwork, setArtwork] = useState<ArtworkData | undefined>();
   const [openDesc, setOpenDesc] = useState(true);
 
@@ -162,26 +175,6 @@ const ArtworksPage = () => {
                 evt.stopPropagation();
               }}
             >
-              <div className="fixed flex items-center justify-center rounded-lg h-[4.7rem] w-9 top-4 right-4 bg-dracula-darker-800">
-                <button
-                  aria-label="Close"
-                  type="button"
-                  onClick={onArtworkClose}
-                  className="fixed z-[61] top-4 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  <HiOutlineX aria-hidden className="w-6 h-6" />
-                </button>
-                <button
-                  aria-label="Download"
-                  type="button"
-                  onClick={() =>
-                    onArtworkDownload(artwork.images[0].url, artwork.name)
-                  }
-                  className="fixed z-[61] top-14 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  <HiDownload aria-hidden className="w-6 h-6" />
-                </button>
-              </div>
               <button
                 aria-label="left"
                 type="button"
@@ -212,24 +205,46 @@ const ArtworksPage = () => {
               >
                 <FaAngleRight aria-hidden className="w-6 h-6" />
               </button>
-              <Img
-                className={cn('object-scale-down w-[80vw] h-[80vh] pb-6', {
-                  '!h-[70vh]': isMobile,
-                })}
-                src={artwork.images[0].formats.medium.url}
-                alt={artwork.images[0].alternativeText}
-                loader={
-                  <div className="flex flex-col items-center justify-center w-full h-full">
-                    <Spinner className="!w-24 !h-24" />
-                  </div>
-                }
-                unloader={
-                  <div className="flex flex-col items-center justify-center h-full">
-                    <FcRemoveImage size="5rem" />
-                    <div>Fail to load image</div>
-                  </div>
-                }
-              />
+              <TransformWrapper
+                initialScale={1}
+                initialPositionX={0}
+                initialPositionY={0}
+                ref={transformComponentRef}
+              >
+                {(utils) => (
+                  <>
+                    <ImagePanControls
+                      zoomIn={utils.zoomIn}
+                      zoomOut={utils.zoomOut}
+                      resetTransform={utils.resetTransform}
+                    />
+                    <TransformComponent>
+                      <Img
+                        className={cn(
+                          'object-scale-down w-[80vw] h-[75vh] pb-6',
+                          {
+                            '!h-[70vh]': isMobile,
+                          }
+                        )}
+                        src={artwork.images[0].formats.large.url}
+                        alt={artwork.images[0].alternativeText}
+                        loader={
+                          <div className="flex flex-col items-center justify-center w-[80vw] h-[70vh]">
+                            <Spinner className="!w-24 !h-24" />
+                          </div>
+                        }
+                        unloader={
+                          <div className="flex flex-col items-center justify-center h-full">
+                            <FcRemoveImage size="5rem" />
+                            <div>Fail to load image</div>
+                          </div>
+                        }
+                      />
+                    </TransformComponent>
+                  </>
+                )}
+              </TransformWrapper>
+
               <div
                 className={cn(
                   'fixed z-[61] left-4 bottom-0 bg-dracula-darker w-fit h-fit px-4 cursor-pointer flex pt-1 justify-center items-center rounded-t-md text-dracula-dark-300 select-none',
@@ -243,6 +258,26 @@ const ArtworksPage = () => {
                   size="1.2rem"
                   className="hover:text-dracula-dark-100"
                 />
+              </div>
+              <div className="fixed flex items-center justify-center rounded-lg h-[4.7rem] w-9 top-4 right-4 bg-dracula-darker-800">
+                <button
+                  aria-label="Close"
+                  type="button"
+                  onClick={onArtworkClose}
+                  className="fixed z-[61] top-4 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  <HiOutlineX aria-hidden className="w-6 h-6" />
+                </button>
+                <button
+                  aria-label="Download"
+                  type="button"
+                  onClick={() =>
+                    onArtworkDownload(artwork.images[0].url, artwork.name)
+                  }
+                  className="fixed z-[61] top-14 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  <HiDownload aria-hidden className="w-6 h-6" />
+                </button>
               </div>
               {openDesc && (
                 <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">

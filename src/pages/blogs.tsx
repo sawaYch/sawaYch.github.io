@@ -142,7 +142,7 @@ const BlogsPage = () => {
       {blogDataIsLoading && <Spinner className="!w-12 !h-12 mt-4" />}
 
       {blogData?.blogData.length === 0 ? (
-        <div className="flex flex-col items-center justify-center w-full uppercase min-h-[20rem]">
+        <div className="flex flex-col items-center justify-center w-full uppercase min-h-[25.5rem]">
           <div className="flex gap-2">
             <FaRegFrownOpen size="1.2rem" />
             No post is found !
@@ -167,34 +167,36 @@ const BlogsPage = () => {
           ))}
         </motion.div>
       )}
-      <Pagination
-        className="flex self-center mb-8"
-        theme={{
-          pages: {
-            previous: {
-              base: 'rounded-l-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
-              icon: 'h-4 w-4',
+      {blogData && blogData?.blogData.length > 1 && (
+        <Pagination
+          className="flex self-center mb-8"
+          theme={{
+            pages: {
+              previous: {
+                base: 'rounded-l-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
+                icon: 'h-4 w-4',
+              },
+              next: {
+                base: 'rounded-r-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
+                icon: 'h-4 w-4',
+              },
+              selector: {
+                base: 'w-12 bg-dracula-darker text-gray-500 enabled:hover:bg-dracula-gray-100 enabled:hover:text-gray-700',
+                active:
+                  'bg-dracula-purple-200 text-dracula-purple-600 hover:bg-dracula-purple-300 hover:text-dracula-purple-700',
+              },
             },
-            next: {
-              base: 'rounded-r-lg bg-dracula-dark px-3 text-gray-200 enabled:hover:bg-dracula-gray enabled:hover:text-light',
-              icon: 'h-4 w-4',
-            },
-            selector: {
-              base: 'w-12 bg-dracula-darker text-gray-500 enabled:hover:bg-dracula-gray-100 enabled:hover:text-gray-700',
-              active:
-                'bg-dracula-purple-200 text-dracula-purple-600 hover:bg-dracula-purple-300 hover:text-dracula-purple-700',
-            },
-          },
-        }}
-        currentPage={currentPage}
-        layout="pagination"
-        onPageChange={(page) => {
-          setCurrentPage(page);
-        }}
-        nextLabel="→"
-        previousLabel="←"
-        totalPages={blogData?.pagination.pageCount ?? 1}
-      />
+          }}
+          currentPage={currentPage}
+          layout="pagination"
+          onPageChange={(page) => {
+            setCurrentPage(page);
+          }}
+          nextLabel="→"
+          previousLabel="←"
+          totalPages={blogData?.pagination.pageCount ?? 1}
+        />
+      )}
     </Layout>
   );
 };

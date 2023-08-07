@@ -71,7 +71,7 @@ const fetchBlogs = async ({
       color: c.attributes.color,
     })),
     cover: `${process.env.GATSBY_API_BASE_URL?.slice(0, -4)}${
-      it.attributes.cover.data.attributes.formats.thumbnail.url
+      it.attributes.cover.data.attributes.formats.small.url
     }`,
   }));
   const data = {
