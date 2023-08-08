@@ -12,9 +12,10 @@ const TagCatSection = tw.div`my-1 text-xs flex flex-wrap gap-1 uppercase`;
 
 interface BlogCardProps {
   data: BlogData;
+  onClick: () => void;
 }
 
-const BlogCard = ({ data }: BlogCardProps) => (
+const BlogCard = ({ data, onClick }: BlogCardProps) => (
   <motion.div
     variants={{
       open: {
@@ -34,6 +35,7 @@ const BlogCard = ({ data }: BlogCardProps) => (
     }}
     initial="closed"
     animate="open"
+    onClick={onClick}
     className="flex flex-col p-2 transition-shadow border rounded-lg shadow-[0_1px_4px_4px_rgba(0,0,0,0.3)] cursor-pointer bg-dracula-dark-900/40 border-dracula-dark-900 backdrop-blur-sm hover:shadow-dracula-pink"
   >
     {data.cover ? (
@@ -64,10 +66,7 @@ const BlogCard = ({ data }: BlogCardProps) => (
         }}
       />
     )}
-    <h5 className="px-2 text-lg font-bold tracking-tight">
-      {data.title}
-      <span className="animate-ping">█</span>
-    </h5>
+    <h5 className="px-2 my-4 text-lg font-bold tracking-tight">{data.title}</h5>
     <p className="px-2 font-normal line-clamp-4">{data.description}</p>
     <hr className="w-full h-[1px] mx-auto my-2 bg-dracula-dark-800 border-0 rounded" />
     <TagCatSection>

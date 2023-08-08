@@ -37,6 +37,7 @@ interface FetchBlogQueryParam {
   pageSize: number;
   tags: string[];
   categories: string[];
+  slug?: string;
 }
 
 const fetchBlogs = async ({
@@ -44,16 +45,24 @@ const fetchBlogs = async ({
   pageSize,
   tags,
   categories,
+  slug,
 }: FetchBlogQueryParam) => {
-  const tagFilter = tags
-    .map((t, idx) => `&filters[$or][${idx}][tags][name][$contains]=${t}`)
-    .join('');
-  const categoryFilter = categories
-    .map((c, idx) => `&filters[$or][${idx}][categories][name][$contains]=${c}`)
-    .join('');
-  const res = await ApiFetch(
-    `/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
-  );
+  let res: Response;
+  if (!slug) {
+    const tagFilter = tags
+      .map((t, idx) => `&filters[$or][${idx}][tags][name][$contains]=${t}`)
+      .join('');
+    const categoryFilter = categories
+      .map(
+        (c, idx) => `&filters[$or][${idx}][categories][name][$contains]=${c}`
+      )
+      .join('');
+    res = await ApiFetch(
+      `/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
+    );
+  } else {
+    res = await ApiFetch(`/articles?populate=*&filters[slug][$eq]=${slug}`);
+  }
   const jsonData = await res.json();
   const blogData: BlogData[] = jsonData.data.map((it: any) => ({
     id: it.id,

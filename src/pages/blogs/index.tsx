@@ -5,13 +5,14 @@ import { FaRegFrownOpen } from '@react-icons/all-files/fa/FaRegFrownOpen';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import cn from 'classnames';
-import Layout from '../components/layout';
-import fetchTags from '../apis/fetch-tags';
-import Spinner from '../components/spinner';
-import Cube from '../components/cube';
-import BlogCard from '../components/blog-card';
-import fetchCategories from '../apis/fetch-categories';
-import fetchBlogs from '../apis/fetch-blogs';
+import { navigate } from 'gatsby';
+import Layout from '../../components/layout';
+import fetchTags from '../../apis/fetch-tags';
+import Spinner from '../../components/spinner';
+import Cube from '../../components/cube';
+import BlogCard from '../../components/blog-card';
+import fetchCategories from '../../apis/fetch-categories';
+import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
 
 const BlogsPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -64,6 +65,15 @@ const BlogsPage = () => {
         categories: selectedCategory,
       })
   );
+
+  const viewBlogDetails = useCallback((slug: string, postData: BlogData) => {
+    const blogUrl = `/blogs/${slug}`;
+    navigate(blogUrl, {
+      state: {
+        postData,
+      },
+    });
+  }, []);
 
   return (
     <Layout>
@@ -163,7 +173,11 @@ const BlogsPage = () => {
           className="grid grid-cols-1 gap-10 px-10 mt-2 mb-8 sm:grid-cols-3"
         >
           {blogData?.blogData.map((it) => (
-            <BlogCard key={it.id} data={it} />
+            <BlogCard
+              key={it.id}
+              data={it}
+              onClick={() => viewBlogDetails(it.slug, it)}
+            />
           ))}
         </motion.div>
       )}
