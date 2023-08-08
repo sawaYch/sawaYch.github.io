@@ -35,6 +35,8 @@ module.exports = {
   },
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   plugins: [
+    // eslint-disable-next-line import/no-extraneous-dependencies
+    require('@tailwindcss/typography'),
     require('tailwind-dracula')('dracula', true),
     require('flowbite/plugin'),
   ],

@@ -1,5 +1,5 @@
-import dayjs from 'dayjs';
 import ApiFetch from './api-fetch';
+import { formatDate } from '../utils/format-date';
 
 type format = 'thumbnail' | 'medium' | 'small' | 'large';
 
@@ -52,7 +52,7 @@ const fetchGallery = async () => {
       id: d.id,
       name: d.attributes.name,
       captions: d.attributes.captions,
-      updatedAt: dayjs(d.attributes.updatedAt).format('DD/MM/YYYY HH:mm A'),
+      updatedAt: formatDate(d.attributes.updatedAt),
       images: d.attributes.image.data.map((img: any) => ({
         name: img.attributes.name,
         alternativeText: img.attributes.alternativeText,
