@@ -16,7 +16,7 @@ import Events from '../components/events';
 import Oshinoko from '../components/oshinoko';
 import fetchUploadedFiles from '../apis/fetch-uploaded-files';
 
-interface DataProps {
+export interface DataProps {
   site: {
     siteMetadata: {
       title: string;

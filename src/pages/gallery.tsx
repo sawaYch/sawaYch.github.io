@@ -24,6 +24,7 @@ import cn from 'classnames';
 import { isMobile } from 'react-device-detect';
 import { Img } from 'react-image';
 import { saveAs } from 'file-saver';
+import { PageProps } from 'gatsby';
 import {
   TransformWrapper,
   TransformComponent,
@@ -35,6 +36,13 @@ import fetchGallery, { GalleryData } from '../apis/fetch-gallery';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
+import SEOHead from '../components/head';
+import { DataProps } from '.';
+
+export const Head = (props: PageProps<DataProps>) => {
+  const { data } = props;
+  return <SEOHead {...data.site.siteMetadata} />;
+};
 
 const GalleryPage = () => {
   const { data, isLoading, isError } = useQuery(['gallery'], fetchGallery);

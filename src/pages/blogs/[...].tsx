@@ -12,6 +12,13 @@ import Layout from '../../components/layout';
 import Spinner from '../../components/spinner';
 import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
 import { formatDateMonthName } from '../../utils/format-date';
+import SEOHead from '../../components/head';
+import { DataProps } from '..';
+
+export const Head = (props: PageProps<DataProps>) => {
+  const { data } = props;
+  return <SEOHead {...data.site.siteMetadata} />;
+};
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
