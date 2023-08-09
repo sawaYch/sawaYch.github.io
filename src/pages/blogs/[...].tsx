@@ -3,6 +3,7 @@ import { PageProps, navigate } from 'gatsby';
 import { useQuery } from '@tanstack/react-query';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { Img } from 'react-image';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Badge } from 'flowbite-react';
@@ -130,6 +131,7 @@ const Post: React.FC<PageProps> = (props) => {
           </div>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
             className="py-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] sm:max-w-[80ch] px-8"
           >
             {finalBlogData.content}
