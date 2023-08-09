@@ -54,7 +54,7 @@ const Post: React.FC<PageProps> = (props) => {
         onClick={() => {
           backToPrevPage();
         }}
-        className="fixed z-[61] top-8 w-fit h-fit left-1 sm:left-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+        className="fixed z-[61] top-8 w-fit h-fit left-0 sm:left-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
       >
         <FaAngleLeft aria-hidden className="w-6 h-6" />
       </button>
@@ -130,7 +130,7 @@ const Post: React.FC<PageProps> = (props) => {
           </div>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            className="py-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] sm:max-w-[80ch]"
+            className="py-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] sm:max-w-[80ch] px-8"
           >
             {finalBlogData.content}
           </ReactMarkdown>
