@@ -13,9 +13,6 @@ import Cube from '../components/cube';
 import BlogCard from '../components/blog-card';
 import fetchCategories from '../apis/fetch-categories';
 import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
-import SEOHead from '../components/seo-head';
-
-export const Head = () => <SEOHead />;
 
 const BlogsPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);

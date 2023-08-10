@@ -33,9 +33,6 @@ import fetchArtworks, { ArtworkData } from '../apis/fetch-artworks';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
-import SEOHead from '../components/seo-head';
-
-export const Head = () => <SEOHead />;
 
 const ArtworksPage = () => {
   const { data, isLoading, isError } = useQuery(['artworks'], fetchArtworks);

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import useSiteMetadata from '../utils/use-site-metadata';
 
 interface SEOHeadProps {
@@ -32,7 +33,7 @@ const SEOHead = ({
   };
 
   return (
-    <>
+    <Helmet>
       <html lang="en" className="dark" />
       <meta charSet="utf-8" />
       <title>{seo.title}</title>
@@ -54,7 +55,7 @@ const SEOHead = ({
       {author ? <meta name="author" content={author} /> : null}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="theme-color" content="#ff79c6" />
-    </>
+    </Helmet>
   );
 };
 

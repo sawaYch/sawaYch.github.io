@@ -35,9 +35,6 @@ import fetchGallery, { GalleryData } from '../apis/fetch-gallery';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
-import SEOHead from '../components/seo-head';
-
-export const Head = () => <SEOHead />;
 
 const GalleryPage = () => {
   const { data, isLoading, isError } = useQuery(['gallery'], fetchGallery);

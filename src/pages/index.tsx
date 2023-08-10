@@ -14,9 +14,6 @@ import Pulse from '../components/pulse';
 import Events from '../components/events';
 import Oshinoko from '../components/oshinoko';
 import fetchUploadedFiles from '../apis/fetch-uploaded-files';
-import SEOHead from '../components/seo-head';
-
-export const Head = () => <SEOHead />;
 
 export interface DataProps {
   site: {

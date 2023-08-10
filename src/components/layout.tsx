@@ -22,6 +22,7 @@ import BackgroundContainer from './background-container';
 import Header from './header';
 import Footer from './footer';
 import ApplicationPane from './application-pane';
+import SEOHead from './seo-head';
 
 const StyledMain = tw.main`flex-auto overflow-x-hidden z-0`;
 
@@ -123,6 +124,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <Flowbite>
+      <SEOHead />
       <BackgroundContainer>
         <Header />
         <StyledMain ref={ref}>
