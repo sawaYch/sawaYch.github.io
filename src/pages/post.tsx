@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { PageProps, graphql, navigate } from 'gatsby';
+import { PageProps, navigate } from 'gatsby';
 import { useQuery } from '@tanstack/react-query';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -12,25 +12,9 @@ import Layout from '../components/layout';
 import Spinner from '../components/spinner';
 import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
 import { formatDateMonthName } from '../utils/format-date';
-import SEOHead from '../components/head';
-import { DataProps } from '.';
+import SEOHead from '../components/seo-head';
 
-export const Head = (props: PageProps<DataProps>) => {
-  const { data } = props;
-  return <SEOHead {...data.site.siteMetadata} />;
-};
-
-export const query = graphql`
-  query SiteData {
-    site {
-      siteMetadata {
-        author
-        title
-        description
-      }
-    }
-  }
-`;
+export const Head = () => <SEOHead />;
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;

@@ -11,6 +11,8 @@ const config: GatsbyConfig = {
     siteUrl: `https://sawaych.github.io`,
     author: `Sawa`,
     description: `🐧 Welcome to Void Dojo! 🐼`,
+    twitterUsername: `SawaYch`,
+    image: '',
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

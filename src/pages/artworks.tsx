@@ -15,7 +15,6 @@ import {
   MouseEventHandler,
   useRef,
 } from 'react';
-import { PageProps, graphql } from 'gatsby';
 import {
   TransformWrapper,
   TransformComponent,
@@ -34,25 +33,9 @@ import fetchArtworks, { ArtworkData } from '../apis/fetch-artworks';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
-import SEOHead from '../components/head';
-import { DataProps } from '.';
+import SEOHead from '../components/seo-head';
 
-export const Head = (props: PageProps<DataProps>) => {
-  const { data } = props;
-  return <SEOHead {...data.site.siteMetadata} />;
-};
-
-export const query = graphql`
-  query SiteData {
-    site {
-      siteMetadata {
-        author
-        title
-        description
-      }
-    }
-  }
-`;
+export const Head = () => <SEOHead />;
 
 const ArtworksPage = () => {
   const { data, isLoading, isError } = useQuery(['artworks'], fetchArtworks);

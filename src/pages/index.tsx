@@ -4,7 +4,6 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import tw from 'twin.macro';
 import { useQuery } from '@tanstack/react-query';
-import SEOHead from '../components/head';
 import Layout from '../components/layout';
 import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
@@ -15,6 +14,9 @@ import Pulse from '../components/pulse';
 import Events from '../components/events';
 import Oshinoko from '../components/oshinoko';
 import fetchUploadedFiles from '../apis/fetch-uploaded-files';
+import SEOHead from '../components/seo-head';
+
+export const Head = () => <SEOHead />;
 
 export interface DataProps {
   site: {
@@ -60,11 +62,6 @@ export const query = graphql`
 `;
 
 const Placeholder = tw.div`h-[12rem]`;
-
-export const Head = (props: PageProps<DataProps>) => {
-  const { data } = props;
-  return <SEOHead {...data.site.siteMetadata} />;
-};
 
 const IndexPage: React.FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
   data,
