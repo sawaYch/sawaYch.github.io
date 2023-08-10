@@ -228,3 +228,25 @@ iframe {
   color: white;
   background: #924ff2;
 }
+
+.rehype-code-title {
+  padding-left: 1rem;
+  padding-right: 1rem; 
+  padding-top: 0.25rem; 
+  padding-bottom: 0.5rem; 
+  margin-bottom: -0.75rem; 
+  border-top-left-radius: 0.5rem; 
+  border-top-right-radius: 0.5rem; 
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+  font-size: 0.875rem;
+  line-height: 1.25rem; 
+  color: #E5E7EB; 
+  background-color: #222222;
+  width: 100%;
+  height: 100%;
+}
+
+.rehype-code-title pre {
+  border-top-left-radius: 0rem; 
+  border-top-right-radius: 0rem; 
+}

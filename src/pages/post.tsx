@@ -6,6 +6,8 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { Img } from 'react-image';
 import { StaticImage } from 'gatsby-plugin-image';
+import rehypePrism from 'rehype-prism-plus';
+import rehypeCodeTitles from 'rehype-code-titles';
 import { Badge } from 'flowbite-react';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import Layout from '../components/layout';
@@ -131,7 +133,12 @@ const Post: React.FC<PageProps> = (props) => {
           </div>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
+            rehypePlugins={[
+              // the plugin order matters
+              rehypeCodeTitles,
+              [rehypePrism, { showLineNumbers: true }],
+              rehypeRaw,
+            ]}
             className="py-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] sm:max-w-[80ch] px-8"
           >
             {finalBlogData.content}
