@@ -5,21 +5,33 @@ import { FaRegFrownOpen } from '@react-icons/all-files/fa/FaRegFrownOpen';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import cn from 'classnames';
-import { PageProps, navigate } from 'gatsby';
-import Layout from '../../components/layout';
-import fetchTags from '../../apis/fetch-tags';
-import Spinner from '../../components/spinner';
-import Cube from '../../components/cube';
-import BlogCard from '../../components/blog-card';
-import fetchCategories from '../../apis/fetch-categories';
-import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
-import SEOHead from '../../components/head';
-import { DataProps } from '..';
+import { PageProps, graphql, navigate } from 'gatsby';
+import Layout from '../components/layout';
+import fetchTags from '../apis/fetch-tags';
+import Spinner from '../components/spinner';
+import Cube from '../components/cube';
+import BlogCard from '../components/blog-card';
+import fetchCategories from '../apis/fetch-categories';
+import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
+import SEOHead from '../components/head';
+import { DataProps } from '.';
 
 export const Head = (props: PageProps<DataProps>) => {
   const { data } = props;
   return <SEOHead {...data.site.siteMetadata} />;
 };
+
+export const query = graphql`
+  query SiteData {
+    site {
+      siteMetadata {
+        author
+        title
+        description
+      }
+    }
+  }
+`;
 
 const BlogsPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);

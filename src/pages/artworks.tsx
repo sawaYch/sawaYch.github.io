@@ -15,7 +15,7 @@ import {
   MouseEventHandler,
   useRef,
 } from 'react';
-import { PageProps } from 'gatsby';
+import { PageProps, graphql } from 'gatsby';
 import {
   TransformWrapper,
   TransformComponent,
@@ -41,6 +41,18 @@ export const Head = (props: PageProps<DataProps>) => {
   const { data } = props;
   return <SEOHead {...data.site.siteMetadata} />;
 };
+
+export const query = graphql`
+  query SiteData {
+    site {
+      siteMetadata {
+        author
+        title
+        description
+      }
+    }
+  }
+`;
 
 const ArtworksPage = () => {
   const { data, isLoading, isError } = useQuery(['artworks'], fetchArtworks);

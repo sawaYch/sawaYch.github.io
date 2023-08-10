@@ -24,7 +24,7 @@ import cn from 'classnames';
 import { isMobile } from 'react-device-detect';
 import { Img } from 'react-image';
 import { saveAs } from 'file-saver';
-import { PageProps } from 'gatsby';
+import { PageProps, graphql } from 'gatsby';
 import {
   TransformWrapper,
   TransformComponent,
@@ -43,6 +43,18 @@ export const Head = (props: PageProps<DataProps>) => {
   const { data } = props;
   return <SEOHead {...data.site.siteMetadata} />;
 };
+
+export const query = graphql`
+  query SiteData {
+    site {
+      siteMetadata {
+        author
+        title
+        description
+      }
+    }
+  }
+`;
 
 const GalleryPage = () => {
   const { data, isLoading, isError } = useQuery(['gallery'], fetchGallery);

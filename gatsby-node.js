@@ -1,3 +1,5 @@
+const path = require("path");
+
 exports.createPages = ({ actions }) => {
   const { createSlice } = actions;
   createSlice({
@@ -18,4 +20,15 @@ exports.onCreateBabelConfig = ({ actions }) => {
       reactRuntime: 'automatic',
     },
   });
+}
+
+exports.onCreatePage = async ({page, actions}) =>{
+    const {createPage} = actions
+    if(page.path.match(/^\/blogs/)){
+        createPage({
+            path: "/description",
+            matchPath: "/blogs/:slug",
+            component: path.resolve("src/pages/post.tsx")
+        })
+    }
 }
