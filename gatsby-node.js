@@ -26,7 +26,7 @@ exports.onCreatePage = async ({page, actions}) =>{
     const {createPage} = actions
     if(page.path.match(/^\/blogs/)){
         createPage({
-            path: "/description",
+            path: "/blogs",
             matchPath: "/blogs/:slug",
             component: path.resolve("src/pages/post.tsx")
         })
