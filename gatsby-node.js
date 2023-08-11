@@ -22,13 +22,13 @@ exports.onCreateBabelConfig = ({ actions }) => {
   });
 }
 
-exports.onCreatePage = async ({page, actions}) =>{
-    const {createPage} = actions
-    if(page.path.match(/^\/blogs/)){
-        createPage({
-            path: "/blogs",
-            matchPath: "/blogs/:slug",
-            component: path.resolve("src/pages/post.tsx")
-        })
-    }
-}
+// exports.onCreatePage = async ({page, actions}) =>{
+//     const {createPage} = actions
+//     if(page.path.match(/^\/blogs/)){
+//         createPage({
+//             path: "/blogs",
+//             matchPath: "/blogs/:slug",
+//             component: path.resolve("src/pages/post.tsx")
+//       })
+//     }
+// }
