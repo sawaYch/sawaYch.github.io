@@ -14,6 +14,7 @@ import Layout from '../components/layout';
 import Spinner from '../components/spinner';
 import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
 import { formatDateMonthName } from '../utils/format-date';
+import CodeCopyToolbar from '../components/code-copy-toolbar';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -48,6 +49,18 @@ const Post: React.FC<PageProps> = (props) => {
     () => (finalBlogData ? formatDateMonthName(finalBlogData.updatedAt) : null),
     [finalBlogData]
   );
+
+  const hastToPlainText = useCallback((node: any) => {
+    if (node.type === 'text') {
+      return node.value;
+    }
+
+    if (node.type === 'element' && node.children) {
+      return node.children.map(hastToPlainText).join('');
+    }
+
+    return '';
+  }, []);
 
   return (
     <Layout>
@@ -101,7 +114,7 @@ const Post: React.FC<PageProps> = (props) => {
               <div className="flex items-center justify-center w-screen">
                 {blogUpdatedDate}
               </div>
-              <div className="flex items-center justify-center gap-1">
+              <div className="flex items-center justify-center gap-1 uppercase">
                 {finalBlogData.tags.map((t) => (
                   <Badge key={t.name} color={t.color}>
                     {t.name}
@@ -139,6 +152,27 @@ const Post: React.FC<PageProps> = (props) => {
               [rehypePrism, { showLineNumbers: true }],
               rehypeRaw,
             ]}
+            components={{
+              // eslint-disable-next-line react/no-unstable-nested-components
+              code({ node, inline, className, children, ...componentProps }) {
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline && match ? (
+                  <div>
+                    <CodeCopyToolbar
+                      lang={match[1]}
+                      text={hastToPlainText(node)}
+                    />
+                    <code className={className} {...componentProps}>
+                      {children}
+                    </code>
+                  </div>
+                ) : (
+                  <code className={className} {...componentProps}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
             className="py-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] sm:max-w-[80ch] px-8"
           >
             {finalBlogData.content}
