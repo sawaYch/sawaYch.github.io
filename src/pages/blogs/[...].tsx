@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { PageProps, navigate } from 'gatsby';
 import { useQuery } from '@tanstack/react-query';
@@ -15,6 +16,7 @@ import Spinner from '../../components/spinner';
 import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
 import { formatDateMonthName } from '../../utils/format-date';
 import CodeCopyToolbar from '../../components/code-copy-toolbar';
+import BlogPostHeading from '../../components/blogpost-heading';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -26,6 +28,18 @@ const Post: React.FC<PageProps> = (props) => {
     () => location.pathname.replace('/blogs/', '').split('/')?.[0],
     [location.pathname]
   );
+
+  // const anchor = useMemo(() => location.hash, [location.hash]);
+
+  // useEffect(() => {
+  //   if (!anchor) return;
+  //   const decodedAnchor = decodeURIComponent(anchor).slice(1);
+  //   const element = document.getElementById(decodedAnchor);
+  //   console.log('scroll anchor', decodedAnchor, element);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth'});
+  //   }
+  // }, [anchor]);
 
   const postDataPassingIn = useMemo(() => {
     if ((location?.state as { postData: BlogData })?.postData == null)
@@ -63,10 +77,11 @@ const Post: React.FC<PageProps> = (props) => {
   }, []);
 
   useEffect(() => {
+    if (isLoading) return;
     if (!finalBlogData) {
       navigate('/404');
     }
-  }, [finalBlogData]);
+  }, [finalBlogData, isLoading]);
 
   return (
     <Layout>
@@ -76,7 +91,7 @@ const Post: React.FC<PageProps> = (props) => {
         onClick={() => {
           backToPrevPage();
         }}
-        className="fixed z-[61] top-8 w-fit h-fit left-0 sm:left-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+        className="fixed z-[61] top-8 w-fit h-fit left-0 sm:left-2 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
       >
         <FaAngleLeft aria-hidden className="w-6 h-6" />
       </button>
@@ -159,7 +174,46 @@ const Post: React.FC<PageProps> = (props) => {
               rehypeRaw,
             ]}
             components={{
-              // eslint-disable-next-line react/no-unstable-nested-components
+              h1({ children }) {
+                const id = String(children[0]);
+                return (
+                  <BlogPostHeading component="h1" id={id}>
+                    {children}
+                  </BlogPostHeading>
+                );
+              },
+              h2({ children }) {
+                const id = String(children[0]);
+                return (
+                  <BlogPostHeading component="h2" id={id}>
+                    {children}
+                  </BlogPostHeading>
+                );
+              },
+              h3({ children }) {
+                const id = String(children[0]);
+                return (
+                  <BlogPostHeading component="h3" id={id}>
+                    {children}
+                  </BlogPostHeading>
+                );
+              },
+              h4({ children }) {
+                const id = String(children[0]);
+                return (
+                  <BlogPostHeading component="h4" id={id}>
+                    {children}
+                  </BlogPostHeading>
+                );
+              },
+              h5({ children }) {
+                const id = String(children[0]);
+                return (
+                  <BlogPostHeading component="h5" id={id}>
+                    {children}
+                  </BlogPostHeading>
+                );
+              },
               code({ node, inline, className, children, ...componentProps }) {
                 const match = /language-(\w+)/.exec(className || '');
                 return !inline && match ? (
