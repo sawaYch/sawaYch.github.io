@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { PageProps, navigate } from 'gatsby';
 import { useQuery } from '@tanstack/react-query';
 import ReactMarkdown from 'react-markdown';
@@ -10,11 +10,11 @@ import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
 import { Badge } from 'flowbite-react';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
-import Layout from '../components/layout';
-import Spinner from '../components/spinner';
-import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
-import { formatDateMonthName } from '../utils/format-date';
-import CodeCopyToolbar from '../components/code-copy-toolbar';
+import Layout from '../../components/layout';
+import Spinner from '../../components/spinner';
+import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
+import { formatDateMonthName } from '../../utils/format-date';
+import CodeCopyToolbar from '../../components/code-copy-toolbar';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -61,6 +61,12 @@ const Post: React.FC<PageProps> = (props) => {
 
     return '';
   }, []);
+
+  useEffect(() => {
+    if (!finalBlogData) {
+      navigate('/404');
+    }
+  }, [finalBlogData]);
 
   return (
     <Layout>
