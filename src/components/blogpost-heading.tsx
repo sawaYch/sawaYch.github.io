@@ -29,7 +29,7 @@ const BlogPostHeading = ({
       evt.preventDefault();
       // eslint-disable-next-line no-restricted-globals
       history.replaceState(null, '', `#${formattedId}`);
-      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     },
     [formattedId]
   );
@@ -44,7 +44,7 @@ const BlogPostHeading = ({
         // console.log(`anchor formattedId=${formattedId} formattedInitAnchor=${formattedInitAnchor}`);
         await delay(400);
         if (formattedInitAnchor === `#${formattedId}`) {
-          ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }
     })();

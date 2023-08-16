@@ -11,6 +11,7 @@ const BackgroundContainer = tw.div`
   flex
   flex-col
   overflow-hidden
+  fixed
 `;
 
 export default BackgroundContainer;
