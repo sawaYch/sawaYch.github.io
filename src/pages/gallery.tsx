@@ -234,8 +234,12 @@ const GalleryPage = () => {
                           }
                         )}
                         src={
-                          gallery.images[previewCurrentPage - 1].formats.large
-                            .url
+                          gallery.images[previewCurrentPage - 1].formats?.large
+                            ?.url ??
+                          gallery.images[previewCurrentPage - 1].formats?.small
+                            ?.url ??
+                          gallery.images[previewCurrentPage - 1].formats
+                            ?.thumbnail?.url
                         }
                         alt={
                           gallery.images[previewCurrentPage - 1].alternativeText
