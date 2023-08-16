@@ -32,13 +32,24 @@ const Post: React.FC<PageProps> = (props) => {
   // const anchor = useMemo(() => location.hash, [location.hash]);
 
   // useEffect(() => {
-  //   if (!anchor) return;
-  //   const decodedAnchor = decodeURIComponent(anchor).slice(1);
-  //   const element = document.getElementById(decodedAnchor);
-  //   console.log('scroll anchor', decodedAnchor, element);
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: 'smooth'});
-  //   }
+  //   const smoothScrollToElement = () => {
+  //     if (!anchor) return;
+  //     const decodedAnchor = decodeURIComponent(anchor)
+  //       .slice(1);
+  //     const targetElement = document.getElementById(decodedAnchor);
+  //     if (targetElement) {
+  //       targetElement.scrollIntoView({ behavior: 'smooth' });
+  //     }
+  //   };
+
+  //   // Add event listener for page load (F5)
+  //   window.addEventListener('load', smoothScrollToElement);
+
+  //   // Clean up the event listener on component unmount
+  //   // eslint-disable-next-line consistent-return
+  //   return () => {
+  //     window.removeEventListener('load', smoothScrollToElement);
+  //   };
   // }, [anchor]);
 
   const postDataPassingIn = useMemo(() => {

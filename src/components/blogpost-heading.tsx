@@ -1,4 +1,10 @@
-import { MouseEventHandler, PropsWithChildren, useMemo, useRef } from 'react';
+import {
+  MouseEventHandler,
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 
 interface BlogPostHeadingProps {
   component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
@@ -12,15 +18,21 @@ const BlogPostHeading = ({
 }: PropsWithChildren<BlogPostHeadingProps>) => {
   const ref = useRef<HTMLHeadingElement>(null);
 
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = (evt) => {
-    evt.stopPropagation();
-    evt.preventDefault();
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const formattedId = useMemo(() => id.replace(' ', '-'), [id]);
+
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = useCallback(
+    (evt) => {
+      evt.preventDefault();
+      // eslint-disable-next-line no-restricted-globals
+      history.replaceState(null, '', `#${formattedId}`);
+      ref.current?.scrollIntoView({ behavior: 'smooth' });
+    },
+    [formattedId]
+  );
 
   const HeadingComponent = useMemo(() => {
     const link = (
-      <a href={id && `#${id}`} onClick={handleClick}>
+      <a href={formattedId && `#${formattedId}`} onClick={handleClick}>
         #
       </a>
     );
@@ -62,9 +74,9 @@ const BlogPostHeading = ({
           </h5>
         );
     }
-  }, [children, component, id]);
+  }, [children, component, handleClick, formattedId]);
 
-  return <div id={id}>{HeadingComponent}</div>;
+  return <div id={formattedId}>{HeadingComponent}</div>;
 };
 
 export default BlogPostHeading;
