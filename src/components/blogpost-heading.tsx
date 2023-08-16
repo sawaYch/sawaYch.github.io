@@ -2,19 +2,23 @@ import {
   MouseEventHandler,
   PropsWithChildren,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
 } from 'react';
+import delay from '../utils/delay';
 
 interface BlogPostHeadingProps {
   component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
   id: string;
+  initAnchor?: string;
 }
 
 const BlogPostHeading = ({
   component,
   children,
   id,
+  initAnchor,
 }: PropsWithChildren<BlogPostHeadingProps>) => {
   const ref = useRef<HTMLHeadingElement>(null);
 
@@ -25,10 +29,26 @@ const BlogPostHeading = ({
       evt.preventDefault();
       // eslint-disable-next-line no-restricted-globals
       history.replaceState(null, '', `#${formattedId}`);
-      ref.current?.scrollIntoView({ behavior: 'smooth' });
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
     [formattedId]
   );
+
+  useEffect(() => {
+    (async () => {
+      if (initAnchor != null) {
+        const formattedInitAnchor = `#${initAnchor.replace(' ', '-')}`;
+        // eslint-disable-next-line no-restricted-globals
+        history.replaceState(null, '', `#${initAnchor.replace(' ', '-')}`);
+
+        // console.log(`anchor formattedId=${formattedId} formattedInitAnchor=${formattedInitAnchor}`);
+        await delay(400);
+        if (formattedInitAnchor === `#${formattedId}`) {
+          ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    })();
+  }, [formattedId, handleClick, initAnchor]);
 
   const HeadingComponent = useMemo(() => {
     const link = (

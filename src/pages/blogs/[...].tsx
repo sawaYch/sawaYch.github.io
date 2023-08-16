@@ -29,28 +29,10 @@ const Post: React.FC<PageProps> = (props) => {
     [location.pathname]
   );
 
-  // const anchor = useMemo(() => location.hash, [location.hash]);
-
-  // useEffect(() => {
-  //   const smoothScrollToElement = () => {
-  //     if (!anchor) return;
-  //     const decodedAnchor = decodeURIComponent(anchor)
-  //       .slice(1);
-  //     const targetElement = document.getElementById(decodedAnchor);
-  //     if (targetElement) {
-  //       targetElement.scrollIntoView({ behavior: 'smooth' });
-  //     }
-  //   };
-
-  //   // Add event listener for page load (F5)
-  //   window.addEventListener('load', smoothScrollToElement);
-
-  //   // Clean up the event listener on component unmount
-  //   // eslint-disable-next-line consistent-return
-  //   return () => {
-  //     window.removeEventListener('load', smoothScrollToElement);
-  //   };
-  // }, [anchor]);
+  const anchor = useMemo(
+    () => decodeURIComponent(location.hash).slice(1),
+    [location.hash]
+  );
 
   const postDataPassingIn = useMemo(() => {
     if ((location?.state as { postData: BlogData })?.postData == null)
@@ -188,7 +170,7 @@ const Post: React.FC<PageProps> = (props) => {
               h1({ children }) {
                 const id = String(children[0]);
                 return (
-                  <BlogPostHeading component="h1" id={id}>
+                  <BlogPostHeading component="h1" id={id} initAnchor={anchor}>
                     {children}
                   </BlogPostHeading>
                 );
@@ -196,7 +178,7 @@ const Post: React.FC<PageProps> = (props) => {
               h2({ children }) {
                 const id = String(children[0]);
                 return (
-                  <BlogPostHeading component="h2" id={id}>
+                  <BlogPostHeading component="h2" id={id} initAnchor={anchor}>
                     {children}
                   </BlogPostHeading>
                 );
@@ -204,7 +186,7 @@ const Post: React.FC<PageProps> = (props) => {
               h3({ children }) {
                 const id = String(children[0]);
                 return (
-                  <BlogPostHeading component="h3" id={id}>
+                  <BlogPostHeading component="h3" id={id} initAnchor={anchor}>
                     {children}
                   </BlogPostHeading>
                 );
@@ -212,7 +194,7 @@ const Post: React.FC<PageProps> = (props) => {
               h4({ children }) {
                 const id = String(children[0]);
                 return (
-                  <BlogPostHeading component="h4" id={id}>
+                  <BlogPostHeading component="h4" id={id} initAnchor={anchor}>
                     {children}
                   </BlogPostHeading>
                 );
@@ -220,7 +202,7 @@ const Post: React.FC<PageProps> = (props) => {
               h5({ children }) {
                 const id = String(children[0]);
                 return (
-                  <BlogPostHeading component="h5" id={id}>
+                  <BlogPostHeading component="h5" id={id} initAnchor={anchor}>
                     {children}
                   </BlogPostHeading>
                 );
