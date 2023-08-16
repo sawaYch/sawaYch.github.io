@@ -10,7 +10,7 @@ const TopBar = tw.div`flex select-none justify-between bg-dracula-darker/70 shad
 const StatusPane = tw.div`flex items-center justify-center gap-x-2 pl-4 pr-4 bg-dracula-pink-400/70`;
 
 const Header = () => (
-  <header className="z-50">
+  <header className="absolute z-50">
     <TopBar>
       <div className="flex items-center bg-dracula-pink-400/70 rounded-l-md">
         <div className="transition-transform border-2 rounded-md active:scale-125 border-dracula-dark-600 bg-dracula bg-dracula-buffy-200">

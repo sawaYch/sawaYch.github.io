@@ -36,7 +36,7 @@ const BlogPostHeading = ({
 
   useEffect(() => {
     (async () => {
-      if (initAnchor != null) {
+      if (initAnchor) {
         const formattedInitAnchor = `#${initAnchor.replace(' ', '-')}`;
         // eslint-disable-next-line no-restricted-globals
         history.replaceState(null, '', `#${initAnchor.replace(' ', '-')}`);
