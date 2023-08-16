@@ -26,6 +26,8 @@ interface MenuItemProps {
   icon?: ReactElement;
   name: string;
   onClick?: () => void;
+  currentModule?: string;
+  id: string;
 }
 
 const MenuItem = ({
@@ -33,6 +35,8 @@ const MenuItem = ({
   name,
   icon,
   onClick,
+  currentModule,
+  id,
 }: MenuItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isItemHover, setIsItemHover] = useState(false);
@@ -47,9 +51,17 @@ const MenuItem = ({
 
   const truncateName = useMemo(() => name.substring(0, 8), [name]);
 
+  const active = useMemo(() => currentModule === id, [currentModule, id]);
+
   return (
     <motion.div
-      className="flex flex-col items-center justify-center"
+      className={cn(
+        `flex flex-col items-center justify-center ${
+          active
+            ? `bg-gradient-to-r ${cubeColorMap[cubeColor][3]} ${cubeColorMap[cubeColor][4]}`
+            : undefined
+        }`
+      )}
       variants={variants}
       ref={ref}
       onClick={onClick}

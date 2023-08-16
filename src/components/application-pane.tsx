@@ -8,6 +8,7 @@ import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
+import useCurrentModules from '../utils/use-current-modules';
 
 interface AppNavigationType {
   id: string;
@@ -39,14 +40,14 @@ const ApplicationPane = () => {
       link: '/',
     },
     {
-      id: 'blog',
+      id: 'blogs',
       cubeColor: 'purple',
       name: 'Blog',
       icon: <BiBookBookmark size="3.5rem" />,
       link: '/blogs',
     },
     {
-      id: 'artwork',
+      id: 'artworks',
       cubeColor: 'buffy',
       name: 'Artwork',
       icon: <FaPaintBrush size="3.5rem" />,
@@ -66,6 +67,8 @@ const ApplicationPane = () => {
       icon: <GiVampireDracula size="3.5rem" />,
     },
   ];
+
+  const moduleName = useCurrentModules();
 
   return (
     <div>
@@ -101,7 +104,11 @@ const ApplicationPane = () => {
         <div className="grid grid-cols-3 sm:grid-cols-4 place-items-center">
           {appNavigationData.map((i) => (
             <Link key={i.id} to={i.link ?? '/404'}>
-              <MenuItem key={i.id} {...i} />
+              <MenuItem
+                key={i.id}
+                {...i}
+                currentModule={moduleName ?? undefined}
+              />
             </Link>
           ))}
         </div>
