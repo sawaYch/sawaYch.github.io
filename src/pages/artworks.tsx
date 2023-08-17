@@ -226,7 +226,11 @@ const ArtworksPage = () => {
                             '!h-[60vh]': isMobile,
                           }
                         )}
-                        src={artwork.images[0].formats.large.url}
+                        src={
+                          artwork.images[0].formats?.large?.url ??
+                          artwork.images[0].formats?.small?.url ??
+                          artwork.images[0].formats?.thumbnail?.url
+                        }
                         alt={artwork.images[0].alternativeText}
                         loader={
                           <div className="flex flex-col items-center justify-center w-[80vw] h-[70vh]">
