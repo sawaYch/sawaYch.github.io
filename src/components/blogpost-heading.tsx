@@ -22,7 +22,7 @@ const BlogPostHeading = ({
 }: PropsWithChildren<BlogPostHeadingProps>) => {
   const ref = useRef<HTMLHeadingElement>(null);
 
-  const formattedId = useMemo(() => id.replace(' ', '-'), [id]);
+  const formattedId = useMemo(() => id.replaceAll(' ', '-'), [id]);
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = useCallback(
     (evt) => {
