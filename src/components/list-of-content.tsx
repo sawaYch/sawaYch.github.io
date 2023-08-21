@@ -19,7 +19,7 @@ const ListOfContent = ({ data, className }: ListOfContentProps) => {
       // eslint-disable-next-line no-restricted-globals
       history.replaceState(null, '', `#${formattedId}`);
       const element = document.getElementById(formattedId);
-      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       // ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     },
     []

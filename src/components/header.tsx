@@ -6,7 +6,7 @@ import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
 import { DarkThemeToggle } from 'flowbite-react';
 import IconLink from './icon-link';
 
-const TopBar = tw.div`flex select-none justify-between bg-dracula-darker/70 shadow-md text-xs`;
+const TopBar = tw.div`flex select-none justify-between bg-dracula-darker/70 shadow-md text-xs sticky top-0`;
 const StatusPane = tw.div`flex items-center justify-center gap-x-2 pl-4 pr-4 bg-dracula-pink-400/70`;
 
 const Header = () => (

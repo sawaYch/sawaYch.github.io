@@ -10,8 +10,8 @@ const BackgroundContainer = tw.div`
   w-screen
   flex
   flex-col
-  overflow-hidden
-  fixed
+  // overflow-hidden
+  // fixed
 `;
 
 export default BackgroundContainer;
