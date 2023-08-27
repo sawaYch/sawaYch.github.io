@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import cn from 'classnames';
 import { PageProps, navigate } from 'gatsby';
 import { useQuery } from '@tanstack/react-query';
 import ReactMarkdown from 'react-markdown';
@@ -279,7 +280,10 @@ const Post: React.FC<PageProps> = (props) => {
                       lang={match[1]}
                       text={hastToPlainText(node)}
                     />
-                    <code className={className} {...componentProps}>
+                    <code
+                      className={cn(className, '!whitespace-pre-wrap')}
+                      {...componentProps}
+                    >
                       {children}
                     </code>
                   </div>
