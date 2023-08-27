@@ -95,6 +95,20 @@ const Events = () => {
 
   const ctfEventData = [
     {
+      title: 'SEKAI CTF 2023',
+      content: (
+        <>
+          <span>AUG. 2023</span>
+          <div>TeamMYA - HKVTBER@MYA🐼_SAI3_JAT1</div>
+          <CTFTimeBadge link="https://ctftime.org/event/1923" />
+          <StyledUnorderedList>
+            <li>with DGC Group & 米亞Discord Group眾院友</li>
+            <li>Ranking: 188th place/ 981 teams</li>
+          </StyledUnorderedList>
+        </>
+      ),
+    },
+    {
       title: 'HKCert CTF competition 2022 - Open Division',
       content: (
         <>

@@ -150,7 +150,6 @@ const BlogsPage = () => {
       </div>
       <hr className="w-48 h-1 mx-auto my-2 border-0 rounded bg-gradient-to-r from-pink-500 to-violet-500" />
       {blogDataIsLoading && <Spinner className="!w-12 !h-12 mt-4" />}
-
       {blogData?.blogData.length === 0 ? (
         <div className="flex flex-col items-center justify-center w-full uppercase min-h-[25.5rem]">
           <div className="flex gap-2">

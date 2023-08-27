@@ -5,6 +5,7 @@ import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import tw from 'twin.macro';
 import { Img } from 'react-image';
 import { BlogData } from '../apis/fetch-blogs';
+import { formatDateMonthName } from '../utils/format-date';
 import Spinner from './spinner';
 
 const AuthorSection = tw.div`flex items-center pt-4`;
@@ -40,7 +41,7 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
   >
     {data.cover ? (
       <Img
-        className="object-cover"
+        className="object-cover max-h-52"
         src={data.cover}
         alt={`${data.title} thumbnail`}
         loader={
@@ -57,7 +58,7 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
       />
     ) : (
       <StaticImage
-        className="pointer-events-none select-none rounded-xl h-[5rem] w-[5rem] sm:h-[10rem] sm:w-[10rem] self-center"
+        className="object-cover pointer-events-none select-none rounded-xl h-[5rem] w-[5rem] sm:h-[10rem] sm:w-[10rem] self-center"
         src="../images/home.webp"
         alt="blog cover"
         layout="constrained"
@@ -67,31 +68,37 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
       />
     )}
     <h5 className="px-2 my-4 text-lg font-bold tracking-tight">{data.title}</h5>
-    <p className="px-2 font-normal line-clamp-4">{data.description}</p>
-    <hr className="w-full h-[1px] mx-auto my-2 bg-dracula-dark-800 border-0 rounded" />
-    <TagCatSection>
-      {data.tags.map((t) => (
-        <Badge key={t.name} color={t.color}>
-          {t.name}
-        </Badge>
-      ))}
-      {data.categories.map((t) => (
-        <Badge key={t.name} color={t.color}>
-          {t.name}
-        </Badge>
-      ))}
-    </TagCatSection>
-    <AuthorSection className="">
-      <div className="w-6 mr-2">
-        <StaticImage
-          className="rounded-full pointer-events-none select-none"
-          src="../images/avatar.webp"
-          alt="Void Dojo"
-          layout="fullWidth"
-        />
-      </div>
-      <div className="text-[0.65rem]">30 Jul, 2023</div>
-    </AuthorSection>
+    <p className="px-2 font-normal whitespace-pre-line line-clamp-4">
+      {data.description}
+    </p>
+    <div className="mt-auto">
+      <hr className="w-full h-[1px] mx-auto my-2 bg-dracula-dark-800 border-0 rounded" />
+      <TagCatSection>
+        {data.tags.map((t) => (
+          <Badge key={t.name} color={t.color}>
+            {t.name}
+          </Badge>
+        ))}
+        {data.categories.map((t) => (
+          <Badge key={t.name} color={t.color}>
+            {t.name}
+          </Badge>
+        ))}
+      </TagCatSection>
+      <AuthorSection className="">
+        <div className="w-6 mr-2">
+          <StaticImage
+            className="rounded-full pointer-events-none select-none"
+            src="../images/avatar.webp"
+            alt="Void Dojo"
+            layout="fullWidth"
+          />
+        </div>
+        <div className="text-[0.65rem]">
+          {formatDateMonthName(data.updatedAt)}
+        </div>
+      </AuthorSection>
+    </div>
   </motion.div>
 );
 

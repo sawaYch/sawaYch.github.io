@@ -10,6 +10,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      typography: ({ theme }) => ({
+        pink: {
+          css: {
+            '--tw-prose-invert-bullets': theme('colors.pink[600]'),
+          },
+        },
+      }),
       height: {
         custom: 'calc(100vh + 24rem)', // Adjust the calculation as per your needs
       },
