@@ -129,15 +129,15 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
         <Header />
         <StyledMain ref={ref}>
           <StaticImage
-            className="!absolute top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-10"
+            className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-10"
             src="../images/girl.webp"
             alt="background images"
             layout="fullWidth"
           />
-          <div className="absolute top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" />
+          <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" />
           <MatrixRain
             size={12}
-            className="absolute top-0 left-0 z-20 !w-screen border pointer-events-none select-none h-custom opacity-40"
+            className="fixed top-0 left-0 z-20 !w-screen border pointer-events-none select-none h-custom opacity-40"
           />
           <motion.div className="progress-bar z-[90]" style={{ scaleX }} />
           <div

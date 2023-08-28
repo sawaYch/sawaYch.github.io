@@ -20,7 +20,6 @@ const ListOfContent = ({ data, className }: ListOfContentProps) => {
       history.replaceState(null, '', `#${formattedId}`);
       const element = document.getElementById(formattedId);
       element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     },
     []
   );
