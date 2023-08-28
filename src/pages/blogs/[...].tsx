@@ -280,7 +280,7 @@ const Post: React.FC<PageProps> = (props) => {
                       lang={match[1]}
                       text={hastToPlainText(node)}
                     />
-                    <div className="!overflow-x-auto !pb-4 !px-4">
+                    <div className="!overflow-x-auto !pb-4 !px-4 mt-6 sm:mt-4">
                       <code
                         className={cn(className, '!whitespace-pre-wrap')}
                         {...componentProps}
@@ -296,7 +296,7 @@ const Post: React.FC<PageProps> = (props) => {
                 );
               },
             }}
-            className="py-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] ipad:max-w-[80ch] px-8"
+            className="pb-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] ipad:max-w-[80ch] px-8"
           >
             {finalBlogData.content}
           </ReactMarkdown>
