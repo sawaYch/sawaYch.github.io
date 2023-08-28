@@ -4,7 +4,6 @@ import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 import tw from 'twin.macro';
 import { useQuery } from '@tanstack/react-query';
-import Layout from '../components/layout';
 import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
 import VoidTimeline from '../components/void-timeline';
@@ -80,7 +79,7 @@ const IndexPage: React.FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
     };
   }, [disableContextMenuOfImage]);
   return (
-    <Layout>
+    <>
       <Banner />
       <CharacterCard />
       <Placeholder />
@@ -97,7 +96,7 @@ const IndexPage: React.FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
       <Placeholder />
       <SpecialThanks />
       <Placeholder />
-    </Layout>
+    </>
   );
 };
 export default IndexPage;

@@ -19,7 +19,6 @@ import rehypeCodeTitles from 'rehype-code-titles';
 import { Badge } from 'flowbite-react';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { useIsomorphicLayoutEffect } from 'framer-motion';
-import Layout from '../../components/layout';
 import Spinner from '../../components/spinner';
 import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
 import { formatDateMonthName } from '../../utils/format-date';
@@ -96,7 +95,7 @@ const Post: React.FC<PageProps> = (props) => {
   }, [isLoading]);
 
   return (
-    <Layout>
+    <>
       <button
         aria-label="left"
         type="button"
@@ -302,7 +301,7 @@ const Post: React.FC<PageProps> = (props) => {
           </ReactMarkdown>
         </>
       )}
-    </Layout>
+    </>
   );
 };
 

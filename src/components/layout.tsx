@@ -122,6 +122,10 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     restDelta: 0.001,
   });
 
+  const handlePageSelected = useCallback(() => {
+    toggleAppMenu();
+  }, [toggleAppMenu]);
+
   return (
     <Flowbite>
       <SEOHead />
@@ -203,7 +207,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
                 onAnimationComplete={onAnimationComplete}
                 onAnimationStart={onAnimationStart}
               >
-                <ApplicationPane />
+                <ApplicationPane onPageSelected={handlePageSelected} />
               </motion.div>
             </motion.nav>
           </div>

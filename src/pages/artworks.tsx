@@ -28,7 +28,6 @@ import { isMobile } from 'react-device-detect';
 import { Img } from 'react-image';
 import { saveAs } from 'file-saver';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
-import Layout from '../components/layout';
 import fetchArtworks, { ArtworkData } from '../apis/fetch-artworks';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
@@ -65,7 +64,7 @@ const ArtworksPage = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <div className="flex items-center justify-center pt-10">
         <div className="w-fit">
           <div className="-mx-10 h-[1.5rem] -mb-8 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
@@ -311,7 +310,7 @@ const ArtworksPage = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </Layout>
+    </>
   );
 };
 

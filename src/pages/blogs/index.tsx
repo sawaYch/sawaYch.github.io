@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import cn from 'classnames';
 import { navigate } from 'gatsby';
-import Layout from '../../components/layout';
 import fetchTags from '../../apis/fetch-tags';
 import Spinner from '../../components/spinner';
 import Cube from '../../components/cube';
@@ -76,7 +75,7 @@ const BlogsPage = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <div className="flex items-center justify-center select-none">
         <Cube
           color="purple"
@@ -210,7 +209,7 @@ const BlogsPage = () => {
           totalPages={blogData?.pagination.pageCount ?? 1}
         />
       )}
-    </Layout>
+    </>
   );
 };
 

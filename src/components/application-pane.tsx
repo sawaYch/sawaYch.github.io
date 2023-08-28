@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'gatsby';
-import { ReactElement, useMemo } from 'react';
+import { ReactElement, useMemo, useState } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
@@ -16,20 +16,27 @@ interface AppNavigationType {
   cubeColor?: CubeColorType;
   icon?: ReactElement;
   link?: string;
+  onClick?: () => void;
 }
 
-const ApplicationPane = () => {
+interface ApplicationPaneProps {
+  onPageSelected: (pageKey: string) => void;
+}
+
+const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
   const variants = useMemo(
     () => ({
       open: {
         transition: { staggerChildren: 0.07, delayChildren: 0.2 },
       },
       closed: {
-        transition: { staggerChildren: 0.05, staggerDirection: -1 },
+        transition: { staggerChildren: 0.01, staggerDirection: -1 },
       },
     }),
     []
   );
+
+  const [selectedPage, setSelectedPage] = useState<string | undefined>();
 
   const appNavigationData: AppNavigationType[] = [
     {
@@ -38,6 +45,10 @@ const ApplicationPane = () => {
       name: 'Home',
       icon: <FaHome size="3.5rem" />,
       link: '/',
+      onClick: () => {
+        onPageSelected('home');
+        setSelectedPage('home');
+      },
     },
     {
       id: 'blogs',
@@ -45,6 +56,10 @@ const ApplicationPane = () => {
       name: 'Blog',
       icon: <BiBookBookmark size="3.5rem" />,
       link: '/blogs',
+      onClick: () => {
+        onPageSelected('blogs');
+        setSelectedPage('blogs');
+      },
     },
     {
       id: 'artworks',
@@ -52,6 +67,10 @@ const ApplicationPane = () => {
       name: 'Artwork',
       icon: <FaPaintBrush size="3.5rem" />,
       link: '/artworks',
+      onClick: () => {
+        onPageSelected('artworks');
+        setSelectedPage('artworks');
+      },
     },
     {
       id: 'gallery',
@@ -59,16 +78,24 @@ const ApplicationPane = () => {
       name: 'Gallery',
       icon: <IoIosImages size="3.5rem" />,
       link: '/gallery',
+      onClick: () => {
+        onPageSelected('gallery');
+        setSelectedPage('gallery');
+      },
     },
     {
       id: 'reserved_1',
       cubeColor: 'red',
       name: 'Reserved',
       icon: <GiVampireDracula size="3.5rem" />,
+      onClick: () => {
+        onPageSelected('reserved_1');
+        setSelectedPage('reserved_1');
+      },
     },
   ];
 
-  const moduleName = useCurrentModules();
+  const moduleName = useCurrentModules(selectedPage);
 
   return (
     <div>
