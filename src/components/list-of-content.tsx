@@ -32,7 +32,7 @@ const ListOfContent = ({ data, className }: ListOfContentProps) => {
         className
       )}
     >
-      <span className="absolute text-4xl -ml-[3rem] -mt-[2rem] pt-1 -rotate-[20deg] rounded-full bg-dracula-purple w-12 h-12">
+      <span className="absolute text-4xl -ml-[3rem] -mt-[2rem] pt-1 -rotate-[20deg] rounded-full bg-dracula-purple w-12 h-12 text-center">
         🐼
       </span>
       <span className="mb-4 text-2xl text-bold text-dracula-pink">

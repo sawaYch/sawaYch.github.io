@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'ipad': '768px',
+      },
       typography: ({ theme }) => ({
         pink: {
           css: {

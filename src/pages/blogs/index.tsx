@@ -169,7 +169,7 @@ const BlogsPage = () => {
           }}
           initial="closed"
           animate="open"
-          className="grid grid-cols-1 gap-10 px-10 mt-2 mb-8 sm:grid-cols-3"
+          className="grid grid-cols-1 gap-4 px-10 mt-2 mb-8 md:gap-10 sm:grid-cols-3"
         >
           {blogData?.blogData.map((it) => (
             <BlogCard
