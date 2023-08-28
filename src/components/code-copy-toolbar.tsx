@@ -29,7 +29,7 @@ const CodeCopyToolbar = ({ lang, text }: CodeCopyToolbarProps) => {
   }, [copy, text]);
 
   return (
-    <>
+    <div>
       <Button
         color={isCopy ? 'green' : 'dark'}
         className="absolute w-10 h-8 transition-all rounded-full top-1 right-1"
@@ -43,7 +43,7 @@ const CodeCopyToolbar = ({ lang, text }: CodeCopyToolbarProps) => {
       >
         {lang}
       </Badge>
-    </>
+    </div>
   );
 };
 

@@ -275,17 +275,19 @@ const Post: React.FC<PageProps> = (props) => {
               code({ node, inline, className, children, ...componentProps }) {
                 const match = /language-(\w+)/.exec(className || '');
                 return !inline && match ? (
-                  <div>
+                  <div className="overflow-x-hidden">
                     <CodeCopyToolbar
                       lang={match[1]}
                       text={hastToPlainText(node)}
                     />
-                    <code
-                      className={cn(className, '!whitespace-pre-wrap')}
-                      {...componentProps}
-                    >
-                      {children}
-                    </code>
+                    <div className="!overflow-x-auto !pb-4 !px-4">
+                      <code
+                        className={cn(className, '!whitespace-pre-wrap')}
+                        {...componentProps}
+                      >
+                        {children}
+                      </code>
+                    </div>
                   </div>
                 ) : (
                   <code className={className} {...componentProps}>
