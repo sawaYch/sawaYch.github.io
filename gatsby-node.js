@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path');
 
 exports.createPages = ({ actions }) => {
   const { createSlice } = actions;
@@ -12,7 +12,6 @@ exports.createPages = ({ actions }) => {
   });
 };
 
-
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPreset({
     name: 'babel-preset-gatsby',
@@ -20,15 +19,13 @@ exports.onCreateBabelConfig = ({ actions }) => {
       reactRuntime: 'automatic',
     },
   });
-}
+};
 
-// exports.onCreatePage = async ({page, actions}) =>{
-//     const {createPage} = actions
-//     if(page.path.match(/^\/blogs/)){
-//         createPage({
-//             path: "/blogs",
-//             matchPath: "/blogs/:slug/",
-//             component: path.resolve("src/pages/blogs/[...].tsx")
-//       })
-//     }
-// }
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions;
+  if (page.path.match(/^\/blogs\/([A-Za-z-+=]+).*/)) {
+    // eslint-disable-next-line no-param-reassign
+    page.matchPath = `/blogs/*`;
+    createPage(page);
+  }
+};
