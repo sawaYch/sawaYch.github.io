@@ -4,7 +4,7 @@
 import './src/styles/global.css';
 import './src/styles/prism-dracula.css';
 import './src/styles/prism-plus.css';
- import Layout from './src/components/layout';
+import Layout from './src/components/layout';
 import RootElement from './src/components/root-element';
 
 export const wrapRootElement = ({ element }) => (

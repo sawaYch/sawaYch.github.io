@@ -46,6 +46,7 @@ const Oshinoko = ({ data }: OshinokoProps) => {
 
         return (
           <div
+            key={item.key}
             onClick={() => handleClick(item.key)}
             className={cn(
               'absolute w-48 h-48 overflow-hidden transition-all rotate-45 bg-transparent border-2 rounded-lg scale-50 sm:scale-75 my-2 mx-2',

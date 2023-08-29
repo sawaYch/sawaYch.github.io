@@ -177,7 +177,11 @@ const Events = () => {
         <Tabs.Item active icon={BsFlagFill} title="CTF">
           <TabItemContainer>
             {ctfEventData.map((it) => (
-              <Card className="!w-full !h-fit" theme={customCardTheme}>
+              <Card
+                key={it.title}
+                className="!w-full !h-fit"
+                theme={customCardTheme}
+              >
                 <CardTitle>{it.title}</CardTitle>
                 <CardContent>{it.content}</CardContent>
               </Card>
@@ -187,7 +191,11 @@ const Events = () => {
         <Tabs.Item active icon={FaUniversity} title="Tertiary">
           <TabItemContainer>
             {universityEventData.map((it) => (
-              <Card className="!w-full !h-fit" theme={customCardTheme}>
+              <Card
+                key={it.title}
+                className="!w-full !h-fit"
+                theme={customCardTheme}
+              >
                 <CardTitle>{it.title}</CardTitle>
                 <CardContent>{it.content}</CardContent>
               </Card>

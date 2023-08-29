@@ -27,8 +27,8 @@ exports.onCreateBabelConfig = ({ actions }) => {
 //     if(page.path.match(/^\/blogs/)){
 //         createPage({
 //             path: "/blogs",
-//             matchPath: "/blogs/:slug",
-//             component: path.resolve("src/pages/post.tsx")
+//             matchPath: "/blogs/:slug/",
+//             component: path.resolve("src/pages/blogs/[...].tsx")
 //       })
 //     }
 // }
