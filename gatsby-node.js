@@ -20,12 +20,3 @@ exports.onCreateBabelConfig = ({ actions }) => {
     },
   });
 };
-
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions;
-  if (page.path.match(/^\/blogs\/([A-Za-z-+=]+).*/)) {
-    // eslint-disable-next-line no-param-reassign
-    page.matchPath = `/blogs/*`;
-    createPage(page);
-  }
-};
