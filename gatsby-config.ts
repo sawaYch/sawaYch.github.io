@@ -12,7 +12,7 @@ const config: GatsbyConfig = {
     author: `Sawa`,
     description: `🐧 Welcome to Void Dojo! 🐼`,
     twitterUsername: `SawaYch`,
-    image: 'icons/icon-512x512.png',
+    image: 'https://raw.githubusercontent.com/sawaYch/sawaYch.github.io/master/icons/icon-96x96.png',
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
