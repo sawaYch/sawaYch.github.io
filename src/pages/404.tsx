@@ -1,9 +1,9 @@
-import * as React from 'react';
+import { FC } from 'react';
 import { Link, HeadFC, PageProps } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import BackgroundContainer from '../components/background-container';
 
-const NotFoundPage: React.FC<PageProps> = () => (
+const NotFoundPage = () => (
   <BackgroundContainer>
     <div className="flex flex-col items-center justify-center h-screen gap-y-4">
       <StaticImage
@@ -23,6 +23,8 @@ const NotFoundPage: React.FC<PageProps> = () => (
   </BackgroundContainer>
 );
 
-export default NotFoundPage;
+const NotFoundPageRouter: FC<PageProps> = () => <NotFoundPage />;
+
+export default NotFoundPageRouter;
 
 export const Head: HeadFC = () => <title>Not found</title>;

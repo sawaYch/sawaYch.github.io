@@ -15,7 +15,7 @@ export const wrapRootElement = ({ element }) => (
 
 export const wrapPageElement = ({ element, props }) => {
   // Exclude the /404 page
-  if (props.location.pathname === "/404") {
+  if (/\/404\/?/.test(props.location.pathname)) {
     return element;
   }
 
