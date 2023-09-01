@@ -22,6 +22,7 @@ const SEOHead = ({
     image: defaultImage,
     siteUrl,
     twitterUsername,
+    author: defaultAuthor,
   } = useSiteMetadata();
 
   const seo = {
@@ -30,16 +31,19 @@ const SEOHead = ({
     image: image || defaultImage,
     url: `${siteUrl}${pathname || ``}`,
     twitterUsername,
+    author: author || defaultAuthor,
   };
+
+  console.log(author, seo.author);
 
   return (
     <Helmet>
       <html lang="en" className="dark" />
       <meta charSet="utf-8" />
       <title>{seo.title}</title>
-      {author ? <meta name="author" content={author} /> : null}
+      {seo.author ? <meta name="author" content={seo.author} /> : null}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="theme-color" content="#ff79c6" />
+      <meta name="theme-color" content="#FF79C6" />
       {/* open graph */}
       {seo.description && (
         <meta
@@ -50,15 +54,15 @@ const SEOHead = ({
       )}
       {seo.image ? <meta property="og:image" content={seo.image} /> : null}
       <meta property="og:image:alt" content={seo.description} />
-      <meta property="og:title" content={seo.title} />
+      <meta property="og:title" content={`${seo.title} | ${seo.author}`} />
       <meta property="og:url" content={seo.url} />
       <meta property="og:image:width" content="96" />
       <meta property="og:image:height" content="96" />
-      <meta property="og:site_name" content={seo.title} />
-      <meta property="og:type" content="object" />
+      <meta property="og:site_name" content={`${seo.title}`} />
+      <meta property="og:type" content="website" />
       {/* twitter */}
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`${seo.title} | ${seo.author}`} />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:creator" content={seo.twitterUsername} />
       <meta name="twitter:site" content={`@${seo.twitterUsername}`} />
       {seo.image ? <meta name="twitter:image:src" content={seo.image} /> : null}
