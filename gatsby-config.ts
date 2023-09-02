@@ -14,7 +14,7 @@ const config: GatsbyConfig = {
     Portfolio & Personal Blog for Sawa - Software Engineer in 🇭🇰`,
     twitterUsername: `SawaYch`,
     image:
-      'https://raw.githubusercontent.com/sawaYch/sawaYch.github.io/master/icons/icon-96x96.png',
+      'https://raw.githubusercontent.com/sawaYch/sawaYch.github.io/master/icons/icon-256x256.png',
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

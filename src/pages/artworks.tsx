@@ -32,6 +32,7 @@ import fetchArtworks, { ArtworkData } from '../apis/fetch-artworks';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
+import SEOHead from '../components/seo-head';
 
 const ArtworksPage = () => {
   const { data, isLoading, isError } = useQuery(['artworks'], fetchArtworks);
@@ -65,6 +66,14 @@ const ArtworksPage = () => {
 
   return (
     <>
+      <SEOHead
+        title="Void Dojo | Artwork"
+        summaryType="large"
+        image="https://www.cms.void-dojo.ninja/uploads/small_sora_mimi_8ee68b6249.png"
+        description={`🖌️🎨 天音與米米\nHKVtuber羽榊天音 fan letter ACGHK@2023\n28thJuly, 2023.`}
+        imageHeight="480"
+        imageWidth="1200"
+      />
       <div className="flex items-center justify-center pt-10">
         <div className="w-fit">
           <div className="-mx-10 h-[1.5rem] -mb-8 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />

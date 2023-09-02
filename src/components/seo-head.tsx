@@ -1,12 +1,17 @@
 import { Helmet } from 'react-helmet';
 import useSiteMetadata from '../utils/use-site-metadata';
 
+type SummaryType = 'default' | 'large';
+
 interface SEOHeadProps {
   title?: string;
   description?: string;
-  image?: { url: string };
+  image?: string;
   author?: string;
   pathname?: string;
+  summaryType?: SummaryType;
+  imageWidth?: string;
+  imageHeight?: string;
 }
 
 const SEOHead = ({
@@ -15,6 +20,9 @@ const SEOHead = ({
   image,
   author,
   pathname,
+  summaryType,
+  imageWidth,
+  imageHeight,
 }: SEOHeadProps) => {
   const {
     title: defaultTitle,
@@ -27,11 +35,16 @@ const SEOHead = ({
 
   const seo = {
     title: title || defaultTitle,
-    description: description || defaultDescription,
+    description: description
+      ? `${defaultDescription}\n\n${description}`
+      : defaultDescription,
     image: image || defaultImage,
     url: `${siteUrl}${pathname || ``}`,
     twitterUsername,
     author: author || defaultAuthor,
+    summaryType: summaryType || 'default',
+    imageWidth,
+    imageHeight,
   };
 
   return (
@@ -54,13 +67,16 @@ const SEOHead = ({
       <meta property="og:image:alt" content={seo.description} />
       <meta property="og:title" content={`${seo.title} | ${seo.author}`} />
       <meta property="og:url" content={seo.url} />
-      <meta property="og:image:width" content="96" />
-      <meta property="og:image:height" content="96" />
+      <meta property="og:image:width" content={seo.imageWidth ?? '256'} />
+      <meta property="og:image:height" content={seo.imageHeight ?? '256'} />
       <meta property="og:site_name" content={`${seo.title}`} />
       <meta property="og:type" content="website" />
       {/* twitter */}
       <meta name="twitter:title" content={`${seo.title} | ${seo.author}`} />
-      <meta name="twitter:card" content="summary" />
+      <meta
+        name="twitter:card"
+        content={summaryType === 'default' ? 'summary' : 'summary_large_image'}
+      />
       <meta name="twitter:creator" content={seo.twitterUsername} />
       <meta name="twitter:site" content={`@${seo.twitterUsername}`} />
       {seo.image ? <meta name="twitter:image:src" content={seo.image} /> : null}
