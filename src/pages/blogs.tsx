@@ -6,12 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
 import cn from 'classnames';
 import { navigate } from 'gatsby';
-import fetchTags from '../../apis/fetch-tags';
-import Spinner from '../../components/spinner';
-import Cube from '../../components/cube';
-import BlogCard from '../../components/blog-card';
-import fetchCategories from '../../apis/fetch-categories';
-import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
+import fetchTags from '../apis/fetch-tags';
+import Spinner from '../components/spinner';
+import Cube from '../components/cube';
+import BlogCard from '../components/blog-card';
+import fetchCategories from '../apis/fetch-categories';
+import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
 
 const BlogsPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -66,7 +66,7 @@ const BlogsPage = () => {
   );
 
   const viewBlogDetails = useCallback((slug: string, postData: BlogData) => {
-    const blogUrl = `/blogs/${slug}`.replace(/\/$/, '');
+    const blogUrl = `/post/#/${slug}`.replace(/\/$/, '');
     navigate(blogUrl, {
       state: {
         postData,

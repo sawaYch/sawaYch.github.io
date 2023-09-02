@@ -13,11 +13,12 @@ export const wrapRootElement = ({ element }) => (
 
 export const wrapPageElement = ({ element, props }) => {
   // Exclude the /404 page
-  if (/\/404\/?/.test(props.location.pathname)) {
+  if (
+    /\/404\/?/.test(props.location.pathname)
+  ) {
     return element;
   }
 
   // Apply the layout component to other pages
   return <Layout {...props}>{element}</Layout>;
 };
-

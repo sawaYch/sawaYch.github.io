@@ -23,13 +23,13 @@ import {
   motion,
   useIsomorphicLayoutEffect,
 } from 'framer-motion';
-import Spinner from '../../components/spinner';
-import fetchBlogs, { BlogData } from '../../apis/fetch-blogs';
-import { formatDateMonthName } from '../../utils/format-date';
-import CodeCopyToolbar from '../../components/code-copy-toolbar';
-import BlogPostHeading from '../../components/blogpost-heading';
-import slugify from '../../utils/slugify';
-import ListOfContent, { TOCData } from '../../components/list-of-content';
+import Spinner from '../components/spinner';
+import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
+import { formatDateMonthName } from '../utils/format-date';
+import CodeCopyToolbar from '../components/code-copy-toolbar';
+import BlogPostHeading from '../components/blogpost-heading';
+import slugify from '../utils/slugify';
+import ListOfContent, { TOCData } from '../components/list-of-content';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -38,12 +38,12 @@ const Post: React.FC<PageProps> = (props) => {
   }, []);
 
   const slug = useMemo(
-    () => location.pathname.replace('/blogs/', '').split('/')?.[0],
-    [location.pathname]
+    () => location.hash.replace('#/', '').split('#')[0],
+    [location.hash]
   );
 
   const anchor = useMemo(
-    () => decodeURIComponent(location.hash).slice(1),
+    () => location.hash.replace('#/', '').split('#')[1],
     [location.hash]
   );
 
@@ -55,9 +55,9 @@ const Post: React.FC<PageProps> = (props) => {
   }, [location]);
 
   const { data, isLoading, isError } = useQuery(
-    [`blogs/${slug}`],
+    [`post/#/${slug}`],
     () => fetchBlogs({ page: 1, pageSize: 1, tags: [], categories: [], slug }),
-    { enabled: postDataPassingIn == null }
+    { enabled: postDataPassingIn == null && slug !== '' && slug != null }
   );
 
   const finalBlogData = useMemo(() => {
@@ -87,10 +87,10 @@ const Post: React.FC<PageProps> = (props) => {
 
   useEffect(() => {
     if (isLoading) return;
-    if (!finalBlogData) {
+    if (!finalBlogData || !slug) {
       navigate('/404');
     }
-  }, [finalBlogData, isLoading]);
+  }, [finalBlogData, isLoading, slug]);
 
   useIsomorphicLayoutEffect(() => {
     if (tableOfContentData) {
@@ -251,6 +251,7 @@ const Post: React.FC<PageProps> = (props) => {
                         heading: String(children),
                         anchorLink: id,
                         level: 0,
+                        slug,
                       },
                     ];
                     return (
@@ -258,6 +259,7 @@ const Post: React.FC<PageProps> = (props) => {
                         component="h1"
                         id={id}
                         initAnchor={anchor}
+                        slug={slug}
                       >
                         {children}
                       </BlogPostHeading>
@@ -271,6 +273,7 @@ const Post: React.FC<PageProps> = (props) => {
                         heading: String(children),
                         anchorLink: id,
                         level: 1,
+                        slug,
                       },
                     ];
                     return (
@@ -278,6 +281,7 @@ const Post: React.FC<PageProps> = (props) => {
                         component="h2"
                         id={id}
                         initAnchor={anchor}
+                        slug={slug}
                       >
                         {children}
                       </BlogPostHeading>
@@ -291,6 +295,7 @@ const Post: React.FC<PageProps> = (props) => {
                         heading: String(children),
                         anchorLink: id,
                         level: 2,
+                        slug,
                       },
                     ];
                     return (
@@ -298,6 +303,7 @@ const Post: React.FC<PageProps> = (props) => {
                         component="h3"
                         id={id}
                         initAnchor={anchor}
+                        slug={slug}
                       >
                         {children}
                       </BlogPostHeading>
@@ -311,6 +317,7 @@ const Post: React.FC<PageProps> = (props) => {
                         heading: String(children),
                         anchorLink: id,
                         level: 3,
+                        slug,
                       },
                     ];
                     return (
@@ -318,6 +325,7 @@ const Post: React.FC<PageProps> = (props) => {
                         component="h4"
                         id={id}
                         initAnchor={anchor}
+                        slug={slug}
                       >
                         {children}
                       </BlogPostHeading>
@@ -331,6 +339,7 @@ const Post: React.FC<PageProps> = (props) => {
                         heading: String(children),
                         anchorLink: id,
                         level: 4,
+                        slug,
                       },
                     ];
                     return (
@@ -338,6 +347,7 @@ const Post: React.FC<PageProps> = (props) => {
                         component="h5"
                         id={id}
                         initAnchor={anchor}
+                        slug={slug}
                       >
                         {children}
                       </BlogPostHeading>

@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { useCallback } from 'react';
 
 export interface TOCData {
+  slug: string;
   heading: string;
   anchorLink: string;
   level: number;
@@ -14,10 +15,14 @@ interface ListOfContentProps {
 
 const ListOfContent = ({ data, className }: ListOfContentProps) => {
   const handleClick = useCallback(
-    (evt: { preventDefault: () => void }, formattedId: any) => {
+    (
+      evt: { preventDefault: () => void },
+      formattedId: string,
+      slug: string
+    ) => {
       evt.preventDefault();
       // eslint-disable-next-line no-restricted-globals
-      history.replaceState(null, '', `#${formattedId}`);
+      history.pushState(null, '', `#/${slug}/#${formattedId}`);
       const element = document.getElementById(formattedId);
       element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
@@ -43,7 +48,7 @@ const ListOfContent = ({ data, className }: ListOfContentProps) => {
             <a
               href={`#${it.anchorLink}`}
               className="max-w-sm leading-tight uppercase font-display"
-              onClick={(evt) => handleClick(evt, it.anchorLink)}
+              onClick={(evt) => handleClick(evt, it.anchorLink, it.slug)}
             >
               {'\u00a0\u00a0\u00a0\u00a0'.repeat(it.level)}
               <span className="link link-underline link-underline-black">

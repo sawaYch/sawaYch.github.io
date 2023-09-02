@@ -27,4 +27,4 @@ const NotFoundPageRouter: FC<PageProps> = () => <NotFoundPage />;
 
 export default NotFoundPageRouter;
 
-export const Head: HeadFC = () => <title>Not found</title>;
+export const Head: HeadFC = () => <title>Void Dojo | Not found</title>;

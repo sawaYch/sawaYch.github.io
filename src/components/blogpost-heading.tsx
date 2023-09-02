@@ -12,6 +12,7 @@ interface BlogPostHeadingProps {
   component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
   id: string;
   initAnchor?: string;
+  slug: string;
 }
 
 const BlogPostHeading = ({
@@ -19,6 +20,7 @@ const BlogPostHeading = ({
   children,
   id,
   initAnchor,
+  slug,
 }: PropsWithChildren<BlogPostHeadingProps>) => {
   const ref = useRef<HTMLHeadingElement>(null);
 
@@ -28,10 +30,10 @@ const BlogPostHeading = ({
     (evt) => {
       evt.preventDefault();
       // eslint-disable-next-line no-restricted-globals
-      history.replaceState(null, '', `#${formattedId}`);
+      history.replaceState(null, '', `#/${slug}/#${formattedId}`);
       ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
-    [formattedId]
+    [formattedId, slug]
   );
 
   useEffect(() => {
@@ -39,7 +41,11 @@ const BlogPostHeading = ({
       if (initAnchor) {
         const formattedInitAnchor = `#${initAnchor.replace(' ', '-')}`;
         // eslint-disable-next-line no-restricted-globals
-        history.replaceState(null, '', `#${initAnchor.replace(' ', '-')}`);
+        history.replaceState(
+          null,
+          '',
+          `#/${slug}/#${initAnchor.replace(' ', '-')}`
+        );
 
         // console.log(`anchor formattedId=${formattedId} formattedInitAnchor=${formattedInitAnchor}`);
         await delay(400);
@@ -48,7 +54,7 @@ const BlogPostHeading = ({
         }
       }
     })();
-  }, [formattedId, handleClick, initAnchor]);
+  }, [formattedId, handleClick, initAnchor, slug]);
 
   const HeadingComponent = useMemo(() => {
     const link = (

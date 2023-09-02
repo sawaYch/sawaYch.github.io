@@ -34,8 +34,6 @@ const SEOHead = ({
     author: author || defaultAuthor,
   };
 
-  console.log(author, seo.author);
-
   return (
     <Helmet>
       <html lang="en" className="dark" />
