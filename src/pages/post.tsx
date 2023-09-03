@@ -58,8 +58,12 @@ const Post: React.FC<PageProps> = (props) => {
   const { data, isLoading, isError } = useQuery(
     [`post/#/${slug}`],
     () => fetchBlogs({ page: 1, pageSize: 1, tags: [], categories: [], slug }),
-    { enabled: postDataPassingIn == null && slug !== '' && slug != null }
+    {
+      enabled:
+        postDataPassingIn == null && slug?.trim().length === 0 && slug != null,
+    }
   );
+  console.log('slug', slug);
 
   const finalBlogData = useMemo(() => {
     if (postDataPassingIn) return postDataPassingIn;
@@ -88,9 +92,7 @@ const Post: React.FC<PageProps> = (props) => {
 
   useEffect(() => {
     if (isLoading) return;
-    console.log(finalBlogData);
-    console.log(slug);
-    if (!finalBlogData || !slug) {
+    if (!finalBlogData || slug?.trim().length === 0 || slug == null) {
       navigate('/404');
     }
   }, [finalBlogData, isLoading, slug]);
@@ -144,23 +146,19 @@ const Post: React.FC<PageProps> = (props) => {
       <SEOHead
         title="Void Dojo | Post"
         description={
-          finalBlogData?.title == null && finalBlogData?.description == null
+          finalBlogData == null
             ? undefined
             : `✍${finalBlogData?.title}\n${finalBlogData?.description}`
         }
-        summaryType={
-          finalBlogData?.title == null && finalBlogData?.description == null
-            ? 'default'
-            : 'large'
-        }
+        summaryType={finalBlogData == null ? 'default' : 'large'}
         image={
-          finalBlogData?.title == null && finalBlogData?.description == null
+          finalBlogData == null
             ? undefined
             : finalBlogData?.cover ??
               'https://www.cms.void-dojo.ninja/uploads/small_mya_27a0bdbaed.webp'
         }
-        imageHeight="630"
-        imageWidth="1200"
+        imageHeight={finalBlogData == null ? undefined : '630'}
+        imageWidth={finalBlogData == null ? undefined : '1200'}
       />
       <AnimatePresence>
         <motion.div
@@ -409,7 +407,7 @@ const Post: React.FC<PageProps> = (props) => {
                       );
                     },
                   }}
-                  className="m-auto pb-20 text-xs prose sm:prose-lg prose-invert prose-pink max-w-[60ch] ipad:max-w-[80ch] px-8"
+                  className="m-auto pb-20 prose sm:prose-lg prose-invert prose-pink max-w-[46ch] ipad:max-w-[80ch]  sm:max-w-[60ch] px-8"
                 >
                   {finalBlogData.content}
                 </ReactMarkdown>

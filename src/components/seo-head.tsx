@@ -42,9 +42,9 @@ const SEOHead = ({
     url: `${siteUrl}${pathname || ``}`,
     twitterUsername,
     author: author || defaultAuthor,
-    summaryType: summaryType || 'default',
-    imageWidth,
-    imageHeight,
+    summaryType: summaryType === 'large' ? 'summary_large_image' : 'summary',
+    imageWidth: imageWidth || '256',
+    imageHeight: imageHeight || '256',
   };
 
   return (
@@ -67,16 +67,13 @@ const SEOHead = ({
       <meta property="og:image:alt" content={seo.description} />
       <meta property="og:title" content={`${seo.title} | ${seo.author}`} />
       <meta property="og:url" content={seo.url} />
-      <meta property="og:image:width" content={seo.imageWidth ?? '256'} />
-      <meta property="og:image:height" content={seo.imageHeight ?? '256'} />
+      <meta property="og:image:width" content={seo.imageWidth} />
+      <meta property="og:image:height" content={seo.imageHeight} />
       <meta property="og:site_name" content={`${seo.title}`} />
       <meta property="og:type" content="website" />
       {/* twitter */}
       <meta name="twitter:title" content={`${seo.title} | ${seo.author}`} />
-      <meta
-        name="twitter:card"
-        content={summaryType === 'default' ? 'summary' : 'summary_large_image'}
-      />
+      <meta name="twitter:card" content={seo.summaryType} />
       <meta name="twitter:creator" content={seo.twitterUsername} />
       <meta name="twitter:site" content={`@${seo.twitterUsername}`} />
       {seo.image ? <meta name="twitter:image:src" content={seo.image} /> : null}
