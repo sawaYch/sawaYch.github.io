@@ -41,6 +41,12 @@ import ImagePanControls from '../components/image-pan-control';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
+
+  useEffect(() => {
+    const element = document.getElementById('main-container');
+    element?.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }, []);
+
   const backToPrevPage = useCallback(() => {
     navigate('/blogs');
   }, []);

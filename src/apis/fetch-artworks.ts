@@ -46,7 +46,7 @@ const appendAssetUrl = (input: {
 
 const fetchArtworks = async () => {
   try {
-    const res = await ApiFetch('/artworks?populate=*');
+    const res = await ApiFetch('/artworks?populate=*&sort[0]=createdAt:desc');
     const jsonObject = await res.json();
     const formatData: ArtworkData[] = jsonObject.data.map((d: any) => ({
       id: d.id,

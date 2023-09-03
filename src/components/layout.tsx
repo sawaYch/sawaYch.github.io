@@ -145,6 +145,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           />
           <motion.div className="progress-bar z-[90]" style={{ scaleX }} />
           <div
+            id="main-container"
             className={cn(
               'relative z-40 flex flex-col items-center justify-center w-screen',
               {

@@ -46,7 +46,7 @@ const appendAssetUrl = (input: {
 
 const fetchGallery = async () => {
   try {
-    const res = await ApiFetch('/galleries?populate=*');
+    const res = await ApiFetch('/galleries?populate=*&sort[0]=createdAt:desc');
     const jsonObject = await res.json();
     const formatData: GalleryData[] = jsonObject.data.map((d: any) => ({
       id: d.id,
