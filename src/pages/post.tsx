@@ -23,6 +23,12 @@ import {
   motion,
   useIsomorphicLayoutEffect,
 } from 'framer-motion';
+import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
+import {
+  ReactZoomPanPinchRef,
+  TransformComponent,
+  TransformWrapper,
+} from 'react-zoom-pan-pinch';
 import Spinner from '../components/spinner';
 import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
 import { formatDateMonthName } from '../utils/format-date';
@@ -31,6 +37,7 @@ import BlogPostHeading from '../components/blogpost-heading';
 import slugify from '../utils/slugify';
 import ListOfContent, { TOCData } from '../components/list-of-content';
 import SEOHead from '../components/seo-head';
+import ImagePanControls from '../components/image-pan-control';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -60,10 +67,9 @@ const Post: React.FC<PageProps> = (props) => {
     () => fetchBlogs({ page: 1, pageSize: 1, tags: [], categories: [], slug }),
     {
       enabled:
-        postDataPassingIn == null && slug?.trim().length === 0 && slug != null,
+        postDataPassingIn == null && slug?.trim().length !== 0 && slug != null,
     }
   );
-  console.log('slug', slug);
 
   const finalBlogData = useMemo(() => {
     if (postDataPassingIn) return postDataPassingIn;
@@ -140,6 +146,8 @@ const Post: React.FC<PageProps> = (props) => {
     }),
     []
   );
+
+  const transformComponentRef = useRef<ReactZoomPanPinchRef | null>(null);
 
   return (
     <>
@@ -404,6 +412,47 @@ const Post: React.FC<PageProps> = (props) => {
                         <code className={className} {...componentProps}>
                           {children}
                         </code>
+                      );
+                    },
+                    img(imgProps) {
+                      const { src, alt } = imgProps;
+                      return (
+                        <TransformWrapper
+                          initialScale={1}
+                          initialPositionX={0}
+                          initialPositionY={0}
+                          ref={transformComponentRef}
+                        >
+                          {(utils) => (
+                            <>
+                              <ImagePanControls
+                                zoomIn={utils.zoomIn}
+                                zoomOut={utils.zoomOut}
+                                resetTransform={utils.resetTransform}
+                              />
+                              <TransformComponent>
+                                <Img
+                                  className={cn(
+                                    'object-cover w-screen rounded-xl'
+                                  )}
+                                  src={src ?? ''}
+                                  alt={alt}
+                                  loader={
+                                    <div className="flex flex-col items-center justify-center w-screen">
+                                      <Spinner className="!w-24 !h-24" />
+                                    </div>
+                                  }
+                                  unloader={
+                                    <div className="flex flex-col items-center justify-center w-screen">
+                                      <FcRemoveImage size="5rem" />
+                                      <div>Fail to load image</div>
+                                    </div>
+                                  }
+                                />
+                              </TransformComponent>
+                            </>
+                          )}
+                        </TransformWrapper>
                       );
                     },
                   }}
