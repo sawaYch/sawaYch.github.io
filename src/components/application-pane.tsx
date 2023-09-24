@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'gatsby';
 import { ReactElement, useMemo, useState } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
-import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
+import { StaticImage } from 'gatsby-plugin-image';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
 import useCurrentModules from '../utils/use-current-modules';
@@ -17,6 +17,7 @@ interface AppNavigationType {
   icon?: ReactElement;
   link?: string;
   onClick?: () => void;
+  isExternal?: boolean;
 }
 
 interface ApplicationPaneProps {
@@ -84,14 +85,20 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
       },
     },
     {
-      id: 'reserved_1',
+      id: 'mya88',
       cubeColor: 'red',
-      name: 'Reserved',
-      icon: <GiVampireDracula size="3.5rem" />,
-      onClick: () => {
-        onPageSelected('reserved_1');
-        setSelectedPage('reserved_1');
-      },
+      name: 'Mya88',
+      icon: (
+        <StaticImage
+          src="../images/mya88.webp"
+          alt="mya88"
+          width={64}
+          height={64}
+        />
+      ),
+      link: 'https://mya88.vercel.app/',
+      onClick: () => {},
+      isExternal: true,
     },
   ];
 
@@ -129,15 +136,34 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
           </div>
         </motion.div>
         <div className="grid grid-cols-3 sm:grid-cols-4 place-items-center">
-          {appNavigationData.map((i) => (
-            <Link key={i.id} to={i.link ?? '/404'}>
-              <MenuItem
-                key={i.id}
-                {...i}
-                currentModule={moduleName ?? undefined}
-              />
-            </Link>
-          ))}
+          {appNavigationData.map((i) => {
+            if (!i.isExternal) {
+              return (
+                <Link key={i.id} to={i.link ?? '/404'}>
+                  <MenuItem
+                    key={i.id}
+                    {...i}
+                    currentModule={moduleName ?? undefined}
+                  />
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                href={i.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${i.name} link`}
+              >
+                <MenuItem
+                  key={i.id}
+                  {...i}
+                  currentModule={moduleName ?? undefined}
+                />
+              </a>
+            );
+          })}
         </div>
       </motion.div>
     </div>

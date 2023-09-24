@@ -63,7 +63,9 @@ const Cube = ({ color = 'purple', icon, className }: CubeProps) => (
       </div>
       <div
         className={`${cubeColorMap[color][1]}  absolute w-[80px] h-[80px] transform rotate-90 -skew-x-[30deg] scale-y-[0.864] -translate-x-[4.6px] translate-y-[79.7px] transition-transform duration-500 ease-in-out`}
-      />
+      >
+        <div className="-rotate-90">{icon}</div>
+      </div>
       <div
         className={`${cubeColorMap[color][2]} absolute w-[80px] h-[80px] transform rotate-[210deg] -skew-x-[30deg] scale-y-[0.864] translate-x-[30px] translate-y-[20px] transition-transform duration-500 ease-in-out`}
       />
