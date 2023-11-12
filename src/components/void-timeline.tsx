@@ -49,7 +49,8 @@ const VoidTimeline = () => {
           </IndentText>
           <li className="ml-4">.Net developer</li>
           <IndentText>
-            Experience in .Net6, EntityFramework, Dapper, Microsoft SQL Server
+            Experience in .Net6, EntityFramework, Dapper, Microsoft SQL Server,
+            Domain Driven Design (DDD)
           </IndentText>
           <li className="ml-4">Experience in develop OutSystem C# extension</li>
           <li className="ml-4">

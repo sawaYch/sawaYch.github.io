@@ -95,6 +95,21 @@ const Events = () => {
 
   const ctfEventData = [
     {
+      title: 'HKCert CTF 2023 - Open Division',
+      content: (
+        <>
+          <span>Nov. 2023</span>
+          <div>Team HKVTBER@MYA🐼_SAI3_JAT1</div>
+          <CTFTimeBadge link="https://ctftime.org/event/2122" />
+          <StyledUnorderedList>
+            <li>Score: 2420</li>
+            <li>Open Division Ranking: 17 th place/ 114 teams</li>
+            <li>Overall Division Ranking: 45th place/ 312 teams</li>
+          </StyledUnorderedList>
+        </>
+      ),
+    },
+    {
       title: 'SEKAI CTF 2023',
       content: (
         <>
@@ -102,6 +117,7 @@ const Events = () => {
           <div>TeamMYA - HKVTBER@MYA🐼_SAI3_JAT1</div>
           <CTFTimeBadge link="https://ctftime.org/event/1923" />
           <StyledUnorderedList>
+            <li>Score: 478</li>
             <li>with DGC Group & 米亞Discord Group眾院友</li>
             <li>Ranking: 188th place/ 981 teams</li>
           </StyledUnorderedList>
@@ -109,13 +125,14 @@ const Events = () => {
       ),
     },
     {
-      title: 'HKCert CTF competition 2022 - Open Division',
+      title: 'HKCert CTF 2022 - Open Division',
       content: (
         <>
           <span>Nov. 2022</span>
           <div>Team HKVTBER@MYA🐼_SAI3_JAT1</div>
           <CTFTimeBadge link="https://ctftime.org/event/1722" />
           <StyledUnorderedList>
+            <li>Score: 1500</li>
             <li>Open Division Ranking: 10 th place/ 73 teams</li>
             <li>Overall Division Ranking: 30th place/ 310 teams</li>
           </StyledUnorderedList>
@@ -123,13 +140,14 @@ const Events = () => {
       ),
     },
     {
-      title: 'HKCert CTF competition 2021 - Open Division',
+      title: 'HKCert CTF 2021 - Open Division',
       content: (
         <>
           <span>Nov. 2021</span>
           <div>Team FlowerTea</div>
           <CTFTimeBadge link="https://ctftime.org/event/1432" />
           <StyledUnorderedList>
+            <li>Score: 1150</li>
             <li>Open Division Ranking: 16 th place/ 64 teams</li>
             <li>Overall Division Ranking: 38 th place/ 240 teams</li>
           </StyledUnorderedList>
@@ -137,13 +155,14 @@ const Events = () => {
       ),
     },
     {
-      title: 'HKCert CTF competition 2020 - Open Division',
+      title: 'HKCert CTF 2020 - Open Division',
       content: (
         <>
           <span>Aug. 2020</span>
           <div>Team T0061</div>
           <CTFTimeBadge link="https://ctftime.org/event/1145" />
           <StyledUnorderedList>
+            <li>Score: 480</li>
             <li>
               37<sup>th</sup> place
             </li>
