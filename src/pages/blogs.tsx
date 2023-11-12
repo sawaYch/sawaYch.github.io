@@ -25,7 +25,7 @@ const BlogsPage = () => {
     fetchCategories
   );
 
-  const defaultPagingSize = 3;
+  const defaultPagingSize = 6;
 
   const [selectedTag, setSelectedTag] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
@@ -101,6 +101,7 @@ const BlogsPage = () => {
             {tagDataIsLoading && <Spinner />}
             {tagData?.map((it) => (
               <Badge
+                // style={{backgroundColor: it.color}} //need handle bg and font color, prefer flowbite react preset
                 color={it.color}
                 key={it.id}
                 className={cn(
@@ -179,7 +180,7 @@ const BlogsPage = () => {
           ))}
         </motion.div>
       )}
-      {blogData && blogData?.blogData.length > 1 && (
+      {blogData && blogData.pagination.pageCount > 1 && (
         <Pagination
           className="flex self-center mb-8"
           theme={{

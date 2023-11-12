@@ -37,7 +37,7 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
     initial="closed"
     animate="open"
     onClick={onClick}
-    className="flex flex-col p-2 transition-shadow border rounded-lg shadow-[0_1px_4px_4px_rgba(0,0,0,0.3)] cursor-pointer bg-dracula-dark-900/40 border-dracula-dark-900 backdrop-blur-sm hover:shadow-dracula-pink"
+    className="flex flex-col p-2 transition-shadow border rounded-lg shadow-[0_1px_4px_4px_rgba(0,0,0,0.3)] cursor-pointer bg-dracula-dark-900/40 border-dracula-dark-900 backdrop-blur-sm hover:shadow-dracula-pink max-w-[32ch] sm:max-w-[55ch]"
   >
     {data.cover ? (
       <Img
