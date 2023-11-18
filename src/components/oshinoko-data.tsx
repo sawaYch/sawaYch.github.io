@@ -46,7 +46,8 @@ const oshinokoData: OshinokoData[] = [
   {
     key: 'mya',
     modalColor: 'bg-[#fd9a98]',
-    frameColor: 'border-[#fd9a98] hover:bg-[#fd9a98] active:bg-[#fd9a98]',
+    frameColor:
+      'border-[#fd9a98] hover:bg-gradient-to-tl hover:to-transparent hover:from-[#fd9a98] active:bg-[#fd9a98]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(253,154,152,0.5)]',
     twitterUrl: isIOS
       ? 'twitter://user?id=MyaVtuber'

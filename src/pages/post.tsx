@@ -444,12 +444,12 @@ const Post: React.FC<PageProps> = (props) => {
                                   src={src ?? ''}
                                   alt={alt}
                                   loader={
-                                    <div className="flex flex-col items-center justify-center w-screen">
-                                      <Spinner className="!w-24 !h-24" />
+                                    <div className="flex flex-col items-center justify-center w-[46ch] ipad:w-[80ch] sm:w-[60ch]">
+                                      <Spinner className="flex !w-24 !h-24" />
                                     </div>
                                   }
                                   unloader={
-                                    <div className="flex flex-col items-center justify-center w-screen">
+                                    <div className="flex flex-col items-center justify-center w-[46ch] ipad:w-[80ch] sm:w-[60ch]">
                                       <FcRemoveImage size="5rem" />
                                       <div>Fail to load image</div>
                                     </div>
