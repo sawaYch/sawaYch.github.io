@@ -1,11 +1,4 @@
-<p align="center">
-  <a href="https://github.com/sawaYch/sawaYch.github.io">
-    <img alt="icon" src="./src/images/favicon.webp" width="60" />
-  </a>
-  <a href="https://www.gatsbyjs.com">
-    <img alt="icon" src="./src/images/gatsby.svg" width="60" />
-  </a>
-</p>
+<p align="center"><a href="https://github.com/sawaYch/sawaYch.github.io"><img alt="icon" src="./src/images/favicon.webp" width="60" /></a><a href="https://www.gatsbyjs.com"><img alt="icon" src="./src/images/gatsby.svg" width="60" /></a></p>
 <div align="center" style="font-size:1.5em">
   SawaYch.github.io
 </div><div align="center" style="font-size:1em">Personal site boilerplate based on <a href="https://github.com/gatsbyjs/gatsby-starter-minimal-ts" target="_blank" rel="noopener noreferrer">Gatsby Minimal TypeScript Starter</a></div>
