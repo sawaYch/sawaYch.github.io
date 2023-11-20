@@ -195,8 +195,7 @@ body {
   background: var(--buffy);
   background: linear-gradient(
     90deg,
-    rgba(34, 34, 34, 1) 0%,
-    rgba(189, 147, 249, 1) 50%,
+    rgba(189, 147, 249, 1) 0%,
     rgba(255, 121, 198, 1) 100%
   );
   transform-origin: 0%;

@@ -30,7 +30,7 @@ module.exports = {
         xs: '1px',
       },
       opacity: {
-        bg: '.12',
+        bg: '.05',
       },
       fontFamily: {
         primary: 'Cubic',

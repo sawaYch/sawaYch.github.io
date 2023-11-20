@@ -13,6 +13,7 @@ import tw from 'twin.macro';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Flowbite, Button } from 'flowbite-react';
 import { isIPad13, isTablet } from 'react-device-detect';
+import AnimatedCursor from 'react-animated-cursor';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { FaCube } from '@react-icons/all-files/fa/FaCube';
@@ -126,6 +127,12 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     toggleAppMenu();
   }, [toggleAppMenu]);
 
+  const enableProgressbar = useMemo(() => {
+    if (document.location.href.includes('post')) return true;
+    return false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [document.location.href]);
+
   return (
     <Flowbite>
       <SEOHead />
@@ -134,7 +141,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
         <StyledMain ref={ref}>
           <StaticImage
             className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-10"
-            src="../images/girl.webp"
+            src="../images/girl.png"
             alt="background images"
             layout="fullWidth"
           />
@@ -143,7 +150,24 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
             size={12}
             className="fixed top-0 left-0 z-20 !w-screen border pointer-events-none select-none h-custom opacity-40"
           />
-          <motion.div className="progress-bar z-[90]" style={{ scaleX }} />
+          <AnimatedCursor
+            color="189,147,249"
+            innerSize={10}
+            outerSize={40}
+            innerScale={1}
+            outerScale={2}
+            outerAlpha={1}
+            innerStyle={{
+              backgroundColor: 'rgb(255, 255, 255)',
+              mixBlendMode: 'exclusion',
+            }}
+            outerStyle={{
+              mixBlendMode: 'exclusion',
+            }}
+          />
+          {enableProgressbar ? (
+            <motion.div className="progress-bar z-[90]" style={{ scaleX }} />
+          ) : null}
           <div
             id="main-container"
             className={cn(

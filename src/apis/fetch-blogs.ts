@@ -58,11 +58,11 @@ const fetchBlogs = async ({
       )
       .join('');
     res = await ApiFetch(
-      `/articles?populate=*&sort[0]=createdAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
+      `/articles?populate=*&sort[0]=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
     );
   } else {
     res = await ApiFetch(
-      `/articles?populate=*&sort[0]=createdAt:desc&filters[slug][$eq]=${slug}`
+      `/articles?populate=*&sort[0]=publishedAt:desc&filters[slug][$eq]=${slug}`
     );
   }
   const jsonData = await res.json();
