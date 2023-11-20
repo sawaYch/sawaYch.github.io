@@ -6,6 +6,9 @@ dotenv.config({
 });
 
 const config: GatsbyConfig = {
+  flags: {
+    DEV_SSR: true,
+  },
   siteMetadata: {
     title: `Void Dojo`,
     siteUrl: `https://sawaych.github.io`,

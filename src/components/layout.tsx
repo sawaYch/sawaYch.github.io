@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import { PageProps } from 'gatsby';
 import tw from 'twin.macro';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Flowbite, Button } from 'flowbite-react';
@@ -27,7 +28,7 @@ import SEOHead from './seo-head';
 
 const StyledMain = tw.main`flex-auto overflow-x-hidden z-0`;
 
-const Layout: FC<PropsWithChildren> = ({ children }) => {
+const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const ref = useRef<HTMLElement>(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
@@ -128,10 +129,10 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
   }, [toggleAppMenu]);
 
   const enableProgressbar = useMemo(() => {
-    if (document.location.href.includes('post')) return true;
+    if (location?.href?.includes('post')) return true;
     return false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [document.location.href]);
+  }, [location.href]);
 
   return (
     <Flowbite>
