@@ -7,7 +7,7 @@ import tw from 'twin.macro';
 import PaneContainer from './pane-container';
 import CTFTimeBadge from './ctftime-badge';
 
-const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-1 sm:grid-cols-2 h-[38rem] auto-rows-max auto-cols-max`;
+const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-1 sm:grid-cols-2 h-fit auto-rows-max auto-cols-max`;
 
 const StyledUnorderedList = tw.ul`list-disc list-inside mt-2`;
 

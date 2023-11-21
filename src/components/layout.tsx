@@ -4,7 +4,6 @@ import {
   RefObject,
   useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -13,7 +12,7 @@ import { PageProps } from 'gatsby';
 import tw from 'twin.macro';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Flowbite, Button } from 'flowbite-react';
-import { isIPad13, isTablet } from 'react-device-detect';
+import { isIPad13, isTablet, isMobile } from 'react-device-detect';
 import AnimatedCursor from 'react-animated-cursor';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
@@ -34,7 +33,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const [height, setHeight] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (ref.current != null) {
       setWidth(ref.current.offsetWidth);
       setHeight(ref.current.offsetHeight);
@@ -138,19 +137,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     <Flowbite>
       <SEOHead />
       <BackgroundContainer>
-        <Header />
-        <StyledMain ref={ref}>
-          <StaticImage
-            className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-10"
-            src="../images/girl.png"
-            alt="background images"
-            layout="fullWidth"
-          />
-          <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" />
-          <MatrixRain
-            size={12}
-            className="fixed top-0 left-0 z-20 !w-screen border pointer-events-none select-none h-custom opacity-40"
-          />
+        {isMobile ? null : (
           <AnimatedCursor
             color="189,147,249"
             innerSize={10}
@@ -161,10 +148,26 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             innerStyle={{
               backgroundColor: 'rgb(255, 255, 255)',
               mixBlendMode: 'exclusion',
+              zIndex: '999',
             }}
             outerStyle={{
               mixBlendMode: 'exclusion',
             }}
+          />
+        )}
+        <Header />
+        <StyledMain ref={ref}>
+          <StaticImage
+            className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-20"
+            src="../images/girl.png"
+            alt="background images"
+            layout="fullWidth"
+          />
+          {/* NOTE: disable Matrix, bg pattern */}
+          {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
+          <MatrixRain
+            size={14}
+            className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
           />
           {enableProgressbar ? (
             <motion.div className="progress-bar z-[90]" style={{ scaleX }} />

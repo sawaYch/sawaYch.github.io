@@ -292,7 +292,7 @@ const OshinokoCharacterPane = ({
   const retroTvItem = useMemo(
     () => ({
       offscreen: {
-        y: 10,
+        y: 0,
         opacity: 0,
       },
       onscreen: {
@@ -359,7 +359,7 @@ const OshinokoCharacterPane = ({
             initial="offscreen"
             animate="onscreen"
             exit="exit"
-            className={`overscroll-none touch-none pb-[10rem] fixed right-0 left-0 bottom-0 h-modal overflow-y-auto !overflow-x-hidden backdrop-blur-md ${selectedData.modalColor} bg-opacity-50 z-[60]`}
+            className={`overscroll-none touch-none pb-[10rem] fixed right-0 left-0 h-[calc(100%-1.7rem)] bottom-0 overflow-y-auto !overflow-x-hidden backdrop-blur-md ${selectedData.modalColor} bg-opacity-50 z-[60]`}
           >
             <div className="touch-scroll min-h-[100vh] w-screen overflow-auto z-[61]">
               <motion.div className="flex items-center justify-center w-screen h-[12rem]">

@@ -88,8 +88,8 @@ const IndexPage: React.FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
       <VoidTimeline />
       <Placeholder />
       <Events />
-      <Placeholder />
-      <HobbyKeyboard />
+      {/* <Placeholder /> */}
+      {/* <HobbyKeyboard /> TODO: move to new sections */}
       <Placeholder />
       <Oshinoko data={data} />
       <Placeholder />

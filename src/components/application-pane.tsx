@@ -135,7 +135,7 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
             </div>
           </div>
         </motion.div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 place-items-center">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 place-items-center">
           {appNavigationData.map((i) => {
             if (!i.isExternal) {
               return (
@@ -151,6 +151,7 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
 
             return (
               <a
+                key={i.id}
                 href={i.link}
                 target="_blank"
                 rel="noopener noreferrer"

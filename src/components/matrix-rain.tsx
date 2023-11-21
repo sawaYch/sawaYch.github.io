@@ -60,7 +60,7 @@ const MatrixRain = ({
 
         context.fillStyle = 'rgba(40, 42, 54, 0.08)';
         context.fillRect(0, 0, canvas.width, canvas.height);
-        context.fillStyle = '#fb31a5';
+        context.fillStyle = '#8be9fd';
         context.font = `${size}px kuGraph`;
 
         const updateRainDrop = rainDrops;

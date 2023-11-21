@@ -7,7 +7,7 @@ dotenv.config({
 
 const config: GatsbyConfig = {
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
   siteMetadata: {
     title: `Void Dojo`,

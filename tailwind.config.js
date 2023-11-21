@@ -23,9 +23,6 @@ module.exports = {
       height: {
         custom: 'calc(100vh + 24rem)', // Adjust the calculation as per your needs
       },
-      backgroundImage: {
-        pattern: "url('../images/circuit.svg')",
-      },
       backdropBlur: {
         xs: '1px',
       },

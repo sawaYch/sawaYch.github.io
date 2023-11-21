@@ -98,7 +98,7 @@ const BlogsPage = () => {
         <div className="w-64 p-4 border rounded-lg border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
           Tags
           <div className="flex flex-wrap gap-1 pt-2 uppercase">
-            {tagDataIsLoading && <Spinner />}
+            {tagDataIsLoading ? <Spinner /> : null}
             {tagData?.map((it) => (
               <Badge
                 // style={{backgroundColor: it.color}} //need handle bg and font color, prefer flowbite react preset
@@ -123,7 +123,7 @@ const BlogsPage = () => {
         <div className="w-64 p-4 border rounded-lg border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
           Categories
           <div className="flex flex-wrap gap-1 pt-2 uppercase">
-            {categoryDataIsLoading && <Spinner />}
+            {categoryDataIsLoading ? <Spinner /> : null}
             {categoryData?.map((it) => (
               <Badge
                 color={it.color}
@@ -149,7 +149,7 @@ const BlogsPage = () => {
         Catalog
       </div>
       <hr className="w-48 h-1 mx-auto my-2 border-0 rounded bg-gradient-to-r from-pink-500 to-violet-500" />
-      {blogDataIsLoading && <Spinner className="!w-12 !h-12 mt-4" />}
+      {blogDataIsLoading ? <Spinner className="!w-12 !h-12 mt-4" /> : null}
       {blogData?.blogData.length === 0 ? (
         <div className="flex flex-col items-center justify-center w-full uppercase min-h-[25.5rem]">
           <div className="flex gap-2">
