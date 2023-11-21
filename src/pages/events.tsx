@@ -4,8 +4,9 @@ import { BsFlagFill } from '@react-icons/all-files/bs/BsFlagFill';
 import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaUniversity } from '@react-icons/all-files/fa/FaUniversity';
 import tw from 'twin.macro';
-import PaneContainer from './pane-container';
-import CTFTimeBadge from './ctftime-badge';
+import PaneContainer from '../components/pane-container';
+import CTFTimeBadge from '../components/ctftime-badge';
+import SectionTitle from '../components/section-title';
 
 const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-1 sm:grid-cols-2 h-fit auto-rows-max auto-cols-max`;
 
@@ -14,7 +15,7 @@ const StyledUnorderedList = tw.ul`list-disc list-inside mt-2`;
 const CardTitle = tw.h5`font-bold tracking-tight text-gray-900 dark:text-dracula-purple-300`;
 const CardContent = tw.div`font-normal text-gray-700 dark:text-gray-400`;
 
-const Events = () => {
+const EventPage = () => {
   const customTabTheme = {
     base: 'flex flex-col gap-2 w-full',
     tabpanel: '',
@@ -173,21 +174,16 @@ const Events = () => {
   ];
 
   return (
-    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center !w-3/4">
-      <div className="flex flex-col items-center justify-center">
-        <div className="w-fit">
-          <div className="h-[1.5rem] -mb-8 -mx-10 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
-          <div className="flex">
-            <h2 className="z-50 !text-dracula-buffy-100">
-              Events & Achievement
-            </h2>{' '}
-            <BsCalendarFill
-              size="2rem"
-              className="z-50 ml-2 text-dracula-buffy-200"
-            />
-          </div>
-        </div>
-      </div>
+    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center !w-3/4 pt-10">
+      <SectionTitle
+        icon={
+          <BsCalendarFill
+            size="2rem"
+            className="z-50 ml-2 text-dracula-buffy-200"
+          />
+        }
+        text="Events"
+      />
       <Tabs.Group
         aria-label="Events Tab"
         theme={customTabTheme}
@@ -226,4 +222,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default EventPage;

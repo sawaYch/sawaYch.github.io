@@ -20,7 +20,7 @@ const Banner = () => (
             },
           },
         }}
-        initial="onscreen" // change to "offscreen" to re-enable animation
+        initial="offscreen" // change to "offscreen" to re-enable animation
         whileInView="onscreen"
         viewport={{ once: true, amount: 0 }}
       >

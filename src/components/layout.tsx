@@ -139,7 +139,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
       <BackgroundContainer>
         {isMobile ? null : (
           <AnimatedCursor
-            color="189,147,249"
+            color="139,233,253"
             innerSize={10}
             outerSize={40}
             innerScale={1}
@@ -163,7 +163,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             alt="background images"
             layout="fullWidth"
           />
-          {/* NOTE: disable Matrix, bg pattern */}
+          {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
           <MatrixRain
             size={14}

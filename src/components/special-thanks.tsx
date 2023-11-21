@@ -43,7 +43,7 @@ const SpecialThanks = () => (
             </a>
           </div>
           <div className="mt-4">
-            The Background &quot;Matrix Rain&quot; text are using{' '}
+            The background &quot;Matrix Rain&quot; are using{' '}
             <strong className="text-dracula-green bold">
               <a
                 className="text-center underline hover:text-dracula-darker-300"
@@ -52,16 +52,14 @@ const SpecialThanks = () => (
                 rel="noopener noreferrer"
                 aria-label="Ku font download link"
               >
-                Ku-font Graph
+                Ku-font Graph{' '}
               </a>
             </strong>
-            — a cutie font created by HKVtuber Kuiro! Kuiro is the cutest
-            crocodile!
+            — a cutie font face created by Kuiro (The cutest crocodile)
           </div>
         </div>
       </div>
-      <h4 className="mt-4">Preview:</h4>
-      <h5 className="text-center">Ku</h5>
+      <h5 className="mt-4 text-center">Ku</h5>
       <div className="flex flex-wrap items-center justify-center w-full">
         <span className="text-2xl font-ku">Lorem&nbsp;</span>
         <span className="text-xl font-ku">ipsum&nbsp;</span>

@@ -2,12 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { GatsbyImage } from 'gatsby-plugin-image';
-
 import { GiSparkles } from '@react-icons/all-files/gi/GiSparkles';
 import { useCallback, useMemo, useState } from 'react';
 import cn from 'classnames';
 import oshinokoData from './oshinoko-data';
-
 import PaneContainer from './pane-container';
 import OshinokoCharacter from './oshinoko-character';
 
@@ -76,27 +74,12 @@ const Oshinoko = ({ data }: OshinokoProps) => {
           <div className="w-fit">
             <div className="h-[1.5rem] -mb-8 -mx-8 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
             <div className="flex">
-              <h2 className="z-50 !text-dracula-buffy-100">
-                推しの子 | HKVtubers
-              </h2>{' '}
+              <h2 className="z-50 !text-dracula-buffy-100">Vtubers</h2>
               <GiSparkles
                 size="2rem"
                 className="z-50 ml-2 text-dracula-buffy-200"
               />
             </div>
-          </div>
-          <div className="flex">
-            I am&nbsp;
-            <a
-              href="https://hololive.wiki/wiki/Glossary#DD"
-              className="underline hover:text-dracula-dark-300"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="dd definition"
-            >
-              DD
-            </a>
-            &nbsp;😎
           </div>
         </div>
         <div className="relative w-screen mt-10 h-[24rem]">

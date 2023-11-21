@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import { ReactElement, useMemo, useState } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
+import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
+// import { GiSparkles } from '@react-icons/all-files/gi/GiSparkles';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -52,6 +54,17 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
       },
     },
     {
+      id: 'events',
+      cubeColor: 'green',
+      name: 'Event',
+      icon: <BsCalendarFill size="3.5rem" />,
+      link: '/events',
+      onClick: () => {
+        onPageSelected('events');
+        setSelectedPage('events');
+      },
+    },
+    {
       id: 'blogs',
       cubeColor: 'purple',
       name: 'Blog',
@@ -60,6 +73,22 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
       onClick: () => {
         onPageSelected('blogs');
         setSelectedPage('blogs');
+      },
+    },
+    {
+      id: 'vtubers',
+      cubeColor: 'cyan',
+      name: 'Vtubers',
+      icon: (
+        <StaticImage
+          src="../images/vtuber-cube-icon.png"
+          alt="vtubers cube icon"
+        />
+      ),
+      link: '/vtubers',
+      onClick: () => {
+        onPageSelected('vtubers');
+        setSelectedPage('vtubers');
       },
     },
     {

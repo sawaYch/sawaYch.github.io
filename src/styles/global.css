@@ -97,8 +97,8 @@ body {
 }
 
 .vd-text-shadow {
-  text-shadow: 4px 0px 0 #555555, 5px 1px 0 #ff79c6, 6px 1px 0 #ff79c6,
-    7px 1px 0 #ff79c6, 8px 1px 0 #ff79c6;
+  text-shadow: 4px 0px 0 #555555, 5px 1px 0 #8be9fd, 6px 1px 0 #8be9fd,
+    7px 1px 0 #8be9fd, 8px 1px 0 #8be9fd;
 }
 
 .transition-color-apply * {
