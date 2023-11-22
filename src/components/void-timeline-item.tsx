@@ -24,7 +24,7 @@ const VoidTimelineItem = ({
         icon: {
           base: 'text-dracula-purple animate-pulse',
           wrapper:
-            'absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full dark:bg-dracula-dark ring-4 dark:ring-white bg-cyan-dracula-dark-200 ring-gray-900',
+            'absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-dracula-dark ring-4 ring-white',
         },
       },
     }),
@@ -33,21 +33,21 @@ const VoidTimelineItem = ({
 
   const customTimeTheme = useMemo(
     () => ({
-      time: 'mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-300',
+      time: 'mb-1 text-sm font-normal leading-none text-gray-300',
     }),
     []
   );
 
   const customTitleTheme = useMemo(
     () => ({
-      title: 'text-lg font-semibold text-gray-900 dark:text-white',
+      title: 'text-lg font-semibold text-white',
     }),
     []
   );
 
   const customBodyTheme = useMemo(
     () => ({
-      body: 'mb-4 text-base font-normal text-gray-500 dark:text-gray-400',
+      body: 'mb-4 text-base font-normal text-gray-400',
     }),
     []
   );

@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Img } from 'react-image';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
@@ -14,6 +15,9 @@ interface CharacterCardProps {
 }
 
 const PaneColumn = tw.div`flex flex-col items-start content-start justify-center grow m-4`;
+const ImageWrapper: (children: ReactNode) => React.JSX.Element = (children) => (
+  <div className="w-full h-full">{children}</div>
+);
 
 const CharacterCard = ({ className }: CharacterCardProps) => (
   <motion.div
@@ -77,7 +81,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
         </PaneColumn>
       </div>
       <Img
-        className="p-8 mt-10 pointer-events-none select-none"
+        className="w-full h-full p-8 mt-10 pointer-events-none select-none"
         src="https://raw.githubusercontent.com/sawaYch/sawaYch/main/github-metrics.svg"
         alt="metrics"
         loader={
@@ -91,6 +95,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
             <div>Fail to load pulse statistic</div>
           </div>
         }
+        container={ImageWrapper}
         loading="lazy"
       />
     </PaneContainer>

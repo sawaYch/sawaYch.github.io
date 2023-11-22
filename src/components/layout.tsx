@@ -133,6 +133,11 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.href]);
 
+  const currentPage = useMemo(
+    () => location.pathname.split('/')?.[1] ?? undefined,
+    [location.pathname]
+  );
+
   return (
     <Flowbite>
       <SEOHead />
@@ -165,10 +170,12 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
           />
           {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
-          <MatrixRain
-            size={14}
-            className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
-          />
+          {isMobile ? null : (
+            <MatrixRain
+              size={14}
+              className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
+            />
+          )}
           {enableProgressbar ? (
             <motion.div className="progress-bar z-[90]" style={{ scaleX }} />
           ) : null}
@@ -236,7 +243,10 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                 onAnimationComplete={onAnimationComplete}
                 onAnimationStart={onAnimationStart}
               >
-                <ApplicationPane onPageSelected={handlePageSelected} />
+                <ApplicationPane
+                  onPageSelected={handlePageSelected}
+                  currentPage={currentPage}
+                />
               </motion.div>
             </motion.nav>
           </div>

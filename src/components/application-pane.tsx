@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'gatsby';
-import { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useMemo, useState, useEffect } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
-// import { GiSparkles } from '@react-icons/all-files/gi/GiSparkles';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -24,9 +23,13 @@ interface AppNavigationType {
 
 interface ApplicationPaneProps {
   onPageSelected: (pageKey: string) => void;
+  currentPage: string;
 }
 
-const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
+const ApplicationPane: React.FC<ApplicationPaneProps> = ({
+  onPageSelected,
+  currentPage,
+}: ApplicationPaneProps) => {
   const variants = useMemo(
     () => ({
       open: {
@@ -39,7 +42,14 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
     []
   );
 
-  const [selectedPage, setSelectedPage] = useState<string | undefined>();
+  const [selectedPage, setSelectedPage] = useState<string | undefined>(
+    currentPage
+  );
+
+  useEffect(() => {
+    // NOTE: side effect, handle module change when user click browser's back / next
+    setSelectedPage(currentPage);
+  }, [currentPage]);
 
   const appNavigationData: AppNavigationType[] = [
     {

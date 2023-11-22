@@ -5,7 +5,6 @@ import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
 import VoidTimeline from '../components/void-timeline';
 import SpecialThanks from '../components/special-thanks';
-// import HobbyKeyboard from '../components/hobby-keyborad';
 
 export interface DataProps {
   site: {
@@ -41,8 +40,6 @@ const IndexPage = () => {
       <CharacterCard />
       <Placeholder />
       <VoidTimeline />
-      {/* <Placeholder /> */}
-      {/* <HobbyKeyboard /> TODO: move to new sections */}
       <Placeholder />
       <SpecialThanks />
       <Placeholder />

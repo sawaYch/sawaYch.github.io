@@ -113,7 +113,7 @@ const VoidTimeline = () => {
         whileInView="onscreen"
         viewport={{ once: true }}
       >
-        <Timeline className="w-full border-gray-700 dark:border-gray-200 transition-color-apply">
+        <Timeline className="w-full border-gray-700 dark:border-gray-200 transition-color-apply text-dracula-light-50">
           {timelineData.map((data, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <VoidTimelineItem {...data} key={index} order={index} />

@@ -12,8 +12,8 @@ const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-1 sm:grid
 
 const StyledUnorderedList = tw.ul`list-disc list-inside mt-2`;
 
-const CardTitle = tw.h5`font-bold tracking-tight text-gray-900 dark:text-dracula-purple-300`;
-const CardContent = tw.div`font-normal text-gray-700 dark:text-gray-400`;
+const CardTitle = tw.h5`font-bold tracking-tight text-dracula-purple-300`;
+const CardContent = tw.div`font-normal text-gray-400`;
 
 const EventPage = () => {
   const customTabTheme = {
@@ -21,17 +21,16 @@ const EventPage = () => {
     tabpanel: '',
     tablist: {
       styles: {
-        underline:
-          'flex-wrap -mb-px border-b border-gray-200 dark:border-gray-700',
+        underline: 'flex-wrap -mb-px border-b border-gray-700',
       },
       tabitem: {
-        base: 'flex items-center justify-center p-4 rounded-t-lg text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 ',
+        base: 'flex items-center justify-center p-4 rounded-t-lg text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-500',
         styles: {
           underline: {
             base: 'rounded-t-lg',
             active: {
               on: 'transition-all ease-in-out duration-500 rounded-t-lg border-b-2 border-dracula-buffy-600 active',
-              off: 'transition-all ease-in-out duration-500 border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300',
+              off: 'transition-all ease-in-out duration-500 border-b-2 border-transparent text-gray-400 hover:border-gray-300 hover:text-gray-300',
             },
           },
         },
@@ -41,13 +40,13 @@ const EventPage = () => {
 
   const customCardTheme = {
     root: {
-      base: 'flex rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800/30 backdrop-blur-sm',
+      base: 'flex rounded-lg border shadow-md border-gray-700 bg-gray-800/30 backdrop-blur-sm',
       children: 'flex h-full w-full flex-col justify-center gap-4 p-6',
       horizontal: {
         off: 'flex-col',
         on: 'flex-col md:max-w-xl md:flex-row',
       },
-      href: 'hover:bg-gray-100 dark:hover:bg-gray-700',
+      href: 'hover:bg-gray-700',
     },
     img: {
       base: '',
