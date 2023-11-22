@@ -40,11 +40,11 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     }
   }, [height, width]);
 
-  const scrollToTop = useCallback(() => {
+  const scrollToTop = useCallback((scrollBehavior?: 'smooth' | 'instant') => {
     if (ref.current == null) return;
     ref.current.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: scrollBehavior ?? 'smooth',
     });
   }, []);
 
@@ -138,6 +138,12 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     [location.pathname]
   );
 
+  // Workaround: disable scroll restoration
+  useEffect(() => {
+    if (location.pathname.split('/')?.[1].includes('post')) return;
+    scrollToTop('instant');
+  }, [location.pathname, scrollToTop]);
+
   return (
     <Flowbite>
       <SEOHead />
@@ -191,7 +197,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             {children}
             {isVisible && !isOpen ? (
               <Button
-                onClick={scrollToTop}
+                onClick={() => scrollToTop()}
                 theme={buttonCustomTheme}
                 className={cn(
                   '!z-[59] fixed w-12 h-12 right-4 bottom-20 mb-2',
