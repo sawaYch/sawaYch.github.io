@@ -14,8 +14,6 @@ import fetchCategories from '../apis/fetch-categories';
 import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
 
 const BlogsPage = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-
   const { data: tagData, isLoading: tagDataIsLoading } = useQuery(
     ['tags'],
     fetchTags
@@ -26,7 +24,7 @@ const BlogsPage = () => {
   );
 
   const defaultPagingSize = 6;
-
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedTag, setSelectedTag] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
 
@@ -37,6 +35,7 @@ const BlogsPage = () => {
       } else {
         setSelectedTag((prev) => [...prev, tag]);
       }
+      setCurrentPage(1);
     },
     [selectedTag]
   );
@@ -48,6 +47,7 @@ const BlogsPage = () => {
       } else {
         setSelectedCategory((prev) => [...prev, category]);
       }
+      setCurrentPage(1);
     },
     [selectedCategory]
   );
@@ -80,12 +80,12 @@ const BlogsPage = () => {
         <Cube
           color="purple"
           icon={<BiBookBookmark size="3.5rem" />}
-          className="!scale-[0.35] -mr-4"
+          className="!scale-[0.35] -mr-4 w-32 h-24"
         />
         <div className="flex flex-col">
-          <div className="font-sans text-4xl font-extrabold">
+          <div className="font-sans text-xl font-extrabold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
-              Void Dojo Log
+              Navigating the Realm of Reflection
             </span>
           </div>
           <div className="mt-1 text-xs text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
@@ -94,10 +94,12 @@ const BlogsPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-4 sm:flex-row">
-        <div className="w-64 p-4 border rounded-lg border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
-          Tags
-          <div className="flex flex-wrap gap-1 pt-2 uppercase">
+      <div className="flex flex-col items-center gap-1 sm:flex-row">
+        <div className="px-4 py-1 border rounded-lg w-fit border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
+          <div className="absolute w-10 text-center -translate-y-4 -skew-x-12 border rounded-lg bg-dracula-dark backdrop-blur-sm border-dracula-dark-600">
+            <div className="skew-x-12">TAG</div>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-1 pt-2 pb-1 uppercase">
             {tagDataIsLoading ? <Spinner /> : null}
             {tagData?.map((it) => (
               <Badge
@@ -120,9 +122,11 @@ const BlogsPage = () => {
             ))}
           </div>
         </div>
-        <div className="w-64 p-4 border rounded-lg border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
-          Categories
-          <div className="flex flex-wrap gap-1 pt-2 uppercase">
+        <div className="px-4 py-1 border rounded-lg w-fit border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
+          <div className="absolute w-20 text-center -translate-y-4 border rounded-lg bg-dracula-dark backdrop-blur-sm border-dracula-dark-600">
+            CATEGORY
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-1 pt-2 pb-1 uppercase">
             {categoryDataIsLoading ? <Spinner /> : null}
             {categoryData?.map((it) => (
               <Badge
@@ -145,9 +149,6 @@ const BlogsPage = () => {
           </div>
         </div>
       </div>
-      <div className="mt-4 text-3xl font-bold uppercase text-dracula-dark-200">
-        Catalog
-      </div>
       <hr className="w-48 h-1 mx-auto my-2 border-0 rounded bg-gradient-to-r from-pink-500 to-violet-500" />
       {blogDataIsLoading ? <Spinner className="!w-12 !h-12 mt-4" /> : null}
       {blogData?.blogData.length === 0 ? (
@@ -169,7 +170,8 @@ const BlogsPage = () => {
           }}
           initial="closed"
           animate="open"
-          className="grid grid-cols-1 gap-4 px-10 mt-2 mb-8 md:gap-10 sm:grid-cols-3"
+          // className="grid grid-cols-1 gap-4 px-10 mt-2 mb-8 md:gap-10 sm:grid-cols-3" // NOTE: tweak: not using card grid
+          className="flex flex-col w-full gap-2 px-4 pb-4"
         >
           {blogData?.blogData.map((it) => (
             <BlogCard
