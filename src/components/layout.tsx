@@ -178,9 +178,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
               className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
             />
           )}
-          {enableProgressbar ? (
-            <ProgressIndicator scrollYProgress={scrollYProgress} />
-          ) : null}
           <div
             id="main-container"
             className={cn(
@@ -191,6 +188,9 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             )}
           >
             {children}
+            {enableProgressbar ? (
+              <ProgressIndicator scrollYProgress={scrollYProgress} />
+            ) : null}
             {isVisible && !isOpen ? (
               <Button
                 onClick={() => scrollToTop()}

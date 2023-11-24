@@ -110,10 +110,20 @@ const BlogsPage = ({ location }: PageProps) => {
       })
   );
 
-  const viewBlogDetails = useCallback((slug: string) => {
-    const blogUrl = `/post/#/${slug}`.replace(/\/$/, '');
-    navigate(blogUrl);
-  }, []);
+  const viewBlogDetails = useCallback(
+    (slug: string) => {
+      const blogUrl = `/post/#/${slug}`.replace(/\/$/, '');
+      const blogListQueryParam = queryString.stringify({
+        tags: selectedTag,
+        categories: selectedCategory,
+        page: currentPage,
+      });
+      navigate(blogUrl, {
+        state: { queryString: blogListQueryParam },
+      });
+    },
+    [currentPage, selectedCategory, selectedTag]
+  );
 
   return (
     <>

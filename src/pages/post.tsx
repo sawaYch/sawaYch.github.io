@@ -48,8 +48,10 @@ const Post: React.FC<PageProps> = (props) => {
   }, []);
 
   const backToPrevPage = useCallback(() => {
-    navigate(-1);
-  }, []);
+    // eslint-disable-next-line no-restricted-globals
+    const blogPageQueryString = (location?.state as any)?.queryString;
+    navigate(blogPageQueryString ? `/blogs?${blogPageQueryString}` : '/blogs');
+  }, [location?.state]);
 
   const slug = useMemo(
     () => location.hash.replace('#/', '').split('#')[0].replace('/', ''),

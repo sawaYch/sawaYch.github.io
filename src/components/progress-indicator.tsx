@@ -11,7 +11,7 @@ const ProgressIndicator = ({ scrollYProgress }: ProgressIndicatorProps) => {
     restDelta: 0.001,
   });
 
-  return <motion.div className="progress-bar" style={{ scaleX }} />;
+  return <motion.div className="progress-bar z-[51]" style={{ scaleX }} />;
 };
 
 export default ProgressIndicator;
