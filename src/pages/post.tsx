@@ -48,7 +48,7 @@ const Post: React.FC<PageProps> = (props) => {
   }, []);
 
   const backToPrevPage = useCallback(() => {
-    navigate('/blogs');
+    navigate(-1);
   }, []);
 
   const slug = useMemo(
@@ -433,12 +433,12 @@ const Post: React.FC<PageProps> = (props) => {
                                   src={src ?? ''}
                                   alt={alt}
                                   loader={
-                                    <div className="flex flex-col items-center justify-center w-[46ch] ipad:w-[80ch] sm:w-[60ch]">
-                                      <Spinner className="flex !w-24 !h-24" />
+                                    <div className="flex flex-col items-center justify-center w-[46ch] h-[32ch] ipad:w-[80ch] sm:w-[60ch]">
+                                      <Spinner />
                                     </div>
                                   }
                                   unloader={
-                                    <div className="flex flex-col items-center justify-center w-[46ch] ipad:w-[80ch] sm:w-[60ch]">
+                                    <div className="flex flex-col items-center justify-center w-[46ch] h-[32ch] ipad:w-[80ch] sm:w-[60ch]">
                                       <FcRemoveImage size="5rem" />
                                       <div>Fail to load image</div>
                                     </div>
@@ -449,6 +449,10 @@ const Post: React.FC<PageProps> = (props) => {
                           )}
                         </TransformWrapper>
                       );
+                    },
+                    p(paragraphProps) {
+                      const { children } = paragraphProps;
+                      return <span>{children}</span>;
                     },
                   }}
                   className="m-auto pb-20 prose sm:prose-lg prose-invert prose-pink max-w-[46ch] ipad:max-w-[80ch]  sm:max-w-[60ch] px-8"
