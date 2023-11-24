@@ -17,13 +17,14 @@ import AnimatedCursor from 'react-animated-cursor';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { FaCube } from '@react-icons/all-files/fa/FaCube';
-import { motion, useCycle, useScroll, useSpring } from 'framer-motion';
+import { motion, useCycle, useScroll } from 'framer-motion';
 import MatrixRain from './matrix-rain';
 import BackgroundContainer from './background-container';
 import Header from './header';
 import Footer from './footer';
 import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
+import ProgressIndicator from './progress-indicator';
 
 const StyledMain = tw.main`flex-auto overflow-x-hidden z-0`;
 
@@ -117,11 +118,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   );
 
   const { scrollYProgress } = useScroll({ container: ref, target: ref });
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-    restDelta: 0.001,
-  });
 
   const handlePageSelected = useCallback(() => {
     toggleAppMenu();
@@ -183,7 +179,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             />
           )}
           {enableProgressbar ? (
-            <motion.div className="progress-bar z-[90]" style={{ scaleX }} />
+            <ProgressIndicator scrollYProgress={scrollYProgress} />
           ) : null}
           <div
             id="main-container"

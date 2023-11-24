@@ -27,6 +27,7 @@
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 
 /* Track */
@@ -203,6 +204,7 @@ html {
     rgba(255, 121, 198, 1) 100%
   );
   transform-origin: 0%;
+  z-index: 51;
 }
 
 iframe {

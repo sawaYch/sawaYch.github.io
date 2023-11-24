@@ -181,7 +181,7 @@ const EventPage = () => {
             className="z-50 ml-2 text-dracula-buffy-200"
           />
         }
-        text="Events"
+        text="Moments Unleashed, Memories Created"
       />
       <Tabs.Group
         aria-label="Events Tab"
