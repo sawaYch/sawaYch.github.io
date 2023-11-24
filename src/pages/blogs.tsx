@@ -1,5 +1,5 @@
 import { Badge, Pagination } from 'flowbite-react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { FaRegFrownOpen } from '@react-icons/all-files/fa/FaRegFrownOpen';
 import { useQuery } from '@tanstack/react-query';
@@ -151,37 +151,45 @@ const BlogsPage = () => {
       </div>
       <hr className="w-48 h-1 mx-auto my-2 border-0 rounded bg-gradient-to-r from-pink-500 to-violet-500" />
       {blogDataIsLoading ? <Spinner className="!w-12 !h-12 mt-4" /> : null}
-      {blogData?.blogData.length === 0 ? (
-        <div className="flex flex-col items-center justify-center w-full uppercase min-h-[25.5rem]">
-          <div className="flex gap-2">
-            <FaRegFrownOpen size="1.2rem" />
-            No post is found !
+      <AnimatePresence>
+        {blogData?.blogData.length === 0 || blogData == null ? (
+          <div className="flex flex-col items-center justify-center w-full uppercase min-h-[25.5rem]">
+            <div className="flex gap-2">
+              <FaRegFrownOpen size="1.2rem" />
+              No post is found !
+            </div>
           </div>
-        </div>
-      ) : (
-        <motion.div
-          variants={{
-            open: {
-              transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-            },
-            closed: {
-              transition: { staggerChildren: 0.05, staggerDirection: -1 },
-            },
-          }}
-          initial="closed"
-          animate="open"
-          // className="grid grid-cols-1 gap-4 px-10 mt-2 mb-8 md:gap-10 sm:grid-cols-3" // NOTE: tweak: not using card grid
-          className="flex flex-col w-full gap-2 px-4 pb-4"
-        >
-          {blogData?.blogData.map((it) => (
-            <BlogCard
-              key={it.id}
-              data={it}
-              onClick={() => viewBlogDetails(it.slug, it)}
-            />
-          ))}
-        </motion.div>
-      )}
+        ) : (
+          <motion.div
+            variants={{
+              hidden: {
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.1,
+                },
+              },
+              visible: {
+                rotate: 0,
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.1,
+                },
+              },
+            }}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col w-full gap-2 px-10 mt-2 mb-2 sm:w-1/2" // NOTE: tweak: not using card grid
+          >
+            {blogData.blogData.map((it) => (
+              <BlogCard
+                key={it.id}
+                data={it}
+                onClick={() => viewBlogDetails(it.slug, it)}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {blogData && blogData.pagination.pageCount > 1 && (
         <Pagination
           className="flex self-center mb-8"
