@@ -30,7 +30,7 @@ import {
   TransformWrapper,
 } from 'react-zoom-pan-pinch';
 import Spinner from '../components/spinner';
-import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
+import fetchBlogs from '../apis/fetch-blogs';
 import { formatDateMonthName } from '../utils/format-date';
 import CodeCopyToolbar from '../components/code-copy-toolbar';
 import BlogPostHeading from '../components/blogpost-heading';
@@ -61,26 +61,15 @@ const Post: React.FC<PageProps> = (props) => {
     [location.hash]
   );
 
-  const postDataPassingIn = useMemo(() => {
-    if ((location?.state as { postData: BlogData })?.postData == null)
-      return null;
-
-    return (location.state as { postData: BlogData }).postData;
-  }, [location]);
-
   const { data, isLoading, isError } = useQuery(
     [`post/#/${slug}`],
     () => fetchBlogs({ page: 1, pageSize: 1, tags: [], categories: [], slug }),
     {
-      enabled:
-        postDataPassingIn == null && slug?.trim().length !== 0 && slug != null,
+      enabled: slug?.trim().length !== 0 && slug != null,
     }
   );
 
-  const finalBlogData = useMemo(() => {
-    if (postDataPassingIn) return postDataPassingIn;
-    return data?.blogData[0];
-  }, [data, postDataPassingIn]);
+  const finalBlogData = useMemo(() => data?.blogData[0], [data]);
 
   const blogUpdatedDate = useMemo(
     () => (finalBlogData ? formatDateMonthName(finalBlogData.updatedAt) : null),
@@ -192,7 +181,7 @@ const Post: React.FC<PageProps> = (props) => {
           >
             <FaAngleLeft aria-hidden className="w-6 h-6" />
           </button>
-          {!postDataPassingIn && isLoading && (
+          {isLoading && (
             <div className="flex flex-col items-center justify-center w-full mt-10">
               <Spinner />
             </div>

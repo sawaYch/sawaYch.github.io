@@ -58,7 +58,7 @@ const fetchBlogs = async ({
       )
       .join('');
     res = await ApiFetch(
-      `/articles?populate=*&sort[0]=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
+      `/articles?fields[0]=slug&fields[1]=title&fields[2]=slug&fields[3]=updatedAt&populate[0]=tags&populate[1]=categories&populate[2]=cover&sort[0]=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
     );
   } else {
     res = await ApiFetch(

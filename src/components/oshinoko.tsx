@@ -82,7 +82,7 @@ const Oshinoko = ({ data }: OshinokoProps) => {
             </div>
           </div>
         </div>
-        <div className="relative w-screen mt-10 h-[24rem]">
+        <div className="relative w-screen mt-4 h-[24rem]">
           <div className="absolute p-2  left-[50%] -translate-x-[11.5rem] sm:-translate-x-72">
             {oshinokoImageNode}
           </div>

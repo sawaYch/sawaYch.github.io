@@ -11,7 +11,7 @@ import Spinner from '../components/spinner';
 import Cube from '../components/cube';
 import BlogCard from '../components/blog-card';
 import fetchCategories from '../apis/fetch-categories';
-import fetchBlogs, { BlogData } from '../apis/fetch-blogs';
+import fetchBlogs from '../apis/fetch-blogs';
 
 const BlogsPage = () => {
   const { data: tagData, isLoading: tagDataIsLoading } = useQuery(
@@ -23,7 +23,7 @@ const BlogsPage = () => {
     fetchCategories
   );
 
-  const defaultPagingSize = 6;
+  const defaultPagingSize = 10;
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedTag, setSelectedTag] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
@@ -65,13 +65,9 @@ const BlogsPage = () => {
       })
   );
 
-  const viewBlogDetails = useCallback((slug: string, postData: BlogData) => {
+  const viewBlogDetails = useCallback((slug: string) => {
     const blogUrl = `/post/#/${slug}`.replace(/\/$/, '');
-    navigate(blogUrl, {
-      state: {
-        postData,
-      },
-    });
+    navigate(blogUrl);
   }, []);
 
   return (
@@ -184,7 +180,7 @@ const BlogsPage = () => {
               <BlogCard
                 key={it.id}
                 data={it}
-                onClick={() => viewBlogDetails(it.slug, it)}
+                onClick={() => viewBlogDetails(it.slug)}
               />
             ))}
           </motion.div>
