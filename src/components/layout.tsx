@@ -163,7 +163,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
           />
         )}
         <Header />
-        <StyledMain ref={ref}>
+        <StyledMain id="main" ref={ref}>
           <StaticImage
             className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-20"
             src="../images/girl.png"

@@ -33,10 +33,10 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
   const variants = useMemo(
     () => ({
       open: {
-        transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+        // transition: { staggerChildren: 0.07, delayChildren: 0.2 },
       },
       closed: {
-        transition: { staggerChildren: 0.01, staggerDirection: -1 },
+        // transition: { staggerChildren: 0.01, staggerDirection: -1 },
       },
     }),
     []
