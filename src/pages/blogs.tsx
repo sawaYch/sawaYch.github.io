@@ -13,6 +13,7 @@ import Cube from '../components/cube';
 import BlogCard from '../components/blog-card';
 import fetchCategories from '../apis/fetch-categories';
 import fetchBlogs from '../apis/fetch-blogs';
+import BadgeTheme from '../components/badge-theme';
 
 const BlogsPage = ({ location }: PageProps) => {
   const { data: tagData, isLoading: tagDataIsLoading } = useQuery(
@@ -154,7 +155,6 @@ const BlogsPage = ({ location }: PageProps) => {
             {tagDataIsLoading ? <Spinner /> : null}
             {tagData?.map((it) => (
               <Badge
-                // style={{backgroundColor: it.color}} //need handle bg and font color, prefer flowbite react preset
                 color={it.color}
                 key={it.id}
                 className={cn(
@@ -167,6 +167,7 @@ const BlogsPage = ({ location }: PageProps) => {
                 onClick={() => {
                   handleTagSelection(it.name);
                 }}
+                theme={BadgeTheme}
               >
                 {it.name}
               </Badge>
@@ -193,6 +194,7 @@ const BlogsPage = ({ location }: PageProps) => {
                 onClick={() => {
                   handleCategorySelection(it.name);
                 }}
+                theme={BadgeTheme}
               >
                 {it.name}
               </Badge>

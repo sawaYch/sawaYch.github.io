@@ -38,6 +38,7 @@ import slugify from '../utils/slugify';
 import ListOfContent, { TOCData } from '../components/list-of-content';
 import SEOHead from '../components/seo-head';
 import ImagePanControls from '../components/image-pan-control';
+import BadgeTheme from '../components/badge-theme';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -228,12 +229,12 @@ const Post: React.FC<PageProps> = (props) => {
                   </div>
                   <div className="flex items-center justify-center gap-1 uppercase">
                     {finalBlogData.tags.map((t) => (
-                      <Badge key={t.name} color={t.color}>
+                      <Badge key={t.name} color={t.color} theme={BadgeTheme}>
                         {t.name}
                       </Badge>
                     ))}
                     {finalBlogData.categories.map((t) => (
-                      <Badge key={t.name} color={t.color}>
+                      <Badge key={t.name} color={t.color} theme={BadgeTheme}>
                         {t.name}
                       </Badge>
                     ))}
