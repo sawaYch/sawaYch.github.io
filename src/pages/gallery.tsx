@@ -21,6 +21,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'classnames';
+import { StaticImage } from 'gatsby-plugin-image';
 import { isMobile } from 'react-device-detect';
 import { Img } from 'react-image';
 import { saveAs } from 'file-saver';
@@ -298,6 +299,41 @@ const GalleryPage = () => {
               </div>
               {openDesc && (
                 <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">
+                  {gallery.images.length > 1 && (
+                    <div className="flex w-full p-[2px] mb-2 overflow-x-auto border-2 rounded-md border-dracula-dark-700">
+                      {gallery.images.map((it, idx) => (
+                        <Img
+                          className={cn(
+                            'object-cover h-[2.5rem] hover:border-dracula-purple border-2 border-dracula-dark/0 rounded-md',
+                            {
+                              'border-dracula-pink':
+                                previewCurrentPage === idx + 1,
+                            }
+                          )}
+                          src={it.formats.thumbnail.url}
+                          alt={`gallery-images ${it.name} thumbnail`}
+                          loader={
+                            <div className="flex flex-col items-center justify-center w-full h-[2.5rem]">
+                              <Spinner />
+                            </div>
+                          }
+                          unloader={
+                            <div className="flex flex-col items-center justify-center w-full h-[2.5rem]">
+                              <StaticImage
+                                src="../../images/home.webp"
+                                alt="back to home"
+                                layout="constrained"
+                                height={240}
+                              />
+                            </div>
+                          }
+                          onClick={() => {
+                            setPreviewCurrentPage(idx + 1);
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <button
                       aria-label="hide"
