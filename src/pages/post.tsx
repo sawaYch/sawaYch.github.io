@@ -217,7 +217,7 @@ const Post: React.FC<PageProps> = (props) => {
                     }
                   />
                 </div>
-                <div className="flex items-center justify-center w-screen font-sans text-5xl font-extrabold">
+                <div className="flex items-center justify-center w-screen font-sans text-3xl font-extrabold sm:text-5xl">
                   <span className="text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
                     {finalBlogData.title}
                   </span>
@@ -240,7 +240,7 @@ const Post: React.FC<PageProps> = (props) => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
-                  <ListOfContent data={tocData} className="mt-12" />
+                  <ListOfContent data={tocData} className="mt-12 w-[45ch]" />
                   <div className="flex flex-col">
                     <div className="flex mt-6">
                       <svg
@@ -457,7 +457,7 @@ const Post: React.FC<PageProps> = (props) => {
                       return <span>{children}</span>;
                     },
                   }}
-                  className="m-auto pb-20 prose sm:prose-lg prose-invert prose-pink max-w-[46ch] ipad:max-w-[80ch]  sm:max-w-[60ch] px-8"
+                  className="m-auto pb-20 break-words prose sm:prose-lg prose-invert prose-pink max-w-[46ch] ipad:max-w-[80ch]  sm:max-w-[60ch] px-8"
                 >
                   {finalBlogData.content}
                 </ReactMarkdown>
