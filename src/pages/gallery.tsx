@@ -304,7 +304,7 @@ const GalleryPage = () => {
                       {gallery.images.map((it, idx) => (
                         <Img
                           className={cn(
-                            'object-cover h-[2.5rem] hover:border-dracula-purple border-2 border-dracula-dark/0 rounded-md',
+                            'object-contain w-[4rem] h-[2.5rem] hover:border-dracula-purple border-2 border-dracula-dark/0 rounded-md',
                             {
                               'border-dracula-pink':
                                 previewCurrentPage === idx + 1,
@@ -313,12 +313,12 @@ const GalleryPage = () => {
                           src={it.formats.thumbnail.url}
                           alt={`gallery-images ${it.name} thumbnail`}
                           loader={
-                            <div className="flex flex-col items-center justify-center w-full h-[2.5rem]">
+                            <div className="flex flex-col items-center justify-center object-contain w-[4rem] h-[2.5rem] border-dracula-dark border-2">
                               <Spinner />
                             </div>
                           }
                           unloader={
-                            <div className="flex flex-col items-center justify-center w-full h-[2.5rem]">
+                            <div className="flex flex-col items-center justify-center object-contain w-[4rem] h-[2.5rem]">
                               <StaticImage
                                 src="../../images/home.webp"
                                 alt="back to home"

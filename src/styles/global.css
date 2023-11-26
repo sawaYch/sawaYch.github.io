@@ -43,7 +43,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: transparent;
+background: transparent;
 }
 
 @font-face {
@@ -54,19 +54,19 @@
 
 @font-face {
   font-family: 'KuGraph';
-  src: url('/fonts/kug.ttf');
+  src: url('/fonts/kug.woff2');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Ku';
-  src: url('/fonts/ku.ttf');
+  src: url('/fonts/ku.woff2');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'CubicBlock';
-  src: url('/fonts/cubicblock_s.ttf');
+  src: url('/fonts/cubicblock_s.woff2');
   font-display: swap;
 }
 
