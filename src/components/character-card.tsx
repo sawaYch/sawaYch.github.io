@@ -81,7 +81,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
         </PaneColumn>
       </div>
       <Img
-        className="w-full h-full p-8 mt-10 pointer-events-none select-none"
+        className="w-full h-full mt-10 pointer-events-none select-none p0 sm:p-8"
         src="https://raw.githubusercontent.com/sawaYch/sawaYch/main/github-metrics.svg"
         alt="metrics"
         loader={
