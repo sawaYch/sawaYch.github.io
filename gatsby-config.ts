@@ -81,7 +81,6 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        root: __dirname,
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',

@@ -209,7 +209,7 @@ const Post: React.FC<PageProps> = (props) => {
                     unloader={
                       <div className="flex flex-col items-center justify-center h-full">
                         <StaticImage
-                          src="../../images/home.webp"
+                          src="../images/home.webp"
                           alt="back to home"
                           layout="constrained"
                           height={240}

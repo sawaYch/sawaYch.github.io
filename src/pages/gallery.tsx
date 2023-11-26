@@ -320,7 +320,7 @@ const GalleryPage = () => {
                           unloader={
                             <div className="flex flex-col items-center justify-center object-contain w-[4rem] h-[2.5rem]">
                               <StaticImage
-                                src="../../images/home.webp"
+                                src="../images/home.webp"
                                 alt="back to home"
                                 layout="constrained"
                                 height={240}
