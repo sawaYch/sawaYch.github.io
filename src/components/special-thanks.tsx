@@ -1,24 +1,29 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 import PaneContainer from './pane-container';
 
 const SpecialThanks = () => (
   <motion.div
     className="!w-fit !h-fit flex justify-center items-center"
-    variants={{
-      offscreen: {
-        x: 100,
-        opacity: 0,
-      },
-      onscreen: {
-        x: 0,
-        opacity: 1,
-        transition: {
-          type: 'spring',
-          stiffness: 100,
-        },
-      },
-    }}
+    variants={
+      isMobile
+        ? undefined
+        : {
+            offscreen: {
+              x: 100,
+              opacity: 0,
+            },
+            onscreen: {
+              x: 0,
+              opacity: 1,
+              transition: {
+                type: 'spring',
+                stiffness: 100,
+              },
+            },
+          }
+    }
     initial="offscreen"
     whileInView="onscreen"
     viewport={{ once: true, amount: 0 }}

@@ -7,6 +7,7 @@ import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import { StaticImage } from 'gatsby-plugin-image';
+import { isMobile } from 'react-device-detect';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
 import useCurrentModules from '../utils/use-current-modules';
@@ -148,22 +149,35 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
       <motion.div variants={variants}>
         <motion.div
           className="mx-8 mt-4 mb-12 text-2xl tracking-widest bg-opacity-50 select-none purple-text-shadow"
-          variants={{
-            open: {
-              x: 0,
-              opacity: 1,
-              transition: {
-                x: { stiffness: 1000, velocity: -100 },
-              },
-            },
-            closed: {
-              x: 100,
-              opacity: 0,
-              transition: {
-                x: { stiffness: 1000 },
-              },
-            },
-          }}
+          variants={
+            isMobile
+              ? {
+                  open: {
+                    x: 0,
+                    opacity: 1,
+                  },
+                  closed: {
+                    x: 100,
+                    opacity: 0,
+                  },
+                }
+              : {
+                  open: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      x: { stiffness: 1000, velocity: -100 },
+                    },
+                  },
+                  closed: {
+                    x: 100,
+                    opacity: 0,
+                    transition: {
+                      x: { stiffness: 1000 },
+                    },
+                  },
+                }
+          }
         >
           <div className="w-fit">
             <div className="h-[1.5rem] -mb-8 -mx-8 bg-dracula-purple-400/30 -skew-x-12 backdrop-blur-sm" />

@@ -2,24 +2,36 @@ import { motion } from 'framer-motion';
 import { ReactElement, useMemo, useRef, useState } from 'react';
 import { useEventListener } from '@react-hooks-library/core';
 import cn from 'classnames';
+import { isMobile } from 'react-device-detect';
 import Cube, { CubeColorType, cubeColorMap } from './cube';
 
-const variants = {
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
-  },
-  closed: {
-    y: 25,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
-  },
-};
+const variants = isMobile
+  ? {
+      open: {
+        y: 0,
+        opacity: 1,
+      },
+      closed: {
+        y: 25,
+        opacity: 0,
+      },
+    }
+  : {
+      open: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          y: { stiffness: 1000, velocity: -100 },
+        },
+      },
+      closed: {
+        y: 25,
+        opacity: 0,
+        transition: {
+          y: { stiffness: 1000 },
+        },
+      },
+    };
 
 interface MenuItemProps {
   cubeColor?: CubeColorType;

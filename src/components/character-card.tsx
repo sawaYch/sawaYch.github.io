@@ -5,6 +5,7 @@ import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import cn from 'classnames';
 import tw from 'twin.macro';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 import AboutMe from '../content/about-me.mdx';
 import PaneContainer from './pane-container';
 import SpecCard from './spec-card';
@@ -22,19 +23,23 @@ const ImageWrapper: (children: ReactNode) => React.JSX.Element = (children) => (
 const CharacterCard = ({ className }: CharacterCardProps) => (
   <motion.div
     className="flex justify-center w-1/2 portrait:w-4/5 item-center"
-    variants={{
-      offscreen: {
-        opacity: 0,
-        scale: 0.5,
-      },
-      onscreen: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-          duration: 0.5,
-        },
-      },
-    }}
+    variants={
+      isMobile
+        ? undefined
+        : {
+            offscreen: {
+              opacity: 0,
+              scale: 0.5,
+            },
+            onscreen: {
+              opacity: 1,
+              scale: 1,
+              transition: {
+                duration: 0.5,
+              },
+            },
+          }
+    }
     initial="offscreen"
     whileInView="onscreen"
     viewport={{ once: true }}

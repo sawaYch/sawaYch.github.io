@@ -2,6 +2,7 @@ import { Timeline } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import { FC, ReactElement, SVGProps, useMemo } from 'react';
 import { BsFillBriefcaseFill } from '@react-icons/all-files/bs/BsFillBriefcaseFill';
+import { isMobile } from 'react-device-detect';
 
 export interface VoidTimeItemProps {
   time: string;
@@ -54,18 +55,22 @@ const VoidTimelineItem = ({
 
   return (
     <motion.div
-      variants={{
-        offscreen: {
-          opacity: 0,
-        },
-        onscreen: {
-          opacity: 1,
-          transition: {
-            duration: 0.5,
-            delay: (order ?? 1) * 0.5,
-          },
-        },
-      }}
+      variants={
+        isMobile
+          ? undefined
+          : {
+              offscreen: {
+                opacity: 0,
+              },
+              onscreen: {
+                opacity: 1,
+                transition: {
+                  duration: 0.5,
+                  delay: (order ?? 1) * 0.5,
+                },
+              },
+            }
+      }
       initial="offscreen"
       whileInView="onscreen"
       layout="position"

@@ -95,25 +95,41 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   }, [toggleOpen]);
 
   const sidebar = useMemo(
-    () => ({
-      open: () => ({
-        clipPath: `circle(250vw at 100% 100%)`,
-        transition: {
-          type: 'linear',
-          stiffness: 100,
-          restDelta: 2,
-        },
-      }),
-      closed: {
-        clipPath: `circle(0vw at 100% 100%)`,
-        transition: {
-          delay: 0.5,
-          type: 'spring',
-          stiffness: 400,
-          damping: 40,
-        },
-      },
-    }),
+    () =>
+      isMobile
+        ? {
+            open: () => ({
+              y: 0,
+              width: `100vw`,
+              heigh: `1000vh`,
+              opacity: 1,
+            }),
+            closed: {
+              y: `100vh`,
+              width: `100vw`,
+              heigh: `100vh`,
+              opacity: 0,
+            },
+          }
+        : {
+            open: () => ({
+              clipPath: `circle(250vw at 100% 100%)`,
+              transition: {
+                type: 'linear',
+                stiffness: 100,
+                restDelta: 2,
+              },
+            }),
+            closed: {
+              clipPath: `circle(0vw at 100% 100%)`,
+              transition: {
+                delay: 0.5,
+                type: 'spring',
+                stiffness: 400,
+                damping: 40,
+              },
+            },
+          },
     []
   );
 

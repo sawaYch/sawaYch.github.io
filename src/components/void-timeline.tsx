@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaSchool } from '@react-icons/all-files/fa/FaSchool';
 import { FaBaby } from '@react-icons/all-files/fa/FaBaby';
+import { isMobile } from 'react-device-detect';
 
 import tw from 'twin.macro';
 import PaneContainer from './pane-container';
@@ -94,21 +95,25 @@ const VoidTimeline = () => {
     <PaneContainer className="!bg-transparent !border-0 flex !items-start !justify-center !w-3/4 !h-1/2">
       <motion.div
         className="!w-fit !h-fit"
-        variants={{
-          offscreen: {
-            scaleY: 0,
-            originY: 'top',
-            opacity: 0,
-          },
-          onscreen: {
-            scaleY: 1,
-            originY: 'top',
-            opacity: 1,
-            transition: {
-              duration: 1,
-            },
-          },
-        }}
+        variants={
+          isMobile
+            ? undefined
+            : {
+                offscreen: {
+                  scaleY: 0,
+                  originY: 'top',
+                  opacity: 0,
+                },
+                onscreen: {
+                  scaleY: 1,
+                  originY: 'top',
+                  opacity: 1,
+                  transition: {
+                    duration: 1,
+                  },
+                },
+              }
+        }
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ once: true }}
