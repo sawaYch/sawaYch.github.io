@@ -95,15 +95,9 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
       isMobile
         ? {
             open: () => ({
-              y: 0,
-              width: `100vw`,
-              heigh: `1000vh`,
               opacity: 1,
             }),
             closed: {
-              y: `100vh`,
-              width: `100vw`,
-              heigh: `100vh`,
               opacity: 0,
             },
           }
@@ -252,7 +246,11 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
               </Button>
               <motion.div
                 className={cn(
-                  '!z-[58] fixed top-0 bottom-0 left-0 w-screen h-screen py-12 bg-dracula-darker/80 backdrop-blur-sm'
+                  '!z-[58] top-0 bottom-0 left-0 w-screen h-screen py-12 bg-dracula-darker/80 backdrop-blur-sm',
+                  {
+                    fixed: isMobile ? isOpen : true,
+                    hidden: isMobile ? !isOpen : false,
+                  }
                 )}
                 variants={sidebar}
                 onAnimationComplete={onAnimationComplete}
