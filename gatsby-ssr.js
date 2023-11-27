@@ -23,3 +23,40 @@ export const wrapPageElement = ({ element, props }) => {
   // Apply the layout component to other pages
   return <Layout {...props}>{element}</Layout>;
 };
+
+export const onRenderBody = ({ setHeadComponents }) => {
+  setHeadComponents([
+    <link
+      rel="preload"
+      href="/fonts/cubic.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+      key="cubicFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/ku.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+      key="kuFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/kug.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+      key="kuGraphFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/cubicblock_s.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+      key="cubicBlockFont"
+    />,
+  ]);
+};

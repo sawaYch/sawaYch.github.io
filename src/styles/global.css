@@ -4,23 +4,23 @@
 
 @layer base {
   h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl text-dracula-buffy;
+    @apply text-2xl font-bold font-primary md:text-4xl text-dracula-buffy;
   }
 
   h2 {
-    @apply font-primary text-xl font-bold md:text-3xl text-dracula-dracula mb-4;
+    @apply mb-4 text-xl font-bold font-primary md:text-3xl text-dracula-dracula;
   }
 
   h3 {
-    @apply font-primary text-lg font-bold md:text-2xl text-dracula-buffy mb-2;
+    @apply mb-2 text-lg font-bold font-primary md:text-2xl text-dracula-buffy;
   }
 
   h4 {
-    @apply font-primary text-base font-bold md:text-lg;
+    @apply text-base font-bold font-primary md:text-lg;
   }
 
   body {
-    @apply font-primary text-sm md:text-sm;
+    @apply text-sm font-primary md:text-sm;
   }
 }
 
@@ -47,25 +47,22 @@
 }
 
 @font-face {
-  font-family: 'Cubic';
+  font-family: Cubic;
   src: url('/fonts/cubic.woff2');
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'KuGraph';
+  font-family: KuGraph;
   src: url('/fonts/kug.woff2');
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'Ku';
+  font-family: Ku;
   src: url('/fonts/ku.woff2');
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'CubicBlock';
+  font-family: CubicBlock;
   src: url('/fonts/cubicblock_s.woff2');
   font-display: swap;
 }

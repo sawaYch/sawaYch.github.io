@@ -9,7 +9,6 @@ import {
   useState,
 } from 'react';
 import { PageProps } from 'gatsby';
-import { StaticImage } from 'gatsby-plugin-image';
 import { Flowbite, Button } from 'flowbite-react';
 import { isIPad13, isTablet, isMobile } from 'react-device-detect';
 import AnimatedCursor from 'react-animated-cursor';
@@ -177,12 +176,12 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
         )}
         <Header />
         <main id="main" ref={ref} className="z-0 flex-auto overflow-x-hidden">
-          <StaticImage
+          {/* <StaticImage
             className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-20"
             src="../images/girl.png"
             alt="background images"
             layout="fullWidth"
-          />
+          /> */}
           {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
           {isMobile ? null : (
