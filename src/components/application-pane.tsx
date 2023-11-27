@@ -131,7 +131,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
       icon: (
         <StaticImage
           src="../images/mya88.webp"
-          alt="mya88"
+          alt="mya88 module icon"
           width={64}
           height={64}
         />

@@ -1,9 +1,10 @@
-<p align="center"><a href="https://github.com/sawaYch/sawaYch.github.io"><img alt="icon" src="./src/images/favicon.webp" width="60" /></a><a href="https://www.gatsbyjs.com"><img alt="icon" src="./src/images/gatsby.svg" width="60" /></a></p>
+<p align="center"><a href="https://github.com/sawaYch/sawaYch.github.io"><img alt="icon" src="./src/images/favicon.webp" width="60" /></a></p>
 <div align="center" style="font-size:1.5em">
   SawaYch.github.io
 </div><div align="center" style="font-size:1em">Personal site boilerplate based on <a href="https://github.com/gatsbyjs/gatsby-starter-minimal-ts" target="_blank" rel="noopener noreferrer">Gatsby Minimal TypeScript Starter</a></div>
 
 ---
+
 [![Code Check](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/code-check.yml/badge.svg?branch=develop)](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/code-check.yml)
 [![Deploy Gatsby SSG](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/sawaYch/sawaYch.github.io/actions/workflows/deploy.yml)  
 This repository is not intended to be used as a Gatsby theme.  
@@ -43,11 +44,12 @@ Instead, it serves as a boilerplate specifically designed for deploying Gatsby S
 
 ## 🧰 Deploy
 
-This site are design to use SSG (Static Site Generation) and deploy to github.io page.  
+This site are design to use SSG (Static Site Generation) and deploy to github.io page.
 
-By default, this repo use:  
-  - `develop` branch storing site codebase
-  - `master` branch for the source hosting of Gatsby SSG bundled result.  
+By default, this repo use:
+
+- `develop` branch storing site codebase
+- `master` branch for the source hosting of Gatsby SSG bundled result.
 
 Deploy this site using **npm script** or **github action**.
 

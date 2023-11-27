@@ -64,7 +64,7 @@ const SpecialThanks = () => (
           </div>
         </div>
       </div>
-      <h5 className="mt-4 text-center">Ku</h5>
+      <div className="mt-4 text-center">Ku</div>
       <div className="flex flex-wrap items-center justify-center w-full">
         <span className="text-2xl font-ku">Lorem&nbsp;</span>
         <span className="text-xl font-ku">ipsum&nbsp;</span>
@@ -72,7 +72,7 @@ const SpecialThanks = () => (
         <span className="text-md font-ku">sit&nbsp;</span>
         <span className="text-sm font-ku">amet&nbsp;</span>
       </div>
-      <h5 className="text-center">Ku Graph</h5>
+      <div className="text-center">Ku Graph</div>
       <div className="flex flex-wrap items-center justify-center w-full">
         <span className="text-2xl font-graph">Lorem&nbsp;</span>
         <span className="text-xl font-graph">ipsum&nbsp;</span>

@@ -233,6 +233,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                   }
                 )}
                 pill
+                aria-label="application menu FAB button"
                 color="dark"
               >
                 <svg width="0" height="0">
