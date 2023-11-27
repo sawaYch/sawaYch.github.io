@@ -1,19 +1,32 @@
 /* eslint-disable react/style-prop-object */
+import { PropsWithChildren } from 'react';
 import { Card, Tabs } from 'flowbite-react';
 import { BsFlagFill } from '@react-icons/all-files/bs/BsFlagFill';
 import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaUniversity } from '@react-icons/all-files/fa/FaUniversity';
-import tw from 'twin.macro';
 import PaneContainer from '../components/pane-container';
 import CTFTimeBadge from '../components/ctftime-badge';
 import SectionTitle from '../components/section-title';
 
-const TabItemContainer = tw.div`grid gap-2 p-2 overflow-auto grid-cols-1 sm:grid-cols-2 h-fit auto-rows-max auto-cols-max`;
+const TabItemContainer = ({ children }: PropsWithChildren) => (
+  <div className="grid grid-cols-1 gap-2 p-2 overflow-auto sm:grid-cols-2 h-fit auto-rows-max auto-cols-max">
+    {children}
+  </div>
+);
 
-const StyledUnorderedList = tw.ul`list-disc list-inside mt-2`;
+const StyledUnorderedList = ({ children }: PropsWithChildren) => (
+  <ul className="mt-2 list-disc list-inside">{children}</ul>
+);
 
-const CardTitle = tw.h5`font-bold tracking-tight text-dracula-purple-300`;
-const CardContent = tw.div`font-normal text-gray-400`;
+const CardTitle = ({ children }: PropsWithChildren) => (
+  <h5 className="font-bold tracking-tight text-dracula-purple-300">
+    {children}
+  </h5>
+);
+
+const CardContent = ({ children }: PropsWithChildren) => (
+  <div className="font-normal text-gray-400">{children}</div>
+);
 
 const EventPage = () => {
   const customTabTheme = {

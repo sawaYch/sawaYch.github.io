@@ -1,15 +1,20 @@
+import { PropsWithChildren } from 'react';
 import { Badge } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
-import tw from 'twin.macro';
 import { Img } from 'react-image';
 import { BlogData } from '../apis/fetch-blogs';
 import { formatDateMonthName } from '../utils/format-date';
 import Spinner from './spinner';
 
-const DateTimeSection = tw.div`flex items-center text-[0.65rem] self-end`;
-const TagCatSection = tw.div`flex flex-wrap gap-1 uppercase`;
+const DateTimeSection = ({ children }: PropsWithChildren) => (
+  <div className="flex items-center text-[0.65rem] self-end">{children}</div>
+);
+
+const TagCatSection = ({ children }: PropsWithChildren) => (
+  <div className="flex flex-wrap gap-1 uppercase">{children}</div>
+);
 
 interface BlogCardProps {
   data: BlogData;

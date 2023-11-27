@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Img } from 'react-image';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import cn from 'classnames';
-import tw from 'twin.macro';
 import { motion } from 'framer-motion';
 import { isMobile } from 'react-device-detect';
 import AboutMe from '../content/about-me.mdx';
@@ -15,7 +14,20 @@ interface CharacterCardProps {
   className?: string;
 }
 
-const PaneColumn = tw.div`flex flex-col items-start content-start justify-center grow m-4`;
+const PaneColumn = ({
+  children,
+  className,
+}: PropsWithChildren<CharacterCardProps>) => (
+  <div
+    className={cn(
+      'flex flex-col items-start content-start justify-center m-4 grow',
+      className
+    )}
+  >
+    {children}
+  </div>
+);
+
 const ImageWrapper: (children: ReactNode) => React.JSX.Element = (children) => (
   <div className="w-full h-full">{children}</div>
 );

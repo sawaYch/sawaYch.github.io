@@ -1,6 +1,8 @@
-import tw from 'twin.macro';
+import { PropsWithChildren } from 'react';
 
-const BackgroundContainer = tw.div`
+const BackgroundContainer = ({ children }: PropsWithChildren) => (
+  <div
+    className={`
   font-primary
   bg-dracula-darker-800
   text-dracula-cullen
@@ -10,8 +12,10 @@ const BackgroundContainer = tw.div`
   w-screen
   flex
   flex-col
-  // overflow-hidden
-  // fixed
-`;
+`}
+  >
+    {children}
+  </div>
+);
 
 export default BackgroundContainer;

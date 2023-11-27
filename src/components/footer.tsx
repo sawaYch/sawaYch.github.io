@@ -1,9 +1,24 @@
-import tw from 'twin.macro';
+import { PropsWithChildren } from 'react';
 import { isIPad13, isTablet } from 'react-device-detect';
 import cn from 'classnames';
 import { StaticImage } from 'gatsby-plugin-image';
 
-const BottomBar = tw.div`flex select-none justify-center pl-2 pr-2 pt-1 bg-dracula-darker text-xs items-center`;
+interface BottomBarProps {
+  className: string;
+}
+const BottomBar = ({
+  children,
+  className,
+}: PropsWithChildren<BottomBarProps>) => (
+  <div
+    className={cn(
+      'flex items-center justify-center pt-1 pl-2 pr-2 text-xs select-none bg-dracula-darker',
+      className
+    )}
+  >
+    {children}
+  </div>
+);
 
 const Footer = () => (
   <footer className="z-50">

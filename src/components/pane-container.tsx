@@ -1,10 +1,8 @@
 import React, { PropsWithChildren, ReactElement } from 'react';
-import tw from 'twin.macro';
+import cn from 'classnames';
 import { FaRegWindowClose } from '@react-icons/all-files/fa/FaRegWindowClose';
 import { FaRegWindowRestore } from '@react-icons/all-files/fa/FaRegWindowRestore';
 import { FaRegWindowMinimize } from '@react-icons/all-files/fa/FaRegWindowMinimize';
-
-const StyledPaneContainerBody = tw.div`w-fit h-full bg-dracula-darker border border-dracula-aro`;
 
 interface PaneContainerProps {
   withFrame?: boolean;
@@ -18,7 +16,13 @@ const PaneContainer = React.forwardRef<
   (props: PropsWithChildren<PaneContainerProps>, ref): ReactElement => (
     <>
       {props.withFrame ? (
-        <StyledPaneContainerBody className={props.className} ref={ref}>
+        <div
+          className={cn(
+            'h-full border w-fit bg-dracula-darker border-dracula-aro',
+            props.className
+          )}
+          ref={ref}
+        >
           <div className="flex flex-col">
             <div className="flex items-center justify-end w-full h-4 bg-dracula-dracula-500 gap-x-1">
               <FaRegWindowMinimize />
@@ -27,11 +31,17 @@ const PaneContainer = React.forwardRef<
             </div>
             <div className="p-4">{props.children}</div>
           </div>
-        </StyledPaneContainerBody>
+        </div>
       ) : (
-        <StyledPaneContainerBody className={props.className} ref={ref}>
+        <div
+          className={cn(
+            'h-full border w-fit bg-dracula-darker border-dracula-aro',
+            props.className
+          )}
+          ref={ref}
+        >
           {props.children}
-        </StyledPaneContainerBody>
+        </div>
       )}
     </>
   )

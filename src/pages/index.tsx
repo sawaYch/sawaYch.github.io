@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 import { useCallback, useEffect } from 'react';
-import tw from 'twin.macro';
 import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
 import VoidTimeline from '../components/void-timeline';
@@ -17,7 +16,7 @@ export interface DataProps {
   };
 }
 
-const Placeholder = tw.div`h-[12rem]`;
+const Placeholder = () => <div className="h-[12rem]" />;
 
 const IndexPage = () => {
   const disableContextMenuOfImage = useCallback((e: MouseEvent) => {

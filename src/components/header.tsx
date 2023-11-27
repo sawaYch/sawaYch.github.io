@@ -1,13 +1,22 @@
+import { PropsWithChildren } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
-import tw from 'twin.macro';
 import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
 import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
 import { DarkThemeToggle } from 'flowbite-react';
 import IconLink from './icon-link';
 
-const TopBar = tw.nav`flex select-none justify-between bg-dracula-darker/70 shadow-md text-xs sticky top-0`;
-const StatusPane = tw.div`flex items-center justify-center gap-x-2 pl-4 pr-4 bg-dracula-pink-400/70`;
+const StatusPane = ({ children }: PropsWithChildren) => (
+  <div className="flex items-center justify-center pl-4 pr-4 gap-x-2 bg-dracula-pink-400/70">
+    {children}
+  </div>
+);
+
+const TopBar = ({ children }: PropsWithChildren) => (
+  <nav className="sticky top-0 flex justify-between text-xs shadow-md select-none bg-dracula-darker/70">
+    {children}
+  </nav>
+);
 
 const Header = () => (
   <header className="z-50">

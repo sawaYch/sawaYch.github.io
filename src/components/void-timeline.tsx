@@ -4,13 +4,15 @@ import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaSchool } from '@react-icons/all-files/fa/FaSchool';
 import { FaBaby } from '@react-icons/all-files/fa/FaBaby';
 import { isMobile } from 'react-device-detect';
+import { PropsWithChildren } from 'react';
 
-import tw from 'twin.macro';
 import PaneContainer from './pane-container';
 import VoidTimelineItem, { VoidTimeItemProps } from './void-timeline-item';
 import WavyText from './wavy-text';
 
-const IndentText = tw.div`ml-8`;
+const IndentText = ({ children }: PropsWithChildren) => (
+  <div className="ml-8">{children}</div>
+);
 
 const VoidTimeline = () => {
   const timelineData: VoidTimeItemProps[] = [

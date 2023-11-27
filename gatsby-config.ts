@@ -25,18 +25,10 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-react-helmet`,
-    'gatsby-remark-images',
-    'gatsby-plugin-fix-fouc',
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-twitter',
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [`gatsby-remark-autolink-headers`],
-      },
-    },
+    'gatsby-transformer-remark',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -52,7 +44,6 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-postcss',
-    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -77,21 +68,7 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/content`,
       },
     },
-    `gatsby-remark-images`,
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 500,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
-      },
-    },
+    'gatsby-plugin-mdx',
   ],
 };
 

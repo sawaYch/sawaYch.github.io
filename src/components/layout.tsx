@@ -9,7 +9,6 @@ import {
   useState,
 } from 'react';
 import { PageProps } from 'gatsby';
-import tw from 'twin.macro';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Flowbite, Button } from 'flowbite-react';
 import { isIPad13, isTablet, isMobile } from 'react-device-detect';
@@ -25,8 +24,6 @@ import Footer from './footer';
 import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
 import ProgressIndicator from './progress-indicator';
-
-const StyledMain = tw.main`flex-auto overflow-x-hidden z-0`;
 
 const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const ref = useRef<HTMLElement>(null);
@@ -179,7 +176,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
           />
         )}
         <Header />
-        <StyledMain id="main" ref={ref}>
+        <main id="main" ref={ref} className="z-0 flex-auto overflow-x-hidden">
           <StaticImage
             className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-20"
             src="../images/girl.png"
@@ -268,7 +265,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
               </motion.div>
             </motion.nav>
           </div>
-        </StyledMain>
+        </main>
         <Footer />
       </BackgroundContainer>
     </Flowbite>
