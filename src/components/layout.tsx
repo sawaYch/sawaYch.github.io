@@ -9,8 +9,9 @@ import {
   useState,
 } from 'react';
 import { PageProps } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import { Flowbite, Button } from 'flowbite-react';
-import { isIPad13, isTablet, isMobile } from 'react-device-detect';
+import { isIPad13, isTablet, isMobile, isIOS } from 'react-device-detect';
 import AnimatedCursor from 'react-animated-cursor';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
@@ -79,12 +80,26 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const [appFabGuard, setAppFabGuard] = useState(false);
 
   const onAnimationComplete = useCallback(() => {
+    const applicationPaneOverlay = document.getElementById(
+      'application-pane-overlay'
+    );
+    if (applicationPaneOverlay && !isOpen) {
+      applicationPaneOverlay.classList.remove('!fixed');
+      applicationPaneOverlay.classList.add('!hidden');
+    }
     setAppFabGuard(false);
-  }, []);
+  }, [isOpen]);
 
   const onAnimationStart = useCallback(() => {
+    const applicationPaneOverlay = document.getElementById(
+      'application-pane-overlay'
+    );
+    if (applicationPaneOverlay && isOpen) {
+      applicationPaneOverlay.classList.remove('!hidden');
+      applicationPaneOverlay.classList.add('!fixed');
+    }
     setAppFabGuard(true);
-  }, []);
+  }, [isOpen]);
 
   const toggleAppMenu = useCallback(() => {
     toggleOpen();
@@ -169,21 +184,25 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
           />
         )}
         <Header />
-        <main id="main" ref={ref} className="z-0 flex-auto overflow-x-hidden">
-          {/* <StaticImage
+        <main
+          id="main"
+          ref={ref}
+          className={cn('z-0 flex-auto overflow-x-hidden', {
+            'overflow-y-hidden': isOpen,
+          })}
+        >
+          <StaticImage
             className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-20"
             src="../images/girl.png"
             alt="background images"
             layout="fullWidth"
-          /> */}
+          />
           {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
-          {isMobile ? null : (
-            <MatrixRain
-              size={14}
-              className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
-            />
-          )}
+          <MatrixRain
+            size={14}
+            className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
+          />
           <div
             id="main-container"
             className={cn(
@@ -245,11 +264,11 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                 <FaCube size={20} style={{ fill: 'url(#dracula-gradient)' }} />
               </Button>
               <motion.div
+                id="application-pane-overlay"
                 className={cn(
-                  '!z-[58] top-0 bottom-0 left-0 w-screen h-screen py-12 bg-dracula-darker/80 backdrop-blur-sm',
+                  '!z-[58] !overflow-y-auto top-[1.75rem] bottom-0 left-0 w-screen py-12 bg-dracula-darker backdrop-blur-sm',
                   {
-                    fixed: isMobile ? isOpen : true,
-                    hidden: isMobile ? !isOpen : false,
+                    'pb-24': !isIOS,
                   }
                 )}
                 variants={sidebar}

@@ -88,6 +88,10 @@ html {
   scroll-behavior: smooth;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .wt-text-shadow {
   text-shadow: 1px 1px 0 #ff79c6, 2px 2px 0 #ff79c6, 3px 3px 0 #ff79c6,
     4px 4px 0 #ff79c6;
