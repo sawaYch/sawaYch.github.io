@@ -5,7 +5,7 @@ const BackgroundContainer = ({ children }: PropsWithChildren) => (
     className={`
   font-primary
   bg-dracula-darker-800
-  text-dracula-cullen
+  text-white
   h-screen
   supports-[height:100cqh]:h-[100cqh] 
   supports-[height:100svh]:h-[100svh]
