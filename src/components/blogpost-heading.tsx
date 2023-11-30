@@ -6,7 +6,9 @@ import {
   useMemo,
   useRef,
 } from 'react';
+import { Tooltip } from 'flowbite-react';
 import delay from '../utils/delay';
+import ShareButton from './share-button';
 
 interface BlogPostHeadingProps {
   component: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
@@ -63,44 +65,65 @@ const BlogPostHeading = ({
       </a>
     );
 
+    const shareButton = (
+      <Tooltip content="Copy share link of this section">
+        <ShareButton slug={slug} anchor={formattedId} className="mt-2" />
+      </Tooltip>
+    );
+
     switch (component) {
       case 'h1':
         return (
-          <h1 ref={ref}>
-            {children}
-            {link}
+          <h1 ref={ref} className="flex pr-4 place-content-between">
+            <div>
+              {children}
+              {link}
+            </div>
+            {shareButton}
           </h1>
         );
       case 'h2':
         return (
-          <h2 ref={ref}>
-            {children}
-            {link}
+          <h2 ref={ref} className="flex pr-4 place-content-between">
+            <div>
+              {children}
+              {link}
+            </div>
+            {shareButton}
           </h2>
         );
       case 'h3':
         return (
-          <h3 ref={ref}>
-            {children}
-            {link}
+          <h3 ref={ref} className="flex pr-4 place-content-between">
+            <div>
+              {children}
+              {link}
+            </div>
+            {shareButton}
           </h3>
         );
       case 'h4':
         return (
-          <h4 ref={ref}>
-            {children}
-            {link}
+          <h4 ref={ref} className="flex pr-4 place-content-between">
+            <div>
+              {children}
+              {link}
+            </div>
+            {shareButton}
           </h4>
         );
       default:
         return (
-          <h5 ref={ref}>
-            {children}
-            {link}
+          <h5 ref={ref} className="flex pr-4 place-content-between">
+            <div>
+              {children}
+              {link}
+            </div>
+            {shareButton}
           </h5>
         );
     }
-  }, [children, component, handleClick, formattedId]);
+  }, [formattedId, handleClick, slug, component, children]);
 
   return <div id={formattedId}>{HeadingComponent}</div>;
 };

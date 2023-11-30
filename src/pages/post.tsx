@@ -16,7 +16,7 @@ import { Img } from 'react-image';
 import { StaticImage } from 'gatsby-plugin-image';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
-import { Badge } from 'flowbite-react';
+import { Badge, Tooltip } from 'flowbite-react';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import {
   AnimatePresence,
@@ -39,6 +39,7 @@ import ListOfContent, { TOCData } from '../components/list-of-content';
 import SEOHead from '../components/seo-head';
 import ImagePanControls from '../components/image-pan-control';
 import BadgeTheme from '../components/badge-theme';
+import ShareButton from '../components/share-button';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -238,6 +239,11 @@ const Post: React.FC<PageProps> = (props) => {
                         {t.name}
                       </Badge>
                     ))}
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Tooltip content="Copy share link of this blog">
+                      <ShareButton slug={slug} showLabel className="!w-fit" />
+                    </Tooltip>
                   </div>
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
