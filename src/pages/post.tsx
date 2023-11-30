@@ -241,7 +241,7 @@ const Post: React.FC<PageProps> = (props) => {
                     ))}
                   </div>
                   <div className="flex items-center justify-center">
-                    <Tooltip content="Copy share link of this blog">
+                    <Tooltip content="Copy article share link">
                       <ShareButton slug={slug} showLabel className="!w-fit" />
                     </Tooltip>
                   </div>

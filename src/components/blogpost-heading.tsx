@@ -66,7 +66,7 @@ const BlogPostHeading = ({
     );
 
     const shareButton = (
-      <Tooltip content="Copy share link of this section">
+      <Tooltip content="Copy article section share link">
         <ShareButton slug={slug} anchor={formattedId} className="mt-2" />
       </Tooltip>
     );

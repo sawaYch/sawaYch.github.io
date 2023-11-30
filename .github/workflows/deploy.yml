@@ -1,6 +1,6 @@
 name: Deploy Gatsby SSG
 on:
-  push: 
+  push:
     branches:
       - develop
   workflow_dispatch: {}
@@ -21,6 +21,7 @@ jobs:
         env:
           GATSBY_API_BASE_URL: ${{ secrets.GATSBY_API_BASE_URL }}
           GATSBY_API_TOKEN: ${{ secrets.GATSBY_API_TOKEN }}
+          GATSBY_VOID_DOJO_PROXY_URL: ${{ secrets.GATSBY_VOID_DOJO_PROXY_URL }}
         uses: enriikke/gatsby-gh-pages-action@v2.2.1
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
