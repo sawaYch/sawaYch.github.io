@@ -2,7 +2,7 @@ const BadgeTheme = {
   root: {
     base: 'flex h-fit items-center gap-1 font-semibold',
     color: {
-      info: 'bg-cyan-200 text-cyan-900  group-hover:bg-cyan-400',
+      info: 'bg-cyan-200 text-cyan-900 group-hover:bg-cyan-400',
       gray: 'bg-gray-200 text-gray-900 group-hover:bg-gray-400',
       failure: 'bg-red-200 text-red-900 group-hover:bg-red-400',
       success: 'bg-green-200 text-green-900 group-hover:bg-green-400',

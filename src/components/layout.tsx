@@ -101,6 +101,15 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     setAppFabGuard(true);
   }, [isOpen]);
 
+  useEffect(() => {
+    const applicationPaneOverlay = document.getElementById(
+      'application-pane-overlay'
+    );
+    if (applicationPaneOverlay) {
+      applicationPaneOverlay.classList.add('!hidden');
+    }
+  }, []);
+
   const toggleAppMenu = useCallback(() => {
     toggleOpen();
   }, [toggleOpen]);
