@@ -125,7 +125,11 @@ const BlogPostHeading = ({
     }
   }, [formattedId, handleClick, slug, component, children]);
 
-  return <div id={formattedId}>{HeadingComponent}</div>;
+  return (
+    <div id={formattedId} className="mt-10">
+      {HeadingComponent}
+    </div>
+  );
 };
 
 export default BlogPostHeading;

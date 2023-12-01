@@ -220,7 +220,7 @@ const Post: React.FC<PageProps> = (props) => {
                   />
                 </div>
                 <div className="flex items-center justify-center w-screen font-sans text-3xl font-extrabold sm:text-5xl">
-                  <span className="text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
+                  <span className="leading-loose text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
                     {finalBlogData.title}
                   </span>
                 </div>
