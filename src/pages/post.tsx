@@ -40,6 +40,7 @@ import SEOHead from '../components/seo-head';
 import ImagePanControls from '../components/image-pan-control';
 import BadgeTheme from '../components/badge-theme';
 import ShareButton from '../components/share-button';
+import InlineCode from '../components/inline-code';
 
 const Post: React.FC<PageProps> = (props) => {
   const { location } = props;
@@ -413,9 +414,9 @@ const Post: React.FC<PageProps> = (props) => {
                           </div>
                         </div>
                       ) : (
-                        <code className={className} {...componentProps}>
+                        <InlineCode className={className} {...componentProps}>
                           {children}
-                        </code>
+                        </InlineCode>
                       );
                     },
                     img(imgProps) {

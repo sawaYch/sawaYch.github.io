@@ -11,12 +11,22 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'ipad': '768px',
+        ipad: '768px',
       },
       typography: ({ theme }) => ({
         pink: {
           css: {
             '--tw-prose-invert-bullets': theme('colors.pink[600]'),
+          },
+        },
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
           },
         },
       }),
