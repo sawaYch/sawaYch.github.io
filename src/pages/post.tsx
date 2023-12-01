@@ -420,7 +420,31 @@ const Post: React.FC<PageProps> = (props) => {
                       );
                     },
                     img(imgProps) {
-                      const { src, alt } = imgProps;
+                      const { src, alt, height, width } = imgProps;
+
+                      if (['inline', 'emoji'].includes(alt ?? '')) {
+                        return (
+                          <Img
+                            className="inline"
+                            src={src ?? ''}
+                            width={width}
+                            height={height}
+                            alt={`inline ${src}`}
+                            loader={
+                              <div className="flex flex-col items-center justify-center w-[46ch] h-[32ch] ipad:w-[80ch] sm:w-[60ch]">
+                                <Spinner />
+                              </div>
+                            }
+                            unloader={
+                              <div className="flex flex-col items-center justify-center w-[46ch] h-[32ch] ipad:w-[80ch] sm:w-[60ch]">
+                                <FcRemoveImage size="5rem" />
+                                <div>Fail to load image</div>
+                              </div>
+                            }
+                          />
+                        );
+                      }
+
                       return (
                         <TransformWrapper
                           initialScale={1}
