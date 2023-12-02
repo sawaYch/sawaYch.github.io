@@ -3,9 +3,6 @@ import cn from 'classnames';
 
 const InlineCode = ({ children, ...props }: PropsWithChildren<any>) => {
   const { className, ...p } = props;
-
-  console.log('children', children as string[]);
-
   const formattedContent = useMemo(
     () => (children as string[])?.[0],
     [children]

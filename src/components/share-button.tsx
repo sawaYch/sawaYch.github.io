@@ -1,6 +1,6 @@
 import { Button } from 'flowbite-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { FaShare } from '@react-icons/all-files/fa/FaShare';
+import { MdLink } from '@react-icons/all-files/md/MdLink';
 import { FaClipboardCheck } from '@react-icons/all-files/fa/FaClipboardCheck';
 import cn from 'classnames';
 import useCopyToClipboard from '../utils/use-clipboard';
@@ -51,7 +51,7 @@ const ShareButton = ({
       className={cn('w-8 h-8 uppercase transition-all rounded-full', className)}
       onClick={handleClick}
     >
-      {isCopy ? <FaClipboardCheck size={12} /> : <FaShare size={12} />}
+      {isCopy ? <FaClipboardCheck size={14} /> : <MdLink size={18} />}
       {showLabel ? <span className="ml-2">Share</span> : undefined}
     </Button>
   );

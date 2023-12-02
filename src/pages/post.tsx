@@ -425,20 +425,19 @@ const Post: React.FC<PageProps> = (props) => {
                       if (['inline', 'emoji'].includes(alt ?? '')) {
                         return (
                           <Img
-                            className="inline"
+                            className="inline float-auto !mt-0 !mb-0"
                             src={src ?? ''}
                             width={width}
                             height={height}
                             alt={`inline ${src}`}
                             loader={
-                              <div className="flex flex-col items-center justify-center w-[46ch] h-[32ch] ipad:w-[80ch] sm:w-[60ch]">
-                                <Spinner />
+                              <div className="items-center justify-center inline-block w-4 h-4">
+                                <Spinner className="!w-4 !h-4" />
                               </div>
                             }
                             unloader={
-                              <div className="flex flex-col items-center justify-center w-[46ch] h-[32ch] ipad:w-[80ch] sm:w-[60ch]">
-                                <FcRemoveImage size="5rem" />
-                                <div>Fail to load image</div>
+                              <div className="items-center justify-center inline-block w-4 h-4">
+                                <FcRemoveImage size="1.25rem" />
                               </div>
                             }
                           />
