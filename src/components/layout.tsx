@@ -212,6 +212,10 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             size={14}
             className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
           />
+
+          <div className="fixed top-0 w-screen h-1/2 top-shine" />
+          <div className="fixed bottom-0 w-screen h-1/2 bottom-shine" />
+
           <div
             id="main-container"
             className={cn(

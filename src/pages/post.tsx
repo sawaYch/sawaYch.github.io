@@ -461,7 +461,7 @@ const Post: React.FC<PageProps> = (props) => {
                               <TransformComponent>
                                 <Img
                                   className={cn(
-                                    'object-cover w-screen rounded-xl'
+                                    'object-cover w-screen rounded-md'
                                   )}
                                   src={src ?? ''}
                                   alt={alt}

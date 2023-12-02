@@ -276,3 +276,19 @@ iframe {
   background-size: 100% 3px;
   background-position: 0 100%;
 }
+
+.top-shine {
+  background-image: radial-gradient(
+    500px 200px at 50%0,
+    #53597c 20%,
+    #373a4d 100%
+  );
+}
+
+.bottom-shine {
+  background-image: radial-gradient(
+    500px 200px at 50%100%,
+    #53597c 20%,
+    #373a4d 100%
+  );
+}
