@@ -128,7 +128,6 @@ const Post: React.FC<PageProps> = (props) => {
   const elementVariants = useMemo(
     () => ({
       open: {
-        y: 0,
         opacity: 1,
         transition: {
           type: 'spring',
@@ -137,7 +136,6 @@ const Post: React.FC<PageProps> = (props) => {
         },
       },
       closed: {
-        y: 25,
         opacity: 0,
         transition: {
           y: { stiffness: 1000 },
@@ -186,11 +184,6 @@ const Post: React.FC<PageProps> = (props) => {
           >
             <FaAngleLeft aria-hidden className="w-6 h-6" />
           </button>
-          {isLoading && (
-            <div className="flex flex-col items-center justify-center w-full mt-10">
-              <Spinner />
-            </div>
-          )}
           {isError && <div>API Error.</div>}
           {finalBlogData && (
             <>
@@ -200,16 +193,17 @@ const Post: React.FC<PageProps> = (props) => {
               >
                 <div className="flex items-center justify-center w-screen my-10 pointer-events-none select-none bg-dracula-darker/30 backdrop-blur-sm">
                   <Img
-                    className="object-cover"
+                    className="object-contain w-full h-[24vh]"
                     src={finalBlogData.cover}
                     alt="blog-cover-image"
+                    decode={false}
                     loader={
-                      <div className="flex flex-col items-center justify-center w-full h-[10vh]">
+                      <div className="flex flex-col items-center justify-center w-full h-[24vh]">
                         <Spinner />
                       </div>
                     }
                     unloader={
-                      <div className="flex flex-col items-center justify-center h-full">
+                      <div className="flex flex-col items-center justify-center w-full h-[24vh]">
                         <StaticImage
                           src="../images/home.webp"
                           alt="back to home"
