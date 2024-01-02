@@ -17,7 +17,8 @@ import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { FaCube } from '@react-icons/all-files/fa/FaCube';
 import { motion, useCycle, useScroll } from 'framer-motion';
-import MatrixRain from './matrix-rain';
+// import MatrixRain from './matrix-rain';
+import { useKeyUp } from '@react-hooks-library/core';
 import BackgroundContainer from './background-container';
 import Header from './header';
 import Footer from './footer';
@@ -170,6 +171,14 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     scrollToTop('instant');
   }, [location.pathname, scrollToTop]);
 
+  useKeyUp(
+    'Space',
+    () => {
+      toggleAppMenu();
+    },
+    { code: true }
+  );
+
   return (
     <Flowbite>
       <SEOHead />
@@ -208,14 +217,12 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
           />
           {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
-          <MatrixRain
+          {/* <MatrixRain
             size={14}
             className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
-          />
-
+          /> */}
           <div className="fixed top-0 w-screen h-1/2 top-shine" />
           <div className="fixed bottom-0 w-screen h-1/2 bottom-shine" />
-
           <div
             id="main-container"
             className={cn(
