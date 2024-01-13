@@ -5119,6 +5119,11 @@ type AllFileAndSiteDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 type AllFileAndSiteDataQuery = { readonly allFile: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly name: string, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } }> }, readonly site: { readonly siteMetadata: { readonly author: string | null, readonly title: string | null, readonly description: string | null } | null } | null };
 
+type ArtworkPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ArtworkPageQuery = { readonly allStrapiArtwork: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly caption: string | null, readonly updatedAt: string | null, readonly image: ReadonlyArray<{ readonly name: string | null, readonly alternativeText: string | null, readonly caption: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null, readonly formats: { readonly thumbnail: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly small: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly medium: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly large: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null } | null } | null> | null }> } };
+
 type BlogsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
