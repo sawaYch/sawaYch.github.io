@@ -85,8 +85,6 @@ export const artworkQuery = graphql`
 const ArtworksPage = ({
   ...queryResponse
 }: PageProps<Queries.ArtworkPageQuery>) => {
-  // const { data, isLoading, isError } = useQuery(['artworks'], fetchArtworks);
-
   const data = queryResponse.data.allStrapiArtwork.nodes;
 
   const variants = useMemo(

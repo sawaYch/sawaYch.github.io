@@ -5129,6 +5129,11 @@ type BlogsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type BlogsPageQuery = { readonly allStrapiTag: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly color: string | null }> }, readonly allStrapiCategory: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly color: string | null }> } };
 
+type GalleryPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type GalleryPageQuery = { readonly allStrapiGallery: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly captions: string | null, readonly updatedAt: string | null, readonly image: ReadonlyArray<{ readonly name: string | null, readonly alternativeText: string | null, readonly caption: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null, readonly formats: { readonly thumbnail: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly small: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly medium: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly large: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null } | null } | null> | null }> } };
+
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
 type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
