@@ -2,8 +2,8 @@ import { PropsWithChildren } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
+import { FaRegDotCircle } from '@react-icons/all-files/fa/FaRegDotCircle';
 import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
-import { DarkThemeToggle } from 'flowbite-react';
 import IconLink from './icon-link';
 
 const StatusPane = ({ children }: PropsWithChildren) => (
@@ -13,7 +13,7 @@ const StatusPane = ({ children }: PropsWithChildren) => (
 );
 
 const TopBar = ({ children }: PropsWithChildren) => (
-  <nav className="sticky top-0 flex justify-between text-xs shadow-md select-none bg-dracula-darker/70">
+  <nav className="sticky top-0 flex justify-between text-xs shadow-md select-none bg-dracula-darker">
     {children}
   </nav>
 );
@@ -42,7 +42,9 @@ const Header = () => (
         </div>
       </div>
       <div className="flex">
-        <DarkThemeToggle className="flex items-center justify-center w-10 p-0 transition-all border-0 rounded-none pointer-events-none select-none focus:ring-0" />
+        <div className="flex items-center justify-center !w-12 select-none bg-dracula-darker-800">
+          <FaRegDotCircle size="1rem" />
+        </div>
         <StatusPane>
           <IconLink
             target="https://github.com/sawaYch"

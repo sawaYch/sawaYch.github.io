@@ -9,7 +9,7 @@ interface IconLinkProps {
 }
 
 const LinkContainer = ({ children }: PropsWithChildren) => (
-  <div className="transition-all duration-500 select-none hover:text-dracula-dracula-200">
+  <div className="flex items-center justify-center transition-all duration-500 select-none hover:text-dracula-dracula-200">
     {children}
   </div>
 );
