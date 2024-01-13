@@ -5,6 +5,8 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+console.log("api url", process.env.SOURCE_STRAPI_URL);
+
 const config: GatsbyConfig = {
   flags: {
     DEV_SSR: false,
