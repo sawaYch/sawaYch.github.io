@@ -21,10 +21,10 @@ interface CMSImage {
 }
 
 export interface ArtworkData {
-  id: number;
+  id: string;
   name: string;
   caption: string;
-  images: CMSImage[];
+  image: CMSImage[];
   updatedAt: string;
 }
 
@@ -53,7 +53,7 @@ const fetchArtworks = async () => {
       name: d.attributes.name,
       caption: d.attributes.caption,
       updatedAt: formatDate(d.attributes.updatedAt),
-      images: d.attributes.image.data.map((img: any) => ({
+      image: d.attributes.image.data.map((img: any) => ({
         name: img.attributes.name,
         alternativeText: img.attributes.alternativeText,
         caption: img.attributes.caption,

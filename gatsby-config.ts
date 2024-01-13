@@ -68,6 +68,20 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/content`,
       },
     },
+    {
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: process.env.SOURCE_STRAPI_URL,
+        accessToken: process.env.SOURCE_STRAPI_TOKEN,
+        collectionTypes: [
+          "article",
+          "tag",
+          "category",
+          "artwork",
+          "gallery"
+        ],
+      },
+    },
     'gatsby-plugin-mdx',
   ],
 };

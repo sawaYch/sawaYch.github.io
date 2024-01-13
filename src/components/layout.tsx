@@ -241,7 +241,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                 onClick={() => scrollToTop()}
                 theme={buttonCustomTheme}
                 className={cn(
-                  '!z-[59] fixed w-12 h-12 right-4 bottom-20 mb-2',
+                  '!z-[59] fixed w-12 h-12 right-4 bottom-20 mb-2 focus:ring-0 active-ring-0',
                   {
                     'bottom-24': isIPad13 || isTablet,
                   }
@@ -257,7 +257,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                 onClick={toggleAppMenu}
                 theme={buttonCustomTheme}
                 className={cn(
-                  '!z-[59] fixed w-12 h-12 right-4 bottom-8 transition-colors',
+                  '!z-[59] fixed w-12 h-12 right-4 bottom-8 transition-colors focus:ring-0 active-ring-0',
                   {
                     'bottom-12': isIPad13 || isTablet,
                     '!bg-dracula-dark-800': isOpen,

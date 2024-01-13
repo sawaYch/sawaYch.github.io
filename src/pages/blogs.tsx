@@ -6,24 +6,47 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import queryString from 'query-string';
 import cn from 'classnames';
-import { PageProps, navigate } from 'gatsby';
-import fetchTags from '../apis/fetch-tags';
+import { PageProps, navigate, graphql } from 'gatsby';
 import Spinner from '../components/spinner';
 import Cube from '../components/cube';
 import BlogCard from '../components/blog-card';
-import fetchCategories from '../apis/fetch-categories';
 import fetchBlogs from '../apis/fetch-blogs';
 import BadgeTheme from '../components/badge-theme';
 
-const BlogsPage = ({ location }: PageProps) => {
-  const { data: tagData, isLoading: tagDataIsLoading } = useQuery(
-    ['tags'],
-    fetchTags
-  );
-  const { data: categoryData, isLoading: categoryDataIsLoading } = useQuery(
-    ['categories'],
-    fetchCategories
-  );
+export const blogsQuery = graphql`
+  query BlogsPage {
+    allStrapiTag {
+      nodes {
+        id
+        name
+        color
+      }
+    }
+    allStrapiCategory {
+      nodes {
+        id
+        name
+        color
+      }
+    }
+  }
+`;
+
+const BlogsPage = ({
+  location,
+  ...queryResponse
+}: // eslint-disable-next-line no-undef
+PageProps<Queries.BlogsPageQuery>) => {
+  const tagData = queryResponse.data.allStrapiTag.nodes as {
+    id: string;
+    name: string;
+    color: string;
+  }[];
+  const categoryData = queryResponse.data.allStrapiCategory.nodes as {
+    id: string;
+    name: string;
+    color: string;
+  }[];
 
   const parsedQueryString = queryString.parse(location.search);
   const paramPage = useMemo(
@@ -152,7 +175,7 @@ const BlogsPage = ({ location }: PageProps) => {
             <div className="skew-x-12">TAG</div>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-1 pt-2 pb-1 uppercase">
-            {tagDataIsLoading ? <Spinner /> : null}
+            {/* {tagDataIsLoading ? <Spinner /> : null} */}
             {tagData?.map((it) => (
               <Badge
                 color={it.color}
@@ -179,7 +202,6 @@ const BlogsPage = ({ location }: PageProps) => {
             CATEGORY
           </div>
           <div className="flex flex-wrap items-center justify-center gap-1 pt-2 pb-1 uppercase">
-            {categoryDataIsLoading ? <Spinner /> : null}
             {categoryData?.map((it) => (
               <Badge
                 color={it.color}
