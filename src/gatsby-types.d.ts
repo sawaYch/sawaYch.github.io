@@ -5124,6 +5124,13 @@ type ArtworkPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type ArtworkPageQuery = { readonly allStrapiArtwork: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly caption: string | null, readonly updatedAt: string | null, readonly image: ReadonlyArray<{ readonly name: string | null, readonly alternativeText: string | null, readonly caption: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null, readonly formats: { readonly thumbnail: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly small: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly medium: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null, readonly large: { readonly name: string | null, readonly width: number | null, readonly height: number | null, readonly url: string | null } | null } | null } | null> | null }> } };
 
+type BlogPostQueryVariables = Exact<{
+  slug: InputMaybe<Scalars['String']>;
+}>;
+
+
+type BlogPostQuery = { readonly allStrapiArticle: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly slug: string | null, readonly title: string | null, readonly description: string | null, readonly updatedAt: string | null, readonly publishedAt: string | null, readonly content: { readonly data: { readonly content: string | null } | null } | null, readonly tags: ReadonlyArray<{ readonly name: string | null, readonly color: string | null } | null> | null, readonly categories: ReadonlyArray<{ readonly name: string | null, readonly color: string | null } | null> | null, readonly cover: { readonly formats: { readonly thumbnail: { readonly url: string | null } | null, readonly small: { readonly url: string | null } | null } | null } | null }> } };
+
 type BlogsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 

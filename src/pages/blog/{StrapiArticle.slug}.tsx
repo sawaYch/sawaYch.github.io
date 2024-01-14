@@ -7,8 +7,7 @@ import React, {
   useState,
 } from 'react';
 import cn from 'classnames';
-import { PageProps, navigate } from 'gatsby';
-import { useQuery } from '@tanstack/react-query';
+import { PageProps, navigate, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -29,21 +28,62 @@ import {
   TransformComponent,
   TransformWrapper,
 } from 'react-zoom-pan-pinch';
-import Spinner from '../components/spinner';
-import fetchBlogs from '../apis/fetch-blogs';
-import { formatDateMonthName } from '../utils/format-date';
-import CodeCopyToolbar from '../components/code-copy-toolbar';
-import BlogPostHeading from '../components/blogpost-heading';
-import slugify from '../utils/slugify';
-import ListOfContent, { TOCData } from '../components/list-of-content';
-import SEOHead from '../components/seo-head';
-import ImagePanControls from '../components/image-pan-control';
-import BadgeTheme from '../components/badge-theme';
-import ShareButton from '../components/share-button';
-import InlineCode from '../components/inline-code';
+import Spinner from '../../components/spinner';
+import { formatDateMonthName } from '../../utils/format-date';
+import CodeCopyToolbar from '../../components/code-copy-toolbar';
+import BlogPostHeading from '../../components/blogpost-heading';
+import slugify from '../../utils/slugify';
+import ListOfContent, { TOCData } from '../../components/list-of-content';
+import SEOHead from '../../components/seo-head';
+import ImagePanControls from '../../components/image-pan-control';
+import BadgeTheme from '../../components/badge-theme';
+import ShareButton from '../../components/share-button';
+import InlineCode from '../../components/inline-code';
+import getImageUrl from '../../utils/getImageUrl';
 
-const Post: React.FC<PageProps> = (props) => {
-  const { location } = props;
+export const blogPostQuery = graphql`
+  query BlogPost($slug: String) {
+    allStrapiArticle(filter: { slug: { eq: $slug } }) {
+      nodes {
+        id
+        slug
+        title
+        description
+        content {
+          data {
+            content
+          }
+        }
+        updatedAt
+        publishedAt
+        tags {
+          name
+          color
+        }
+        categories {
+          name
+          color
+        }
+        cover {
+          formats {
+            thumbnail {
+              url
+            }
+            small {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
+  location,
+  ...queryResponse
+}) => {
+  const finalBlogData = queryResponse.data.allStrapiArticle.nodes[0];
 
   useEffect(() => {
     const element = document.getElementById('main-container');
@@ -57,8 +97,8 @@ const Post: React.FC<PageProps> = (props) => {
   }, [location?.state]);
 
   const slug = useMemo(
-    () => location.hash.replace('#/', '').split('#')[0].replace('/', ''),
-    [location.hash]
+    () => finalBlogData.slug as string,
+    [finalBlogData.slug]
   );
 
   const anchor = useMemo(
@@ -66,18 +106,11 @@ const Post: React.FC<PageProps> = (props) => {
     [location.hash]
   );
 
-  const { data, isLoading, isError } = useQuery(
-    [`post/#/${slug}`],
-    () => fetchBlogs({ page: 1, pageSize: 1, tags: [], categories: [], slug }),
-    {
-      enabled: slug?.trim().length !== 0 && slug != null,
-    }
-  );
-
-  const finalBlogData = useMemo(() => data?.blogData[0], [data]);
-
   const blogUpdatedDate = useMemo(
-    () => (finalBlogData ? formatDateMonthName(finalBlogData.updatedAt) : null),
+    () =>
+      finalBlogData
+        ? formatDateMonthName(finalBlogData!.updatedAt as string)
+        : null,
     [finalBlogData]
   );
 
@@ -96,18 +129,11 @@ const Post: React.FC<PageProps> = (props) => {
   const tableOfContentData = useRef<TOCData[]>([]);
   const [tocData, setTocData] = useState<TOCData[]>([]);
 
-  useEffect(() => {
-    if (isLoading) return;
-    if (!finalBlogData || slug?.trim().length === 0 || slug == null) {
-      navigate('/404');
-    }
-  }, [finalBlogData, isLoading, slug]);
-
   useIsomorphicLayoutEffect(() => {
     if (tableOfContentData) {
       setTocData(tableOfContentData.current);
     }
-  }, [isLoading]);
+  }, []);
 
   const variants = useMemo(
     () => ({
@@ -158,10 +184,11 @@ const Post: React.FC<PageProps> = (props) => {
         }
         summaryType={finalBlogData == null ? 'default' : 'large'}
         image={
-          finalBlogData == null
-            ? undefined
-            : finalBlogData?.cover ??
-              'https://www.cms.void-dojo.ninja/uploads/small_mya_27a0bdbaed.webp'
+          finalBlogData?.cover != null
+            ? getImageUrl(
+                finalBlogData!.cover.formats?.thumbnail?.url as string
+              )
+            : 'https://www.cms.void-dojo.ninja/uploads/small_mya_27a0bdbaed.webp'
         }
         imageHeight={finalBlogData == null ? undefined : '630'}
         imageWidth={finalBlogData == null ? undefined : '1200'}
@@ -184,7 +211,6 @@ const Post: React.FC<PageProps> = (props) => {
           >
             <FaAngleLeft aria-hidden className="w-6 h-6" />
           </button>
-          {isError && <div>API Error.</div>}
           {finalBlogData && (
             <>
               <motion.div
@@ -194,7 +220,9 @@ const Post: React.FC<PageProps> = (props) => {
                 <div className="flex items-center justify-center w-screen my-10 pointer-events-none select-none bg-dracula-darker/30 backdrop-blur-sm">
                   <Img
                     className="object-contain w-full h-[24vh]"
-                    src={finalBlogData.cover}
+                    src={getImageUrl(
+                      finalBlogData.cover?.formats?.small?.url as string
+                    )}
                     alt="blog-cover-image"
                     decode={false}
                     loader={
@@ -224,14 +252,22 @@ const Post: React.FC<PageProps> = (props) => {
                     {blogUpdatedDate}
                   </div>
                   <div className="flex items-center justify-center gap-1 uppercase">
-                    {finalBlogData.tags.map((t) => (
-                      <Badge key={t.name} color={t.color} theme={BadgeTheme}>
-                        {t.name}
+                    {finalBlogData!.tags!.map((t) => (
+                      <Badge
+                        key={t!.name}
+                        color={t!.color as string}
+                        theme={BadgeTheme}
+                      >
+                        {t!.name}
                       </Badge>
                     ))}
-                    {finalBlogData.categories.map((t) => (
-                      <Badge key={t.name} color={t.color} theme={BadgeTheme}>
-                        {t.name}
+                    {finalBlogData!.categories!.map((t) => (
+                      <Badge
+                        key={t!.name}
+                        color={t!.color as string}
+                        theme={BadgeTheme}
+                      >
+                        {t!.name}
                       </Badge>
                     ))}
                   </div>
@@ -482,9 +518,9 @@ const Post: React.FC<PageProps> = (props) => {
                       return <span>{children}</span>;
                     },
                   }}
-                  className="m-auto pb-20 break-words prose sm:prose-lg prose-invert prose-pink max-w-[46ch] ipad:max-w-[80ch]  sm:max-w-[60ch] px-8"
+                  className="m-auto pb-20 break-words prose sm:prose-lg prose-invert prose-pink max-w-[42ch] ipad:max-w-[80ch] sm:max-w-[60ch] px-8"
                 >
-                  {finalBlogData.content}
+                  {finalBlogData.content?.data?.content as string}
                 </ReactMarkdown>
               </motion.div>
             </>

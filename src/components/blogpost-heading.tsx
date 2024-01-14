@@ -32,10 +32,10 @@ const BlogPostHeading = ({
     (evt) => {
       evt.preventDefault();
       // eslint-disable-next-line no-restricted-globals
-      history.replaceState(null, '', `#/${slug}/#${formattedId}`);
+      history.replaceState(null, '', `#${formattedId}`);
       ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
-    [formattedId, slug]
+    [formattedId]
   );
 
   useEffect(() => {
@@ -43,11 +43,7 @@ const BlogPostHeading = ({
       if (initAnchor) {
         const formattedInitAnchor = `#${initAnchor.replace(' ', '-')}`;
         // eslint-disable-next-line no-restricted-globals
-        history.replaceState(
-          null,
-          '',
-          `#/${slug}/#${initAnchor.replace(' ', '-')}`
-        );
+        history.replaceState(null, '', `#${initAnchor.replace(' ', '-')}`);
 
         // console.log(`anchor formattedId=${formattedId} formattedInitAnchor=${formattedInitAnchor}`);
         await delay(400);

@@ -72,7 +72,6 @@ PageProps<Queries.BlogsPageQuery>) => {
     return removedNullQueryString;
   }, [parsedQueryString.tags]);
 
-  // const defaultPagingSize = 5;
   const [selectedTag, setSelectedTag] = useState<string[]>(paramTags);
 
   const handleTagSelection = useCallback(
@@ -101,7 +100,7 @@ PageProps<Queries.BlogsPageQuery>) => {
 
   const viewBlogDetails = useCallback(
     (slug: string) => {
-      const blogUrl = `/post/#/${slug}`.replace(/\/$/, '');
+      const blogUrl = `/blog/${slug}`.replace(/\/$/, '');
       const blogListQueryParam = queryString.stringify({
         tags: selectedTag,
       });
