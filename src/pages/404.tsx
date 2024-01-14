@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link, HeadFC, PageProps } from 'gatsby';
+import { Link, HeadFC, PageProps, navigate } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import BackgroundContainer from '../components/background-container';
 
@@ -13,12 +13,21 @@ const NotFoundPage = () => (
       />
       <h1 className="text-[3rem] sm:text-[5rem] mt-4">404 Error</h1>
       <span>Sorry 😔, page not found</span>
-      <Link
-        className="pl-2 pr-2 mt-4 border-2 border-dracula-buffy hover:bg-dracula-buffy"
-        to="/"
-      >
-        Back to home
-      </Link>
+      <div className="flex gap-4">
+        <Link
+          className="pl-2 pr-2 mt-4 border-2 border-dracula-buffy hover:bg-dracula-buffy"
+          to="/"
+        >
+          Home
+        </Link>
+        <button
+          type="button"
+          className="pl-2 pr-2 mt-4 border-2 border-dracula-buffy hover:bg-dracula-buffy"
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </button>
+      </div>
     </div>
   </BackgroundContainer>
 );

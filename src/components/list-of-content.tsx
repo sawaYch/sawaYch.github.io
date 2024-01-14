@@ -15,14 +15,10 @@ interface ListOfContentProps {
 
 const ListOfContent = ({ data, className }: ListOfContentProps) => {
   const handleClick = useCallback(
-    (
-      evt: { preventDefault: () => void },
-      formattedId: string,
-      slug: string
-    ) => {
+    (evt: { preventDefault: () => void }, formattedId: string) => {
       evt.preventDefault();
       // eslint-disable-next-line no-restricted-globals
-      history.pushState(null, '', `#/${slug}/#${formattedId}`);
+      history.pushState(null, '', `#${formattedId}`);
       const element = document.getElementById(formattedId);
       element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
@@ -48,7 +44,7 @@ const ListOfContent = ({ data, className }: ListOfContentProps) => {
             <a
               href={`#${it.anchorLink}`}
               className="max-w-sm leading-tight uppercase font-display"
-              onClick={(evt) => handleClick(evt, it.anchorLink, it.slug)}
+              onClick={(evt) => handleClick(evt, it.anchorLink)}
             >
               {'\u00a0\u00a0\u00a0\u00a0'.repeat(it.level)}
               <span className="link link-underline link-underline-black">

@@ -159,14 +159,13 @@ const GalleryPage = ({
                 },
               }}
               key={it.id}
-              className="flex flex-col items-center justify-around p-4 rounded-lg cursor-pointer bg-dracula-darker"
+              className="flex flex-col items-center justify-around p-1 cursor-pointer bg-dracula-darker"
               onClick={() => handleOpenFullImage(it as unknown as GalleryData)}
             >
               <LazyImg
                 src={getImageUrl(it.image?.[0]?.formats?.thumbnail?.url ?? '')}
                 alt={it.image?.[0]?.alternativeText ?? ''}
               />
-              <div className="pt-4">{it.name}</div>
             </motion.div>
           ))}
       </motion.div>
