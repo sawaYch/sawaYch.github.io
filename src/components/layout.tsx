@@ -155,7 +155,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   }, [toggleAppMenu]);
 
   const enableProgressbar = useMemo(() => {
-    if (location?.href?.includes('post')) return true;
+    if (location?.href?.includes('blog/')) return true;
     return false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.href]);
