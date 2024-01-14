@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import { Img } from 'react-image';
-import { BlogData } from '../apis/fetch-blogs';
 import { formatDateMonthName } from '../utils/format-date';
+import getImageUrl from '../utils/getImageUrl';
 import Spinner from './spinner';
 import BadgeTheme from './badge-theme';
 
@@ -18,7 +18,7 @@ const TagCatSection = ({ children }: PropsWithChildren) => (
 );
 
 interface BlogCardProps {
-  data: BlogData;
+  data: Queries.BlogsPageQuery['allStrapiArticle']['nodes'][0];
   onClick: () => void;
 }
 
@@ -57,7 +57,7 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
     {data.cover ? (
       <Img
         className="object-cover w-[5.5rem] h-28 sm:w-[11rem] rounded-l-lg sm:h-28"
-        src={data.cover}
+        src={getImageUrl(data.cover.formats?.small?.url ?? '')}
         alt={`${data.title} thumbnail`}
         loader={
           <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
@@ -84,28 +84,32 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
     <div className="flex flex-col pl-2 pr-4 grow">
       <h5 className="mb-1 font-bold tracking-tight">{data.title}</h5>
       <TagCatSection>
-        {data.tags.map((t) => (
-          <Badge
-            key={t.name}
-            color={t.color}
-            theme={SmallBadeCustomTheme}
-            size="xs"
-          >
-            {t.name}
-          </Badge>
-        ))}
-        {data.categories.map((t) => (
-          <Badge
-            key={t.name}
-            color={t.color}
-            theme={SmallBadeCustomTheme}
-            size="xs"
-          >
-            {t.name}
-          </Badge>
-        ))}
+        {data?.tags != null &&
+          data.tags.map((t) => (
+            <Badge
+              key={t!.name as string}
+              color={t!.color as string}
+              theme={SmallBadeCustomTheme}
+              size="xs"
+            >
+              {t!.name as string}
+            </Badge>
+          ))}
+        {data?.categories != null &&
+          data.categories.map((t) => (
+            <Badge
+              key={t!.name as string}
+              color={t!.color as string}
+              theme={SmallBadeCustomTheme}
+              size="xs"
+            >
+              {t!.name as string}
+            </Badge>
+          ))}
       </TagCatSection>
-      <DateTimeSection>{formatDateMonthName(data.updatedAt)}</DateTimeSection>
+      <DateTimeSection>
+        {formatDateMonthName(data.publishedAt ?? '')}
+      </DateTimeSection>
     </div>
   </motion.div>
 );

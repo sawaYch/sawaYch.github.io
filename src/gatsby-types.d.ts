@@ -5127,7 +5127,7 @@ type ArtworkPageQuery = { readonly allStrapiArtwork: { readonly nodes: ReadonlyA
 type BlogsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type BlogsPageQuery = { readonly allStrapiTag: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly color: string | null }> }, readonly allStrapiCategory: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly color: string | null }> } };
+type BlogsPageQuery = { readonly allStrapiTag: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly color: string | null }> }, readonly allStrapiArticle: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly publishedAt: string | null, readonly tags: ReadonlyArray<{ readonly name: string | null, readonly color: string | null } | null> | null, readonly categories: ReadonlyArray<{ readonly name: string | null, readonly color: string | null } | null> | null, readonly cover: { readonly formats: { readonly thumbnail: { readonly url: string | null } | null, readonly small: { readonly url: string | null } | null } | null } | null }> } };
 
 type GalleryPageQueryVariables = Exact<{ [key: string]: never; }>;
 
