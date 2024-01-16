@@ -39,7 +39,7 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
     {data.cover ? (
       <Img
         className="object-cover w-[5.5rem] h-28 sm:w-[11rem] rounded-l-lg sm:h-28"
-        src={getImageUrl(data.cover.formats?.small?.url ?? '')}
+        src={getImageUrl(data.cover.formats?.thumbnail?.url ?? '')}
         alt={`${data.title} thumbnail`}
         loader={
           <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
