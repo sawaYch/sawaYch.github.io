@@ -9,15 +9,15 @@ import {
   useState,
 } from 'react';
 import { PageProps } from 'gatsby';
-import { StaticImage } from 'gatsby-plugin-image';
 import { isIPad13, isTablet, isMobile, isIOS } from 'react-device-detect';
 import AnimatedCursor from 'react-animated-cursor';
+import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
-import { FaCube } from '@react-icons/all-files/fa/FaCube';
 import { motion, useCycle, useScroll } from 'framer-motion';
 // import MatrixRain from './matrix-rain';
 import { useKeyUp } from '@react-hooks-library/core';
+import { StaticImage } from 'gatsby-plugin-image';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
 import Footer from './footer';
@@ -69,15 +69,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     };
   }, []);
 
-  const buttonCustomTheme = useMemo(
-    () => ({
-      base: 'group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 focus:outline-none bg-dracula-dark',
-    }),
-    []
-  );
-
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const [appFabGuard, setAppFabGuard] = useState(false);
 
   const onAnimationComplete = useCallback(() => {
     const applicationPaneOverlay = document.getElementById(
@@ -87,7 +79,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
       applicationPaneOverlay.classList.remove('!fixed');
       applicationPaneOverlay.classList.add('!hidden');
     }
-    setAppFabGuard(false);
   }, [isOpen]);
 
   const onAnimationStart = useCallback(() => {
@@ -98,7 +89,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
       applicationPaneOverlay.classList.remove('!hidden');
       applicationPaneOverlay.classList.add('!fixed');
     }
-    setAppFabGuard(true);
   }, [isOpen]);
 
   useEffect(() => {
@@ -115,35 +105,16 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   }, [toggleOpen]);
 
   const sidebar = useMemo(
-    () =>
-      isMobile
-        ? {
-            open: () => ({
-              opacity: 1,
-            }),
-            closed: {
-              opacity: 0,
-            },
-          }
-        : {
-            open: () => ({
-              clipPath: `circle(250vw at 100% 100%)`,
-              transition: {
-                type: 'linear',
-                stiffness: 100,
-                restDelta: 2,
-              },
-            }),
-            closed: {
-              clipPath: `circle(0vw at 100% 100%)`,
-              transition: {
-                delay: 0.5,
-                type: 'spring',
-                stiffness: 400,
-                damping: 40,
-              },
-            },
-          },
+    () => ({
+      open: () => ({
+        opacity: 1,
+        y: 0,
+      }),
+      closed: {
+        opacity: 0,
+        y: 100,
+      },
+    }),
     []
   );
 
@@ -207,20 +178,20 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             'overflow-y-hidden': isOpen,
           })}
         >
-          {/* <StaticImage
-            className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-20"
-            src="../images/girl.png"
-            alt="background images"
-            layout="fullWidth"
-          /> */}
+          <div className="!fixed top-0 left-0 opacity-bg w-screen h-auto pointer-events-none select-none z-20">
+            <StaticImage
+              className="object-cover"
+              src="../images/girl.png"
+              alt="background images"
+              layout="fullWidth"
+            />
+          </div>
           {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
           {/* <MatrixRain
             size={14}
             className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
           /> */}
-          <div className="fixed top-0 w-screen h-1/2 top-shine" />
-          <div className="fixed bottom-0 w-screen h-1/2 bottom-shine" />
           <div
             id="main-container"
             className={cn(
@@ -234,57 +205,27 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             {enableProgressbar ? (
               <ProgressIndicator scrollYProgress={scrollYProgress} />
             ) : null}
-            {/* {isVisible && !isOpen ? (
-              <Button
+            {isVisible && !isOpen ? (
+              <ActionIcon
                 onClick={() => scrollToTop()}
-                theme={buttonCustomTheme}
                 className={cn(
-                  '!z-[59] fixed w-12 h-12 right-4 bottom-20 mb-2 focus:ring-0 active-ring-0',
+                  '!z-[59] fixed w-8 h-8 right-4 bottom-12 mb-2 rounded-full',
                   {
                     'bottom-24': isIPad13 || isTablet,
                   }
                 )}
-                pill
-                color="dark"
+                color="gray"
+                variant="gradient"
+                gradient={{ from: '#bd93f9', to: '#ff79c6', deg: 270 }}
               >
-                <FaChevronUp size={20} />
-              </Button>
-            ) : null} */}
+                <FaChevronUp size={12} />
+              </ActionIcon>
+            ) : null}
             <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
-              {/* <Button
-                onClick={toggleAppMenu}
-                theme={buttonCustomTheme}
-                className={cn(
-                  '!z-[59] fixed w-12 h-12 right-4 bottom-8 transition-colors focus:ring-0 active-ring-0',
-                  {
-                    'bottom-12': isIPad13 || isTablet,
-                    '!bg-dracula-dark-800': isOpen,
-                    'pointer-events-none !border !border-dracula-purple/80':
-                      appFabGuard,
-                  }
-                )}
-                pill
-                aria-label="application menu FAB button"
-                color="dark"
-              >
-                <svg width="0" height="0">
-                  <linearGradient
-                    id="dracula-gradient"
-                    x1="100%"
-                    y1="100%"
-                    x2="0%"
-                    y2="0%"
-                  >
-                    <stop stopColor="#ff79c6" offset="0%" />
-                    <stop stopColor="#bd93f9" offset="100%" />
-                  </linearGradient>
-                </svg>
-                <FaCube size={20} style={{ fill: 'url(#dracula-gradient)' }} />
-              </Button> */}
               <motion.div
                 id="application-pane-overlay"
                 className={cn(
-                  '!z-[58] !overflow-y-auto top-[1.75rem] bottom-0 left-0 w-screen py-12 bg-dracula-darker backdrop-blur-sm',
+                  '!z-[58] !overflow-y-auto bottom-0 top-5 w-screen py-12 left-0 bg-dracula-darker rounded-2xl backdrop-blur-sm',
                   {
                     'pb-24': !isIOS,
                   }
@@ -301,7 +242,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             </motion.nav>
           </div>
         </main>
-        <Powerline />
+        <Powerline onAppIconClick={toggleAppMenu} />
         <Footer />
       </BackgroundContainer>
     </>

@@ -3,6 +3,8 @@ import { PropsWithChildren } from 'react';
 import { BsFlagFill } from '@react-icons/all-files/bs/BsFlagFill';
 import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaUniversity } from '@react-icons/all-files/fa/FaUniversity';
+import { Card, Tabs } from '@mantine/core';
+import { StaticImage } from 'gatsby-plugin-image';
 import PaneContainer from '../components/pane-container';
 import CTFTimeBadge from '../components/ctftime-badge';
 import SectionTitle from '../components/section-title';
@@ -28,47 +30,6 @@ const CardContent = ({ children }: PropsWithChildren) => (
 );
 
 const EventPage = () => {
-  const customTabTheme = {
-    base: 'flex flex-col gap-2 w-full',
-    tabpanel: '',
-    tablist: {
-      styles: {
-        underline: 'flex-wrap -mb-px border-b border-gray-700',
-      },
-      tabitem: {
-        base: 'flex items-center justify-center p-4 rounded-t-lg text-sm font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-500',
-        styles: {
-          underline: {
-            base: 'rounded-t-lg',
-            active: {
-              on: 'transition-all ease-in-out duration-500 rounded-t-lg border-b-2 border-dracula-buffy-600 active',
-              off: 'transition-all ease-in-out duration-500 border-b-2 border-transparent text-gray-400 hover:border-gray-300 hover:text-gray-300',
-            },
-          },
-        },
-      },
-    },
-  };
-
-  const customCardTheme = {
-    root: {
-      base: 'flex rounded-lg border shadow-md border-gray-700 bg-gray-800/30 backdrop-blur-sm',
-      children: 'flex h-full w-full flex-col justify-center gap-4 p-6',
-      horizontal: {
-        off: 'flex-col',
-        on: 'flex-col md:max-w-xl md:flex-row',
-      },
-      href: 'hover:bg-gray-700',
-    },
-    img: {
-      base: '',
-      horizontal: {
-        off: 'rounded-t-lg',
-        on: 'h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg',
-      },
-    },
-  };
-
   const universityEventData = [
     {
       title: 'HKUST Robotics Team, Robocon - War Dragon team',
@@ -195,40 +156,43 @@ const EventPage = () => {
         }
         text="Memories Created"
       />
-      {/* <Tabs.Group
-        aria-label="Events Tab"
-        theme={customTabTheme}
-        style="underline"
-      >
-        <Tabs.Item active icon={BsFlagFill} title="CTF">
+      <Tabs defaultValue="CTF">
+        <Tabs.List>
+          <Tabs.Tab value="CTF" leftSection={<BsFlagFill />}>
+            Gallery
+          </Tabs.Tab>
+          <Tabs.Tab value="Tertiary" leftSection={<FaUniversity />}>
+            Messages
+          </Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value="CTF">
           <TabItemContainer>
             {ctfEventData.map((it) => (
-              <Card
-                key={it.title}
-                className="!w-full !h-fit"
-                theme={customCardTheme}
-              >
+              <Card shadow="sm" padding="lg" radius="md" withBorder>
+                <Card.Section>
+                  <StaticImage
+                    src="../images/vtuber-cube-icon.png"
+                    alt={it.title}
+                  />
+                </Card.Section>
+
                 <CardTitle>{it.title}</CardTitle>
                 <CardContent>{it.content}</CardContent>
               </Card>
             ))}
           </TabItemContainer>
-        </Tabs.Item>
-        <Tabs.Item active icon={FaUniversity} title="Tertiary">
+        </Tabs.Panel>
+        <Tabs.Panel value="Tertiary">
           <TabItemContainer>
             {universityEventData.map((it) => (
-              <Card
-                key={it.title}
-                className="!w-full !h-fit"
-                theme={customCardTheme}
-              >
+              <Card key={it.title} className="!w-full !h-fit">
                 <CardTitle>{it.title}</CardTitle>
                 <CardContent>{it.content}</CardContent>
               </Card>
             ))}
-          </TabItemContainer>
-        </Tabs.Item>
-      </Tabs.Group> */}
+          </TabItemContainer>{' '}
+        </Tabs.Panel>
+      </Tabs>
     </PaneContainer>
   );
 };

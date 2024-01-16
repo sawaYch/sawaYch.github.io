@@ -26,6 +26,7 @@
   }
 }
 
+/* chrome scrollbar, TODO: firefox support*/
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
@@ -200,7 +201,7 @@ button {
   left: 0;
   right: 0;
   height: 4px;
-  top: 1.75rem;
+  top: 0; 
   background: var(--buffy);
   background: linear-gradient(
     90deg,
@@ -277,20 +278,4 @@ iframe {
 .link-underline:hover {
   background-size: 100% 3px;
   background-position: 0 100%;
-}
-
-.top-shine {
-  background-image: radial-gradient(
-    500px 200px at 50%0,
-    #53597c 20%,
-    #373a4d 100%
-  );
-}
-
-.bottom-shine {
-  background-image: radial-gradient(
-    500px 200px at 50%100%,
-    #53597c 20%,
-    #373a4d 100%
-  );
 }

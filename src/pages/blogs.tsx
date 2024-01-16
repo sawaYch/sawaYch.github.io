@@ -4,7 +4,7 @@ import { FaRegFrownOpen } from '@react-icons/all-files/fa/FaRegFrownOpen';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import queryString from 'query-string';
 import cn from 'classnames';
-import { Badge, Button, Tooltip } from '@mantine/core';
+import { Badge } from '@mantine/core';
 import { PageProps, navigate, graphql } from 'gatsby';
 import Cube from '../components/cube';
 import BlogCard from '../components/blog-card';

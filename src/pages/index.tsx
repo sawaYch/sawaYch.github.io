@@ -2,8 +2,8 @@
 import { useCallback, useEffect } from 'react';
 import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
-import VoidTimeline from '../components/void-timeline';
-import SpecialThanks from '../components/special-thanks';
+// import VoidTimeline from '../components/void-timeline';
+// import SpecialThanks from '../components/special-thanks';
 
 export interface DataProps {
   site: {
@@ -38,10 +38,10 @@ const IndexPage = () => {
       <Banner />
       <CharacterCard />
       <Placeholder />
-      <VoidTimeline />
-      <Placeholder />
-      <SpecialThanks />
-      <Placeholder />
+      {/* <VoidTimeline /> */}
+      {/* <Placeholder /> */}
+      {/* <SpecialThanks /> */}
+      {/* <Placeholder />  */}
     </>
   );
 };

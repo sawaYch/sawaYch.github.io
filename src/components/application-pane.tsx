@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import React, { ReactElement, useState, useEffect } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
-import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
+// import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -52,17 +52,17 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
         setSelectedPage('home');
       },
     },
-    {
-      id: 'events',
-      cubeColor: 'green',
-      name: 'Event',
-      icon: <BsCalendarFill size="3.5rem" />,
-      link: '/events',
-      onClick: () => {
-        onPageSelected('events');
-        setSelectedPage('events');
-      },
-    },
+    // {
+    //   id: 'events',
+    //   cubeColor: 'green',
+    //   name: 'Event',
+    //   icon: <BsCalendarFill size="3.5rem" />,
+    //   link: '/events',
+    //   onClick: () => {
+    //     onPageSelected('events');
+    //     setSelectedPage('events');
+    //   },
+    // },
     {
       id: 'blogs',
       cubeColor: 'purple',
@@ -74,22 +74,22 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
         setSelectedPage('blogs');
       },
     },
-    {
-      id: 'vtubers',
-      cubeColor: 'cyan',
-      name: 'Vtubers',
-      icon: (
-        <StaticImage
-          src="../images/vtuber-cube-icon.png"
-          alt="vtubers cube icon"
-        />
-      ),
-      link: '/vtubers',
-      onClick: () => {
-        onPageSelected('vtubers');
-        setSelectedPage('vtubers');
-      },
-    },
+    // {
+    //   id: 'vtubers',
+    //   cubeColor: 'cyan',
+    //   name: 'Vtubers',
+    //   icon: (
+    //     <StaticImage
+    //       src="../images/vtuber-cube-icon.png"
+    //       alt="vtubers cube icon"
+    //     />
+    //   ),
+    //   link: '/vtubers',
+    //   onClick: () => {
+    //     onPageSelected('vtubers');
+    //     setSelectedPage('vtubers');
+    //   },
+    // },
     {
       id: 'artworks',
       cubeColor: 'buffy',
@@ -165,7 +165,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
               }
         }
       >
-        <div className="w-fit">
+        <div className="ml-4 w-fit">
           <div className="h-[1.5rem] -mb-8 -mx-8 bg-dracula-purple-400/30 -skew-x-12 backdrop-blur-sm" />
           <div className="flex">
             <div className="z-50 !text-dracula-purple-100 text-[2.4rem] uppercase">

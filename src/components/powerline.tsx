@@ -17,7 +17,11 @@ const TopBar = ({ children }: PropsWithChildren) => (
   </nav>
 );
 
-const Powerline = () => (
+interface PowerlineProps {
+  onAppIconClick: () => void;
+}
+
+const Powerline = ({ onAppIconClick }: PowerlineProps) => (
   <header className="z-50">
     <TopBar>
       <div className="flex items-center bg-dracula-dark">
@@ -57,7 +61,7 @@ const Powerline = () => (
       <div className="flex">
         <StatusPane>VoidDojo</StatusPane>
         <button
-          // onClick={toggleAppMenu}
+          onClick={onAppIconClick}
           type="button"
           className="flex items-center justify-center w-12 bg-dracula-dark"
         >
