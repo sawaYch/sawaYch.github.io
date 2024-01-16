@@ -17,7 +17,6 @@ import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
 import { useKeyUp } from '@react-hooks-library/core';
 import { StaticImage } from 'gatsby-plugin-image';
-// import MatrixRain from './matrix-rain';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
 import Footer from './footer';
@@ -189,12 +188,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             alt="background images"
             layout="fullWidth"
           />
-          {/* NOTE: disable bg pattern */}
-          {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
-          {/* <MatrixRain
-            size={14}
-            className="fixed top-0 left-0 z-10 !w-screen border pointer-events-none select-none h-custom opacity-20"
-          /> */}
           <div
             id="main-container"
             className={cn(

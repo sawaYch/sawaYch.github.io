@@ -71,35 +71,6 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
       />
     </PaneContainer>
     {/* <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl" /> */}
-    {/* <PaneColumn className="!items-center !justify-center !w-fit portrait:!w-full !m-0">
-          <div className="w-1/3 pt-4">
-            <StaticImage
-              className="self-start pointer-events-none select-none rounded-xl"
-              src="../images/avatar.webp"
-              alt="Void Dojo"
-              layout="fullWidth"
-            />
-          </div>
-          <h4 className="mt-6">CONNECT WITH ME</h4>
-          <a
-            className="underline hover:text-dracula-darker-300"
-            href="https://github.com/sawaYch/sawaYch.github.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="sawaYch.github.io link"
-          >
-            Github
-          </a>
-          <a
-            className="underline hover:text-dracula-darker-300"
-            href="https://twitter.com/SawaYch"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter link"
-          >
-            Twitter
-          </a>
-        </PaneColumn> */}
   </div>
 );
 

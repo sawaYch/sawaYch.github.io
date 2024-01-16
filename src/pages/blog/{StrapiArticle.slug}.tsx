@@ -206,7 +206,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
             onClick={() => {
               backToPrevPage();
             }}
-            className="fixed z-[50] top-8 w-fit h-fit left-0 sm:left-2 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+            className="fixed z-[50] top-2 w-fit h-fit left-0 sm:left-2 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
           >
             <FaAngleLeft aria-hidden className="w-6 h-6" />
           </button>
