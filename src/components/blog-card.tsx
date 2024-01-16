@@ -1,13 +1,12 @@
 import { PropsWithChildren } from 'react';
-import { Badge } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import { Img } from 'react-image';
+import { Badge } from '@mantine/core';
 import { formatDateMonthName } from '../utils/format-date';
 import getImageUrl from '../utils/getImageUrl';
 import Spinner from './spinner';
-import BadgeTheme from './badge-theme';
 
 const DateTimeSection = ({ children }: PropsWithChildren) => (
   <div className="flex items-center text-[0.65rem] self-end">{children}</div>
@@ -21,23 +20,6 @@ interface BlogCardProps {
   data: Queries.BlogsPageQuery['allStrapiArticle']['nodes'][0];
   onClick: () => void;
 }
-
-const SmallBadeCustomTheme = {
-  root: {
-    ...BadgeTheme.root,
-    size: {
-      xs: 'text-[0.55rem]',
-    },
-  },
-  icon: {
-    off: 'rounded px-0.5 py-0.5',
-    on: 'rounded-full p-1.5',
-    size: {
-      xs: 'w-fit h-fit',
-      sm: 'w-3.5 h-3.5',
-    },
-  },
-};
 
 const BlogCard = ({ data, onClick }: BlogCardProps) => (
   <motion.div
@@ -86,23 +68,13 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
       <TagCatSection>
         {data?.tags != null &&
           data.tags.map((t) => (
-            <Badge
-              key={t!.name as string}
-              color={t!.color as string}
-              theme={SmallBadeCustomTheme}
-              size="xs"
-            >
+            <Badge key={t!.name} color={t!.color as string} size="xs">
               {t!.name as string}
             </Badge>
           ))}
         {data?.categories != null &&
           data.categories.map((t) => (
-            <Badge
-              key={t!.name as string}
-              color={t!.color as string}
-              theme={SmallBadeCustomTheme}
-              size="xs"
-            >
+            <Badge key={t!.name} color={t!.color as string} size="xs">
               {t!.name as string}
             </Badge>
           ))}

@@ -141,7 +141,7 @@ const ArtworksPage = ({
         variants={variants}
         initial="closed"
         animate="open"
-        className="grid grid-cols-1 gap-2 px-10 pb-10 sm:grid-cols-3"
+        className="grid grid-cols-2 gap-2 px-10 pb-10 sm:grid-cols-4"
       >
         {data &&
           data.map((it) => (

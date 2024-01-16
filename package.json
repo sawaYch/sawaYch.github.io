@@ -21,6 +21,8 @@
     "deploy": "gatsby build && gh-pages -d public -b master"
   },
   "dependencies": {
+    "@mantine/core": "^7.4.1",
+    "@mantine/hooks": "^7.4.1",
     "@mdx-js/react": "^2.3.0",
     "@react-hooks-library/core": "^0.5.1",
     "@react-icons/all-files": "^4.1.0",
@@ -29,8 +31,6 @@
     "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "file-saver": "^2.0.5",
-    "flowbite": "^1.6.6",
-    "flowbite-react": "^0.4.9",
     "framer-motion": "^10.12.18",
     "gatsby": "^5.10.0",
     "gatsby-plugin-image": "^3.11.0",
@@ -84,6 +84,8 @@
     "gatsby-plugin-postcss": "^6.11.0",
     "gh-pages": "^5.0.0",
     "postcss": "^8.4.24",
+    "postcss-preset-mantine": "^1.12.3",
+    "postcss-simple-vars": "^7.0.1",
     "prettier": "2.8.8",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.1.3"

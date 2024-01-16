@@ -6,7 +6,6 @@ module.exports = {
     './src/pages/**/*.{js,jsx,ts,tsx}',
     './src/components/**/*.{js,jsx,ts,tsx}',
     './src/content/**/*.mdx',
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -55,6 +54,8 @@ module.exports = {
     // eslint-disable-next-line import/no-extraneous-dependencies
     require('@tailwindcss/typography'),
     require('tailwind-dracula')('dracula', true),
-    require('flowbite/plugin'),
   ],
+  corePlugins: {
+    preflight: true
+  }
 };

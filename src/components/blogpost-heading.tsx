@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { Tooltip } from 'flowbite-react';
+import { Tooltip } from '@mantine/core';
 import delay from '../utils/delay';
 import ShareButton from './share-button';
 
@@ -62,8 +62,13 @@ const BlogPostHeading = ({
     );
 
     const shareButton = (
-      <Tooltip content="Copy article section share link">
-        <ShareButton slug={slug} anchor={formattedId} className="mt-2" />
+      <Tooltip label="Copy article section share link" className="font-primary">
+        <ShareButton
+          slug={slug}
+          anchor={formattedId}
+          className="mt-2"
+          isIconButton
+        />
       </Tooltip>
     );
 

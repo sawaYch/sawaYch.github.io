@@ -14,7 +14,6 @@ import {
   MouseEventHandler,
   useRef,
 } from 'react';
-import { Pagination } from 'flowbite-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -137,7 +136,7 @@ const GalleryPage = ({
         variants={variants}
         initial="closed"
         animate="open"
-        className="grid grid-cols-1 gap-2 px-10 pb-10 sm:grid-cols-3"
+        className="grid grid-cols-2 gap-2 px-10 pb-10 sm:grid-cols-4"
       >
         {data &&
           data.map((it) => (
@@ -394,7 +393,7 @@ const GalleryPage = ({
                     >
                       <AiFillCaretDown size="1.2rem" />
                     </button>
-                    {gallery.image.length > 1 && (
+                    {/* {gallery.image.length > 1 && (
                       <Pagination
                         className="flex self-center mb-2 -mt-2"
                         theme={{
@@ -423,7 +422,7 @@ const GalleryPage = ({
                         previousLabel="←"
                         totalPages={gallery.image.length}
                       />
-                    )}
+                    )} */}
                   </div>
                   <div className="flex flex-col justify-between mb-2 sm:flex-row">
                     <div className="font-bold">{gallery.name}</div>

@@ -1,5 +1,8 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable import/prefer-default-export */
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
+import MantineTheme from './src/theme';
 
 import './src/styles/global.css';
 import './src/styles/prism-dracula.css';
@@ -16,5 +19,9 @@ export const wrapPageElement = ({ element, props }) => {
   }
 
   // Apply the layout component to other pages
-  return <Layout {...props}>{element}</Layout>;
+  return (
+    <MantineProvider theme={MantineTheme}   withCSSVariables         withGlobalStyles         withNormalizeCSS  >
+      <Layout {...props}>{element}</Layout>
+    </MantineProvider>
+  );
 };

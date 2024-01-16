@@ -1,7 +1,7 @@
-import { Button, Badge } from 'flowbite-react';
 import { FaClipboard } from '@react-icons/all-files/fa/FaClipboard';
 import { FaClipboardCheck } from '@react-icons/all-files/fa/FaClipboardCheck';
 import { useCallback, useEffect, useState } from 'react';
+import { Badge, Button } from '@mantine/core';
 import delay from '../utils/delay';
 import useCopyToClipboard from '../utils/use-clipboard';
 
@@ -31,15 +31,16 @@ const CodeCopyToolbar = ({ lang, text }: CodeCopyToolbarProps) => {
   return (
     <div>
       <Button
-        color={isCopy ? 'green' : 'dark'}
-        className="absolute w-10 h-8 transition-all rounded-full top-1 right-1"
+        color={isCopy ? 'lime' : 'rgba(200, 200, 200, 1)'}
+        variant="light"
+        className="absolute h-[1.5rem] transition-all rounded-full top-2 right-1"
         onClick={handleCopy}
       >
         {isCopy ? <FaClipboardCheck /> : <FaClipboard />}
       </Button>
       <Badge
-        color="purple"
-        className="absolute uppercase top-2 right-12 w-fit h-fit"
+        color="violet"
+        className="absolute h-[1.5rem] uppercase top-2 right-[3.75rem] w-fit"
       >
         {lang}
       </Badge>

@@ -17,7 +17,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
 import cn from 'classnames';
 import { isMobile } from 'react-device-detect';
-import { Badge } from 'flowbite-react';
+import { Badge } from '@mantine/core';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -126,7 +126,7 @@ const StreamTypeBadges = ({ data }: StreamTypeBadgesProps) => {
       case StreamTypeEnum.Game:
         return 'lime';
       case StreamTypeEnum.Chat:
-        return 'warning';
+        return 'grape';
       case StreamTypeEnum.Collab:
         return 'yellow';
       case StreamTypeEnum.Project:
@@ -136,7 +136,7 @@ const StreamTypeBadges = ({ data }: StreamTypeBadgesProps) => {
       case StreamTypeEnum.Drawing:
         return 'pink';
       default:
-        return 'info';
+        return 'violet';
     }
   }, []);
 

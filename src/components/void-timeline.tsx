@@ -1,4 +1,3 @@
-import { Timeline } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaSchool } from '@react-icons/all-files/fa/FaSchool';
@@ -6,6 +5,7 @@ import { FaBaby } from '@react-icons/all-files/fa/FaBaby';
 import { isMobile } from 'react-device-detect';
 import { PropsWithChildren } from 'react';
 
+import { Timeline } from '@mantine/core';
 import PaneContainer from './pane-container';
 import VoidTimelineItem, { VoidTimeItemProps } from './void-timeline-item';
 import WavyText from './wavy-text';
@@ -20,7 +20,7 @@ const VoidTimeline = () => {
       time: 'Unknown',
       title: 'Born',
       body: 'A wild little Sawa was born! 👶',
-      icon: FaBaby,
+      icon: <FaBaby />,
     },
     {
       time: 'Aug. 2020',
@@ -34,7 +34,7 @@ const VoidTimeline = () => {
           <p>Major BENG in Computer Science (COMP)</p>
         </>
       ),
-      icon: FaSchool,
+      icon: <FaSchool />,
     },
     {
       time: 'Jul. 2020 - June. 2023',
@@ -120,7 +120,7 @@ const VoidTimeline = () => {
         whileInView="onscreen"
         viewport={{ once: true }}
       >
-        <Timeline className="w-full border-gray-700 dark:border-gray-200 transition-color-apply text-dracula-light-50">
+        <Timeline active={1} bulletSize={24} lineWidth={2}>
           {timelineData.map((data, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <VoidTimelineItem {...data} key={index} order={index} />
