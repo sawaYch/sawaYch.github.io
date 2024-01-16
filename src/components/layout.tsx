@@ -15,9 +15,9 @@ import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
-// import MatrixRain from './matrix-rain';
 import { useKeyUp } from '@react-hooks-library/core';
 import { StaticImage } from 'gatsby-plugin-image';
+// import MatrixRain from './matrix-rain';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
 import Footer from './footer';
@@ -142,7 +142,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   }, [location.pathname, scrollToTop]);
 
   useKeyUp(
-    'Space',
+    'ControlLeft',
     () => {
       toggleAppMenu();
     },
@@ -180,7 +180,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
         >
           <StaticImage
             className={cn(
-              '!fixed top-0 left-0 opacity-bg pointer-events-none select-none z-20 w-screen',
+              '!fixed top-0 left-0 bottom-0 right-0 opacity-bg pointer-events-none select-none z-20 w-screen',
               {
                 'bottom-0 right-0': isMobile,
               }

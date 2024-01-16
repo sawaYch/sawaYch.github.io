@@ -1,13 +1,11 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
 import { Img } from 'react-image';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import cn from 'classnames';
-import { motion } from 'framer-motion';
-import { isMobile } from 'react-device-detect';
+import { StaticImage } from 'gatsby-plugin-image';
 import AboutMe from '../content/about-me.mdx';
 import PaneContainer from './pane-container';
-import SpecCard from './spec-card';
+// import SpecCard from './spec-card';
 import Spinner from './spinner';
 
 interface CharacterCardProps {
@@ -20,7 +18,7 @@ const PaneColumn = ({
 }: PropsWithChildren<CharacterCardProps>) => (
   <div
     className={cn(
-      'flex flex-col items-start content-start justify-center m-4 grow',
+      'flex flex-col items-start content-start justify-start m-4 grow',
       className
     )}
   >
@@ -33,40 +31,47 @@ const ImageWrapper: (children: ReactNode) => React.JSX.Element = (children) => (
 );
 
 const CharacterCard = ({ className }: CharacterCardProps) => (
-  <motion.div
-    className="flex justify-center w-1/2 portrait:w-4/5 item-center"
-    variants={
-      isMobile
-        ? undefined
-        : {
-            offscreen: {
-              opacity: 0,
-              scale: 0.5,
-            },
-            onscreen: {
-              opacity: 1,
-              scale: 1,
-              transition: {
-                duration: 0.5,
-              },
-            },
-          }
-    }
-    initial="offscreen"
-    whileInView="onscreen"
-    viewport={{ once: true }}
-  >
+  <div className="flex justify-center w-1/2 portrait:w-4/5 item-center">
     <PaneContainer
       className={cn(
-        'flex flex-col !backdrop-blur-md !bg-dracula-dark/10',
+        'flex flex-col !bg-dracula-darker-900 rounded-md',
         className
       )}
     >
-      <div className="flex flex-col items-start justify-center md:flex-row xs:items-center">
+      <div className="flex flex-col items-start justify-center md:flex-row xs:items-center text-dracula-dark-400">
         <PaneColumn>
+          <div className="absolute self-end w-16 sm:w-32">
+            <StaticImage
+              className="pointer-events-none select-none rounded-xl"
+              src="../images/avatar.webp"
+              alt="Void Dojo"
+              layout="fullWidth"
+            />
+          </div>
           <AboutMe />
         </PaneColumn>
-        <PaneColumn className="!items-center !justify-center !w-fit portrait:!w-full !m-0">
+      </div>
+      <Img
+        className="w-full h-full p-1 pointer-events-none select-none sm:p-8"
+        src="https://raw.githubusercontent.com/sawaYch/sawaYch/main/github-metrics.svg"
+        alt="metrics"
+        loader={
+          <div className="flex flex-col items-center justify-center w-full h-full">
+            <Spinner className="!w-12 !h-12" />
+          </div>
+        }
+        unloader={
+          <div className="flex flex-col items-center justify-center h-full">
+            <FcRemoveImage size="5rem" />
+            <div>Fail to load pulse statistic</div>
+          </div>
+        }
+        container={ImageWrapper}
+        loading="lazy"
+      />
+    </PaneContainer>
+    {/* <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl" /> */}
+    {/* <PaneColumn className="!items-center !justify-center !w-fit portrait:!w-full !m-0">
           <div className="w-1/3 pt-4">
             <StaticImage
               className="self-start pointer-events-none select-none rounded-xl"
@@ -94,29 +99,8 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
           >
             Twitter
           </a>
-          <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl" />
-        </PaneColumn>
-      </div>
-      <Img
-        className="w-full h-full mt-10 pointer-events-none select-none p0 sm:p-8"
-        src="https://raw.githubusercontent.com/sawaYch/sawaYch/main/github-metrics.svg"
-        alt="metrics"
-        loader={
-          <div className="flex flex-col items-center justify-center w-full h-full">
-            <Spinner className="!w-12 !h-12" />
-          </div>
-        }
-        unloader={
-          <div className="flex flex-col items-center justify-center h-full">
-            <FcRemoveImage size="5rem" />
-            <div>Fail to load pulse statistic</div>
-          </div>
-        }
-        container={ImageWrapper}
-        loading="lazy"
-      />
-    </PaneContainer>
-  </motion.div>
+        </PaneColumn> */}
+  </div>
 );
 
 export default CharacterCard;

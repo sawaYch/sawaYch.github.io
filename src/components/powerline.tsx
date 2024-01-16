@@ -1,9 +1,10 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
 import { FaRegDotCircle } from '@react-icons/all-files/fa/FaRegDotCircle';
 import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
 import { IoMdApps } from '@react-icons/all-files/io/IoMdApps';
 import { IoMdReturnRight } from '@react-icons/all-files/io/IoMdReturnRight';
+import { isMobile } from 'react-device-detect';
 import IconLink from './icon-link';
 import useCurrentModules from '../utils/use-current-modules';
 
@@ -25,6 +26,12 @@ interface PowerlineProps {
 
 const Powerline = ({ onAppIconClick }: PowerlineProps) => {
   const moduleName = useCurrentModules();
+
+  const formatModuleName = useMemo(
+    () =>
+      isMobile ? moduleName?.toUpperCase()?.[0] : moduleName?.toUpperCase(),
+    [moduleName]
+  );
 
   return (
     <header className="z-50">
@@ -64,11 +71,13 @@ const Powerline = ({ onAppIconClick }: PowerlineProps) => {
           </StatusPane>
           <div className="flex h-full gap-1 px-2 pt-1 bg-dracula-green-800">
             <IoMdReturnRight className="mt-[0.1rem]" />
-            {moduleName?.toUpperCase()}
+            <div className="text-[0.5rem] rounded-sm bg-dracula-dark px-1 mb-1">
+              {formatModuleName}
+            </div>
           </div>
         </div>
         <div className="flex">
-          <StatusPane>VoidDojo</StatusPane>
+          <StatusPane>{isMobile ? 'VD' : 'VoidDojo'}</StatusPane>
           <button
             onClick={onAppIconClick}
             type="button"
