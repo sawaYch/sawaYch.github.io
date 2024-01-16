@@ -1,14 +1,13 @@
-import { Badge } from 'flowbite-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { FaRegFrownOpen } from '@react-icons/all-files/fa/FaRegFrownOpen';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import queryString from 'query-string';
 import cn from 'classnames';
+import { Badge, Button, Tooltip } from '@mantine/core';
 import { PageProps, navigate, graphql } from 'gatsby';
 import Cube from '../components/cube';
 import BlogCard from '../components/blog-card';
-import BadgeTheme from '../components/badge-theme';
 
 export const blogsQuery = graphql`
   query BlogsPage {
@@ -161,7 +160,6 @@ PageProps<Queries.BlogsPageQuery>) => {
                 onClick={() => {
                   handleTagSelection(it.name);
                 }}
-                theme={BadgeTheme}
               >
                 {it.name}
               </Badge>

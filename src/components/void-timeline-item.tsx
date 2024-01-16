@@ -1,4 +1,3 @@
-import { Timeline } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import { FC, ReactElement, SVGProps, useMemo } from 'react';
 import { BsFillBriefcaseFill } from '@react-icons/all-files/bs/BsFillBriefcaseFill';
@@ -76,7 +75,7 @@ const VoidTimelineItem = ({
       layout="position"
       viewport={{ once: true }}
     >
-      <Timeline.Item>
+      {/* <Timeline.Item>
         <Timeline.Point
           icon={icon ?? BsFillBriefcaseFill}
           theme={customPointTheme}
@@ -86,7 +85,7 @@ const VoidTimelineItem = ({
           <Timeline.Title theme={customTitleTheme}>{title}</Timeline.Title>
           <Timeline.Body theme={customBodyTheme}>{body}</Timeline.Body>
         </Timeline.Content>
-      </Timeline.Item>
+      </Timeline.Item> */}
     </motion.div>
   );
 };

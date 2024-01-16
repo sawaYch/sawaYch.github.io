@@ -1,4 +1,3 @@
-import { Timeline } from 'flowbite-react';
 import { motion } from 'framer-motion';
 import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaSchool } from '@react-icons/all-files/fa/FaSchool';
@@ -120,12 +119,12 @@ const VoidTimeline = () => {
         whileInView="onscreen"
         viewport={{ once: true }}
       >
-        <Timeline className="w-full border-gray-700 dark:border-gray-200 transition-color-apply text-dracula-light-50">
+        {/* <Timeline className="w-full border-gray-700 dark:border-gray-200 transition-color-apply text-dracula-light-50">
           {timelineData.map((data, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <VoidTimelineItem {...data} key={index} order={index} />
           ))}
-        </Timeline>
+        </Timeline> */}
         <GiVampireDracula size="2rem" className="-mt-10 -ml-4" />
         <WavyText
           className="!mt-1 -ml-3"

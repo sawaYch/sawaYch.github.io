@@ -10,7 +10,6 @@ import {
 } from 'react';
 import { PageProps } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
-import { Flowbite, Button } from 'flowbite-react';
 import { isIPad13, isTablet, isMobile, isIOS } from 'react-device-detect';
 import AnimatedCursor from 'react-animated-cursor';
 import cn from 'classnames';
@@ -20,7 +19,7 @@ import { motion, useCycle, useScroll } from 'framer-motion';
 // import MatrixRain from './matrix-rain';
 import { useKeyUp } from '@react-hooks-library/core';
 import BackgroundContainer from './background-container';
-import Header from './header';
+import Powerline from './powerline';
 import Footer from './footer';
 import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
@@ -180,7 +179,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   );
 
   return (
-    <Flowbite>
+    <>
       <SEOHead />
       <BackgroundContainer>
         {isMobile ? null : (
@@ -201,7 +200,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             }}
           />
         )}
-        <Header />
         <main
           id="main"
           ref={ref}
@@ -209,12 +207,12 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             'overflow-y-hidden': isOpen,
           })}
         >
-          <StaticImage
+          {/* <StaticImage
             className="!fixed top-0 left-0 opacity-bg w-screen h-screen pointer-events-none select-none z-20"
             src="../images/girl.png"
             alt="background images"
             layout="fullWidth"
-          />
+          /> */}
           {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
           {/* <MatrixRain
@@ -236,7 +234,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             {enableProgressbar ? (
               <ProgressIndicator scrollYProgress={scrollYProgress} />
             ) : null}
-            {isVisible && !isOpen ? (
+            {/* {isVisible && !isOpen ? (
               <Button
                 onClick={() => scrollToTop()}
                 theme={buttonCustomTheme}
@@ -251,9 +249,9 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
               >
                 <FaChevronUp size={20} />
               </Button>
-            ) : null}
+            ) : null} */}
             <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
-              <Button
+              {/* <Button
                 onClick={toggleAppMenu}
                 theme={buttonCustomTheme}
                 className={cn(
@@ -282,7 +280,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                   </linearGradient>
                 </svg>
                 <FaCube size={20} style={{ fill: 'url(#dracula-gradient)' }} />
-              </Button>
+              </Button> */}
               <motion.div
                 id="application-pane-overlay"
                 className={cn(
@@ -303,9 +301,10 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             </motion.nav>
           </div>
         </main>
+        <Powerline />
         <Footer />
       </BackgroundContainer>
-    </Flowbite>
+    </>
   );
 };
 

@@ -4,7 +4,21 @@
 import './src/styles/global.css';
 import './src/styles/prism-dracula.css';
 import './src/styles/prism-plus.css';
+import '@mantine/core/styles.css';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import Layout from './src/components/layout';
+import MantineTheme from './src/theme';
+
+export const onPreRenderHTML = ({
+  getHeadComponents,
+  replaceHeadComponents,
+}) => {
+  const headComponents = getHeadComponents();
+  replaceHeadComponents([
+    ...headComponents,
+    <ColorSchemeScript key="color-scheme-script" />,
+  ]);
+};
 
 export const wrapPageElement = ({ element, props }) => {
   // Exclude the /404 page
@@ -16,7 +30,11 @@ export const wrapPageElement = ({ element, props }) => {
   }
 
   // Apply the layout component to other pages
-  return <Layout {...props}>{element}</Layout>;
+  return (
+    <MantineProvider theme={MantineTheme}   withCSSVariables         withGlobalStyles         withNormalizeCSS  >
+      <Layout {...props}>{element}</Layout>
+    </MantineProvider>
+  );
 };
 
 export const onRenderBody = ({ setHeadComponents }) => {

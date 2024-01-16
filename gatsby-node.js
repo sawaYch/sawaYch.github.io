@@ -4,7 +4,7 @@ exports.createPages = ({ actions }) => {
   const { createSlice } = actions;
   createSlice({
     id: 'header',
-    component: require.resolve('./src/components/header.tsx'),
+    component: require.resolve('./src/components/powerline.tsx'),
   });
   createSlice({
     id: 'footer',

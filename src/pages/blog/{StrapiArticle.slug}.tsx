@@ -15,7 +15,6 @@ import { Img } from 'react-image';
 import { StaticImage } from 'gatsby-plugin-image';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
-import { Badge, Tooltip } from 'flowbite-react';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import {
   AnimatePresence,
@@ -28,6 +27,7 @@ import {
   TransformComponent,
   TransformWrapper,
 } from 'react-zoom-pan-pinch';
+import { Badge, Tooltip } from '@mantine/core';
 import Spinner from '../../components/spinner';
 import { formatDateMonthName } from '../../utils/format-date';
 import CodeCopyToolbar from '../../components/code-copy-toolbar';
@@ -36,7 +36,6 @@ import slugify from '../../utils/slugify';
 import ListOfContent, { TOCData } from '../../components/list-of-content';
 import SEOHead from '../../components/seo-head';
 import ImagePanControls from '../../components/image-pan-control';
-import BadgeTheme from '../../components/badge-theme';
 import ShareButton from '../../components/share-button';
 import InlineCode from '../../components/inline-code';
 import getImageUrl from '../../utils/getImageUrl';
@@ -233,7 +232,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                     unloader={
                       <div className="flex flex-col items-center justify-center w-full h-[24vh]">
                         <StaticImage
-                          src="../images/home.webp"
+                          src="../../images/home.webp"
                           alt="back to home"
                           layout="constrained"
                           height={240}
@@ -253,26 +252,21 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                   </div>
                   <div className="flex items-center justify-center gap-1 uppercase">
                     {finalBlogData!.tags!.map((t) => (
-                      <Badge
-                        key={t!.name}
-                        color={t!.color as string}
-                        theme={BadgeTheme}
-                      >
+                      <Badge key={t!.name} color={t!.color as string}>
                         {t!.name}
                       </Badge>
                     ))}
                     {finalBlogData!.categories!.map((t) => (
-                      <Badge
-                        key={t!.name}
-                        color={t!.color as string}
-                        theme={BadgeTheme}
-                      >
+                      <Badge key={t!.name} color={t!.color as string}>
                         {t!.name}
                       </Badge>
                     ))}
                   </div>
                   <div className="flex items-center justify-center">
-                    <Tooltip content="Copy article share link">
+                    <Tooltip
+                      className="font-primary"
+                      label="Copy article share link"
+                    >
                       <ShareButton slug={slug} showLabel className="!w-fit" />
                     </Tooltip>
                   </div>

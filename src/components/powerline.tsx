@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
 import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
 import { FaRegDotCircle } from '@react-icons/all-files/fa/FaRegDotCircle';
 import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
+import { IoMdApps } from '@react-icons/all-files/io/IoMdApps';
 import IconLink from './icon-link';
 
 const StatusPane = ({ children }: PropsWithChildren) => (
-  <div className="flex items-center justify-center pl-4 pr-4 gap-x-2 bg-dracula-pink-400/70">
+  <div className="flex items-center justify-center h-full pl-4 pr-4 gap-x-2 bg-dracula-pink-400/80">
     {children}
   </div>
 );
@@ -17,33 +17,18 @@ const TopBar = ({ children }: PropsWithChildren) => (
   </nav>
 );
 
-const Header = () => (
+const Powerline = () => (
   <header className="z-50">
     <TopBar>
-      <div className="flex items-center bg-dracula-pink-400/70 rounded-l-md">
-        <div className="transition-transform border-2 rounded-md active:scale-125 border-dracula-dark-600 bg-dracula bg-dracula-buffy-200">
-          <StaticImage
-            className="pointer-events-none select-none "
-            src="../images/favicon.webp"
-            alt="Void Dojo"
-            layout="fixed"
-            width={24}
-            height={24}
-          />
+      <div className="flex items-center bg-dracula-dark">
+        <div className="flex items-center justify-center !w-12 select-none bg-[#9ece6a] py-1">
+          <FaRegDotCircle size="0.8rem" />
         </div>
         <IoMdGitBranch
-          size="1.7rem"
-          className="pointer-events-none select-none"
+          size="1rem"
+          className="ml-2 mr-1 pointer-events-none select-none"
         />
-        <span className="pr-2 pointer-events-none select-none">VoidDojo</span>
-        <div className="flex items-center justify-center h-full pl-2 pr-2 pointer-events-none select-none bg-dracula-purple-600/70">
-          Master
-        </div>
-      </div>
-      <div className="flex">
-        <div className="flex items-center justify-center !w-12 select-none bg-dracula-darker-800">
-          <FaRegDotCircle size="1rem" />
-        </div>
+        <span className="pr-2 pointer-events-none select-none">master</span>
         <StatusPane>
           <IconLink
             target="https://github.com/sawaYch"
@@ -69,8 +54,30 @@ const Header = () => (
           />
         </StatusPane>
       </div>
+      <div className="flex">
+        <StatusPane>VoidDojo</StatusPane>
+        <button
+          // onClick={toggleAppMenu}
+          type="button"
+          className="flex items-center justify-center w-12 bg-dracula-dark"
+        >
+          <svg width="0" height="0">
+            <linearGradient
+              id="dracula-gradient"
+              x1="100%"
+              y1="100%"
+              x2="0%"
+              y2="0%"
+            >
+              <stop stopColor="#ff79c6" offset="0%" />
+              <stop stopColor="#bd93f9" offset="100%" />
+            </linearGradient>
+          </svg>
+          <IoMdApps size="1rem" style={{ fill: 'url(#dracula-gradient)' }} />
+        </button>
+      </div>
     </TopBar>
   </header>
 );
 
-export default Header;
+export default Powerline;

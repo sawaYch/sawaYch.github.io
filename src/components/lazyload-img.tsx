@@ -10,7 +10,7 @@ interface LazyImgProps {
 
 const LazyImg = ({ alt, src }: LazyImgProps) => (
   <>
-    <div className={cn('flex justify-center w-full h-32 bg-dracula-dark/20')}>
+    <div className={cn('flex justify-center w-32 h-32 bg-dracula-dark/20')}>
       <Img
         className={cn('object-cover')}
         src={src}

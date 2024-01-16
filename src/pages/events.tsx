@@ -1,6 +1,5 @@
 /* eslint-disable react/style-prop-object */
 import { PropsWithChildren } from 'react';
-import { Card, Tabs } from 'flowbite-react';
 import { BsFlagFill } from '@react-icons/all-files/bs/BsFlagFill';
 import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaUniversity } from '@react-icons/all-files/fa/FaUniversity';
@@ -196,7 +195,7 @@ const EventPage = () => {
         }
         text="Memories Created"
       />
-      <Tabs.Group
+      {/* <Tabs.Group
         aria-label="Events Tab"
         theme={customTabTheme}
         style="underline"
@@ -229,7 +228,7 @@ const EventPage = () => {
             ))}
           </TabItemContainer>
         </Tabs.Item>
-      </Tabs.Group>
+      </Tabs.Group> */}
     </PaneContainer>
   );
 };
