@@ -178,14 +178,17 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             'overflow-y-hidden': isOpen,
           })}
         >
-          <div className="!fixed top-0 left-0 opacity-bg w-screen h-auto pointer-events-none select-none z-20">
-            <StaticImage
-              className="object-cover"
-              src="../images/girl.png"
-              alt="background images"
-              layout="fullWidth"
-            />
-          </div>
+          <StaticImage
+            className={cn(
+              '!fixed top-0 left-0 opacity-bg pointer-events-none select-none z-20 w-screen',
+              {
+                'bottom-0 right-0': isMobile,
+              }
+            )}
+            src="../images/girl.png"
+            alt="background images"
+            layout="fullWidth"
+          />
           {/* NOTE: disable bg pattern */}
           {/* <div className="fixed top-0 left-0 z-20 w-screen h-screen pointer-events-none select-none bg-pattern" /> */}
           {/* <MatrixRain
