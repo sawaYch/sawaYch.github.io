@@ -122,6 +122,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
           alt="mya88 module icon"
           width={64}
           height={64}
+          placeholder="blurred"
         />
       ),
       link: 'https://mya88.vercel.app/',

@@ -206,6 +206,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
               }
             )}
           >
+            {/* <div className="fixed top-0 w-screen h-4 dot-margin backdrop-blur-md z-[22] mr-4" /> */}
             {children}
             {enableProgressbar ? (
               <ProgressIndicator scrollYProgress={scrollYProgress} />

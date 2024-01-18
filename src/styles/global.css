@@ -262,6 +262,12 @@ iframe {
   animation: bscale 60s infinite linear;
 }
 
+.dot-margin {
+  background: -webkit-radial-gradient(#fff 20%, transparent 20%);
+  background: radial-gradient(#fff 20%, transparent 20%);
+  background-size: 4px 4px;
+}
+
 ::-moz-selection {
   /* Code for Firefox */
   color: white;
