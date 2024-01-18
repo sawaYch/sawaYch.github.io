@@ -15,7 +15,7 @@ import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
-import { useKeyUp } from '@react-hooks-library/core';
+import { useKeyDown } from '@react-hooks-library/core';
 import BackgroundImage from './background-image';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
@@ -140,13 +140,32 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     scrollToTop('instant');
   }, [location.pathname, scrollToTop]);
 
-  useKeyUp(
-    'ControlLeft',
+  const [flag, setFlag] = useState<string | undefined>();
+
+  useKeyDown(
+    ['ControlLeft'],
     () => {
-      toggleAppMenu();
+      setFlag('a');
     },
     { code: true }
   );
+
+  useKeyDown(
+    ['Space'],
+    () => {
+      if (flag === 'a') {
+        setFlag('b');
+      }
+    },
+    { code: true }
+  );
+
+  useEffect(() => {
+    if (flag === 'b') {
+      toggleAppMenu();
+      setFlag('');
+    }
+  }, [flag, toggleAppMenu]);
 
   return (
     <>

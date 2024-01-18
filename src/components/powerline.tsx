@@ -79,7 +79,13 @@ const Powerline = ({ onAppIconClick }: PowerlineProps) => {
         </div>
         <div className="flex">
           <StatusPane>{isMobile ? 'VD' : 'VoidDojo'}</StatusPane>
-          <Tooltip label={<Kbd>Ctrl</Kbd>}>
+          <Tooltip
+            label={
+              <>
+                <Kbd>Ctrl</Kbd>+<Kbd>Space</Kbd>
+              </>
+            }
+          >
             <button
               onClick={onAppIconClick}
               type="button"
