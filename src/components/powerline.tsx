@@ -16,7 +16,7 @@ const StatusPane = ({ children }: PropsWithChildren) => (
 );
 
 const TopBar = ({ children }: PropsWithChildren) => (
-  <nav className="sticky top-0 flex justify-between text-xs shadow-md select-none bg-dracula-darker">
+  <nav className="sticky top-0 flex justify-between text-xs shadow-md select-none bg-dracula-darker backdrop-blur-sm">
     {children}
   </nav>
 );

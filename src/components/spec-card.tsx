@@ -54,14 +54,14 @@ const SpecCard = ({ className }: SpecCardProps) => {
         withFrame
       >
         <p>➜ neofetch</p>
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-center justify-center p-4 gap-x-4">
           <StaticImage
-            src="../images/computer.webp"
+            src="../images/arch.png"
             alt="computer"
             layout="fixed"
             placeholder="blurred"
-            width={160}
-            height={160}
+            width={118}
+            height={118}
           />
           <Spec />
         </div>

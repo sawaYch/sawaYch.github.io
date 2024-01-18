@@ -1,54 +1,70 @@
-import React, { PropsWithChildren } from 'react';
 import cn from 'classnames';
 import { StaticImage } from 'gatsby-plugin-image';
+import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 import AboutMe from '../content/about-me.mdx';
 import PaneContainer from './pane-container';
 import Placeholder from './placeholder';
-// import SpecCard from './spec-card';
 
 interface CharacterCardProps {
   className?: string;
 }
 
-const PaneColumn = ({
-  children,
-  className,
-}: PropsWithChildren<CharacterCardProps>) => (
-  <div
-    className={cn(
-      'flex flex-col items-start content-start justify-start m-4 grow',
-      className
-    )}
-  >
-    {children}
-  </div>
-);
-
 const CharacterCard = ({ className }: CharacterCardProps) => (
   <>
     <div className="flex justify-center w-1/2 portrait:w-4/5 item-center">
       <PaneContainer
-        className={cn(
-          'flex flex-col !bg-dracula-darker-900 rounded-md',
-          className
-        )}
+        className={cn('flex flex-col !border-0 !bg-transparent', className)}
       >
-        <div className="flex flex-col items-start justify-center md:flex-row xs:items-center text-dracula-dark-400">
-          <PaneColumn>
-            <div className="absolute self-end w-16 sm:w-32">
-              <StaticImage
-                className="pointer-events-none select-none rounded-xl"
-                src="../images/avatar.webp"
-                alt="Void Dojo"
-                layout="fullWidth"
-                placeholder="blurred"
-              />
+        <motion.div
+          className="flex justify-center item-center"
+          variants={
+            isMobile
+              ? undefined
+              : {
+                  offscreen: {
+                    opacity: 0,
+                    x: -50,
+                  },
+                  onscreen: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }
+          }
+          initial="offscreen"
+          whileInView="onscreen"
+          layout="position"
+          viewport={{ once: true }}
+        >
+          <PaneContainer
+            className={cn(
+              'flex items-center justify-center text-xs pointer-events-none select-none rounded-lg',
+              className
+            )}
+            withFrame
+          >
+            <p>➜ whoami</p>
+            <div className="flex flex-col items-center justify-center p-4 gap-x-4">
+              <div className="w-16 mb-4 sm:w-32">
+                <StaticImage
+                  className="pointer-events-none select-none rounded-xl"
+                  src="../images/avatar.webp"
+                  alt="Void Dojo"
+                  layout="fullWidth"
+                  placeholder="blurred"
+                />
+              </div>
+              <AboutMe />
             </div>
-            <AboutMe />
-          </PaneColumn>
-        </div>
+            ➜ <span className="animate-ping">█</span>
+          </PaneContainer>
+        </motion.div>
       </PaneContainer>
-      {/* <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl" /> */}
     </div>
     <Placeholder />
   </>
