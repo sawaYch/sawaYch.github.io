@@ -372,6 +372,7 @@ const GalleryPage = ({
                                 alt="back to home"
                                 layout="constrained"
                                 height={240}
+                                placeholder="blurred"
                               />
                             </div>
                           }

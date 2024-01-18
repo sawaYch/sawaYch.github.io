@@ -1,18 +1,27 @@
 import { motion } from 'framer-motion';
-import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaSchool } from '@react-icons/all-files/fa/FaSchool';
 import { FaBaby } from '@react-icons/all-files/fa/FaBaby';
 import { isMobile } from 'react-device-detect';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactElement, ReactNode } from 'react';
+import { BsFillBriefcaseFill } from '@react-icons/all-files/bs/BsFillBriefcaseFill';
+import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 
-import { Timeline } from '@mantine/core';
+import { Timeline, Text } from '@mantine/core';
 import PaneContainer from './pane-container';
-import VoidTimelineItem, { VoidTimeItemProps } from './void-timeline-item';
+import Placeholder from './placeholder';
 import WavyText from './wavy-text';
 
 const IndentText = ({ children }: PropsWithChildren) => (
   <div className="ml-8">{children}</div>
 );
+
+export interface VoidTimeItemProps {
+  time: string;
+  title: string;
+  body: string | ReactElement;
+  order?: number;
+  icon?: ReactNode;
+}
 
 const VoidTimeline = () => {
   const timelineData: VoidTimeItemProps[] = [
@@ -94,46 +103,87 @@ const VoidTimeline = () => {
     },
   ];
   return (
-    <PaneContainer className="!bg-transparent !border-0 flex !items-start !justify-center !w-3/4 !h-1/2">
-      <motion.div
-        className="!w-fit !h-fit"
-        variants={
-          isMobile
-            ? undefined
-            : {
-                offscreen: {
-                  scaleY: 0,
-                  originY: 'top',
-                  opacity: 0,
-                },
-                onscreen: {
-                  scaleY: 1,
-                  originY: 'top',
-                  opacity: 1,
-                  transition: {
-                    duration: 1,
+    <>
+      <PaneContainer className="!bg-transparent !border-0 flex !items-start !justify-center !w-3/4 !h-1/2">
+        <motion.div
+          className="!w-fit !h-fit"
+          variants={
+            isMobile
+              ? undefined
+              : {
+                  offscreen: {
+                    scaleY: 0,
+                    originY: 'top',
+                    opacity: 0,
                   },
-                },
-              }
-        }
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true }}
-      >
-        <Timeline active={1} bulletSize={24} lineWidth={2}>
-          {timelineData.map((data, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <VoidTimelineItem {...data} key={index} order={index} />
-          ))}
-        </Timeline>
-        <GiVampireDracula size="2rem" className="-mt-10 -ml-4" />
-        <WavyText
-          className="!mt-1 -ml-3"
-          text="The journey continues 📱 🎮 💻"
-          replay
-        />
-      </motion.div>
-    </PaneContainer>
+                  onscreen: {
+                    scaleY: 1,
+                    originY: 'top',
+                    opacity: 1,
+                    transition: {
+                      duration: 1,
+                    },
+                  },
+                }
+          }
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true }}
+        >
+          <Timeline active={2} bulletSize={30} lineWidth={3} color="#6272a4">
+            {timelineData.map((data, index) => (
+              <Timeline.Item
+                bullet={data.icon ?? <BsFillBriefcaseFill />}
+                lineVariant={
+                  index === timelineData.length - 1 ? 'dotted' : 'solid'
+                }
+              >
+                <motion.div
+                  variants={
+                    isMobile
+                      ? undefined
+                      : {
+                          offscreen: {
+                            opacity: 0,
+                          },
+                          onscreen: {
+                            opacity: 1,
+                            transition: {
+                              duration: 0.5,
+                              delay: (data.order ?? 1) * 0.5,
+                            },
+                          },
+                        }
+                  }
+                  initial="offscreen"
+                  whileInView="onscreen"
+                  layout="position"
+                  viewport={{ once: true }}
+                >
+                  <Text c="dimmed" size="sm">
+                    {data.time}
+                  </Text>
+                  <Text size="md" mt={4}>
+                    {data.title}
+                  </Text>
+                  <Text size="sm" mt={4}>
+                    {data.body}
+                  </Text>
+                </motion.div>
+              </Timeline.Item>
+            ))}
+            <Timeline.Item bullet={<GiVampireDracula />}>
+              <WavyText
+                className="!mt-1 -ml-3"
+                text="The journey continues 📱 🎮 💻"
+                replay
+              />
+            </Timeline.Item>
+          </Timeline>
+        </motion.div>
+      </PaneContainer>
+      <Placeholder />
+    </>
   );
 };
 

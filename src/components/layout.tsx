@@ -187,6 +187,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             src="../images/girl.png"
             alt="background images"
             layout="fullWidth"
+            placeholder="blurred"
           />
           <div
             id="main-container"

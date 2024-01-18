@@ -236,6 +236,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                           alt="back to home"
                           layout="constrained"
                           height={240}
+                          placeholder="blurred"
                         />
                       </div>
                     }

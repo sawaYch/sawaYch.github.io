@@ -10,6 +10,7 @@ const NotFoundPage = () => (
         src="../images/home.webp"
         alt="back to home"
         layout="fixed"
+        placeholder="blurred"
       />
       <h1 className="text-[3rem] sm:text-[5rem] mt-4">404 Error</h1>
       <span>Sorry 😔, page not found</span>

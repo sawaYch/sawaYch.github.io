@@ -20,7 +20,13 @@ export const wrapPageElement = ({ element, props }) => {
 
   // Apply the layout component to other pages
   return (
-    <MantineProvider theme={MantineTheme}   withCSSVariables         withGlobalStyles         withNormalizeCSS  >
+    <MantineProvider
+      defaultColorScheme='dark'
+      theme={MantineTheme}
+      withCSSVariables
+      withGlobalStyles
+      withNormalizeCSS
+    >
       <Layout {...props}>{element}</Layout>
     </MantineProvider>
   );

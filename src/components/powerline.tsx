@@ -5,6 +5,7 @@ import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
 import { IoMdApps } from '@react-icons/all-files/io/IoMdApps';
 import { IoMdReturnRight } from '@react-icons/all-files/io/IoMdReturnRight';
 import { isMobile } from 'react-device-detect';
+import { Kbd, Tooltip } from '@mantine/core';
 import IconLink from './icon-link';
 import useCurrentModules from '../utils/use-current-modules';
 
@@ -78,25 +79,30 @@ const Powerline = ({ onAppIconClick }: PowerlineProps) => {
         </div>
         <div className="flex">
           <StatusPane>{isMobile ? 'VD' : 'VoidDojo'}</StatusPane>
-          <button
-            onClick={onAppIconClick}
-            type="button"
-            className="flex items-center justify-center w-12 bg-dracula-dark"
-          >
-            <svg width="0" height="0">
-              <linearGradient
-                id="dracula-gradient"
-                x1="100%"
-                y1="100%"
-                x2="0%"
-                y2="0%"
-              >
-                <stop stopColor="#ff79c6" offset="0%" />
-                <stop stopColor="#bd93f9" offset="100%" />
-              </linearGradient>
-            </svg>
-            <IoMdApps size="1rem" style={{ fill: 'url(#dracula-gradient)' }} />
-          </button>
+          <Tooltip label={<Kbd>Ctrl</Kbd>}>
+            <button
+              onClick={onAppIconClick}
+              type="button"
+              className="flex items-center justify-center w-12 bg-dracula-dark"
+            >
+              <svg width="0" height="0">
+                <linearGradient
+                  id="dracula-gradient"
+                  x1="100%"
+                  y1="100%"
+                  x2="0%"
+                  y2="0%"
+                >
+                  <stop stopColor="#ff79c6" offset="0%" />
+                  <stop stopColor="#bd93f9" offset="100%" />
+                </linearGradient>
+              </svg>
+              <IoMdApps
+                size="1rem"
+                style={{ fill: 'url(#dracula-gradient)' }}
+              />
+            </button>
+          </Tooltip>
         </div>
       </TopBar>
     </header>

@@ -58,6 +58,7 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
         src="../images/home.webp"
         alt="blog cover"
         layout="constrained"
+        placeholder="blurred"
         transformOptions={{
           fit: 'cover',
         }}

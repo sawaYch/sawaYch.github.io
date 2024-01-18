@@ -173,6 +173,7 @@ const EventPage = () => {
                   <StaticImage
                     src="../images/vtuber-cube-icon.png"
                     alt={it.title}
+                    placeholder="blurred"
                   />
                 </Card.Section>
 

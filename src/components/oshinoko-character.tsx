@@ -371,6 +371,7 @@ const OshinokoCharacterPane = ({
                         src="../images/retro-tv.png"
                         alt="Void Dojo"
                         layout="fullWidth"
+                        placeholder="blurred"
                       />
                       <div
                         className={`absolute left-[1.75rem] top-[2rem] rounded-2xl w-[calc(22rem-7.4rem)] h-[11.35rem] ${selectedData.modalColor} -translate-x-[75%]`}
