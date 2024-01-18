@@ -43,6 +43,7 @@ module.exports = {
         ku: 'Ku',
         block: 'CubicBlock',
         graph: 'KuGraph',
+        firacode: 'FiraCode',
       },
       animation: {
         'spin-slow': 'spin 3s linear infinite',

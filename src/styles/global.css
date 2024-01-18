@@ -69,6 +69,11 @@
   src: url('/fonts/cubicblock_s.woff2');
   font-display: swap;
 }
+@font-face {
+  font-family: FiraCode;
+  src: url('/fonts/firacode.woff2');
+  font-display: swap;
+}
 
 html,
 body {
@@ -201,7 +206,7 @@ button {
   left: 0;
   right: 0;
   height: 4px;
-  top: 0; 
+  top: 0;
   background: var(--buffy);
   background: linear-gradient(
     90deg,
@@ -224,6 +229,37 @@ iframe {
   font-weight: var(--font-weight);
   letter-spacing: var(--letter-spacing);
   padding: calc(var(--stroke-width) / 2);
+}
+
+@-webkit-keyframes bscale {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes bscale {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.bg-text-clip {
+  background-clip: text;
+  -webkit-text-stroke: 2px #fff;
+  color: transparent;
+}
+
+.dot-pattern {
+  background: -webkit-radial-gradient(#fff 20%, transparent 20%);
+  background: radial-gradient(#fff 20%, transparent 20%);
+  background-size: 10px 10px;
+  -webkit-animation: bscale 60s infinite linear;
+  animation: bscale 60s infinite linear;
 }
 
 ::-moz-selection {

@@ -40,6 +40,7 @@ const skillData: SkillCardItemProps[] = [
       'Proficient in front-end and back-end development, capable of creating dynamic web applications with user-friendly interfaces.',
     icon: (
       <StaticImage
+        className="pointer-events-none select-none"
         src="../images/fullstack.png"
         alt="skill_1_icon"
         width={128}
@@ -54,6 +55,7 @@ const skillData: SkillCardItemProps[] = [
       'Skilled in designing scalable and efficient systems by applying software engineering principles and design patterns, ensuring robustness and easy integration.',
     icon: (
       <StaticImage
+        className="pointer-events-none select-none"
         src="../images/system-design.png"
         alt="skill_2_icon"
         width={128}
@@ -68,6 +70,7 @@ const skillData: SkillCardItemProps[] = [
       'Enable efficient control and management of mobile devices, applications, and data within organizations, facilitating smooth deployment and updates across various devices, ensuring a seamless user experience and maximizing productivity.',
     icon: (
       <StaticImage
+        className="pointer-events-none select-none"
         src="../images/mam-mdm.png"
         alt="skill_3_icon"
         width={128}
@@ -82,6 +85,7 @@ const skillData: SkillCardItemProps[] = [
       'Streamlines the software development lifecycle by automating build, deployment, and testing processes, leveraging cloud platforms and containerization for scalability and reliability.',
     icon: (
       <StaticImage
+        className="pointer-events-none select-none"
         src="../images/devops.png"
         alt="skill_4_icon"
         width={128}

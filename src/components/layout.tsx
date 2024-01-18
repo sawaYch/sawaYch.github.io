@@ -16,7 +16,7 @@ import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
 import { useKeyUp } from '@react-hooks-library/core';
-import { StaticImage } from 'gatsby-plugin-image';
+import BackgroundImage from './background-image';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
 import Footer from './footer';
@@ -177,18 +177,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             'overflow-y-hidden': isOpen,
           })}
         >
-          <StaticImage
-            className={cn(
-              '!fixed top-0 left-0 bottom-0 right-0 opacity-bg pointer-events-none select-none z-20 w-screen',
-              {
-                'bottom-0 right-0': isMobile,
-              }
-            )}
-            src="../images/girl.png"
-            alt="background images"
-            layout="fullWidth"
-            placeholder="blurred"
-          />
+          <BackgroundImage />
           <div
             id="main-container"
             className={cn(

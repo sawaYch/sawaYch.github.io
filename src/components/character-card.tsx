@@ -43,7 +43,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
         >
           <PaneContainer
             className={cn(
-              'flex items-center justify-center text-xs pointer-events-none select-none rounded-lg',
+              'flex items-center justify-center text-xs pointer-events-none select-none rounded-lg drop-shadow-[4px_4px_4px_rgba(139,233,253,0.5)]',
               className
             )}
             withFrame

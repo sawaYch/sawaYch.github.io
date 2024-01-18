@@ -77,5 +77,13 @@ export const onRenderBody = ({ setHeadComponents }) => {
       crossOrigin="anonymous"
       key="cubicBlockFont"
     />,
+    <link
+      rel="preload"
+      href="/fonts/firacode.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+      key="firaCodeFont"
+    />,
   ]);
 };
