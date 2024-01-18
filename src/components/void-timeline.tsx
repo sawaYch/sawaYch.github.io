@@ -133,6 +133,7 @@ const VoidTimeline = () => {
           <Timeline active={2} bulletSize={30} lineWidth={3} color="#6272a4">
             {timelineData.map((data, index) => (
               <Timeline.Item
+                key={data.title}
                 bullet={data.icon ?? <BsFillBriefcaseFill />}
                 lineVariant={
                   index === timelineData.length - 1 ? 'dotted' : 'solid'
@@ -166,9 +167,7 @@ const VoidTimeline = () => {
                   <Text size="md" mt={4}>
                     {data.title}
                   </Text>
-                  <Text size="sm" mt={4}>
-                    {data.body}
-                  </Text>
+                  <div className="m-4 text-sm">{data.body}</div>
                 </motion.div>
               </Timeline.Item>
             ))}

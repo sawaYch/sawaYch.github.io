@@ -102,7 +102,7 @@ const SkillCard = ({ className }: SkillCardProps) => (
     >
       <div className="grid grid-cols-1 gap-x-8 gap-y-24 sm:grid-cols-2">
         {skillData.map((data) => (
-          <SkillCardItem {...data} />
+          <SkillCardItem key={data.title} {...data} />
         ))}
       </div>
     </PaneContainer>

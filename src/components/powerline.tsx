@@ -70,7 +70,7 @@ const Powerline = ({ onAppIconClick }: PowerlineProps) => {
               ariaLabel="twitter"
             />
           </StatusPane>
-          <div className="flex h-full gap-1 px-2 pt-1 bg-dracula-green-800">
+          <div className="flex h-full gap-1 px-2 pt-1 bg-dracula-[#9ece6a]">
             <IoMdReturnRight className="mt-[0.1rem]" />
             <div className="text-[0.5rem] rounded-sm bg-dracula-dark px-1 mb-1">
               {formatModuleName}
