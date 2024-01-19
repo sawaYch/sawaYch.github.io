@@ -145,7 +145,7 @@ PageProps<Queries.BlogsPageQuery>) => {
           <div className="absolute w-10 text-center -translate-y-4 -skew-x-12 border rounded-lg bg-dracula-dark backdrop-blur-sm border-dracula-dark-600">
             <div className="skew-x-12">TAG</div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-1 pt-2 pb-1 uppercase">
+          <div className="flex flex-wrap items-center justify-center gap-1 pt-2 pb-1 mt-2 uppercase">
             {tagData?.map((it) => (
               <Badge
                 color={it.color}
