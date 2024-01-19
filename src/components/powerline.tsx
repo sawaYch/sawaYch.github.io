@@ -82,7 +82,7 @@ const Powerline = ({ onAppIconClick }: PowerlineProps) => {
           <Tooltip
             label={
               <>
-                <Kbd>Ctrl</Kbd>+<Kbd>Space</Kbd>
+                <Kbd>Space</Kbd>
               </>
             }
           >

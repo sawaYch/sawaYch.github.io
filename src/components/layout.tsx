@@ -15,7 +15,7 @@ import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
-import { useKeyDown } from '@react-hooks-library/core';
+import { useKeyUp } from '@react-hooks-library/core';
 import BackgroundImage from './background-image';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
@@ -140,32 +140,14 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     scrollToTop('instant');
   }, [location.pathname, scrollToTop]);
 
-  const [flag, setFlag] = useState<string | undefined>();
-
-  useKeyDown(
-    ['ControlLeft'],
-    () => {
-      setFlag('a');
-    },
-    { code: true }
-  );
-
-  useKeyDown(
+  useKeyUp(
     ['Space'],
-    () => {
-      if (flag === 'a') {
-        setFlag('b');
-      }
+    (e) => {
+      e.preventDefault();
+      toggleAppMenu();
     },
     { code: true }
   );
-
-  useEffect(() => {
-    if (flag === 'b') {
-      toggleAppMenu();
-      setFlag('');
-    }
-  }, [flag, toggleAppMenu]);
 
   return (
     <>
@@ -206,7 +188,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
               }
             )}
           >
-            {/* <div className="fixed top-0 w-screen h-4 dot-margin backdrop-blur-md z-[22] mr-4" /> */}
             {children}
             {enableProgressbar ? (
               <ProgressIndicator scrollYProgress={scrollYProgress} />
@@ -217,7 +198,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                 className={cn(
                   '!z-[59] fixed w-8 h-8 right-4 bottom-12 mb-2 rounded-full',
                   {
-                    'bottom-24': isIPad13 || isTablet,
+                    'bottom-[4.5rem]': isIPad13 || isTablet,
                   }
                 )}
                 color="gray"
@@ -231,7 +212,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
               <motion.div
                 id="application-pane-overlay"
                 className={cn(
-                  '!z-[58] !overflow-y-auto bottom-0 top-5 w-screen py-12 left-0 bg-dracula-darker rounded-2xl backdrop-blur-sm',
+                  '!z-[58] !overflow-y-auto bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
                   {
                     'pb-24': !isIOS,
                   }

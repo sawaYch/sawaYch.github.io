@@ -177,7 +177,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
       </motion.div>
       <div
         id="application-pane-modules-section"
-        className="grid grid-cols-3 h-fit sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 place-items-center"
+        className="grid grid-cols-3 h-fit sm:grid-cols-4 sm:pb-10 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 place-items-center"
       >
         {appNavigationData.map((i) => {
           if (!i.isExternal) {

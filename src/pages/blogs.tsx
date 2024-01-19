@@ -141,7 +141,7 @@ PageProps<Queries.BlogsPageQuery>) => {
         </div>
       </div>
       <div className="flex flex-col items-center gap-1 ipad:flex-row">
-        <div className="px-4 py-1 border rounded-lg w-fit border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
+        <div className="px-4 py-1 mx-4 border rounded-lg w-fit border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
           <div className="absolute w-10 text-center -translate-y-4 -skew-x-12 border rounded-lg bg-dracula-dark backdrop-blur-sm border-dracula-dark-600">
             <div className="skew-x-12">TAG</div>
           </div>

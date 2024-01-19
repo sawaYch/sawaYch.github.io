@@ -12,6 +12,7 @@ const BackgroundContainer = ({ children }: PropsWithChildren) => (
   w-screen
   flex
   flex-col
+  bg-glow
 `}
   >
     {children}

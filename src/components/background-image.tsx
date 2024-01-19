@@ -6,13 +6,19 @@ const BackgroundImage = () => {
   const text1 = 'Hasakaki\nSora';
   return (
     <>
-      {/* <div className="fixed w-screen h-12 dot-margin backdrop-blur-md z-[50] mr-4" /> */}
+      <div className="fixed">
+        <div id="stars" />
+        <div id="stars2" />
+        <div id="stars3" />
+      </div>
+      <div className="fixed w-screen h-screen noise-bg z-[1]" />
       <div className="fixed flex w-screen h-screen py-[6vh] px-[5vw] opacity-bg break-all">
         <div className="fixed w-[90%] border rounded-xl outline-1 h-5/6 z-[20] left-1/2 top-1/2 -translate-x-1/2 -translate-y-[53%]">
           <div className="fixed w-full h-full dot-pattern" />
           <StaticImage
             className={cn(
-              'pointer-events-none select-none z-[20] grayscale h-full rounded-xl'
+              'pointer-events-none select-none z-[20] grayscale h-full w-full rounded-xl',
+              { '': isMobile }
             )}
             src="../images/girl.png"
             alt="background images"

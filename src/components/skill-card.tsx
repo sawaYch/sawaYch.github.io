@@ -16,7 +16,7 @@ interface SkillCardItemProps {
 }
 
 const SkillCardItem = ({ title, content, icon }: SkillCardItemProps) => (
-  <div className="flex flex-col items-center justify-center rounded-lg outline outline-offset-4 outline-dracula-darker-900">
+  <div className="flex flex-col items-center justify-center rounded-lg outline outline-offset-4 outline-dracula-darker-900 drop-shadow-[2px_2px_2px_rgba(125,116,163,0.35)]">
     <Paper
       shadow="xs"
       p="xl"
