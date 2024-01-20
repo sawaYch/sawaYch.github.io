@@ -65,7 +65,9 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => (
       />
     )}
     <div className="flex flex-col pl-2 pr-4 grow">
-      <h5 className="mb-1 font-bold tracking-tight">{data.title}</h5>
+      <span className="mb-1 text-xs font-bold tracking-tight sm:text-md">
+        {data.title}
+      </span>
       <TagCatSection>
         {data?.tags != null &&
           data.tags.map((t) => (
