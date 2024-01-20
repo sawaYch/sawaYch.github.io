@@ -15,7 +15,8 @@ import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
-import { useKeyUp } from '@react-hooks-library/core';
+import useAppMenuShortcut from '../hooks/useAppMenuShortcut';
+import useFixScrollRestoration from '../hooks/useFixScrollRestoration';
 import BackgroundImage from './background-image';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
@@ -26,16 +27,7 @@ import ProgressIndicator from './progress-indicator';
 
 const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const ref = useRef<HTMLElement>(null);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (ref.current != null) {
-      setWidth(ref.current.offsetWidth);
-      setHeight(ref.current.offsetHeight);
-    }
-  }, [height, width]);
 
   const scrollToTop = useCallback((scrollBehavior?: 'smooth' | 'instant') => {
     if (ref.current == null) return;
@@ -44,6 +36,8 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
       behavior: scrollBehavior ?? 'smooth',
     });
   }, []);
+
+  useFixScrollRestoration(location, scrollToTop);
 
   useEffect(() => {
     // Button is displayed after scrolling for 500 pixels
@@ -103,20 +97,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     toggleOpen();
   }, [toggleOpen]);
 
-  const sidebar = useMemo(
-    () => ({
-      open: () => ({
-        opacity: 1,
-        y: 0,
-      }),
-      closed: {
-        opacity: 0,
-        y: 100,
-      },
-    }),
-    []
-  );
-
   const { scrollYProgress } = useScroll({ container: ref, target: ref });
 
   const handlePageSelected = useCallback(() => {
@@ -134,20 +114,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     [location.pathname]
   );
 
-  // Workaround: disable scroll restoration
-  useEffect(() => {
-    if (location.pathname.split('/')?.[1].includes('post')) return;
-    scrollToTop('instant');
-  }, [location.pathname, scrollToTop]);
-
-  useKeyUp(
-    ['Space'],
-    (e) => {
-      e.preventDefault();
-      toggleAppMenu();
-    },
-    { code: true }
-  );
+  useAppMenuShortcut(toggleAppMenu);
 
   return (
     <>
@@ -189,46 +156,56 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             )}
           >
             {children}
-            {enableProgressbar ? (
-              <ProgressIndicator scrollYProgress={scrollYProgress} />
-            ) : null}
-            {isVisible && !isOpen ? (
-              <ActionIcon
-                onClick={() => scrollToTop()}
-                className={cn(
-                  '!z-[59] fixed w-8 h-8 right-4 bottom-12 mb-2 rounded-full',
-                  {
-                    'bottom-[4.5rem]': isIPad13 || isTablet,
-                  }
-                )}
-                color="gray"
-                variant="gradient"
-                gradient={{ from: '#bd93f9', to: '#ff79c6', deg: 270 }}
-              >
-                <FaChevronUp size={12} />
-              </ActionIcon>
-            ) : null}
-            <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
-              <motion.div
-                id="application-pane-overlay"
-                className={cn(
-                  '!z-[58] !overflow-y-auto bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
-                  {
-                    'pb-24': !isIOS,
-                  }
-                )}
-                variants={sidebar}
-                onAnimationComplete={onAnimationComplete}
-                onAnimationStart={onAnimationStart}
-              >
-                <ApplicationPane
-                  onPageSelected={handlePageSelected}
-                  currentPage={currentPage}
-                />
-              </motion.div>
-            </motion.nav>
           </div>
+          {enableProgressbar ? (
+            <ProgressIndicator scrollYProgress={scrollYProgress} />
+          ) : null}
+          {isVisible && !isOpen ? (
+            <ActionIcon
+              onClick={() => scrollToTop()}
+              className={cn(
+                '!z-[59] fixed w-8 h-8 right-4 bottom-12 mb-2 rounded-full',
+                {
+                  'bottom-[4.5rem]': isIPad13 || isTablet,
+                }
+              )}
+              color="gray"
+              variant="gradient"
+              gradient={{ from: '#bd93f9', to: '#ff79c6', deg: 270 }}
+            >
+              <FaChevronUp size={12} />
+            </ActionIcon>
+          ) : null}
+          <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
+            <motion.div
+              id="application-pane-overlay"
+              className={cn(
+                '!z-[58] !overflow-y-auto bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
+                {
+                  'pb-24': !isIOS,
+                }
+              )}
+              variants={{
+                open: () => ({
+                  opacity: 1,
+                  y: 0,
+                }),
+                closed: {
+                  opacity: 0,
+                  y: 100,
+                },
+              }}
+              onAnimationComplete={onAnimationComplete}
+              onAnimationStart={onAnimationStart}
+            >
+              <ApplicationPane
+                onPageSelected={handlePageSelected}
+                currentPage={currentPage}
+              />
+            </motion.div>
+          </motion.nav>
         </main>
+
         <Powerline onAppIconClick={toggleAppMenu} />
         <Footer />
       </BackgroundContainer>

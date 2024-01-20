@@ -447,3 +447,7 @@ iframe {
 .bg-glow {
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #222222 100%);
 }
+
+.will-change {
+  will-change: transform
+}

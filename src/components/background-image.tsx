@@ -6,7 +6,7 @@ const BackgroundImage = () => {
   const text1 = 'Hasakaki\nSora';
   return (
     <>
-      <div className="fixed">
+      <div className="relative">
         <div id="stars" />
         <div id="stars2" />
         <div id="stars3" />

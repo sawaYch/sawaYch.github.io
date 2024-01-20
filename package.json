@@ -21,6 +21,7 @@
     "deploy": "gatsby build && gh-pages -d public -b master"
   },
   "dependencies": {
+    "@juggle/resize-observer": "^3.4.0",
     "@mantine/core": "^7.4.1",
     "@mantine/hooks": "^7.4.1",
     "@mdx-js/react": "^2.3.0",
