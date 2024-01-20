@@ -1,4 +1,4 @@
-import { useKeyUp } from '@react-hooks-library/core';
+import { useKeyStroke, useKeyUp } from '@react-hooks-library/core';
 
 const useAppMenuShortcut = (toggleAppMenu: () => void) => {
   useKeyUp(
@@ -6,6 +6,14 @@ const useAppMenuShortcut = (toggleAppMenu: () => void) => {
     (e) => {
       e.preventDefault();
       toggleAppMenu();
+    },
+    { code: true }
+  );
+
+  useKeyStroke(
+    ['Space'],
+    (e) => {
+      e.preventDefault();
     },
     { code: true }
   );

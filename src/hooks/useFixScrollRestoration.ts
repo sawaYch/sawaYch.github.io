@@ -5,6 +5,12 @@ const useFixScrollRestoration = (
   scrollToTop: (scrollBehavior?: 'smooth' | 'instant') => void
 ) => {
   // Workaround: disable scroll restoration
+
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    history.scrollRestoration = 'manual';
+  }, []);
+
   useEffect(() => {
     if (location.pathname.split('/')?.[1].includes('post')) return;
     scrollToTop('instant');

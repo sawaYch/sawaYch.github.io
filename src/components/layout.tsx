@@ -24,10 +24,12 @@ import Footer from './footer';
 import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
 import ProgressIndicator from './progress-indicator';
+import SmoothScroll from './smooth-scroll';
 
 const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isOpen, toggleOpen] = useCycle(false, true);
 
   const scrollToTop = useCallback((scrollBehavior?: 'smooth' | 'instant') => {
     if (ref.current == null) return;
@@ -36,7 +38,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
       behavior: scrollBehavior ?? 'smooth',
     });
   }, []);
-
+  
   useFixScrollRestoration(location, scrollToTop);
 
   useEffect(() => {
@@ -62,7 +64,28 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     };
   }, []);
 
-  const [isOpen, toggleOpen] = useCycle(false, true);
+  useEffect(() => {
+    // Button is displayed after scrolling for 500 pixels
+    const toggleVisibility = () => {
+      if (ref.current == null) return;
+
+      if (ref.current.scrollTop > 500) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+    let copyRef: RefObject<HTMLElement> | null = null;
+    if (ref.current != null) {
+      copyRef = ref;
+      ref.current.addEventListener('scroll', toggleVisibility);
+    }
+    return () => {
+      if (copyRef?.current != null) {
+        copyRef.current.removeEventListener('scroll', toggleVisibility);
+      }
+    };
+  }, []);
 
   const onAnimationComplete = useCallback(() => {
     const applicationPaneOverlay = document.getElementById(
@@ -138,77 +161,61 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             }}
           />
         )}
-        <main
-          id="main"
-          ref={ref}
-          className={cn('z-0 flex-auto overflow-x-hidden', {
-            'overflow-y-hidden': isOpen,
-          })}
-        >
-          <BackgroundImage />
-          <div
-            id="main-container"
+        <BackgroundImage />
+        <SmoothScroll>{children}</SmoothScroll>
+        {enableProgressbar ? (
+          <ProgressIndicator scrollYProgress={scrollYProgress} />
+        ) : null}
+        {isVisible && !isOpen ? (
+          <ActionIcon
+            onClick={() => scrollToTop()}
             className={cn(
-              'relative z-40 flex flex-col items-center justify-center w-screen',
+              '!z-[61] fixed w-8 h-8 right-4 bottom-12 mb-2 rounded-full',
               {
-                '!touch-none !overflow-hidden': isOpen,
+                'bottom-[4.5rem]': isIPad13 || isTablet,
               }
             )}
+            color="gray"
+            variant="gradient"
+            gradient={{ from: '#bd93f9', to: '#ff79c6', deg: 270 }}
           >
-            {children}
-          </div>
-          {enableProgressbar ? (
-            <ProgressIndicator scrollYProgress={scrollYProgress} />
-          ) : null}
-          {isVisible && !isOpen ? (
-            <ActionIcon
-              onClick={() => scrollToTop()}
-              className={cn(
-                '!z-[59] fixed w-8 h-8 right-4 bottom-12 mb-2 rounded-full',
-                {
-                  'bottom-[4.5rem]': isIPad13 || isTablet,
-                }
-              )}
-              color="gray"
-              variant="gradient"
-              gradient={{ from: '#bd93f9', to: '#ff79c6', deg: 270 }}
-            >
-              <FaChevronUp size={12} />
-            </ActionIcon>
-          ) : null}
-          <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
-            <motion.div
-              id="application-pane-overlay"
-              className={cn(
-                '!z-[58] !overflow-y-auto bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
-                {
-                  'pb-24': !isIOS,
-                }
-              )}
-              variants={{
-                open: () => ({
-                  opacity: 1,
-                  y: 0,
-                }),
-                closed: {
-                  opacity: 0,
-                  y: 100,
+            <FaChevronUp size={12} />
+          </ActionIcon>
+        ) : null}
+        <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
+          <motion.div
+            id="application-pane-overlay"
+            className={cn(
+              '!z-[58] !overflow-y-auto bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
+              {
+                'pb-24': !isIOS,
+              }
+            )}
+            variants={{
+              open: () => ({
+                opacity: 1,
+                y: 0,
+                transition: {
+                  damping: 5,
                 },
-              }}
-              onAnimationComplete={onAnimationComplete}
-              onAnimationStart={onAnimationStart}
-            >
-              <ApplicationPane
-                onPageSelected={handlePageSelected}
-                currentPage={currentPage}
-              />
-            </motion.div>
-          </motion.nav>
-        </main>
-
-        <Powerline onAppIconClick={toggleAppMenu} />
-        <Footer />
+              }),
+              closed: {
+                opacity: 0,
+                y: 100,
+              },
+            }}
+            onAnimationComplete={onAnimationComplete}
+            onAnimationStart={onAnimationStart}
+          >
+            <ApplicationPane
+              onPageSelected={handlePageSelected}
+              currentPage={currentPage}
+            />
+          </motion.div>
+        </motion.nav>
       </BackgroundContainer>
+      <Powerline onAppIconClick={toggleAppMenu} />
+      <Footer />
     </>
   );
 };

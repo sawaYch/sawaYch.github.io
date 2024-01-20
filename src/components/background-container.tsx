@@ -3,13 +3,9 @@ import { PropsWithChildren } from 'react';
 const BackgroundContainer = ({ children }: PropsWithChildren) => (
   <div
     className={`
-  font-primary
   bg-dracula-darker/70
   text-white
-  h-screen
-  supports-[height:100cqh]:h-[100cqh] 
-  supports-[height:100svh]:h-[100svh]
-  w-screen
+  w-[calc(100vw-1_px)]
   flex
   flex-col
   bg-glow
