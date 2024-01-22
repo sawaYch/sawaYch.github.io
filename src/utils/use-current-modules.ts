@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { globalHistory } from '@reach/router';
 
-function useCurrentModules(selectedPage?: string): string | null {
-  const [module, setModule] = useState<string | null>(null);
+function useCurrentModules(
+  location: any,
+  selectedPage?: string
+): string | null {
   const [routeChange, setRouteChange] = useState(false);
   useEffect(
     () =>
@@ -13,16 +15,17 @@ function useCurrentModules(selectedPage?: string): string | null {
     [setRouteChange]
   );
 
-  useEffect(() => {
-    if (selectedPage == null) {
-      // eslint-disable-next-line no-restricted-globals
-      let modulePath = location.pathname.split('/')[1];
-      if (modulePath === '') modulePath = 'home';
-      setModule(modulePath);
-    } else {
-      setModule(selectedPage);
+  const module = useMemo(() => {
+    if (selectedPage == null || selectedPage.length === 0) {
+      let modulePath: string = location?.pathname?.split('/')[1];
+      if (modulePath == null || modulePath === '' || modulePath?.length === 0)
+        modulePath = 'home';
+      return modulePath;
     }
-  }, [selectedPage, routeChange]);
+
+    return selectedPage;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location?.pathname, selectedPage, routeChange]);
 
   return module;
 }

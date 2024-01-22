@@ -224,12 +224,13 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                 <ApplicationPane
                   onPageSelected={handlePageSelected}
                   currentPage={currentPage}
+                  location={location}
                 />
               </motion.div>
             </motion.nav>
           </div>
         </main>
-        <Powerline onAppIconClick={toggleAppMenu} />
+        <Powerline onAppIconClick={toggleAppMenu} location={location} />
         <Footer />
       </BackgroundContainer>
     </>

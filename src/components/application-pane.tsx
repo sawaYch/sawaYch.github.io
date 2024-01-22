@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'gatsby';
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useState, useEffect, useMemo } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
 // import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
@@ -25,11 +25,13 @@ interface AppNavigationType {
 interface ApplicationPaneProps {
   onPageSelected: (pageKey: string) => void;
   currentPage: string;
+  location: any;
 }
 
 const ApplicationPane: React.FC<ApplicationPaneProps> = ({
   onPageSelected,
   currentPage,
+  location,
 }: ApplicationPaneProps) => {
   const [selectedPage, setSelectedPage] = useState<string | undefined>(
     currentPage
@@ -40,98 +42,101 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
     setSelectedPage(currentPage);
   }, [currentPage]);
 
-  const appNavigationData: AppNavigationType[] = [
-    {
-      id: 'home',
-      cubeColor: 'dark',
-      name: 'Home',
-      icon: <FaHome size="3.5rem" />,
-      link: '/',
-      onClick: () => {
-        onPageSelected('home');
-        setSelectedPage('home');
+  const appNavigationData: AppNavigationType[] = useMemo(
+    () => [
+      {
+        id: 'home',
+        cubeColor: 'dark',
+        name: 'Home',
+        icon: <FaHome size="3.5rem" />,
+        link: '/',
+        onClick: () => {
+          onPageSelected('home');
+          setSelectedPage('home');
+        },
       },
-    },
-    // {
-    //   id: 'events',
-    //   cubeColor: 'green',
-    //   name: 'Event',
-    //   icon: <BsCalendarFill size="3.5rem" />,
-    //   link: '/events',
-    //   onClick: () => {
-    //     onPageSelected('events');
-    //     setSelectedPage('events');
-    //   },
-    // },
-    {
-      id: 'blogs',
-      cubeColor: 'purple',
-      name: 'Blog',
-      icon: <BiBookBookmark size="3.5rem" />,
-      link: '/blogs',
-      onClick: () => {
-        onPageSelected('blogs');
-        setSelectedPage('blogs');
+      // {
+      //   id: 'events',
+      //   cubeColor: 'green',
+      //   name: 'Event',
+      //   icon: <BsCalendarFill size="3.5rem" />,
+      //   link: '/events',
+      //   onClick: () => {
+      //     onPageSelected('events');
+      //     setSelectedPage('events');
+      //   },
+      // },
+      {
+        id: 'blogs',
+        cubeColor: 'purple',
+        name: 'Blog',
+        icon: <BiBookBookmark size="3.5rem" />,
+        link: '/blogs',
+        onClick: () => {
+          onPageSelected('blogs');
+          setSelectedPage('blogs');
+        },
       },
-    },
-    // {
-    //   id: 'vtubers',
-    //   cubeColor: 'cyan',
-    //   name: 'Vtubers',
-    //   icon: (
-    //     <StaticImage
-    //       src="../images/vtuber-cube-icon.png"
-    //       alt="vtubers cube icon"
-    //     />
-    //   ),
-    //   link: '/vtubers',
-    //   onClick: () => {
-    //     onPageSelected('vtubers');
-    //     setSelectedPage('vtubers');
-    //   },
-    // },
-    {
-      id: 'artworks',
-      cubeColor: 'buffy',
-      name: 'Artwork',
-      icon: <FaPaintBrush size="3.5rem" />,
-      link: '/artworks',
-      onClick: () => {
-        onPageSelected('artworks');
-        setSelectedPage('artworks');
+      // {
+      //   id: 'vtubers',
+      //   cubeColor: 'cyan',
+      //   name: 'Vtubers',
+      //   icon: (
+      //     <StaticImage
+      //       src="../images/vtuber-cube-icon.png"
+      //       alt="vtubers cube icon"
+      //     />
+      //   ),
+      //   link: '/vtubers',
+      //   onClick: () => {
+      //     onPageSelected('vtubers');
+      //     setSelectedPage('vtubers');
+      //   },
+      // },
+      {
+        id: 'artworks',
+        cubeColor: 'buffy',
+        name: 'Artwork',
+        icon: <FaPaintBrush size="3.5rem" />,
+        link: '/artworks',
+        onClick: () => {
+          onPageSelected('artworks');
+          setSelectedPage('artworks');
+        },
       },
-    },
-    {
-      id: 'gallery',
-      cubeColor: 'yellow',
-      name: 'Gallery',
-      icon: <IoIosImages size="3.5rem" />,
-      link: '/gallery',
-      onClick: () => {
-        onPageSelected('gallery');
-        setSelectedPage('gallery');
+      {
+        id: 'gallery',
+        cubeColor: 'yellow',
+        name: 'Gallery',
+        icon: <IoIosImages size="3.5rem" />,
+        link: '/gallery',
+        onClick: () => {
+          onPageSelected('gallery');
+          setSelectedPage('gallery');
+        },
       },
-    },
-    {
-      id: 'mya88',
-      cubeColor: 'red',
-      name: 'Mya88',
-      icon: (
-        <StaticImage
-          src="../images/mya88.webp"
-          alt="mya88 module icon"
-          width={64}
-          height={64}
-          placeholder="blurred"
-        />
-      ),
-      link: 'https://mya88.vercel.app/',
-      onClick: () => {},
-      isExternal: true,
-    },
-  ];
+      {
+        id: 'mya88',
+        cubeColor: 'red',
+        name: 'Mya88',
+        icon: (
+          <StaticImage
+            src="../images/mya88.webp"
+            alt="mya88 module icon"
+            width={64}
+            height={64}
+            placeholder="blurred"
+          />
+        ),
+        link: 'https://mya88.vercel.app/',
+        onClick: () => {},
+        isExternal: true,
+      },
+    ],
+    [onPageSelected]
+  );
 
-  const moduleName = useCurrentModules(selectedPage);
+  const moduleName = useCurrentModules(location, selectedPage);
 
   return (
     <>
