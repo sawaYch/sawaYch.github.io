@@ -1,11 +1,8 @@
 import AnimatedCursor from 'react-animated-cursor';
+import { isMobile } from 'react-device-detect';
 
-interface VoidAnimatedCursorProps {
-  disable?: boolean;
-}
-
-const VoidAnimatedCursor = ({ disable }: VoidAnimatedCursorProps) =>
-  disable ? null : (
+const VoidAnimatedCursor = () =>
+  isMobile ? null : (
     <AnimatedCursor
       color="139,233,253"
       innerSize={10}
