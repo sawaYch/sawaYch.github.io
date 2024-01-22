@@ -9,25 +9,23 @@ const BottomBar = ({
   children,
   className,
 }: PropsWithChildren<BottomBarProps>) => (
-  <div
+  <footer
     className={cn(
-      'flex items-center justify-center pt-1 pl-2 pr-2 text-xs select-none bg-dracula-darker',
+      'z-[60] flex items-center justify-center pt-1 pl-2 pr-2 text-xs select-none bg-dracula-darker fixed bottom-0 w-screen left-0 right-0',
       className
     )}
   >
     {children}
-  </div>
+  </footer>
 );
 
 const Footer = () => (
-  <footer className="z-50">
-    <BottomBar className={cn({ 'pb-4': isIPad13 || isTablet })}>
-      <div className="items-center justify-center text-center">
-        ©{new Date().getFullYear()}{' '}
-        <span className="text-dracula-buffy">Sawa</span> built with❤️🐧🐼
-      </div>
-    </BottomBar>
-  </footer>
+  <BottomBar className={cn({ 'pb-4': isIPad13 || isTablet })}>
+    <div className="items-center justify-center text-center">
+      ©{new Date().getFullYear()}{' '}
+      <span className="text-dracula-buffy">Sawa</span> built with❤️🐧🐼
+    </div>
+  </BottomBar>
 );
 
 export default Footer;

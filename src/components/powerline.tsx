@@ -4,8 +4,9 @@ import { FaRegDotCircle } from '@react-icons/all-files/fa/FaRegDotCircle';
 import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
 import { IoMdApps } from '@react-icons/all-files/io/IoMdApps';
 import { IoMdReturnRight } from '@react-icons/all-files/io/IoMdReturnRight';
-import { isMobile } from 'react-device-detect';
+import { isIPad13, isMobile, isTablet } from 'react-device-detect';
 import { Kbd, Tooltip } from '@mantine/core';
+import cn from 'classnames';
 import IconLink from './icon-link';
 import useCurrentModules from '../utils/use-current-modules';
 
@@ -15,14 +16,13 @@ const StatusPane = ({ children }: PropsWithChildren) => (
   </div>
 );
 
-// const TopBar = ({ children }: PropsWithChildren) => (
-//   <nav className="sticky top-0 bottom-[20px] w-screen flex justify-between text-xs shadow-md select-none bg-dracula-darker z-[30]">
-//     {children}
-//   </nav>
-// );
-
 const BottomBar = ({ children }: PropsWithChildren) => (
-  <header className="fixed bottom-[20px] w-screen flex justify-between text-xs select-none bg-dracula-darker z-[60]">
+  <header
+    className={cn(
+      'fixed bottom-[20px] w-screen flex justify-between text-xs select-none bg-dracula-darker z-[60]',
+      { '!bottom-[36px]': isIPad13 || isTablet }
+    )}
+  >
     {children}
   </header>
 );
@@ -31,6 +31,18 @@ interface PowerlineProps {
   onAppIconClick: () => void;
   location: any;
 }
+
+const AppMenuButtonWrapper = ({ children }: PropsWithChildren) => (
+  <Tooltip
+    label={
+      <>
+        <Kbd>Space</Kbd>
+      </>
+    }
+  >
+    {children}
+  </Tooltip>
+);
 
 const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
   const moduleName = useCurrentModules(location);
@@ -85,13 +97,7 @@ const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
       </div>
       <div className="flex">
         <StatusPane>{isMobile ? 'VD' : 'VoidDojo'}</StatusPane>
-        <Tooltip
-          label={
-            <>
-              <Kbd>Space</Kbd>
-            </>
-          }
-        >
+        <AppMenuButtonWrapper>
           <button
             onClick={onAppIconClick}
             type="button"
@@ -111,7 +117,7 @@ const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
             </svg>
             <IoMdApps size="1rem" style={{ fill: 'url(#dracula-gradient)' }} />
           </button>
-        </Tooltip>
+        </AppMenuButtonWrapper>
       </div>
     </BottomBar>
   );
