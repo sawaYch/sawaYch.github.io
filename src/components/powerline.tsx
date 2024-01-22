@@ -37,7 +37,7 @@ const Powerline = ({ onAppIconClick }: PowerlineProps) => {
   return (
     <BottomBar>
       <div className="flex items-center bg-dracula-dark">
-        <div className="flex items-center justify-center !w-12 select-none bg-dracula-blue py-1">
+        <div className="flex items-center justify-center !w-12 select-none bg-dracula-blue py-1 h-full">
           <FaRegDotCircle size="0.8rem" />
         </div>
         <IoMdGitBranch
