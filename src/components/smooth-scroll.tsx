@@ -1,9 +1,24 @@
-import { useRef, useState, useLayoutEffect, PropsWithChildren } from 'react';
+import {
+  useRef,
+  useState,
+  useLayoutEffect,
+  PropsWithChildren,
+  useCallback,
+} from 'react';
 import { ResizeObserver } from '@juggle/resize-observer';
 import { useTransform, useSpring, motion, useScroll } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
+import useFixScrollRestoration from '../hooks/use-fix-scroll-restoration';
 
-const SmoothScroll = ({ children }: PropsWithChildren) => {
-  const scrollRef = useRef(null);
+interface SmoothScrollProps {
+  location: any;
+}
+
+const SmoothScroll = ({
+  location,
+  children,
+}: PropsWithChildren<SmoothScrollProps>) => {
+  const scrollRef = useRef<HTMLElement>(null);
   const [pageHeight, setPageHeight] = useState(0);
 
   useLayoutEffect(() => {
@@ -21,16 +36,34 @@ const SmoothScroll = ({ children }: PropsWithChildren) => {
   const physics = { mass: 0.1, stiffness: 100, damping: 20, restDelta: 0.001 };
   const spring = useSpring(transform, physics);
 
-  return (
+  const scrollToTop = useCallback(
+    (scrollBehavior?: 'smooth' | 'instant') => {
+      if (scrollRef.current == null) return;
+      scrollRef.current.scrollTo({
+        top: 0,
+        behavior: scrollBehavior ?? 'smooth',
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [scrollRef.current]
+  );
+
+  useFixScrollRestoration(location, scrollToTop);
+
+  return isMobile ? (
+    <main className="flex flex-col items-center overflow-hidden width-lvh will-change-transform min-lvh">
+      {children}
+    </main>
+  ) : (
     <>
       <motion.main
         ref={scrollRef}
         style={{ y: spring }}
-        className="flex flex-col items-center scroll-container"
+        className="fixed top-0 left-0 right-0 flex flex-col items-center overflow-hidden width-lvh will-change-transform min-lvh"
       >
         {children}
       </motion.main>
-      <div style={{ height: pageHeight }} className="bg-dracula-darker" />
+      <div style={{ height: pageHeight, minHeight: '100lvh' }} />{' '}
     </>
   );
 };

@@ -29,8 +29,8 @@
 /* chrome scrollbar, TODO: firefox support*/
 /* width */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 0px;
+  height: 0px;
   background: transparent;
 }
 
@@ -440,14 +440,4 @@ iframe {
 
 .bg-glow {
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #222222 100%);
-}
-
-.scroll-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  will-change: transform;
-  min-height: 100vh;
 }

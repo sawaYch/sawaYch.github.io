@@ -15,9 +15,9 @@ import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
-import useAppMenuShortcut from '../hooks/useAppMenuShortcut';
-import useFixScrollRestoration from '../hooks/useFixScrollRestoration';
-import BackgroundImage from './background-image';
+import useAppMenuShortcut from '../hooks/use-appmenu-shortcut';
+import useFixScrollRestoration from '../hooks/use-fix-scroll-restoration';
+import Background from './background';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
 import Footer from './footer';
@@ -25,21 +25,26 @@ import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
 import ProgressIndicator from './progress-indicator';
 import SmoothScroll from './smooth-scroll';
+import VoidAnimatedCursor from './void-animated-cursor';
 
 const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isOpen, toggleOpen] = useCycle(false, true);
 
-  const scrollToTop = useCallback((scrollBehavior?: 'smooth' | 'instant') => {
-    if (ref.current == null) return;
-    ref.current.scrollTo({
-      top: 0,
-      behavior: scrollBehavior ?? 'smooth',
-    });
-  }, []);
-  
-  useFixScrollRestoration(location, scrollToTop);
+  const mobileScrollToTop = useCallback(
+    (scrollBehavior?: 'smooth' | 'instant') => {
+      if (ref.current == null || !isMobile) return;
+      ref.current.scrollTo({
+        top: 0,
+        behavior: scrollBehavior ?? 'smooth',
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [ref.current]
+  );
+
+  useFixScrollRestoration(location, mobileScrollToTop);
 
   useEffect(() => {
     // Button is displayed after scrolling for 500 pixels
@@ -143,32 +148,16 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     <>
       <SEOHead />
       <BackgroundContainer>
-        {isMobile ? null : (
-          <AnimatedCursor
-            color="139,233,253"
-            innerSize={10}
-            outerSize={40}
-            innerScale={1}
-            outerScale={2}
-            outerAlpha={1}
-            innerStyle={{
-              backgroundColor: 'rgb(255, 255, 255)',
-              mixBlendMode: 'exclusion',
-              zIndex: '999',
-            }}
-            outerStyle={{
-              mixBlendMode: 'exclusion',
-            }}
-          />
-        )}
-        <BackgroundImage />
-        <SmoothScroll>{children}</SmoothScroll>
-        {enableProgressbar ? (
-          <ProgressIndicator scrollYProgress={scrollYProgress} />
-        ) : null}
+        <VoidAnimatedCursor disable={isMobile} />
+        <Background />
+        <SmoothScroll location={location}>{children}</SmoothScroll>
+        <ProgressIndicator
+          scrollYProgress={scrollYProgress}
+          disable={!enableProgressbar}
+        />
         {isVisible && !isOpen ? (
           <ActionIcon
-            onClick={() => scrollToTop()}
+            onClick={() => mobileScrollToTop()}
             className={cn(
               '!z-[61] fixed w-8 h-8 right-4 bottom-12 mb-2 rounded-full',
               {

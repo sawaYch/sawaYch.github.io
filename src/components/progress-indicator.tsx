@@ -4,9 +4,13 @@ import cn from 'classnames';
 
 interface ProgressIndicatorProps {
   scrollYProgress: MotionValue<number>;
+  disable?: boolean;
 }
 
-const ProgressIndicator = ({ scrollYProgress }: ProgressIndicatorProps) => {
+const ProgressIndicator = ({
+  scrollYProgress,
+  disable,
+}: ProgressIndicatorProps) => {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -20,6 +24,10 @@ const ProgressIndicator = ({ scrollYProgress }: ProgressIndicatorProps) => {
     if (styledMain == null) return;
     styledMain.addEventListener('scroll', () => setHasScrollEventFired(true));
   }, []);
+
+  if (disable) {
+    return null;
+  }
 
   return (
     <motion.div

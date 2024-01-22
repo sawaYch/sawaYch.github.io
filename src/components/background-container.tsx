@@ -5,9 +5,7 @@ const BackgroundContainer = ({ children }: PropsWithChildren) => (
     className={`
   bg-dracula-darker/70
   text-white
-  w-[calc(100vw-1_px)]
-  flex
-  flex-col
+  w-lvw
   bg-glow
 `}
   >

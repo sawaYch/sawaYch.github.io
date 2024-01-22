@@ -31,14 +31,14 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
   onPageSelected,
   currentPage,
 }: ApplicationPaneProps) => {
-  const [selectedPage, setSelectedPage] = useState<string | undefined>(
-    currentPage
-  );
+  // const [selectedPage, setSelectedPage] = useState<string | undefined>(
+  //   currentPage
+  // );
 
-  useEffect(() => {
-    // NOTE: side effect, handle module change when user click browser's back / next
-    setSelectedPage(currentPage);
-  }, [currentPage]);
+  // useEffect(() => {
+  //   // NOTE: side effect, handle module change when user click browser's back / next
+  //   setSelectedPage(currentPage);
+  // }, [currentPage]);
 
   const appNavigationData: AppNavigationType[] = [
     {
@@ -49,7 +49,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
       link: '/',
       onClick: () => {
         onPageSelected('home');
-        setSelectedPage('home');
+        // setSelectedPage('home');
       },
     },
     // {
@@ -71,7 +71,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
       link: '/blogs',
       onClick: () => {
         onPageSelected('blogs');
-        setSelectedPage('blogs');
+        // setSelectedPage('blogs');
       },
     },
     // {
@@ -98,7 +98,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
       link: '/artworks',
       onClick: () => {
         onPageSelected('artworks');
-        setSelectedPage('artworks');
+        // setSelectedPage('artworks');
       },
     },
     {
@@ -109,7 +109,7 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
       link: '/gallery',
       onClick: () => {
         onPageSelected('gallery');
-        setSelectedPage('gallery');
+        // setSelectedPage('gallery');
       },
     },
     {
@@ -131,8 +131,9 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
     },
   ];
 
-  const moduleName = useCurrentModules(selectedPage);
+  const moduleName = useCurrentModules(currentPage);
 
+  console.log('modulename', moduleName, currentPage)
   return (
     <>
       <motion.div
