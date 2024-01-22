@@ -4,39 +4,29 @@ import {
   RefObject,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
 import { PageProps } from 'gatsby';
 import { isIPad13, isTablet, isMobile, isIOS } from 'react-device-detect';
-import AnimatedCursor from 'react-animated-cursor';
 import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
-import { useKeyUp } from '@react-hooks-library/core';
-import BackgroundImage from './background-image';
 import BackgroundContainer from './background-container';
 import Powerline from './powerline';
 import Footer from './footer';
 import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
 import ProgressIndicator from './progress-indicator';
+import VoidAnimatedCursor from './void-animated-cursor';
+import Background from './background';
+import useAppMenuShortcut from '../hooks/use-appmenu-shortcut';
+import useFixScrollRestoration from '../hooks/use-fix-scroll-restoration';
 
 const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const ref = useRef<HTMLElement>(null);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (ref.current != null) {
-      setWidth(ref.current.offsetWidth);
-      setHeight(ref.current.offsetHeight);
-    }
-  }, [height, width]);
-
   const scrollToTop = useCallback((scrollBehavior?: 'smooth' | 'instant') => {
     if (ref.current == null) return;
     ref.current.scrollTo({
@@ -103,19 +93,8 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     toggleOpen();
   }, [toggleOpen]);
 
-  const sidebar = useMemo(
-    () => ({
-      open: () => ({
-        opacity: 1,
-        y: 0,
-      }),
-      closed: {
-        opacity: 0,
-        y: 100,
-      },
-    }),
-    []
-  );
+  useAppMenuShortcut(toggleAppMenu);
+  useFixScrollRestoration(location, scrollToTop);
 
   const { scrollYProgress } = useScroll({ container: ref, target: ref });
 
@@ -123,54 +102,12 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     toggleAppMenu();
   }, [toggleAppMenu]);
 
-  const enableProgressbar = useMemo(() => {
-    if (location?.href?.includes('blog/')) return true;
-    return false;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.href]);
-
-  const currentPage = useMemo(
-    () => location.pathname.split('/')?.[1] ?? undefined,
-    [location.pathname]
-  );
-
-  // Workaround: disable scroll restoration
-  useEffect(() => {
-    if (location.pathname.split('/')?.[1].includes('post')) return;
-    scrollToTop('instant');
-  }, [location.pathname, scrollToTop]);
-
-  useKeyUp(
-    ['Space'],
-    (e) => {
-      e.preventDefault();
-      toggleAppMenu();
-    },
-    { code: true }
-  );
-
   return (
     <>
       <SEOHead />
       <BackgroundContainer>
-        {isMobile ? null : (
-          <AnimatedCursor
-            color="139,233,253"
-            innerSize={10}
-            outerSize={40}
-            innerScale={1}
-            outerScale={2}
-            outerAlpha={1}
-            innerStyle={{
-              backgroundColor: 'rgb(255, 255, 255)',
-              mixBlendMode: 'exclusion',
-              zIndex: '999',
-            }}
-            outerStyle={{
-              mixBlendMode: 'exclusion',
-            }}
-          />
-        )}
+        <VoidAnimatedCursor disable={isMobile} />
+        <Background />
         <main
           id="main"
           ref={ref}
@@ -178,7 +115,7 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             'overflow-y-hidden': isOpen,
           })}
         >
-          <BackgroundImage />
+          <Background />
           <div
             id="main-container"
             className={cn(
@@ -189,9 +126,10 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
             )}
           >
             {children}
-            {enableProgressbar ? (
-              <ProgressIndicator scrollYProgress={scrollYProgress} />
-            ) : null}
+            <ProgressIndicator
+              scrollYProgress={scrollYProgress}
+              location={location}
+            />
             {isVisible && !isOpen ? (
               <ActionIcon
                 onClick={() => scrollToTop()}
@@ -217,13 +155,24 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
                     'pb-24': !isIOS,
                   }
                 )}
-                variants={sidebar}
+                variants={{
+                  open: () => ({
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      damping: 5,
+                    },
+                  }),
+                  closed: {
+                    opacity: 0,
+                    y: 100,
+                  },
+                }}
                 onAnimationComplete={onAnimationComplete}
                 onAnimationStart={onAnimationStart}
               >
                 <ApplicationPane
                   onPageSelected={handlePageSelected}
-                  currentPage={currentPage}
                   location={location}
                 />
               </motion.div>

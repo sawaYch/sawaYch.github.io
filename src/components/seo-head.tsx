@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import useSiteMetadata from '../utils/use-site-metadata';
+import useSiteMetadata from '../hooks/use-site-metadata';
 
 type SummaryType = 'default' | 'large';
 

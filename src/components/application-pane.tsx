@@ -10,7 +10,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import { isMobile } from 'react-device-detect';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
-import useCurrentModules from '../utils/use-current-modules';
+import useCurrentModules from '../hooks/use-current-modules';
 
 interface AppNavigationType {
   id: string;
@@ -24,15 +24,18 @@ interface AppNavigationType {
 
 interface ApplicationPaneProps {
   onPageSelected: (pageKey: string) => void;
-  currentPage: string;
   location: any;
 }
 
 const ApplicationPane: React.FC<ApplicationPaneProps> = ({
   onPageSelected,
-  currentPage,
   location,
 }: ApplicationPaneProps) => {
+  const currentPage = useMemo(
+    () => location.pathname.split('/')?.[1] ?? undefined,
+    [location.pathname]
+  );
+
   const [selectedPage, setSelectedPage] = useState<string | undefined>(
     currentPage
   );

@@ -1,0 +1,27 @@
+import AnimatedCursor from 'react-animated-cursor';
+
+interface VoidAnimatedCursorProps {
+  disable?: boolean;
+}
+
+const VoidAnimatedCursor = ({ disable }: VoidAnimatedCursorProps) =>
+  disable ? null : (
+    <AnimatedCursor
+      color="139,233,253"
+      innerSize={10}
+      outerSize={40}
+      innerScale={1}
+      outerScale={2}
+      outerAlpha={1}
+      innerStyle={{
+        backgroundColor: 'rgb(255, 255, 255)',
+        mixBlendMode: 'exclusion',
+        zIndex: '999',
+      }}
+      outerStyle={{
+        mixBlendMode: 'exclusion',
+      }}
+    />
+  );
+
+export default VoidAnimatedCursor;

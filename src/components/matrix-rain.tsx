@@ -1,7 +1,7 @@
 import { useRef, useEffect, useMemo, useCallback } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import PaneContainer from './pane-container';
-import useAnimationInterval from '../utils/use-animation-Interval';
+import useAnimationInterval from '../hooks/use-animation-Interval';
 
 interface MatrixRainProps {
   matrixKey?: string;

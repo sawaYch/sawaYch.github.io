@@ -8,7 +8,7 @@ import { isIPad13, isMobile, isTablet } from 'react-device-detect';
 import { Kbd, Tooltip } from '@mantine/core';
 import cn from 'classnames';
 import IconLink from './icon-link';
-import useCurrentModules from '../utils/use-current-modules';
+import useCurrentModules from '../hooks/use-current-modules';
 
 const StatusPane = ({ children }: PropsWithChildren) => (
   <div className="flex items-center justify-center h-full pl-4 pr-4 gap-x-2 bg-dracula-pink-400/80">

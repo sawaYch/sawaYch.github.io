@@ -3,7 +3,7 @@ import { FaClipboardCheck } from '@react-icons/all-files/fa/FaClipboardCheck';
 import { useCallback, useEffect, useState } from 'react';
 import { Badge, Button } from '@mantine/core';
 import delay from '../utils/delay';
-import useCopyToClipboard from '../utils/use-clipboard';
+import useCopyToClipboard from '../hooks/use-clipboard';
 
 interface CodeCopyToolbarProps {
   lang: string;

@@ -3,7 +3,7 @@ import { MdLink } from '@react-icons/all-files/md/MdLink';
 import { FaClipboardCheck } from '@react-icons/all-files/fa/FaClipboardCheck';
 import cn from 'classnames';
 import { ActionIcon, Button } from '@mantine/core';
-import useCopyToClipboard from '../utils/use-clipboard';
+import useCopyToClipboard from '../hooks/use-clipboard';
 import delay from '../utils/delay';
 
 interface ShareButtonProps {

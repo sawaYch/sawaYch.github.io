@@ -1,12 +1,16 @@
 import { MotionValue, motion, useSpring } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import cn from 'classnames';
 
 interface ProgressIndicatorProps {
   scrollYProgress: MotionValue<number>;
+  location: any;
 }
 
-const ProgressIndicator = ({ scrollYProgress }: ProgressIndicatorProps) => {
+const ProgressIndicator = ({
+  scrollYProgress,
+  location,
+}: ProgressIndicatorProps) => {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -21,7 +25,13 @@ const ProgressIndicator = ({ scrollYProgress }: ProgressIndicatorProps) => {
     styledMain.addEventListener('scroll', () => setHasScrollEventFired(true));
   }, []);
 
-  return (
+  const enableProgressbar = useMemo(() => {
+    if (location?.href?.includes('blog/')) return true;
+    return false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.href]);
+
+  return enableProgressbar ? (
     <motion.div
       className={cn('progress-bar z-[51]', {
         invisible: !hasScrollEventFired,
@@ -29,7 +39,7 @@ const ProgressIndicator = ({ scrollYProgress }: ProgressIndicatorProps) => {
       })}
       style={{ scaleX }}
     />
-  );
+  ) : null;
 };
 
 export default ProgressIndicator;
