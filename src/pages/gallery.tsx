@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useQuery } from '@tanstack/react-query';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
 import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
@@ -8,7 +7,6 @@ import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
 import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import { AiFillCaretDown } from '@react-icons/all-files/ai/AiFillCaretDown';
 import { AiFillCaretUp } from '@react-icons/all-files/ai/AiFillCaretUp';
-
 import {
   useCallback,
   useMemo,
@@ -16,11 +14,12 @@ import {
   MouseEventHandler,
   useRef,
 } from 'react';
-import { Pagination } from 'flowbite-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'classnames';
+import { PageProps, graphql } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import { isMobile } from 'react-device-detect';
 import { Img } from 'react-image';
 import { saveAs } from 'file-saver';
@@ -30,13 +29,64 @@ import {
   ReactZoomPanPinchRef,
 } from 'react-zoom-pan-pinch';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
-import fetchGallery, { GalleryData } from '../apis/fetch-gallery';
+import { GalleryData } from '../apis/fetch-gallery';
 import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
+import getImageUrl from '../utils/getImageUrl';
 
-const GalleryPage = () => {
-  const { data, isLoading, isError } = useQuery(['gallery'], fetchGallery);
+export const galleryQuery = graphql`
+  query GalleryPage {
+    allStrapiGallery(sort: { updatedAt: DESC }) {
+      nodes {
+        id
+        name
+        captions
+        image {
+          name
+          alternativeText
+          caption
+          width
+          height
+          url
+          formats {
+            thumbnail {
+              name
+              width
+              height
+              url
+            }
+            small {
+              name
+              width
+              height
+              url
+            }
+            medium {
+              name
+              width
+              height
+              url
+            }
+            large {
+              name
+              width
+              height
+              url
+            }
+          }
+        }
+        updatedAt
+      }
+    }
+  }
+`;
+
+const GalleryPage = ({
+  ...queryResponse
+}: PageProps<Queries.GalleryPageQuery>) => {
+  const data = queryResponse.data.allStrapiGallery.nodes;
+
   const variants = useMemo(
     () => ({
       open: {
@@ -82,50 +132,42 @@ const GalleryPage = () => {
           </div>
         </div>
       </div>
-      {isError && <div>API Error.</div>}
-      {isLoading ? (
-        <div className="flex flex-col items-center justify-center w-full mt-10">
-          <Spinner />
-        </div>
-      ) : (
-        <motion.div
-          variants={variants}
-          initial="closed"
-          animate="open"
-          className="grid grid-cols-1 gap-2 px-10 pb-10 sm:grid-cols-3"
-        >
-          {data &&
-            data.map((it) => (
-              <motion.div
-                variants={{
-                  open: {
-                    y: 0,
-                    opacity: 1,
-                    transition: {
-                      y: { stiffness: 10, velocity: -1000 },
-                    },
+      <motion.div
+        variants={variants}
+        initial="closed"
+        animate="open"
+        className="grid grid-cols-2 gap-2 px-10 pb-10 sm:grid-cols-4"
+      >
+        {data &&
+          data.map((it) => (
+            <motion.div
+              variants={{
+                open: {
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    y: { stiffness: 10, velocity: -1000 },
                   },
-                  closed: {
-                    y: 25,
-                    opacity: 0,
-                    transition: {
-                      y: { stiffness: 10 },
-                    },
+                },
+                closed: {
+                  y: 25,
+                  opacity: 0,
+                  transition: {
+                    y: { stiffness: 10 },
                   },
-                }}
-                key={it.id}
-                className="flex flex-col items-center justify-around p-4 rounded-lg cursor-pointer bg-dracula-darker"
-                onClick={() => handleOpenFullImage(it)}
-              >
-                <LazyImg
-                  src={it.images[0].formats.thumbnail.url}
-                  alt={it.images[0].alternativeText}
-                />
-                <div className="pt-4">{it.name}</div>
-              </motion.div>
-            ))}
-        </motion.div>
-      )}
+                },
+              }}
+              key={it.id}
+              className="flex flex-col items-center justify-around p-1 cursor-pointer bg-dracula-darker"
+              onClick={() => handleOpenFullImage(it as unknown as GalleryData)}
+            >
+              <LazyImg
+                src={getImageUrl(it.image?.[0]?.formats?.thumbnail?.url ?? '')}
+                alt={it.image?.[0]?.alternativeText ?? ''}
+              />
+            </motion.div>
+          ))}
+      </motion.div>
       <AnimatePresence>
         {gallery && (
           <motion.div
@@ -189,7 +231,9 @@ const GalleryPage = () => {
                   if (currentIndex == null) return;
                   setPreviewCurrentPage(1);
                   setGallery(
-                    data?.[(currentIndex - 1 + data.length) % data.length]
+                    data?.[
+                      (currentIndex - 1 + data.length) % data.length
+                    ] as unknown as GalleryData
                   );
                 }}
                 className="fixed z-[61] top-1/2 w-fit h-fit left-1 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -205,7 +249,11 @@ const GalleryPage = () => {
                   );
                   if (currentIndex == null) return;
                   setPreviewCurrentPage(1);
-                  setGallery(data?.[(currentIndex + 1) % data.length]);
+                  setGallery(
+                    data?.[
+                      (currentIndex + 1) % data.length
+                    ] as unknown as GalleryData
+                  );
                 }}
                 className="fixed z-[61] top-1/2 w-fit h-fit right-1 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
               >
@@ -232,16 +280,17 @@ const GalleryPage = () => {
                             '!h-[60vh]': isMobile,
                           }
                         )}
-                        src={
-                          gallery.images[previewCurrentPage - 1].formats?.large
+                        src={getImageUrl(
+                          gallery.image?.[previewCurrentPage - 1].formats?.large
                             ?.url ??
-                          gallery.images[previewCurrentPage - 1].formats?.small
-                            ?.url ??
-                          gallery.images[previewCurrentPage - 1].formats
-                            ?.thumbnail?.url
-                        }
+                            gallery.image?.[previewCurrentPage - 1].formats
+                              ?.small?.url ??
+                            gallery.image?.[previewCurrentPage - 1].formats
+                              ?.thumbnail?.url
+                        )}
                         alt={
-                          gallery.images[previewCurrentPage - 1].alternativeText
+                          gallery.image?.[previewCurrentPage - 1]
+                            .alternativeText
                         }
                         loader={
                           <div className="flex flex-col items-center justify-center w-[80vw] h-[70vh]">
@@ -287,7 +336,7 @@ const GalleryPage = () => {
                   type="button"
                   onClick={() =>
                     onArtworkDownload(
-                      gallery.images[previewCurrentPage - 1].url,
+                      getImageUrl(gallery.image[previewCurrentPage - 1].url),
                       gallery.name
                     )
                   }
@@ -298,6 +347,42 @@ const GalleryPage = () => {
               </div>
               {openDesc && (
                 <div className="fixed flex flex-col z-[61] -bottom-[1px] p-4 w-full h-fit rounded-lg text-sm text-gray-400 bg-dracula-darker/80 backdrop-blur-sm break-all">
+                  {gallery.image.length > 1 && (
+                    <div className="flex w-full p-[2px] mb-2 overflow-x-auto border-2 rounded-md border-dracula-dark-700">
+                      {gallery.image.map((it, idx) => (
+                        <Img
+                          className={cn(
+                            'object-contain w-[4rem] h-[2.5rem] hover:border-dracula-purple border-2 border-dracula-dark/0 rounded-md',
+                            {
+                              'border-dracula-pink':
+                                previewCurrentPage === idx + 1,
+                            }
+                          )}
+                          src={getImageUrl(it.formats.thumbnail.url)}
+                          alt={`gallery-images ${it.name} thumbnail`}
+                          loader={
+                            <div className="flex flex-col items-center justify-center object-contain w-[4rem] h-[2.5rem] border-dracula-dark border-2">
+                              <Spinner />
+                            </div>
+                          }
+                          unloader={
+                            <div className="flex flex-col items-center justify-center object-contain w-[4rem] h-[2.5rem]">
+                              <StaticImage
+                                src="../images/home.webp"
+                                alt="back to home"
+                                layout="constrained"
+                                height={240}
+                                placeholder="blurred"
+                              />
+                            </div>
+                          }
+                          onClick={() => {
+                            setPreviewCurrentPage(idx + 1);
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <button
                       aria-label="hide"
@@ -309,7 +394,7 @@ const GalleryPage = () => {
                     >
                       <AiFillCaretDown size="1.2rem" />
                     </button>
-                    {gallery.images.length > 1 && (
+                    {/* {gallery.image.length > 1 && (
                       <Pagination
                         className="flex self-center mb-2 -mt-2"
                         theme={{
@@ -336,9 +421,9 @@ const GalleryPage = () => {
                         }}
                         nextLabel="→"
                         previousLabel="←"
-                        totalPages={gallery.images.length}
+                        totalPages={gallery.image.length}
                       />
-                    )}
+                    )} */}
                   </div>
                   <div className="flex flex-col justify-between mb-2 sm:flex-row">
                     <div className="font-bold">{gallery.name}</div>

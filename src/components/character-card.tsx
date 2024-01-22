@@ -1,78 +1,73 @@
-import { StaticImage } from 'gatsby-plugin-image';
 import cn from 'classnames';
-import tw from 'twin.macro';
+import { StaticImage } from 'gatsby-plugin-image';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 import AboutMe from '../content/about-me.mdx';
 import PaneContainer from './pane-container';
-import SpecCard from './spec-card';
+import Placeholder from './placeholder';
 
 interface CharacterCardProps {
   className?: string;
 }
 
-const PaneColumn = tw.div`flex flex-col items-start content-start justify-start grow m-4`;
-
 const CharacterCard = ({ className }: CharacterCardProps) => (
-  <motion.div
-    className="flex justify-center w-1/2 portrait:w-4/5 item-center"
-    variants={{
-      offscreen: {
-        opacity: 0,
-        scale: 0.5,
-      },
-      onscreen: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-          duration: 0.5,
-        },
-      },
-    }}
-    initial="offscreen"
-    whileInView="onscreen"
-    viewport={{ once: true }}
-  >
-    <PaneContainer
-      className={cn(
-        'flex flex-col md:flex-row items-start xs:items-center justify-center !backdrop-blur-md !bg-dracula-dark/10',
-        className
-      )}
-    >
-      <PaneColumn>
-        <AboutMe />
-      </PaneColumn>
-      <PaneColumn className="!items-center !justify-center !w-fit portrait:!w-full !m-0">
-        <div className="w-1/3 pt-4">
-          <StaticImage
-            className="self-start pointer-events-none select-none rounded-xl"
-            src="../images/avatar.webp"
-            alt="Void Dojo"
-            layout="fullWidth"
-          />
-        </div>
-        <h4 className="mt-6">CONNECT WITH ME</h4>
-        <a
-          className="underline hover:text-dracula-darker-300"
-          href="https://github.com/sawaYch/sawaYch.github.io"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="sawaYch.github.io link"
+  <>
+    <div className="flex justify-center w-1/2 portrait:w-4/5 item-center">
+      <PaneContainer
+        className={cn('flex flex-col !border-0 !bg-transparent', className)}
+      >
+        <motion.div
+          className="flex justify-center item-center"
+          variants={
+            isMobile
+              ? undefined
+              : {
+                  offscreen: {
+                    opacity: 0,
+                    x: -50,
+                  },
+                  onscreen: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }
+          }
+          initial="offscreen"
+          whileInView="onscreen"
+          layout="position"
+          viewport={{ once: true }}
         >
-          Github
-        </a>
-        <a
-          className="underline hover:text-dracula-darker-300"
-          href="https://twitter.com/SawaYch"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Twitter link"
-        >
-          Twitter
-        </a>
-        <SpecCard className="mt-[2rem] -mr-[2rem] skew-y-6 shadow-2xl" />
-      </PaneColumn>
-    </PaneContainer>
-  </motion.div>
+          <PaneContainer
+            className={cn(
+              'flex items-center justify-center text-xs pointer-events-none select-none rounded-lg drop-shadow-[4px_4px_4px_rgba(125,116,163,0.5)]',
+              className
+            )}
+            withFrame
+          >
+            <p>➜ whoami</p>
+            <div className="flex flex-col items-center justify-center p-4 gap-x-4">
+              <div className="w-16 mb-4 sm:w-32">
+                <StaticImage
+                  className="pointer-events-none select-none rounded-xl"
+                  src="../images/avatar.webp"
+                  alt="Void Dojo"
+                  layout="fullWidth"
+                  placeholder="blurred"
+                />
+              </div>
+              <AboutMe />
+            </div>
+            ➜ <span className="animate-ping">█</span>
+          </PaneContainer>
+        </motion.div>
+      </PaneContainer>
+    </div>
+    <Placeholder />
+  </>
 );
 
 export default CharacterCard;

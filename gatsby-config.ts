@@ -5,7 +5,12 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+console.log("api url", process.env.SOURCE_STRAPI_URL);
+
 const config: GatsbyConfig = {
+  flags: {
+    DEV_SSR: false,
+  },
   siteMetadata: {
     title: `Void Dojo`,
     siteUrl: `https://sawaych.github.io`,
@@ -22,18 +27,10 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-react-helmet`,
-    'gatsby-remark-images',
-    'gatsby-plugin-fix-fouc',
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-twitter',
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [`gatsby-remark-autolink-headers`],
-      },
-    },
+    'gatsby-transformer-remark',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -49,7 +46,6 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-postcss',
-    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -74,22 +70,21 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/content`,
       },
     },
-    `gatsby-remark-images`,
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: "gatsby-source-strapi",
       options: {
-        root: __dirname,
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 500,
-              linkImagesToOriginal: false,
-            },
-          },
+        apiURL: process.env.SOURCE_STRAPI_URL,
+        accessToken: process.env.SOURCE_STRAPI_TOKEN,
+        collectionTypes: [
+          "article",
+          "tag",
+          "category",
+          "artwork",
+          "gallery"
         ],
       },
     },
+    'gatsby-plugin-mdx',
   ],
 };
 

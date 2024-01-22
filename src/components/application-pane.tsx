@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { Link } from 'gatsby';
-import { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
 import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
+// import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { IoIosImages } from '@react-icons/all-files/io/IoIosImages';
 import { StaticImage } from 'gatsby-plugin-image';
+import { isMobile } from 'react-device-detect';
 import MenuItem from './menu-item';
 import { CubeColorType } from './cube';
 import useCurrentModules from '../utils/use-current-modules';
@@ -22,22 +24,21 @@ interface AppNavigationType {
 
 interface ApplicationPaneProps {
   onPageSelected: (pageKey: string) => void;
+  currentPage: string;
 }
 
-const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
-  const variants = useMemo(
-    () => ({
-      open: {
-        transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-      },
-      closed: {
-        transition: { staggerChildren: 0.01, staggerDirection: -1 },
-      },
-    }),
-    []
+const ApplicationPane: React.FC<ApplicationPaneProps> = ({
+  onPageSelected,
+  currentPage,
+}: ApplicationPaneProps) => {
+  const [selectedPage, setSelectedPage] = useState<string | undefined>(
+    currentPage
   );
 
-  const [selectedPage, setSelectedPage] = useState<string | undefined>();
+  useEffect(() => {
+    // NOTE: side effect, handle module change when user click browser's back / next
+    setSelectedPage(currentPage);
+  }, [currentPage]);
 
   const appNavigationData: AppNavigationType[] = [
     {
@@ -51,6 +52,17 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
         setSelectedPage('home');
       },
     },
+    // {
+    //   id: 'events',
+    //   cubeColor: 'green',
+    //   name: 'Event',
+    //   icon: <BsCalendarFill size="3.5rem" />,
+    //   link: '/events',
+    //   onClick: () => {
+    //     onPageSelected('events');
+    //     setSelectedPage('events');
+    //   },
+    // },
     {
       id: 'blogs',
       cubeColor: 'purple',
@@ -62,6 +74,22 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
         setSelectedPage('blogs');
       },
     },
+    // {
+    //   id: 'vtubers',
+    //   cubeColor: 'cyan',
+    //   name: 'Vtubers',
+    //   icon: (
+    //     <StaticImage
+    //       src="../images/vtuber-cube-icon.png"
+    //       alt="vtubers cube icon"
+    //     />
+    //   ),
+    //   link: '/vtubers',
+    //   onClick: () => {
+    //     onPageSelected('vtubers');
+    //     setSelectedPage('vtubers');
+    //   },
+    // },
     {
       id: 'artworks',
       cubeColor: 'buffy',
@@ -91,9 +119,10 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
       icon: (
         <StaticImage
           src="../images/mya88.webp"
-          alt="mya88"
+          alt="mya88 module icon"
           width={64}
           height={64}
+          placeholder="blurred"
         />
       ),
       link: 'https://mya88.vercel.app/',
@@ -105,68 +134,82 @@ const ApplicationPane = ({ onPageSelected }: ApplicationPaneProps) => {
   const moduleName = useCurrentModules(selectedPage);
 
   return (
-    <div>
-      <motion.div variants={variants}>
-        <motion.div
-          className="mx-8 mt-4 mb-12 text-2xl tracking-widest bg-opacity-50 select-none purple-text-shadow"
-          variants={{
-            open: {
-              x: 0,
-              opacity: 1,
-              transition: {
-                x: { stiffness: 1000, velocity: -100 },
-              },
-            },
-            closed: {
-              x: 100,
-              opacity: 0,
-              transition: {
-                x: { stiffness: 1000 },
-              },
-            },
-          }}
-        >
-          <div className="w-fit">
-            <div className="h-[1.5rem] -mb-8 -mx-8 bg-dracula-purple-400/30 -skew-x-12 backdrop-blur-sm" />
-            <div className="flex">
-              <div className="z-50 !text-dracula-purple-100 text-[2.4rem] uppercase">
-                Modules<span className="animate-ping">█</span>
-              </div>
+    <>
+      <motion.div
+        id="application-pane-title-component"
+        className="mx-8 mb-12 text-2xl tracking-widest bg-opacity-50 select-none purple-text-shadow"
+        variants={
+          isMobile
+            ? {
+                open: {
+                  opacity: 1,
+                },
+                closed: {
+                  opacity: 0,
+                },
+              }
+            : {
+                open: {
+                  x: 0,
+                  opacity: 1,
+                  transition: {
+                    x: { stiffness: 1000, velocity: -100 },
+                  },
+                },
+                closed: {
+                  x: 100,
+                  opacity: 0,
+                  transition: {
+                    x: { stiffness: 1000 },
+                  },
+                },
+              }
+        }
+      >
+        <div className="ml-4 w-fit">
+          <div className="h-[1.5rem] -mb-8 -mx-8 bg-dracula-purple-400/30 -skew-x-12 backdrop-blur-sm" />
+          <div className="flex">
+            <div className="z-50 !text-dracula-purple-100 text-[2.4rem] uppercase">
+              Modules<span className="animate-ping">█</span>
             </div>
           </div>
-        </motion.div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 place-items-center">
-          {appNavigationData.map((i) => {
-            if (!i.isExternal) {
-              return (
-                <Link key={i.id} to={i.link ?? '/404'}>
-                  <MenuItem
-                    key={i.id}
-                    {...i}
-                    currentModule={moduleName ?? undefined}
-                  />
-                </Link>
-              );
-            }
-
+        </div>
+      </motion.div>
+      <div
+        id="application-pane-modules-section"
+        className="grid grid-cols-3 h-fit sm:grid-cols-4 sm:pb-10 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 place-items-center"
+      >
+        {appNavigationData.map((i) => {
+          if (!i.isExternal) {
             return (
-              <a
-                href={i.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${i.name} link`}
-              >
+              <Link key={i.id} to={i.link ?? '/404'}>
                 <MenuItem
                   key={i.id}
                   {...i}
                   currentModule={moduleName ?? undefined}
                 />
-              </a>
+              </Link>
             );
-          })}
-        </div>
-      </motion.div>
-    </div>
+          }
+
+          return (
+            <a
+              key={i.id}
+              href={i.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${i.name} link`}
+            >
+              <MenuItem
+                key={i.id}
+                {...i}
+                currentModule={moduleName ?? undefined}
+              />
+            </a>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

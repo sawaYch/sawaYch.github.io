@@ -1,5 +1,6 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 import cn from 'classnames';
 import {
   BreakPointHooks,
@@ -20,22 +21,26 @@ const SpecCard = ({ className }: SpecCardProps) => {
   return (
     <motion.div
       className="flex justify-center item-center"
-      variants={{
-        offscreen: {
-          opacity: 0,
-          scale: isBelowMd ? 0 : 0.85,
-          x: -50,
-        },
-        onscreen: {
-          x: 0,
-          opacity: 1,
-          scale: isBelowMd ? 0.85 : 1,
-          transition: {
-            delay: 0.5,
-            duration: 0.5,
-          },
-        },
-      }}
+      variants={
+        isMobile
+          ? undefined
+          : {
+              offscreen: {
+                opacity: 0,
+                scale: isBelowMd ? 0 : 0.85,
+                x: -50,
+              },
+              onscreen: {
+                x: 0,
+                opacity: 1,
+                scale: isBelowMd ? 0.85 : 1,
+                transition: {
+                  delay: 0.5,
+                  duration: 0.5,
+                },
+              },
+            }
+      }
       initial="offscreen"
       whileInView="onscreen"
       layout="position"
@@ -49,14 +54,14 @@ const SpecCard = ({ className }: SpecCardProps) => {
         withFrame
       >
         <p>➜ neofetch</p>
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-center justify-center p-4 gap-x-4">
           <StaticImage
-            src="../images/computer.webp"
+            src="../images/arch.png"
             alt="computer"
             layout="fixed"
             placeholder="blurred"
-            width={160}
-            height={160}
+            width={118}
+            height={118}
           />
           <Spec />
         </div>

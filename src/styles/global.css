@@ -1,32 +1,37 @@
-@tailwind base;
+@layer tailwind {
+  @tailwind base;
+}
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   h1 {
-    @apply font-primary text-2xl font-bold md:text-4xl text-dracula-buffy;
+    @apply text-2xl font-bold font-primary md:text-4xl text-dracula-buffy;
   }
 
   h2 {
-    @apply font-primary text-xl font-bold md:text-3xl text-dracula-dracula mb-4;
+    @apply mb-4 text-xl font-bold font-primary md:text-3xl text-dracula-dracula;
   }
 
   h3 {
-    @apply font-primary text-lg font-bold md:text-2xl text-dracula-buffy mb-2;
+    @apply mb-2 text-lg font-bold font-primary md:text-2xl text-dracula-buffy;
   }
 
   h4 {
-    @apply font-primary text-base font-bold md:text-lg;
+    @apply text-base font-bold font-primary md:text-lg;
   }
 
   body {
-    @apply font-primary text-sm md:text-sm;
+    @apply text-sm font-primary md:text-sm;
   }
 }
 
+/* chrome scrollbar, TODO: firefox support*/
 /* width */
 ::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
+  background: transparent;
 }
 
 /* Track */
@@ -46,33 +51,35 @@
 }
 
 @font-face {
-  font-family: 'Cubic';
+  font-family: Cubic;
   src: url('/fonts/cubic.woff2');
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'KuGraph';
-  src: url('/fonts/kug.ttf');
+  font-family: KuGraph;
+  src: url('/fonts/kug.woff2');
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'Ku';
-  src: url('/fonts/ku.ttf');
+  font-family: Ku;
+  src: url('/fonts/ku.woff2');
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'CubicBlock';
-  src: url('/fonts/cubicblock_s.ttf');
+  font-family: CubicBlock;
+  src: url('/fonts/cubicblock_s.woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: FiraCode;
+  src: url('/fonts/firacode.woff2');
   font-display: swap;
 }
 
 html,
 body {
   --buffy: #ff79c6;
-  --color-background: #000119;
+  --color-background: #373a4d;
   --stroke-width: 1rem;
   --font-weight: 700;
   --letter-spacing: calc(1em / 8);
@@ -86,6 +93,26 @@ body {
   touch-action: none;
 }
 
+.noise-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  background-image: url(../images/noise.gif);
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .wt-text-shadow {
   text-shadow: 1px 1px 0 #ff79c6, 2px 2px 0 #ff79c6, 3px 3px 0 #ff79c6,
     4px 4px 0 #ff79c6;
@@ -97,8 +124,8 @@ body {
 }
 
 .vd-text-shadow {
-  text-shadow: 4px 0px 0 #555555, 5px 1px 0 #ff79c6, 6px 1px 0 #ff79c6,
-    7px 1px 0 #ff79c6, 8px 1px 0 #ff79c6;
+  text-shadow: 4px 0px 0 #555555, 5px 1px 0 #8be9fd, 6px 1px 0 #8be9fd,
+    7px 1px 0 #8be9fd, 8px 1px 0 #8be9fd;
 }
 
 .transition-color-apply * {
@@ -189,15 +216,14 @@ body {
 
 .progress-bar {
   position: fixed;
-  top: 1.75rem;
   left: 0;
   right: 0;
   height: 4px;
+  top: 0;
   background: var(--buffy);
   background: linear-gradient(
     90deg,
-    rgba(34, 34, 34, 1) 0%,
-    rgba(189, 147, 249, 1) 50%,
+    rgba(189, 147, 249, 1) 0%,
     rgba(255, 121, 198, 1) 100%
   );
   transform-origin: 0%;
@@ -215,7 +241,44 @@ iframe {
   font-style: italic;
   font-weight: var(--font-weight);
   letter-spacing: var(--letter-spacing);
-  padding: calc(--stroke-width / 2);
+  padding: calc(var(--stroke-width) / 2);
+}
+
+@-webkit-keyframes bscale {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes bscale {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.bg-text-clip {
+  background-clip: text;
+  -webkit-text-stroke: 2px #fff;
+  color: transparent;
+}
+
+.dot-pattern {
+  background: -webkit-radial-gradient(#fff 20%, transparent 20%);
+  background: radial-gradient(#fff 20%, transparent 20%);
+  background-size: 10px 10px;
+  -webkit-animation: bscale 60s infinite linear;
+  animation: bscale 60s infinite linear;
+}
+
+.dot-margin {
+  background: -webkit-radial-gradient(#fff 20%, transparent 20%);
+  background: radial-gradient(#fff 20%, transparent 20%);
+  background-size: 4px 4px;
 }
 
 ::-moz-selection {
@@ -270,4 +333,117 @@ iframe {
 .link-underline:hover {
   background-size: 100% 3px;
   background-position: 0 100%;
+}
+
+/* star animation */
+#stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 483px 450px #aaa, 1995px 525px #aaa, 755px 1459px #aaa,
+    610px 1246px #aaa, 764px 1850px #aaa, 1274px 1697px #aaa, 1227px 37px #aaa,
+    1090px 506px #aaa, 341px 1005px #aaa, 1002px 755px #aaa, 693px 1497px #aaa,
+    1797px 1626px #aaa, 1838px 793px #aaa, 802px 881px #aaa, 1117px 1983px #aaa,
+    352px 1465px #aaa, 1526px 852px #aaa, 1559px 526px #aaa, 517px 516px #aaa,
+    1380px 244px #aaa, 662px 1531px #aaa, 1544px 518px #aaa, 253px 879px #aaa,
+    774px 1629px #aaa, 752px 994px #aaa, 1129px 726px #aaa, 232px 1050px #aaa,
+    1766px 290px #aaa, 1976px 842px #aaa, 662px 1535px #aaa, 257px 1016px #aaa,
+    665px 708px #aaa, 1476px 1772px #aaa, 261px 498px #aaa, 719px 1459px #aaa,
+    469px 438px #aaa, 994px 474px #aaa, 744px 808px #aaa, 1609px 1741px #aaa,
+    898px 260px #aaa, 1978px 1436px #aaa, 904px 1244px #aaa, 123px 773px #aaa,
+    6px 923px #aaa, 1973px 1778px #aaa, 1470px 1861px #aaa, 1037px 156px #aaa,
+    554px 1905px #aaa, 1508px 849px #aaa, 1213px 1603px #aaa, 87px 1907px #aaa,
+    492px 527px #aaa, 91px 213px #aaa, 492px 15px #aaa, 1357px 1157px #aaa,
+    637px 240px #aaa, 1515px 281px #aaa, 1757px 682px #aaa, 1035px 1298px #aaa,
+    1019px 1233px #aaa, 25px 162px #aaa, 262px 884px #aaa, 1328px 965px #aaa,
+    984px 879px #aaa, 1213px 689px #aaa, 623px 1091px #aaa, 1227px 422px #aaa,
+    1977px 1025px #aaa, 620px 474px #aaa, 528px 1525px #aaa;
+  animation: animStar 50s linear infinite;
+}
+#stars:after {
+  content: ' ';
+  position: absolute;
+  top: 2000px;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 483px 450px #aaa, 1995px 525px #aaa, 755px 1459px #aaa,
+    610px 1246px #aaa, 764px 1850px #aaa, 1274px 1697px #aaa, 1227px 37px #aaa,
+    1090px 506px #aaa, 341px 1005px #aaa, 1002px 755px #aaa, 693px 1497px #aaa,
+    1797px 1626px #aaa, 1838px 793px #aaa, 802px 881px #aaa, 1117px 1983px #aaa,
+    352px 1465px #aaa, 1526px 852px #aaa, 1559px 526px #aaa, 517px 516px #aaa,
+    1380px 244px #aaa, 662px 1531px #aaa, 1544px 518px #aaa, 253px 879px #aaa,
+    774px 1629px #aaa, 752px 994px #aaa, 1129px 726px #aaa, 232px 1050px #aaa,
+    1766px 290px #aaa, 1976px 842px #aaa, 662px 1535px #aaa, 257px 1016px #aaa,
+    665px 708px #aaa, 1476px 1772px #aaa, 261px 498px #aaa, 719px 1459px #aaa,
+    469px 438px #aaa, 994px 474px #aaa, 744px 808px #aaa, 1609px 1741px #aaa,
+    898px 260px #aaa, 1978px 1436px #aaa, 904px 1244px #aaa, 123px 773px #aaa,
+    6px 923px #aaa, 1973px 1778px #aaa, 1470px 1861px #aaa, 1037px 156px #aaa,
+    554px 1905px #aaa, 1508px 849px #aaa, 1213px 1603px #aaa, 87px 1907px #aaa,
+    492px 527px #aaa, 91px 213px #aaa, 492px 15px #aaa, 1357px 1157px #aaa,
+    637px 240px #aaa, 1515px 281px #aaa, 1757px 682px #aaa, 1035px 1298px #aaa,
+    1019px 1233px #aaa, 25px 162px #aaa, 262px 884px #aaa, 1328px 965px #aaa,
+    984px 879px #aaa, 1213px 689px #aaa, 623px 1091px #aaa, 1227px 422px #aaa,
+    1977px 1025px #aaa, 620px 474px #aaa, 528px 1525px #aaa;
+}
+
+#stars2 {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 1585px 315px #aaa, 1750px 858px #aaa, 502px 1184px #aaa,
+    1482px 150px #aaa, 870px 93px #aaa, 1401px 1976px #aaa, 494px 1549px #aaa,
+    1607px 1894px #aaa, 1029px 1466px #aaa, 1931px 1390px #aaa,
+    819px 1431px #aaa, 521px 1062px #aaa, 1754px 574px #aaa, 577px 943px #aaa,
+    850px 1377px #aaa, 445px 1835px #aaa, 1658px 1675px #aaa, 521px 1144px #aaa,
+    560px 1624px #aaa, 1329px 1778px #aaa;
+  animation: animStar 100s linear infinite;
+}
+#stars2:after {
+  content: ' ';
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 1585px 315px #aaa, 1750px 858px #aaa, 502px 1184px #aaa,
+    1482px 150px #aaa, 870px 93px #aaa, 1401px 1976px #aaa, 494px 1549px #aaa,
+    1607px 1894px #aaa, 1029px 1466px #aaa, 1931px 1390px #aaa,
+    819px 1431px #aaa, 521px 1062px #aaa, 1754px 574px #aaa, 577px 943px #aaa,
+    850px 1377px #aaa, 445px 1835px #aaa, 1658px 1675px #aaa, 521px 1144px #aaa,
+    560px 1624px #aaa, 1329px 1778px #aaa;
+}
+
+#stars3 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 91px 409px #aaa, 1886px 728px #aaa, 1294px 970px #aaa,
+    720px 1215px #aaa, 796px 1431px #aaa, 834px 1217px #aaa, 1926px 1164px #aaa,
+    1803px 310px #aaa, 1532px 1421px #aaa, 1680px 232px #aaa;
+  animation: animStar 150s linear infinite;
+}
+#stars3:after {
+  content: ' ';
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 91px 409px #aaa, 1886px 728px #aaa, 1294px 970px #aaa,
+    720px 1215px #aaa, 796px 1431px #aaa, 834px 1217px #aaa, 1926px 1164px #aaa,
+    1803px 310px #aaa, 1532px 1421px #aaa, 1680px 232px #aaa;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+.bg-glow {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #222222 100%);
 }

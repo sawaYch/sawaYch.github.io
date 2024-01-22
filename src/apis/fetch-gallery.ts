@@ -21,10 +21,10 @@ interface CMSImage {
 }
 
 export interface GalleryData {
-  id: number;
+  id: string;
   name: string;
   captions: string;
-  images: CMSImage[];
+  image: CMSImage[];
   updatedAt: string;
 }
 
@@ -46,14 +46,16 @@ const appendAssetUrl = (input: {
 
 const fetchGallery = async () => {
   try {
-    const res = await ApiFetch('/galleries?populate=*&sort[0]=createdAt:desc');
+    const res = await ApiFetch(
+      '/galleries?populate=*&sort[0]=publishedAt:desc'
+    );
     const jsonObject = await res.json();
     const formatData: GalleryData[] = jsonObject.data.map((d: any) => ({
       id: d.id,
       name: d.attributes.name,
       captions: d.attributes.captions,
       updatedAt: formatDate(d.attributes.updatedAt),
-      images: d.attributes.image.data.map((img: any) => ({
+      image: d.attributes.image.data.map((img: any) => ({
         name: img.attributes.name,
         alternativeText: img.attributes.alternativeText,
         captions: img.attributes.captions,

@@ -58,11 +58,11 @@ const fetchBlogs = async ({
       )
       .join('');
     res = await ApiFetch(
-      `/articles?populate=*&sort[0]=createdAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
+      `/articles?fields[0]=slug&fields[1]=title&fields[2]=slug&fields[3]=updatedAt&populate[0]=tags&populate[1]=categories&populate[2]=cover&sort[0]=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${tagFilter}${categoryFilter}`
     );
   } else {
     res = await ApiFetch(
-      `/articles?populate=*&sort[0]=createdAt:desc&filters[slug][$eq]=${slug}`
+      `/articles?populate=*&sort[0]=publishedAt:desc&filters[slug][$eq]=${slug}`
     );
   }
   const jsonData = await res.json();
@@ -82,7 +82,9 @@ const fetchBlogs = async ({
       color: c.attributes.color,
     })),
     cover: `${process.env.GATSBY_API_BASE_URL?.slice(0, -4)}${
-      it.attributes.cover.data.attributes.formats.small.url
+      !slug
+        ? it.attributes.cover.data.attributes.formats.thumbnail.url
+        : it.attributes.cover.data.attributes.formats.small.url
     }`,
   }));
   const data = {

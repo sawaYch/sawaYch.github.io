@@ -1,15 +1,27 @@
-import { Timeline } from 'flowbite-react';
 import { motion } from 'framer-motion';
-import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 import { FaSchool } from '@react-icons/all-files/fa/FaSchool';
 import { FaBaby } from '@react-icons/all-files/fa/FaBaby';
+import { isMobile } from 'react-device-detect';
+import { PropsWithChildren, ReactElement, ReactNode } from 'react';
+import { BsFillBriefcaseFill } from '@react-icons/all-files/bs/BsFillBriefcaseFill';
+import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 
-import tw from 'twin.macro';
+import { Timeline, Text } from '@mantine/core';
 import PaneContainer from './pane-container';
-import VoidTimelineItem, { VoidTimeItemProps } from './void-timeline-item';
+import Placeholder from './placeholder';
 import WavyText from './wavy-text';
 
-const IndentText = tw.div`ml-8`;
+const IndentText = ({ children }: PropsWithChildren) => (
+  <div className="ml-8">{children}</div>
+);
+
+export interface VoidTimeItemProps {
+  time: string;
+  title: string;
+  body: string | ReactElement;
+  order?: number;
+  icon?: ReactNode;
+}
 
 const VoidTimeline = () => {
   const timelineData: VoidTimeItemProps[] = [
@@ -17,7 +29,7 @@ const VoidTimeline = () => {
       time: 'Unknown',
       title: 'Born',
       body: 'A wild little Sawa was born! 👶',
-      icon: FaBaby,
+      icon: <FaBaby />,
     },
     {
       time: 'Aug. 2020',
@@ -31,7 +43,7 @@ const VoidTimeline = () => {
           <p>Major BENG in Computer Science (COMP)</p>
         </>
       ),
-      icon: FaSchool,
+      icon: <FaSchool />,
     },
     {
       time: 'Jul. 2020 - June. 2023',
@@ -49,7 +61,8 @@ const VoidTimeline = () => {
           </IndentText>
           <li className="ml-4">.Net developer</li>
           <IndentText>
-            Experience in .Net6, EntityFramework, Dapper, Microsoft SQL Server
+            Experience in .Net6, EntityFramework, Dapper, Microsoft SQL Server,
+            Domain Driven Design (DDD)
           </IndentText>
           <li className="ml-4">Experience in develop OutSystem C# extension</li>
           <li className="ml-4">
@@ -90,42 +103,86 @@ const VoidTimeline = () => {
     },
   ];
   return (
-    <PaneContainer className="!bg-transparent !border-0 flex !items-start !justify-center !w-3/4 !h-1/2">
-      <motion.div
-        className="!w-fit !h-fit"
-        variants={{
-          offscreen: {
-            scaleY: 0,
-            originY: 'top',
-            opacity: 0,
-          },
-          onscreen: {
-            scaleY: 1,
-            originY: 'top',
-            opacity: 1,
-            transition: {
-              duration: 1,
-            },
-          },
-        }}
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true }}
-      >
-        <Timeline className="w-full border-gray-700 dark:border-gray-200 transition-color-apply">
-          {timelineData.map((data, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <VoidTimelineItem {...data} key={index} order={index} />
-          ))}
-        </Timeline>
-        <GiVampireDracula size="2rem" className="-mt-10 -ml-4" />
-        <WavyText
-          className="!mt-1 -ml-3"
-          text="The journey continues 📱 🎮 💻"
-          replay
-        />
-      </motion.div>
-    </PaneContainer>
+    <>
+      <PaneContainer className="!bg-transparent !border-0 flex !items-start !justify-center !w-3/4 !h-1/2">
+        <motion.div
+          className="!w-fit !h-fit"
+          variants={
+            isMobile
+              ? undefined
+              : {
+                  offscreen: {
+                    scaleY: 0,
+                    originY: 'top',
+                    opacity: 0,
+                  },
+                  onscreen: {
+                    scaleY: 1,
+                    originY: 'top',
+                    opacity: 1,
+                    transition: {
+                      duration: 1,
+                    },
+                  },
+                }
+          }
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true }}
+        >
+          <Timeline active={2} bulletSize={30} lineWidth={3} color="#6272a4">
+            {timelineData.map((data, index) => (
+              <Timeline.Item
+                key={data.title}
+                bullet={data.icon ?? <BsFillBriefcaseFill />}
+                lineVariant={
+                  index === timelineData.length - 1 ? 'dotted' : 'solid'
+                }
+              >
+                <motion.div
+                  variants={
+                    isMobile
+                      ? undefined
+                      : {
+                          offscreen: {
+                            opacity: 0,
+                          },
+                          onscreen: {
+                            opacity: 1,
+                            transition: {
+                              duration: 0.5,
+                              delay: (data.order ?? 1) * 0.5,
+                            },
+                          },
+                        }
+                  }
+                  initial="offscreen"
+                  whileInView="onscreen"
+                  layout="position"
+                  viewport={{ once: true }}
+                >
+                  <Text c="dimmed" size="sm">
+                    {data.time}
+                  </Text>
+                  <Text size="md" mt={4}>
+                    {data.title}
+                  </Text>
+                  <div className="m-4 text-sm">{data.body}</div>
+                </motion.div>
+              </Timeline.Item>
+            ))}
+            <Timeline.Item bullet={<GiVampireDracula />}>
+              <WavyText
+                className="!mt-1 -ml-3"
+                text="The journey continues 📱 🎮 💻"
+                replay
+              />
+            </Timeline.Item>
+          </Timeline>
+        </motion.div>
+      </PaneContainer>
+      <Placeholder />
+    </>
   );
 };
 

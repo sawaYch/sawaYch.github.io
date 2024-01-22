@@ -46,15 +46,14 @@ const oshinokoData: OshinokoData[] = [
   {
     key: 'mya',
     modalColor: 'bg-[#fd9a98]',
-    frameColor: 'border-[#fd9a98] hover:bg-[#fd9a98] active:bg-[#fd9a98]',
+    frameColor:
+      'border-[#fd9a98] hover:bg-gradient-to-tl hover:to-transparent hover:from-[#fd9a98] active:bg-[#fd9a98]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(253,154,152,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=MyaVtuber'
-      : 'https://twitter.com/MyaVtuber',
+    twitterUrl: 'https://twitter.com/mya_desu',
     youtubeUrl: isIOS
-      ? 'youtube://youtube.com/@mya.'
-      : 'https://www.youtube.com/@mya.',
-    instagramUrl: 'https://www.instagram.com/mya_vtuber',
+      ? 'youtube://youtube.com/@mya_desu'
+      : 'https://www.youtube.com/@mya_desu',
+    instagramUrl: 'https://www.instagram.com/mya.desu',
     name: '米亞 | Mya',
     video: 'https://www.youtube.com/watch?v=47mJVG8LNfE',
     content: <IntroMya />,
@@ -75,9 +74,7 @@ const oshinokoData: OshinokoData[] = [
     positioning: 'top-20 left-20 sm:top-28 sm:left-[7.25rem]',
     frameColor: 'border-[#805e5a] hover:bg-[#805e5a] active:bg-[#805e5a]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(128,94,90,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=gummy_forest'
-      : 'https://twitter.com/gummy_forest',
+    twitterUrl: 'https://twitter.com/gummy_forest',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@gummyz'
       : 'https://www.youtube.com/@gummyz',
@@ -103,15 +100,13 @@ const oshinokoData: OshinokoData[] = [
     positioning: 'left-[9.375rem] sm:left-56',
     frameColor: 'border-[#bd93f9] hover:bg-[#bd93f9] active:bg-[#bd93f9]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(189,147,249,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=June_Tgtk'
-      : 'https://twitter.com/June_Tgtk',
+    twitterUrl: 'https://twitter.com/June_Tgtk',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@june_tgtk'
       : 'https://www.youtube.com/@june_tgtk',
     instagramUrl: 'https://www.instagram.com/june_tgtk',
     name: '咎月ジュネ | June',
-    video: 'https://www.youtube.com/watch?v=ne3C7IQBco8',
+    video: 'https://www.youtube.com/shorts/v2B0ku7Qs6g',
     content: <IntroJune />,
     streamType: [
       StreamTypeEnum.Chat,
@@ -129,15 +124,13 @@ const oshinokoData: OshinokoData[] = [
     positioning: 'top-[9.5rem] sm:top-28 sm:left-[20.75rem]',
     frameColor: 'border-[#8be9fd] hover:bg-[#8be9fd] active:bg-[#8be9fd]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(139,233,253,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=kami46UNO'
-      : 'https://twitter.com/kami46UNO',
+    twitterUrl: 'https://twitter.com/kami46UNO',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@kami46UNO'
       : 'https://www.youtube.com/@kami46UNO',
     instagramUrl: 'https://www.instagram.com/kami46uno',
     name: '神白ウノ | Uno',
-    video: 'https://www.youtube.com/watch?v=moSy45_zn0c',
+    video: 'https://www.youtube.com/watch?v=g8AXoDd6p9o',
     content: <IntroUno />,
     streamType: [
       StreamTypeEnum.Chat,
@@ -155,9 +148,7 @@ const oshinokoData: OshinokoData[] = [
     positioning: 'top-56 left-20 sm:top-[13.5rem] sm:left-2',
     frameColor: 'border-[#f8f8f2] hover:bg-[#f8f8f2] active:bg-[#f8f8f2]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(255,255,255,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=ruri_mashiro'
-      : 'https://twitter.com/ruri_mashiro',
+    twitterUrl: 'https://twitter.com/ruri_mashiro',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@MashiroRuri'
       : 'https://www.youtube.com/@MashiroRuri',
@@ -180,9 +171,7 @@ const oshinokoData: OshinokoData[] = [
       'left-[9.375rem] top-[9.5rem] sm:top-[20rem] sm:left-[7.25rem]',
     frameColor: 'border-[#d3b6fc] hover:bg-[#d3b6fc] active:bg-[#d3b6fc]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(211,182,252,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=kurohatamiho'
-      : 'https://twitter.com/kurohatamiho',
+    twitterUrl: 'https://twitter.com/kurohatamiho',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@kurohatamiho'
       : 'https://www.youtube.com/@kurohatamiho',
@@ -202,9 +191,7 @@ const oshinokoData: OshinokoData[] = [
     positioning: 'top-[18.5rem] sm:top-[13.5rem] sm:left-[14rem]',
     frameColor: 'border-[#97feb1] hover:bg-[#97feb1] active:bg-[#97feb1]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(145,254,178,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=kuiro0723'
-      : 'https://twitter.com/kuiro0723',
+    twitterUrl: 'https://twitter.com/kuiro0723',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@kuiro0723'
       : 'https://www.youtube.com/@kuiro0723',
@@ -230,15 +217,13 @@ const oshinokoData: OshinokoData[] = [
       'left-[9.375rem] top-[18.5rem] sm:top-[20rem] sm:left-[20.75rem]',
     frameColor: 'border-[#8f9bc3] hover:bg-[#8f9bc3] active:bg-[#8f9bc3]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(143,155,195,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=hasakaki_sora'
-      : 'https://twitter.com/hasakaki_sora',
+    twitterUrl: 'https://twitter.com/hasakaki_sora',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@hasakakisora'
       : 'https://www.youtube.com/@hasakakisora',
     instagramUrl: 'https://www.instagram.com/hasakaki_sora',
     name: '羽榊そら | Sora',
-    video: 'https://www.youtube.com/watch?v=e293yhqB8Jo',
+    video: 'https://www.youtube.com/watch?v=M6MX6nfxPdw',
     content: <IntroSora />,
     streamType: [
       StreamTypeEnum.Chat,
@@ -247,7 +232,7 @@ const oshinokoData: OshinokoData[] = [
       StreamTypeEnum.Project,
       StreamTypeEnum.Sing,
     ],
-    stat: [3.5, 4, 3, 3, 4, 3.5, 3.5, 3],
+    stat: [3.5, 4, 3.5, 3, 4, 4, 4.5, 3.5],
   },
   {
     key: 'mumuki',
@@ -255,12 +240,11 @@ const oshinokoData: OshinokoData[] = [
     positioning: 'left-20 top-[23rem] sm:top-[26.5rem] sm:left-56',
     frameColor: 'border-[#6ebbbf] hover:bg-[#6ebbbf] active:bg-[#6ebbbf]',
     shadowColor: 'drop-shadow-[8px_0px_0px_rgba(110,187,191,0.5)]',
-    twitterUrl: isIOS
-      ? 'twitter://user?id=litemumuki'
-      : 'https://twitter.com/litemumuki',
+    twitterUrl: 'https://twitter.com/litemumuki',
     youtubeUrl: isIOS
       ? 'youtube://youtube.com/@liteMumuki'
       : 'https://www.youtube.com/@liteMumuki',
+    instagramUrl: 'https://www.instagram.com/litemumuki',
     name: '淺茉 | Mumuki',
     video: 'https://www.youtube.com/watch?v=mPrUn6xTu1g',
     content: <IntroMumuki />,

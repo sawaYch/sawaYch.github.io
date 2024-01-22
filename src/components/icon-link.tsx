@@ -1,6 +1,5 @@
 import { Link } from 'gatsby';
-import { ReactElement } from 'react';
-import tw from 'twin.macro';
+import { PropsWithChildren, ReactElement } from 'react';
 
 interface IconLinkProps {
   target: string;
@@ -9,12 +8,11 @@ interface IconLinkProps {
   ariaLabel?: string;
 }
 
-const LinkContainer = tw.div`
-  hover:text-dracula-dracula-200
-  transition-all
-  duration-500
-  select-none
-`;
+const LinkContainer = ({ children }: PropsWithChildren) => (
+  <div className="flex items-center justify-center transition-all duration-500 select-none hover:text-dracula-dracula-200">
+    {children}
+  </div>
+);
 
 const IconLink = ({
   target,

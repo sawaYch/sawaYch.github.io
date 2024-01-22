@@ -1,103 +1,90 @@
-import { Badge } from 'flowbite-react';
+import { PropsWithChildren } from 'react';
 import { motion } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
-import tw from 'twin.macro';
 import { Img } from 'react-image';
-import { BlogData } from '../apis/fetch-blogs';
+import { Badge } from '@mantine/core';
 import { formatDateMonthName } from '../utils/format-date';
+import getImageUrl from '../utils/getImageUrl';
 import Spinner from './spinner';
 
-const AuthorSection = tw.div`flex items-center pt-4`;
-const TagCatSection = tw.div`my-1 text-xs flex flex-wrap gap-1 uppercase`;
+const DateTimeSection = ({ children }: PropsWithChildren) => (
+  <div className="flex items-center text-[0.65rem] self-end">{children}</div>
+);
+
+const TagCatSection = ({ children }: PropsWithChildren) => (
+  <div className="flex flex-wrap gap-1 uppercase">{children}</div>
+);
 
 interface BlogCardProps {
-  data: BlogData;
+  data: Queries.BlogsPageQuery['allStrapiArticle']['nodes'][0];
   onClick: () => void;
 }
 
 const BlogCard = ({ data, onClick }: BlogCardProps) => (
   <motion.div
     variants={{
-      open: {
-        y: 0,
+      visible: {
         opacity: 1,
-        transition: {
-          y: { stiffness: 10, velocity: -1000 },
-        },
+        y: 0,
       },
-      closed: {
-        y: 20,
+      hidden: {
         opacity: 0,
-        transition: {
-          y: { stiffness: 10 },
-        },
+        y: 50,
       },
     }}
-    initial="closed"
-    animate="open"
     onClick={onClick}
-    className="flex flex-col p-2 transition-shadow border rounded-lg shadow-[0_1px_4px_4px_rgba(0,0,0,0.3)] cursor-pointer bg-dracula-dark-900/40 border-dracula-dark-900 backdrop-blur-sm hover:shadow-dracula-pink"
+    className="flex gap-x-2 mb-1 w-full items-center rounded-lg shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] cursor-pointer bg-dracula-dark-900 border-dracula-dark-900 hover:shadow-dracula-pink hover:!scale-105 transition-shadow"
   >
     {data.cover ? (
       <Img
-        className="object-cover max-h-52"
-        src={data.cover}
+        className="object-cover w-[5.5rem] h-28 sm:w-[11rem] rounded-l-lg sm:h-28"
+        src={getImageUrl(data.cover.formats?.thumbnail?.url ?? '')}
         alt={`${data.title} thumbnail`}
         loader={
-          <div className="flex flex-col items-center justify-center w-full h-full">
-            <Spinner className="!w-24 !h-24" />
+          <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
+            <Spinner />
           </div>
         }
         unloader={
-          <div className="flex flex-col items-center justify-center h-full">
-            <FcRemoveImage size="5rem" />
-            <div>Fail to load image</div>
+          <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
+            <FcRemoveImage size="2.5rem" />
           </div>
         }
       />
     ) : (
       <StaticImage
-        className="object-cover pointer-events-none select-none rounded-xl h-[5rem] w-[5rem] sm:h-[10rem] sm:w-[10rem] self-center"
+        className="self-center object-cover w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 pointer-events-none select-none rounded-xl"
         src="../images/home.webp"
         alt="blog cover"
         layout="constrained"
+        placeholder="blurred"
         transformOptions={{
           fit: 'cover',
         }}
       />
     )}
-    <h5 className="px-2 my-4 text-lg font-bold tracking-tight">{data.title}</h5>
-    <p className="px-2 font-normal whitespace-pre-line line-clamp-4">
-      {data.description}
-    </p>
-    <div className="mt-auto">
-      <hr className="w-full h-[1px] mx-auto my-2 bg-dracula-dark-800 border-0 rounded" />
+    <div className="flex flex-col pl-2 pr-4 grow">
+      <span className="mb-1 text-xs font-bold tracking-tight sm:text-md">
+        {data.title}
+      </span>
       <TagCatSection>
-        {data.tags.map((t) => (
-          <Badge key={t.name} color={t.color}>
-            {t.name}
-          </Badge>
-        ))}
-        {data.categories.map((t) => (
-          <Badge key={t.name} color={t.color}>
-            {t.name}
-          </Badge>
-        ))}
+        {data?.tags != null &&
+          data.tags.map((t) => (
+            <Badge key={t!.name} color={t!.color as string} size="xs">
+              {t!.name as string}
+            </Badge>
+          ))}
+        {data?.categories != null &&
+          data.categories.map((t) => (
+            <Badge key={t!.name} color={t!.color as string} size="xs">
+              {t!.name as string}
+            </Badge>
+          ))}
       </TagCatSection>
-      <AuthorSection className="">
-        <div className="w-6 mr-2">
-          <StaticImage
-            className="rounded-full pointer-events-none select-none"
-            src="../images/avatar.webp"
-            alt="Void Dojo"
-            layout="fullWidth"
-          />
-        </div>
-        <div className="text-[0.65rem]">
-          {formatDateMonthName(data.updatedAt)}
-        </div>
-      </AuthorSection>
+      <DateTimeSection>
+        {formatDateMonthName(data.publishedAt ?? '')}
+      </DateTimeSection>
     </div>
   </motion.div>
 );

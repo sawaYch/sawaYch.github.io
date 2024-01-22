@@ -21,10 +21,10 @@ interface CMSImage {
 }
 
 export interface ArtworkData {
-  id: number;
+  id: string;
   name: string;
   caption: string;
-  images: CMSImage[];
+  image: CMSImage[];
   updatedAt: string;
 }
 
@@ -46,14 +46,14 @@ const appendAssetUrl = (input: {
 
 const fetchArtworks = async () => {
   try {
-    const res = await ApiFetch('/artworks?populate=*&sort[0]=createdAt:desc');
+    const res = await ApiFetch('/artworks?populate=*&sort[0]=publishedAt:desc');
     const jsonObject = await res.json();
     const formatData: ArtworkData[] = jsonObject.data.map((d: any) => ({
       id: d.id,
       name: d.attributes.name,
       caption: d.attributes.caption,
       updatedAt: formatDate(d.attributes.updatedAt),
-      images: d.attributes.image.data.map((img: any) => ({
+      image: d.attributes.image.data.map((img: any) => ({
         name: img.attributes.name,
         alternativeText: img.attributes.alternativeText,
         caption: img.attributes.caption,
