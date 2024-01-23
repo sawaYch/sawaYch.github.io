@@ -44,8 +44,6 @@ const BlogPostHeading = ({
         const formattedInitAnchor = `#${initAnchor.replace(' ', '-')}`;
         // eslint-disable-next-line no-restricted-globals
         history.replaceState(null, '', `#${initAnchor.replace(' ', '-')}`);
-
-        // console.log(`anchor formattedId=${formattedId} formattedInitAnchor=${formattedInitAnchor}`);
         await delay(400);
         if (formattedInitAnchor === `#${formattedId}`) {
           ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });

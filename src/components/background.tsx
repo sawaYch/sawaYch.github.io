@@ -4,7 +4,7 @@ import { isMobile } from 'react-device-detect';
 import { PropsWithChildren } from 'react';
 
 const StarAnimation = () => (
-  <div className="fixed">
+  <div id="star-animation" className="fixed">
     <div id="stars" />
     <div id="stars2" />
     <div id="stars3" />
@@ -12,7 +12,10 @@ const StarAnimation = () => (
 );
 
 const NoiseAnimation = () => (
-  <div className="h-lvh min-h-lvh max-h-lvh fixed noise-bg z-[1]" />
+  <div
+    id="noise-animation"
+    className="h-lvh min-h-lvh max-h-lvh fixed noise-bg z-[1]"
+  />
 );
 
 interface PingBgTextProps {
@@ -43,13 +46,19 @@ const PingBgText = ({ bgText }: PingBgTextProps) => (
 );
 
 const CenterContainer = ({ children }: PropsWithChildren) => (
-  <div className="fixed flex items-center justify-center break-all transition-all w-lvw h-lvh opacity-bg">
+  <div
+    id="bg-center-container"
+    className="fixed flex items-center justify-center break-all transition-all w-lvw h-lvh opacity-bg"
+  >
     {children}
   </div>
 );
 
 const DotPattern = ({ children }: PropsWithChildren) => (
-  <div className="fixed w-[90lvw] h-[100lvh] border outline-1 z-[20] dot-pattern">
+  <div
+    id="dot-pattern-animation"
+    className="fixed w-[90lvw] h-[100lvh] border outline-1 z-[20] dot-pattern"
+  >
     {children}
   </div>
 );
