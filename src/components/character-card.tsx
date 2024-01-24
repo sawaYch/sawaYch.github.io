@@ -14,7 +14,10 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
   <>
     <div className="flex justify-center w-1/2 portrait:w-4/5 item-center">
       <PaneContainer
-        className={cn('flex flex-col !border-0 !bg-transparent', className)}
+        className={cn(
+          'flex flex-col !border-0 !bg-transparent mt-10',
+          className
+        )}
       >
         <motion.div
           className="flex justify-center item-center"
@@ -30,7 +33,7 @@ const CharacterCard = ({ className }: CharacterCardProps) => (
                     x: 0,
                     opacity: 1,
                     transition: {
-                      delay: 0.5,
+                      delay: 0.2,
                       duration: 0.5,
                     },
                   },
