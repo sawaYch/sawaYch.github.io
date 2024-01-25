@@ -150,6 +150,7 @@ const ContentWrapper = forwardRef<
       'z-40 flex flex-col items-center w-dvw flex-auto overflow-x-hidden min-h-dvh pb-[44px]',
       {
         '!touch-none !overflow-y-hidden': isOpen,
+        '!pb-[100px]': isTablet,
       }
     )}
   >

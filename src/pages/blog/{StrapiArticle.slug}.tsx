@@ -220,7 +220,8 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                   <Img
                     className="object-contain w-full h-[24vh]"
                     src={getImageUrl(
-                      finalBlogData.cover?.formats?.small?.url as string
+                      (finalBlogData.cover?.formats?.small?.url as string) ??
+                        (finalBlogData.cover?.formats?.thumbnail?.url as string)
                     )}
                     alt="blog-cover-image"
                     decode={false}
@@ -242,8 +243,8 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                     }
                   />
                 </div>
-                <div className="flex items-center justify-center w-screen font-sans text-3xl font-extrabold sm:text-5xl">
-                  <span className="leading-loose text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500">
+                <div className="flex items-center justify-center w-screen text-2xl font-firacode sm:text-5xl">
+                  <span className="leading-none text-center text-transparent bg-clip-text bg-gradient-to-b from-cyan-500 to-gray-300">
                     {finalBlogData.title}
                   </span>
                 </div>
@@ -273,7 +274,10 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                   </div>
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
-                  <ListOfContent data={tocData} className="mt-12 w-[45ch]" />
+                  <ListOfContent
+                    data={tocData}
+                    className="self-center w-3/4 mt-12"
+                  />
                   <div className="flex flex-col">
                     <div className="flex mt-6">
                       <svg
@@ -287,7 +291,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                       </svg>
                     </div>
                     <blockquote>
-                      <div className="max-w-[40ch] sm:max-w-[40ch] text-dracula-dark-300">
+                      <div className="max-w-[40ch] sm:max-w-[40ch] text-dracula-dark-300 text-center px-10">
                         {finalBlogData.description}
                       </div>
                     </blockquote>
@@ -513,7 +517,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                       return <span>{children}</span>;
                     },
                   }}
-                  className="m-auto pb-20 break-words prose sm:prose-lg prose-invert prose-pink max-w-[42ch] ipad:max-w-[80ch] sm:max-w-[60ch] px-8"
+                  className="m-auto pb-20 break-words text-xs sm:text-md leading-[1.65rem] sm:leading-[2.2rem] prose sm:prose-lg prose-invert prose-pink max-w-[54ch] ipad:max-w-[80ch] px-8"
                 >
                   {finalBlogData.content?.data?.content as string}
                 </ReactMarkdown>
