@@ -243,8 +243,8 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                     }
                   />
                 </div>
-                <div className="flex items-center justify-center w-screen text-2xl font-firacode sm:text-5xl">
-                  <span className="leading-none text-center text-transparent bg-clip-text bg-gradient-to-b from-cyan-500 to-gray-300">
+                <div className="flex items-center justify-center w-screen text-2xl sm:text-5xl">
+                  <span className="leading-none text-center text-dracula-blue-300">
                     {finalBlogData.title}
                   </span>
                 </div>
