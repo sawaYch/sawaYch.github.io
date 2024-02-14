@@ -273,10 +273,10 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                     </Tooltip>
                   </div>
                 </div>
-                <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
+                <div className="flex flex-col w-screen px-4">
                   <ListOfContent
                     data={tocData}
-                    className="self-center w-full mt-12"
+                    className="self-center mt-12 min-w-3/4 sm:w-1/3"
                   />
                 </div>
                 {/* <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
