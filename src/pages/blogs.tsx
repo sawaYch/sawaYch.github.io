@@ -52,11 +52,17 @@ const BlogsPage = ({
   ...queryResponse
 }: // eslint-disable-next-line no-undef
 PageProps<Queries.BlogsPageQuery>) => {
-  const tagData = queryResponse.data.allStrapiTag.nodes as {
-    id: string;
-    name: string;
-    color: string;
-  }[];
+  const tagData = (
+    queryResponse.data.allStrapiTag.nodes as {
+      id: string;
+      name: string;
+      color: string;
+    }[]
+  ).sort((prev, next) => {
+    if (prev.name === next.name) return 0;
+    if (prev.name > next.name) return 1;
+    return -1;
+  });
 
   const blogData = queryResponse.data.allStrapiArticle.nodes;
 

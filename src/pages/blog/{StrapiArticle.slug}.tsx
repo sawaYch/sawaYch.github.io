@@ -276,6 +276,12 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                 <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
                   <ListOfContent
                     data={tocData}
+                    className="self-center w-full mt-12"
+                  />
+                </div>
+                {/* <div className="flex flex-col gap-4 sm:flex-row sm:gap-10">
+                  <ListOfContent
+                    data={tocData}
                     className="self-center w-3/4 mt-12"
                   />
                   <div className="flex flex-col">
@@ -296,7 +302,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                       </div>
                     </blockquote>
                   </div>
-                </div>
+                </div> */}
               </motion.div>
               <motion.div variants={elementVariants}>
                 <hr className="h-1 mx-auto my-4 border-0 rounded w-[80vw] md:my-10 bg-dracula-dark" />
@@ -435,7 +441,10 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                           />
                           <div className="!overflow-x-auto !pb-4 !px-4 mt-6 sm:mt-4">
                             <code
-                              className={cn(className, '!whitespace-pre-wrap')}
+                              className={cn(
+                                className,
+                                '!whitespace-pre-wrap !text-xs'
+                              )}
                               {...componentProps}
                             >
                               {children}
