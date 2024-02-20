@@ -39,6 +39,7 @@ import ImagePanControls from '../../components/image-pan-control';
 import ShareButton from '../../components/share-button';
 import InlineCode from '../../components/inline-code';
 import getImageUrl from '../../utils/getImageUrl';
+import Comments from '../../components/comments';
 
 export const blogPostQuery = graphql`
   query BlogPost($slug: String) {
@@ -530,6 +531,8 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                 >
                   {finalBlogData.content?.data?.content as string}
                 </ReactMarkdown>
+                <hr className="h-1 mx-auto my-4 border-0 rounded w-[80vw] md:my-10 bg-dracula-dark" />
+                <Comments />
               </motion.div>
             </>
           )}
