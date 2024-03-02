@@ -135,6 +135,23 @@ const ApplicationPane: React.FC<ApplicationPaneProps> = ({
         onClick: () => {},
         isExternal: true,
       },
+      {
+        id: 'myaPoll',
+        cubeColor: 'red',
+        name: 'MyaPoll',
+        icon: (
+          <StaticImage
+            src="../images/mya-poll.webp"
+            alt="mya88 module icon"
+            width={64}
+            height={64}
+            placeholder="blurred"
+          />
+        ),
+        link: 'https://myapoll.vercel.app/',
+        onClick: () => {},
+        isExternal: true,
+      },
     ],
     [onPageSelected]
   );
