@@ -18,7 +18,6 @@ import Footer from './footer';
 import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
 import ProgressIndicator from './progress-indicator';
-import VoidAnimatedCursor from './void-animated-cursor';
 import Background from './background';
 import useAppMenuShortcut from '../hooks/use-appmenu-shortcut';
 import useFixScrollRestoration from '../hooks/use-fix-scroll-restoration';
@@ -197,7 +196,6 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     <>
       <SEOHead />
       <BackgroundContainer>
-        <VoidAnimatedCursor />
         <Background />
         <ContentWrapper isOpen={isOpen}>{children}</ContentWrapper>
         <ProgressIndicator
