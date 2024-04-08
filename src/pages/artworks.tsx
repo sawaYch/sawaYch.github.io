@@ -163,7 +163,7 @@ const ArtworksPage = ({
                 },
               }}
               key={it.id}
-              className="flex flex-col items-center justify-around p-1 cursor-pointer bg-dracula-darker"
+              className="flex flex-col items-center justify-around p-1 cursor-pointer select-none bg-dracula-darker"
               onClick={() => handleOpenFullImage(it as ArtworkData)}
             >
               <LazyImg

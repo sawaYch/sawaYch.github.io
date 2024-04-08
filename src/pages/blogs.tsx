@@ -6,8 +6,9 @@ import queryString from 'query-string';
 import cn from 'classnames';
 import { Badge } from '@mantine/core';
 import { PageProps, navigate, graphql } from 'gatsby';
+import { AutoSizer, List, ListRowProps } from 'react-virtualized';
 import Cube from '../components/cube';
-import BlogCard from '../components/blog-card';
+import BlogRowRenderer from '../components/blog-row-renderer';
 
 export const blogsQuery = graphql`
   query BlogsPage {
@@ -126,6 +127,19 @@ PageProps<Queries.BlogsPageQuery>) => {
     [blogData, selectedTag]
   );
 
+  const rowRenderer = useCallback(
+    (props: ListRowProps) => (
+      <BlogRowRenderer
+        {...props}
+        key={props.key}
+        childKey={props.key}
+        blogItems={filteredBlogData}
+        onViewBlogDetails={viewBlogDetails}
+      />
+    ),
+    [filteredBlogData, viewBlogDetails]
+  );
+
   return (
     <>
       <div className="flex items-center justify-center select-none">
@@ -200,16 +214,20 @@ PageProps<Queries.BlogsPageQuery>) => {
               },
             }}
             initial="hidden"
-            animate="visible"
-            className="flex flex-col w-full gap-2 px-10 mt-2 mb-2 ipad:w-1/2" // NOTE: tweak: not using card grid
+            className="flex flex-col w-full gap-2 px-10 mt-2 mb-2 h-[calc(100vh-18rem)] ipad:w-1/2" // NOTE: tweak: not using card grid
           >
-            {filteredBlogData.map((it) => (
-              <BlogCard
-                key={it.id}
-                data={it}
-                onClick={() => viewBlogDetails(it!.slug as string)}
-              />
-            ))}
+            <AutoSizer>
+              {({ width, height }) => (
+                <List
+                  width={width}
+                  height={height}
+                  rowCount={filteredBlogData.length}
+                  rowHeight={120}
+                  overscanRowCount={3}
+                  rowRenderer={rowRenderer}
+                />
+              )}
+            </AutoSizer>
           </motion.div>
         )}
       </AnimatePresence>

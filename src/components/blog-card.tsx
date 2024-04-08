@@ -48,60 +48,64 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => {
           y: 50,
         },
       }}
+      initial="hidden"
+      whileInView="visible"
       onClick={onClick}
-      className="flex gap-x-2 mb-1 w-full items-center rounded-lg shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] cursor-pointer bg-dracula-dark-900 border-dracula-dark-900 hover:shadow-dracula-pink hover:!scale-105 transition-shadow"
+      className="flex w-full px-10"
     >
-      {data.cover ? (
-        <Img
-          className="object-cover w-[5.5rem] h-28 sm:w-[11rem] rounded-l-lg sm:h-28 items-center justify-center"
-          src={getImageUrl(data.cover.formats?.thumbnail?.url ?? '')}
-          alt={`${data.title} thumbnail`}
-          loader={
-            <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
-              <Spinner />
-            </div>
-          }
-          unloader={
-            <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
-              <FcRemoveImage size="2.5rem" />
-            </div>
-          }
-        />
-      ) : (
-        <StaticImage
-          className="self-center object-cover w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 pointer-events-none select-none rounded-xl"
-          src="../images/home.webp"
-          alt="blog cover"
-          layout="constrained"
-          placeholder="blurred"
-          transformOptions={{
-            fit: 'cover',
-          }}
-        />
-      )}
-      <div className="flex flex-col pl-2 pr-4 grow">
-        <span className="mb-1 text-xs font-bold tracking-tight sm:text-md">
-          {data.title}
-        </span>
-        <TagCatSection>
-          {sortedTag != null &&
-            sortedTag.length !== 0 &&
-            // eslint-disable-next-line no-nested-ternary
-            sortedTag.map((t) => (
-              <Badge key={t!.name} color={t!.color as string} size="xs">
-                {t!.name as string}
-              </Badge>
-            ))}
-          {/* {data?.categories != null &&
+      <div className="flex w-full gap-x-2 items-center rounded-lg shadow-[0_0px_10px_0px_rgba(0,0,0,0.3)] cursor-pointer bg-dracula-dark-900 border-dracula-dark-900 hover:shadow-dracula-pink hover:!scale-105 transition-shadow">
+        {data.cover ? (
+          <Img
+            className="object-cover w-[5.5rem] h-28 sm:w-[11rem] rounded-l-lg sm:h-28 items-center justify-center"
+            src={getImageUrl(data.cover.formats?.thumbnail?.url ?? '')}
+            alt={`${data.title} thumbnail`}
+            loader={
+              <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
+                <Spinner />
+              </div>
+            }
+            unloader={
+              <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
+                <FcRemoveImage size="2.5rem" />
+              </div>
+            }
+          />
+        ) : (
+          <StaticImage
+            className="self-center object-cover w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 pointer-events-none select-none rounded-xl"
+            src="../images/home.webp"
+            alt="blog cover"
+            layout="constrained"
+            placeholder="blurred"
+            transformOptions={{
+              fit: 'cover',
+            }}
+          />
+        )}
+        <div className="flex flex-col pl-2 pr-4 grow">
+          <span className="mb-1 text-xs font-bold tracking-tight sm:text-md">
+            {data.title}
+          </span>
+          <TagCatSection>
+            {sortedTag != null &&
+              sortedTag.length !== 0 &&
+              // eslint-disable-next-line no-nested-ternary
+              sortedTag.map((t) => (
+                <Badge key={t!.name} color={t!.color as string} size="xs">
+                  {t!.name as string}
+                </Badge>
+              ))}
+            {/* {data?.categories != null &&
           data.categories.map((t) => (
             <Badge key={t!.name} color={t!.color as string} size="xs">
               {t!.name as string}
             </Badge>
           ))} */}
-        </TagCatSection>
-        <DateTimeSection>
-          {formatDateMonthName(data.publishedAt ?? '')}
-        </DateTimeSection>
+          </TagCatSection>
+          <DateTimeSection>
+            {formatDateMonthName(data.publishedAt ?? '')}
+          </DateTimeSection>
+        </div>
       </div>
     </motion.div>
   );
