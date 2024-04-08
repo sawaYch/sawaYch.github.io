@@ -8,7 +8,6 @@ import { Badge } from '@mantine/core';
 import { PageProps, navigate, graphql } from 'gatsby';
 import { AutoSizer, List, ListRowProps } from 'react-virtualized';
 import Cube from '../components/cube';
-import BlogCard from '../components/blog-card';
 import BlogRowRenderer from '../components/blog-row-renderer';
 
 export const blogsQuery = graphql`
