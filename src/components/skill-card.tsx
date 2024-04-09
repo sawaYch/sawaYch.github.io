@@ -104,7 +104,7 @@ const SkillCard = ({ className }: SkillCardProps) => (
         className
       )}
     >
-      <div className="grid grid-cols-1 gap-x-24 gap-y-24 sm:grid-cols-2 sm:w-2/3">
+      <div className="grid grid-cols-1 gap-x-24 gap-y-24 sm:grid-cols-2 md:w-2/3">
         {skillData.map((data) => (
           <SkillCardItem key={data.title} {...data} />
         ))}

@@ -82,6 +82,7 @@ body {
   height: 100dvh;
   margin: 0;
   padding: 0;
+  background-color: #1b2735;
   touch-action: none;
 }
 

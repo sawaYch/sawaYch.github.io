@@ -125,7 +125,10 @@ const ArtworksPage = ({
         imageHeight="480"
         imageWidth="1200"
       />
-      <div className="flex items-center justify-center pt-10">
+      <div
+        id="artwork-page-heading"
+        className="flex items-center justify-center pt-10"
+      >
         <div className="w-fit">
           <div className="-mx-10 h-[1.5rem] -mb-8 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
           <div className="flex">
@@ -138,10 +141,11 @@ const ArtworksPage = ({
         </div>
       </div>
       <motion.div
+        id="artwork-page-container"
         variants={variants}
         initial="closed"
         animate="open"
-        className="grid grid-cols-2 gap-2 px-10 pb-10 sm:grid-cols-4"
+        className="grid grid-cols-2 gap-2 px-10 mb-20 sm:grid-cols-4"
       >
         {data &&
           data.map((it) => (

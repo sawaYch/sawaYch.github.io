@@ -103,7 +103,7 @@ const ApplicationMenu = ({
       <motion.div
         id="application-pane-overlay"
         className={cn(
-          '!z-[58] !overflow-y-auto bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
+          '!z-[58] bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
           {
             'pb-24': !isIOS,
           }
@@ -145,7 +145,7 @@ const ContentWrapper = forwardRef<
     id="main"
     ref={ref}
     className={cn(
-      '!z-[60] flex flex-col items-center w-dvw flex-auto overflow-x-hidden min-h-dvh relative',
+      'z-[40] flex flex-col items-center w-dvw flex-auto overflow-x-hidden min-h-dvh relative',
       {
         '!touch-none !overflow-y-hidden': isOpen,
       }
