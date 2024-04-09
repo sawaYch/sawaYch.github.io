@@ -12,7 +12,6 @@ import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
 import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
 import { motion, useCycle, useScroll } from 'framer-motion';
-import BackgroundContainer from './background-container';
 import Powerline from './powerline';
 import Footer from './footer';
 import ApplicationPane from './application-pane';
@@ -146,10 +145,9 @@ const ContentWrapper = forwardRef<
     id="main"
     ref={ref}
     className={cn(
-      'z-40 flex flex-col items-center w-dvw flex-auto overflow-x-hidden min-h-dvh pb-[44px]',
+      '!z-[60] flex flex-col items-center w-dvw flex-auto overflow-x-hidden min-h-dvh relative',
       {
         '!touch-none !overflow-y-hidden': isOpen,
-        '!pb-[100px]': isTablet,
       }
     )}
   >
@@ -193,28 +191,23 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   useFixScrollRestoration(location, scrollToTop);
 
   return (
-    <>
+    <div className="font-primary">
       <SEOHead />
-      <BackgroundContainer>
-        <Background />
-        <ContentWrapper isOpen={isOpen}>{children}</ContentWrapper>
-        <ProgressIndicator
-          scrollYProgress={scrollYProgress}
-          location={location}
-        />
-        <BackToTopButton
-          scrollToTop={scrollToTop}
-          show={isVisible && !isOpen}
-        />
-        <ApplicationMenu
-          isOpen={isOpen}
-          location={location}
-          toggleAppMenu={toggleAppMenu}
-        />
-        <Powerline onAppIconClick={toggleAppMenu} location={location} />
-        <Footer />
-      </BackgroundContainer>
-    </>
+      <Background />
+      <ContentWrapper isOpen={isOpen}>{children}</ContentWrapper>
+      <ProgressIndicator
+        scrollYProgress={scrollYProgress}
+        location={location}
+      />
+      <BackToTopButton scrollToTop={scrollToTop} show={isVisible && !isOpen} />
+      <ApplicationMenu
+        isOpen={isOpen}
+        location={location}
+        toggleAppMenu={toggleAppMenu}
+      />
+      <Powerline onAppIconClick={toggleAppMenu} location={location} />
+      <Footer />
+    </div>
   );
 };
 

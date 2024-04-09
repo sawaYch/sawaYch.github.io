@@ -142,7 +142,10 @@ PageProps<Queries.BlogsPageQuery>) => {
 
   return (
     <>
-      <div className="flex items-center justify-center select-none">
+      <div
+        id="blog-page-heading"
+        className="flex items-center justify-center select-none"
+      >
         <Cube
           color="purple"
           icon={<BiBookBookmark size="3.5rem" />}
@@ -160,7 +163,10 @@ PageProps<Queries.BlogsPageQuery>) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-1 ipad:flex-row">
+      <div
+        id="blog-page-tag-section"
+        className="flex flex-col items-center gap-1 ipad:flex-row"
+      >
         <div className="px-4 py-1 mx-4 border rounded-lg w-fit border-dracula-dark-600 bg-dracula-dark/10 backdrop-blur-md">
           <div className="absolute w-10 text-center -translate-y-4 -skew-x-12 border rounded-lg bg-dracula-dark backdrop-blur-sm border-dracula-dark-600">
             <div className="skew-x-12">TAG</div>
@@ -187,17 +193,19 @@ PageProps<Queries.BlogsPageQuery>) => {
           </div>
         </div>
       </div>
-      <hr className="w-48 h-1 mx-auto my-2 border-0 rounded bg-gradient-to-r from-pink-500 to-violet-500" />
-      <AnimatePresence>
-        {filteredBlogData?.length === 0 || filteredBlogData == null ? (
-          <div className="flex flex-col items-center justify-center w-full uppercase min-h-[25.5rem]">
-            <div className="flex gap-2">
-              <FaRegFrownOpen size="1.2rem" />
-              No post is found !
-            </div>
-          </div>
-        ) : (
+      <hr
+        id="blog-page-separator"
+        className="w-48 h-1 mx-auto my-2 border-0 rounded bg-gradient-to-r from-pink-500 to-violet-500"
+      />
+      {filteredBlogData?.length === 0 || filteredBlogData == null ? (
+        <div className="flex flex-col items-center justify-center flex-1 w-full h-full pb-24 uppercase">
+          <FaRegFrownOpen size="1.2rem" />
+          No post is found !
+        </div>
+      ) : (
+        <AnimatePresence>
           <motion.div
+            id="blog-page-list-container"
             variants={{
               hidden: {
                 transition: {
@@ -214,7 +222,7 @@ PageProps<Queries.BlogsPageQuery>) => {
               },
             }}
             initial="hidden"
-            className="flex flex-col w-full gap-2 px-10 mt-2 mb-2 h-[calc(100vh-18rem)] ipad:w-1/2" // NOTE: tweak: not using card grid
+            className="flex flex-col flex-1 w-screen gap-2 mt-2 mb-20 ipad:w-2/3" // NOTE: tweak: not using card grid
           >
             <AutoSizer>
               {({ width, height }) => (
@@ -229,8 +237,8 @@ PageProps<Queries.BlogsPageQuery>) => {
               )}
             </AutoSizer>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </>
   );
 };

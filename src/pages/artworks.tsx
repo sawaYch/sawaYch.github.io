@@ -173,7 +173,6 @@ const ArtworksPage = ({
             </motion.div>
           ))}
       </motion.div>
-
       <AnimatePresence>
         {artwork && (
           <motion.div
@@ -304,7 +303,6 @@ const ArtworksPage = ({
                   </>
                 )}
               </TransformWrapper>
-
               <div
                 className={cn(
                   'fixed z-[61] left-4 bottom-0 bg-dracula-darker w-fit h-fit px-4 cursor-pointer flex pt-1 justify-center items-center rounded-t-md text-dracula-dark-300 select-none',

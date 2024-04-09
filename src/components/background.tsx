@@ -48,7 +48,7 @@ const PingBgText = ({ bgText }: PingBgTextProps) => (
 const CenterContainer = ({ children }: PropsWithChildren) => (
   <div
     id="bg-center-container"
-    className="fixed flex items-center justify-center break-all transition-all pointer-events-none w-lvw h-lvh opacity-bg"
+    className="fixed flex items-center justify-center break-all transition-all pointer-events-none w-lvw h-lvh opacity-bg !z-0"
   >
     {children}
   </div>
