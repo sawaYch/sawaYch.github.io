@@ -21,8 +21,8 @@
     "deploy": "gatsby build && gh-pages -d public -b master"
   },
   "dependencies": {
-    "@mantine/core": "^7.4.1",
-    "@mantine/hooks": "^7.4.1",
+    "@mantine/core": "^7.7.1",
+    "@mantine/hooks": "^7.7.1",
     "@mdx-js/react": "^2.3.0",
     "@react-hooks-library/core": "^0.5.1",
     "@react-icons/all-files": "^4.1.0",

@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { Link, HeadFC, PageProps, navigate } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
-import BackgroundContainer from '../components/background-container';
 
 const NotFoundPage = () => (
-  <BackgroundContainer>
+  <div className="flex flex-col text-white font-primary bg-dracula-darker/70 w-dvw bg-glow">
     <div className="flex flex-col items-center justify-center h-screen gap-y-4">
       <StaticImage
         src="../images/home.webp"
@@ -30,7 +29,7 @@ const NotFoundPage = () => (
         </button>
       </div>
     </div>
-  </BackgroundContainer>
+  </div>
 );
 
 const NotFoundPageRouter: FC<PageProps> = () => <NotFoundPage />;

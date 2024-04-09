@@ -48,7 +48,7 @@ const PingBgText = ({ bgText }: PingBgTextProps) => (
 const CenterContainer = ({ children }: PropsWithChildren) => (
   <div
     id="bg-center-container"
-    className="fixed flex items-center justify-center break-all transition-all w-lvw h-lvh opacity-bg"
+    className="fixed flex items-center justify-center break-all transition-all pointer-events-none w-lvw h-lvh opacity-bg"
   >
     {children}
   </div>
@@ -57,7 +57,7 @@ const CenterContainer = ({ children }: PropsWithChildren) => (
 const DotPattern = ({ children }: PropsWithChildren) => (
   <div
     id="dot-pattern-animation"
-    className="fixed w-[90lvw] h-[100lvh] border outline-1 z-[20] dot-pattern"
+    className="fixed w-[90lvw] h-[100lvh] border outline-1 z-[0] dot-pattern"
   >
     {children}
   </div>
@@ -73,7 +73,7 @@ const Background = () => {
         <DotPattern>
           <StaticImage
             className={cn(
-              'pointer-events-none select-none z-[20] grayscale h-full w-full'
+              'pointer-events-none select-none z-[1] grayscale h-full w-full'
             )}
             src="../images/girl.png"
             alt="background images"
