@@ -1,12 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { BiBookBookmark } from '@react-icons/all-files/bi/BiBookBookmark';
-import { FaRegFrownOpen } from '@react-icons/all-files/fa/FaRegFrownOpen';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import queryString from 'query-string';
 import cn from 'classnames';
 import { Badge } from '@mantine/core';
 import { PageProps, navigate, graphql } from 'gatsby';
 import { AutoSizer, List, ListRowProps } from 'react-virtualized';
+import { IconNotebook, IconMoodSad } from '@tabler/icons-react';
 import Cube from '../components/cube';
 import BlogRowRenderer from '../components/blog-row-renderer';
 
@@ -148,8 +147,8 @@ PageProps<Queries.BlogsPageQuery>) => {
       >
         <Cube
           color="purple"
-          icon={<BiBookBookmark size="3.5rem" />}
-          className="!scale-[0.35] -mr-4 w-32 h-24"
+          icon={<IconNotebook size="3.5rem" />}
+          className="!scale-[0.35] m-4  w-32 h-24"
         />
         <div className="flex flex-col">
           <div className="font-sans text-xl font-extrabold">
@@ -199,7 +198,7 @@ PageProps<Queries.BlogsPageQuery>) => {
       />
       {filteredBlogData?.length === 0 || filteredBlogData == null ? (
         <div className="flex flex-col items-center justify-center flex-1 w-full h-full pb-24 uppercase">
-          <FaRegFrownOpen size="1.2rem" />
+          <IconMoodSad size="1.2rem" />
           No post is found !
         </div>
       ) : (

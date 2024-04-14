@@ -1,10 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable import/prefer-default-export */
-
-import './src/styles/global.css';
-import './src/styles/prism-dracula.css';
-import './src/styles/prism-plus.css';
-import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import Layout from './src/components/layout';
 import MantineTheme from './src/theme';
@@ -32,7 +27,7 @@ export const wrapPageElement = ({ element, props }) => {
   // Apply the layout component to other pages
   return (
     <MantineProvider
-      defaultColorScheme='dark'
+      defaultColorScheme="dark"
       theme={MantineTheme}
       withCSSVariables
       withGlobalStyles

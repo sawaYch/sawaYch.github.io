@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { AiOutlineZoomIn } from '@react-icons/all-files/ai/AiOutlineZoomIn';
-import { AiOutlineZoomOut } from '@react-icons/all-files/ai/AiOutlineZoomOut';
-import { BiReset } from '@react-icons/all-files/bi/BiReset';
+import { IconZoomIn, IconZoomOut, IconZoomReset } from '@tabler/icons-react';
 
 interface ControlProps {
   zoomIn: () => void;
@@ -17,13 +15,13 @@ const ImagePanControls = ({
 }: ControlProps) => (
   <div className="flex">
     <div onClick={() => zoomIn()} className="flex cursor-pointer">
-      <AiOutlineZoomIn size="1.5rem" />
+      <IconZoomIn size="1.5rem" />
     </div>
     <div onClick={() => zoomOut()} className="flex cursor-pointer">
-      <AiOutlineZoomOut size="1.5rem" />
+      <IconZoomOut size="1.5rem" />
     </div>
     <div onClick={() => resetTransform()} className="flex cursor-pointer">
-      <BiReset size="1.5rem" />
+      <IconZoomReset size="1.5rem" />
     </div>
   </div>
 );

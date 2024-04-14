@@ -79,7 +79,7 @@ export const cubeColorMap = {
 const Cube = ({ color = 'purple', icon, className }: CubeProps) => (
   <div
     className={cn(
-      'relative flex items-center justify-center w-[120px] h-[120px] rounded-md scale-50 transition-transform',
+      'relative flex items-center justify-center w-[64px] h-[64px] rounded-md scale-[0.4] transition-transform',
       className
     )}
   >

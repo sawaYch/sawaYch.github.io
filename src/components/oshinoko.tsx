@@ -1,9 +1,8 @@
-/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { GiSparkles } from '@react-icons/all-files/gi/GiSparkles';
 import { useCallback, useMemo, useState } from 'react';
+import { IconSparkles } from '@tabler/icons-react';
 import cn from 'classnames';
 import oshinokoData from './oshinoko-data';
 import PaneContainer from './pane-container';
@@ -75,7 +74,7 @@ const Oshinoko = ({ data }: OshinokoProps) => {
             <div className="h-[1.5rem] -mb-8 -mx-8 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
             <div className="flex">
               <h2 className="z-50 !text-dracula-buffy-100">Vtubers</h2>
-              <GiSparkles
+              <IconSparkles
                 size="2rem"
                 className="z-50 ml-2 text-dracula-buffy-200"
               />

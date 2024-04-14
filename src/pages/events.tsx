@@ -1,10 +1,12 @@
 /* eslint-disable react/style-prop-object */
 import { PropsWithChildren } from 'react';
-import { BsFlagFill } from '@react-icons/all-files/bs/BsFlagFill';
-import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill';
-import { FaUniversity } from '@react-icons/all-files/fa/FaUniversity';
 import { Card, Tabs } from '@mantine/core';
 import { StaticImage } from 'gatsby-plugin-image';
+import {
+  IconCalendarFilled,
+  IconFlagFilled,
+  IconSchool,
+} from '@tabler/icons-react';
 import PaneContainer from '../components/pane-container';
 import CTFTimeBadge from '../components/ctftime-badge';
 import SectionTitle from '../components/section-title';
@@ -149,7 +151,7 @@ const EventPage = () => {
     <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center !w-3/4 pt-10">
       <SectionTitle
         icon={
-          <BsCalendarFill
+          <IconCalendarFilled
             size="2rem"
             className="z-50 ml-2 text-dracula-buffy-200"
           />
@@ -158,10 +160,10 @@ const EventPage = () => {
       />
       <Tabs defaultValue="CTF">
         <Tabs.List>
-          <Tabs.Tab value="CTF" leftSection={<BsFlagFill />}>
+          <Tabs.Tab value="CTF" leftSection={<IconFlagFilled />}>
             Gallery
           </Tabs.Tab>
-          <Tabs.Tab value="Tertiary" leftSection={<FaUniversity />}>
+          <Tabs.Tab value="Tertiary" leftSection={<IconSchool />}>
             Messages
           </Tabs.Tab>
         </Tabs.List>

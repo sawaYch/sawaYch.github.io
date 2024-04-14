@@ -1,5 +1,4 @@
-import { FaClipboard } from '@react-icons/all-files/fa/FaClipboard';
-import { FaClipboardCheck } from '@react-icons/all-files/fa/FaClipboardCheck';
+import { IconClipboard, IconClipboardCheck } from '@tabler/icons-react';
 import { useCallback, useEffect, useState } from 'react';
 import { Badge, Button } from '@mantine/core';
 import delay from '../utils/delay';
@@ -36,7 +35,7 @@ const CodeCopyToolbar = ({ lang, text }: CodeCopyToolbarProps) => {
         className="absolute h-[1.5rem] transition-all rounded-full top-2 right-1"
         onClick={handleCopy}
       >
-        {isCopy ? <FaClipboardCheck /> : <FaClipboard />}
+        {isCopy ? <IconClipboardCheck /> : <IconClipboard />}
       </Button>
       <Badge
         color="violet"

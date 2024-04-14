@@ -15,13 +15,12 @@ import { Img } from 'react-image';
 import { StaticImage } from 'gatsby-plugin-image';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeCodeTitles from 'rehype-code-titles';
-import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
 import {
   AnimatePresence,
   motion,
   useIsomorphicLayoutEffect,
 } from 'framer-motion';
-import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
+import { IconChevronLeft, IconPhotoCancel } from '@tabler/icons-react';
 import {
   ReactZoomPanPinchRef,
   TransformComponent,
@@ -209,7 +208,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
             }}
             className="fixed z-[50] top-2 w-fit h-fit left-0 sm:left-2 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
           >
-            <FaAngleLeft aria-hidden className="w-6 h-6" />
+            <IconChevronLeft aria-hidden className="w-6 h-6" />
           </button>
           {finalBlogData && (
             <>
@@ -476,7 +475,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                             }
                             unloader={
                               <div className="items-center justify-center inline-block w-4 h-4">
-                                <FcRemoveImage size="1.25rem" />
+                                <IconPhotoCancel size="1.25rem" />
                               </div>
                             }
                           />
@@ -511,7 +510,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                                   }
                                   unloader={
                                     <div className="flex flex-col items-center justify-center w-[46ch] h-[32ch] ipad:w-[80ch] sm:w-[60ch]">
-                                      <FcRemoveImage size="5rem" />
+                                      <IconPhotoCancel size="5rem" />
                                       <div>Fail to load image</div>
                                     </div>
                                   }

@@ -1,12 +1,16 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { FaPaintBrush } from '@react-icons/all-files/fa/FaPaintBrush';
-import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
-import { HiDownload } from '@react-icons/all-files/hi/HiDownload';
-import { FaAngleRight } from '@react-icons/all-files/fa/FaAngleRight';
-import { FaAngleLeft } from '@react-icons/all-files/fa/FaAngleLeft';
-import { AiFillCaretDown } from '@react-icons/all-files/ai/AiFillCaretDown';
-import { AiFillCaretUp } from '@react-icons/all-files/ai/AiFillCaretUp';
+import {
+  IconBrush,
+  IconX,
+  IconDownload,
+  IconChevronRight,
+  IconChevronLeft,
+  IconChevronDown,
+  IconChevronUp,
+  IconPhotoCancel,
+} from '@tabler/icons-react';
+
 import {
   useCallback,
   useMemo,
@@ -26,7 +30,6 @@ import cn from 'classnames';
 import { isMobile } from 'react-device-detect';
 import { Img } from 'react-image';
 import { saveAs } from 'file-saver';
-import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
 import { PageProps, graphql } from 'gatsby';
 import { ArtworkData } from '../apis/fetch-artworks';
 import Spinner from '../components/spinner';
@@ -133,7 +136,7 @@ const ArtworksPage = ({
           <div className="-mx-10 h-[1.5rem] -mb-8 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
           <div className="flex">
             <h2 className="z-50 !text-dracula-buffy-100">Artworks</h2>{' '}
-            <FaPaintBrush
+            <IconBrush
               size="2rem"
               className="z-50 ml-2 text-dracula-dark-200"
             />
@@ -246,7 +249,7 @@ const ArtworksPage = ({
                 }}
                 className="fixed z-[61] top-1/2 w-fit h-fit left-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                <FaAngleLeft aria-hidden className="w-6 h-6" />
+                <IconChevronLeft aria-hidden className="w-6 h-6" />
               </button>
               <button
                 aria-label="right"
@@ -262,7 +265,7 @@ const ArtworksPage = ({
                 }}
                 className="fixed z-[61] top-1/2 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                <FaAngleRight aria-hidden className="w-6 h-6" />
+                <IconChevronRight aria-hidden className="w-6 h-6" />
               </button>
               <TransformWrapper
                 initialScale={1}
@@ -298,7 +301,7 @@ const ArtworksPage = ({
                         }
                         unloader={
                           <div className="flex flex-col items-center justify-center h-full">
-                            <FcRemoveImage size="5rem" />
+                            <IconPhotoCancel size="5rem" />
                             <div>Fail to load image</div>
                           </div>
                         }
@@ -316,7 +319,7 @@ const ArtworksPage = ({
                   setOpenDesc((prev) => !prev);
                 }}
               >
-                <AiFillCaretUp
+                <IconChevronUp
                   size="1.2rem"
                   className="hover:text-dracula-dark-100"
                 />
@@ -328,7 +331,7 @@ const ArtworksPage = ({
                   onClick={onArtworkClose}
                   className="fixed z-[61] top-4 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
-                  <HiOutlineX aria-hidden className="w-6 h-6" />
+                  <IconX aria-hidden className="w-6 h-6" />
                 </button>
                 <button
                   aria-label="Download"
@@ -341,7 +344,7 @@ const ArtworksPage = ({
                   }
                   className="fixed z-[61] top-14 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
-                  <HiDownload aria-hidden className="w-6 h-6" />
+                  <IconDownload aria-hidden className="w-6 h-6" />
                 </button>
               </div>
               {openDesc && (
@@ -354,7 +357,7 @@ const ArtworksPage = ({
                     }}
                     className="z-[61] mb-2 w-fit h-fit rounded-lg bg-transparent px-4 text-sm text-gray-400 border-dracula-dark-600 border hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                    <AiFillCaretDown size="1.2rem" />
+                    <IconChevronDown size="1.2rem" />
                   </button>
                   <div className="flex flex-col justify-between mb-2 sm:flex-row">
                     <div className="font-bold">{artwork.name}</div>

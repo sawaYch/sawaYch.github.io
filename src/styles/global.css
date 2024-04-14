@@ -17,7 +17,7 @@
     @apply mb-2 text-lg font-bold font-primary md:text-2xl text-dracula-buffy;
   }
 
-  h4 {
+  h4 { 
     @apply text-base font-bold font-primary md:text-lg;
   }
 

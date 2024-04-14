@@ -1,12 +1,14 @@
 import { PropsWithChildren, useMemo } from 'react';
-import { FaGithubAlt } from '@react-icons/all-files/fa/FaGithubAlt';
-import { FaRegDotCircle } from '@react-icons/all-files/fa/FaRegDotCircle';
-import { IoMdGitBranch } from '@react-icons/all-files/io/IoMdGitBranch';
-import { IoMdApps } from '@react-icons/all-files/io/IoMdApps';
-import { IoMdReturnRight } from '@react-icons/all-files/io/IoMdReturnRight';
 import { isIPad13, isMobile, isTablet } from 'react-device-detect';
 import { Kbd, Tooltip } from '@mantine/core';
 import cn from 'classnames';
+import {
+  IconBrandGithub,
+  IconCircleDot,
+  IconGitBranch,
+  IconApps,
+  IconCornerDownRight,
+} from '@tabler/icons-react';
 import IconLink from './icon-link';
 import useCurrentModules from '../hooks/use-current-modules';
 
@@ -57,9 +59,9 @@ const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
     <BottomBar>
       <div className="flex items-center bg-dracula-dark">
         <div className="flex items-center justify-center !w-12 select-none bg-dracula-blue py-1 h-full">
-          <FaRegDotCircle size="0.8rem" />
+          <IconCircleDot size="0.8rem" />
         </div>
-        <IoMdGitBranch
+        <IconGitBranch
           size="1rem"
           className="ml-2 mr-1 pointer-events-none select-none"
         />
@@ -68,7 +70,7 @@ const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
           <IconLink
             target="https://github.com/sawaYch"
             isExternalLink
-            icon={<FaGithubAlt size="1rem" />}
+            icon={<IconBrandGithub size="1rem" />}
             ariaLabel="github"
           />
           |
@@ -89,7 +91,7 @@ const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
           />
         </StatusPane>
         <div className="flex h-full gap-1 px-2 pt-1 bg-dracula-[#9ece6a]">
-          <IoMdReturnRight className="mt-[0.1rem]" />
+          <IconCornerDownRight size={14} />
           <div className="text-[0.5rem] rounded-sm bg-dracula-dark px-1 mb-1">
             {formatModuleName}
           </div>
@@ -115,7 +117,7 @@ const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
                 <stop stopColor="#bd93f9" offset="100%" />
               </linearGradient>
             </svg>
-            <IoMdApps size="1rem" style={{ fill: 'url(#dracula-gradient)' }} />
+            <IconApps size="1rem" style={{ fill: 'url(#dracula-gradient)' }} />
           </button>
         </AppMenuButtonWrapper>
       </div>

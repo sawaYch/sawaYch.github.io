@@ -1,8 +1,7 @@
 import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
-import { MdLink } from '@react-icons/all-files/md/MdLink';
-import { FaClipboardCheck } from '@react-icons/all-files/fa/FaClipboardCheck';
 import cn from 'classnames';
 import { ActionIcon, Button } from '@mantine/core';
+import { IconClipboardCheck, IconLink } from '@tabler/icons-react';
 import useCopyToClipboard from '../hooks/use-clipboard';
 import delay from '../utils/delay';
 
@@ -66,7 +65,7 @@ const ShareButton = forwardRef<HTMLButtonElement, ShareButtonProps>(
         )}
         onClick={handleClick}
       >
-        {isCopy ? <FaClipboardCheck size={14} /> : <MdLink size={18} />}
+        {isCopy ? <IconClipboardCheck size={14} /> : <IconLink size={18} />}
         {showLabel ? <span className="ml-2">Share</span> : undefined}
       </StyledButton>
     );
