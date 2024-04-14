@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { Img } from 'react-image';
-import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
+import { IconPhotoCancel } from '@tabler/icons-react';
 import Spinner from './spinner';
 
 interface LazyImgProps {
@@ -22,7 +22,7 @@ const LazyImg = ({ alt, src }: LazyImgProps) => (
         }
         unloader={
           <div className="flex flex-col items-center justify-center h-full">
-            <FcRemoveImage size="5rem" />
+            <IconPhotoCancel size="5rem" />
             <div>Fail to load image</div>
           </div>
         }

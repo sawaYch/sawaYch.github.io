@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable import/prefer-default-export */
-import '@mantine/core/styles.css';
+import * as mantineCoreStyle from '@mantine/core/styles.css';
+import * as mantineSpotLightStyle from '@mantine/spotlight/styles.css';
 import { MantineProvider } from '@mantine/core';
 import MantineTheme from './src/theme';
 
@@ -21,13 +23,18 @@ export const wrapPageElement = ({ element, props }) => {
   // Apply the layout component to other pages
   return (
     <MantineProvider
-      defaultColorScheme='dark'
+      defaultColorScheme="dark"
       theme={MantineTheme}
       withCSSVariables
       withGlobalStyles
       withNormalizeCSS
     >
-      <Layout {...props}>{element}</Layout>
+      <Layout
+        {...props}
+        style={{ ...mantineCoreStyle, ...mantineSpotLightStyle }}
+      >
+        {element}
+      </Layout>
     </MantineProvider>
   );
 };

@@ -1,7 +1,7 @@
 import { PropsWithChildren, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
-import { FcRemoveImage } from '@react-icons/all-files/fc/FcRemoveImage';
+import { IconPhotoCancel } from '@tabler/icons-react';
 import { Img } from 'react-image';
 import { Badge } from '@mantine/core';
 import { formatDateMonthName } from '../utils/format-date';
@@ -66,7 +66,7 @@ const BlogCard = ({ data, onClick }: BlogCardProps) => {
             }
             unloader={
               <div className="flex flex-col items-center justify-center w-[5.5rem] h-28 sm:w-[11rem] sm:h-28 object-cover">
-                <FcRemoveImage size="2.5rem" />
+                <IconPhotoCancel size="2.5rem" />
               </div>
             }
           />

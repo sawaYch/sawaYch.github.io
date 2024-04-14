@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
-import { FaSchool } from '@react-icons/all-files/fa/FaSchool';
-import { FaBaby } from '@react-icons/all-files/fa/FaBaby';
 import { isMobile } from 'react-device-detect';
 import { PropsWithChildren, ReactElement, ReactNode } from 'react';
-import { BsFillBriefcaseFill } from '@react-icons/all-files/bs/BsFillBriefcaseFill';
-import { GiVampireDracula } from '@react-icons/all-files/gi/GiVampireDracula';
 
 import { Timeline, Text } from '@mantine/core';
+import {
+  IconBriefcase,
+  IconCampfireFilled,
+  IconEggCracked,
+  IconSchool,
+} from '@tabler/icons-react';
 import PaneContainer from './pane-container';
 import Placeholder from './placeholder';
 import WavyText from './wavy-text';
@@ -29,7 +31,7 @@ const VoidTimeline = () => {
       time: 'Unknown',
       title: 'Born',
       body: 'A wild little Sawa was born! 👶',
-      icon: <FaBaby />,
+      icon: <IconEggCracked />,
     },
     {
       time: 'Aug. 2020',
@@ -43,7 +45,7 @@ const VoidTimeline = () => {
           <p>Major BENG in Computer Science (COMP)</p>
         </>
       ),
-      icon: <FaSchool />,
+      icon: <IconSchool />,
     },
     {
       time: 'Jul. 2020 - June. 2023',
@@ -134,7 +136,7 @@ const VoidTimeline = () => {
             {timelineData.map((data, index) => (
               <Timeline.Item
                 key={data.title}
-                bullet={data.icon ?? <BsFillBriefcaseFill />}
+                bullet={data.icon ?? <IconBriefcase />}
                 lineVariant={
                   index === timelineData.length - 1 ? 'dotted' : 'solid'
                 }
@@ -171,7 +173,7 @@ const VoidTimeline = () => {
                 </motion.div>
               </Timeline.Item>
             ))}
-            <Timeline.Item bullet={<GiVampireDracula />}>
+            <Timeline.Item bullet={<IconCampfireFilled />}>
               <WavyText
                 className="!mt-1 -ml-3"
                 text="The journey continues 📱 🎮 💻"

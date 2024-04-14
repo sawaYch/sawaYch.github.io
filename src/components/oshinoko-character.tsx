@@ -9,10 +9,12 @@ import {
   useRef,
   useState,
 } from 'react';
-import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
-import { FaYoutubeSquare } from '@react-icons/all-files/fa/FaYoutubeSquare';
-import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
-import { HiOutlineX } from '@react-icons/all-files/hi/HiOutlineX';
+import {
+  IconBrandX,
+  IconBrandYoutube,
+  IconBrandInstagram,
+  IconX,
+} from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
 import cn from 'classnames';
@@ -85,7 +87,7 @@ const SocialLink = ({
           rel="noopener noreferrer"
           aria-label="youtube link"
         >
-          <FaYoutubeSquare size="3rem" className="text-dracula-red" />
+          <IconBrandYoutube size="3rem" className="text-dracula-red" />
         </a>
       </div>
     ) : null}
@@ -98,7 +100,7 @@ const SocialLink = ({
           rel="noopener noreferrer"
           aria-label="twitter link"
         >
-          <FaTwitterSquare size="3rem" className="text-dracula-cyan" />
+          <IconBrandX size="3rem" className="text-dracula-cyan" />
         </a>
       </div>
     ) : null}
@@ -111,7 +113,7 @@ const SocialLink = ({
           rel="noopener noreferrer"
           aria-label="instagram link"
         >
-          <FaInstagramSquare size="3rem" className="text-dracula-purple" />
+          <IconBrandInstagram size="3rem" className="text-dracula-purple" />
         </a>
       </div>
     ) : null}
@@ -350,7 +352,7 @@ const OshinokoCharacterPane = ({
               onClick={onClose}
               className="fixed z-[61] top-10 w-fit h-fit right-4 rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
             >
-              <HiOutlineX aria-hidden className="w-6 h-6" />
+              <IconX aria-hidden className="w-6 h-6" />
             </button>
           </motion.div>
           <motion.div

@@ -1,30 +1,24 @@
-import {
-  FC,
-  PropsWithChildren,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { FC, PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { PageProps } from 'gatsby';
-import { isIPad13, isTablet, isIOS } from 'react-device-detect';
+import { isIPad13, isTablet } from 'react-device-detect';
+import { spotlight } from '@mantine/spotlight';
 import { ActionIcon } from '@mantine/core';
 import cn from 'classnames';
-import { FaChevronUp } from '@react-icons/all-files/fa/FaChevronUp';
-import { motion, useCycle, useScroll } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
+import { IconChevronUp } from '@tabler/icons-react';
 import Powerline from './powerline';
 import Footer from './footer';
-import ApplicationPane from './application-pane';
 import SEOHead from './seo-head';
 import ProgressIndicator from './progress-indicator';
 import Background from './background';
-import useAppMenuShortcut from '../hooks/use-appmenu-shortcut';
 import useFixScrollRestoration from '../hooks/use-fix-scroll-restoration';
+import VoidSpotlight from './void-spotlight';
 
 interface BackToTopButtonProps {
   show: boolean;
   scrollToTop: () => void;
 }
+
 const BackToTopButton = ({ show, scrollToTop }: BackToTopButtonProps) => (
   <motion.div
     variants={{
@@ -50,110 +44,19 @@ const BackToTopButton = ({ show, scrollToTop }: BackToTopButtonProps) => (
       variant="gradient"
       gradient={{ from: '#bd93f9', to: '#ff79c6', deg: 270 }}
     >
-      <FaChevronUp size={12} />
+      <IconChevronUp size={16} />
     </ActionIcon>
   </motion.div>
 );
-interface ApplicationMenuProps {
-  isOpen: boolean;
-  location: any;
-  toggleAppMenu: () => void;
-}
 
-const ApplicationMenu = ({
-  isOpen,
-  location,
-  toggleAppMenu,
-}: ApplicationMenuProps) => {
-  const onAnimationComplete = useCallback(() => {
-    const applicationPaneOverlay = document.getElementById(
-      'application-pane-overlay'
-    );
-    if (applicationPaneOverlay && !isOpen) {
-      applicationPaneOverlay.classList.remove('!fixed');
-      applicationPaneOverlay.classList.add('!hidden');
-    }
-  }, [isOpen]);
-
-  const onAnimationStart = useCallback(() => {
-    const applicationPaneOverlay = document.getElementById(
-      'application-pane-overlay'
-    );
-    if (applicationPaneOverlay && isOpen) {
-      applicationPaneOverlay.classList.remove('!hidden');
-      applicationPaneOverlay.classList.add('!fixed');
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    const applicationPaneOverlay = document.getElementById(
-      'application-pane-overlay'
-    );
-    if (applicationPaneOverlay) {
-      applicationPaneOverlay.classList.add('!hidden');
-    }
-  }, []);
-
-  const handlePageSelected = useCallback(() => {
-    toggleAppMenu();
-  }, [toggleAppMenu]);
-
-  return (
-    <motion.nav initial={false} animate={isOpen ? 'open' : 'closed'}>
-      <motion.div
-        id="application-pane-overlay"
-        className={cn(
-          '!z-[58] bottom-0 top-0 w-screen py-12 left-0 bg-dracula-darker',
-          {
-            'pb-24': !isIOS,
-          }
-        )}
-        variants={{
-          open: () => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-              damping: 5,
-            },
-          }),
-          closed: {
-            opacity: 0,
-            y: 100,
-          },
-        }}
-        onAnimationComplete={onAnimationComplete}
-        onAnimationStart={onAnimationStart}
-      >
-        <ApplicationPane
-          onPageSelected={handlePageSelected}
-          location={location}
-        />
-      </motion.div>
-    </motion.nav>
-  );
-};
-
-interface ContentWrapperProps {
-  isOpen: boolean;
-}
-
-const ContentWrapper = forwardRef<
-  HTMLElement,
-  PropsWithChildren<ContentWrapperProps>
->(({ isOpen, children }: PropsWithChildren<ContentWrapperProps>, ref) => (
+const MainContentWrapper = ({ children }: PropsWithChildren) => (
   <main
     id="main"
-    ref={ref}
-    className={cn(
-      'z-[40] flex flex-col items-center w-dvw flex-auto overflow-x-hidden min-h-dvh relative',
-      {
-        '!touch-none !overflow-y-hidden': isOpen,
-      }
-    )}
+    className="z-[40] flex flex-col items-center w-dvw flex-auto overflow-x-hidden min-h-dvh relative"
   >
     {children}
   </main>
-));
+);
 
 const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -181,33 +84,26 @@ const Layout: FC<PropsWithChildren<PageProps>> = ({ children, location }) => {
     };
   }, [toggleScrollToTopButtonVisibility]);
 
-  const [isOpen, toggleOpen] = useCycle(false, true);
-
   const toggleAppMenu = useCallback(() => {
-    toggleOpen();
-  }, [toggleOpen]);
+    spotlight.toggle();
+  }, []);
 
-  useAppMenuShortcut(toggleAppMenu);
   useFixScrollRestoration(location, scrollToTop);
 
   return (
-    <div className="font-primary">
+    <>
       <SEOHead />
       <Background />
-      <ContentWrapper isOpen={isOpen}>{children}</ContentWrapper>
+      <MainContentWrapper>{children}</MainContentWrapper>
       <ProgressIndicator
         scrollYProgress={scrollYProgress}
         location={location}
       />
-      <BackToTopButton scrollToTop={scrollToTop} show={isVisible && !isOpen} />
-      <ApplicationMenu
-        isOpen={isOpen}
-        location={location}
-        toggleAppMenu={toggleAppMenu}
-      />
+      <BackToTopButton scrollToTop={scrollToTop} show={isVisible} />
       <Powerline onAppIconClick={toggleAppMenu} location={location} />
+      <VoidSpotlight />
       <Footer />
-    </div>
+    </>
   );
 };
 
