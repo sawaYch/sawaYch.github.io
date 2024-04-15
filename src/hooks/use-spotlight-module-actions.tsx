@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import {
   IconBook2,
   IconBrush,
-  // IconCalendar,
+  IconCalendar,
   IconHome,
   IconPhoto,
 } from '@tabler/icons-react';
@@ -43,22 +43,23 @@ const useSpotlightModuleActions = () => {
           navigate('/');
         },
       },
-      // {
-      //   id: 'events',
-      //   label: 'Event',
-      //   description: 'Recent event participated',
-      //   leftSection: (
-      //     <MenuItem
-      //       icon={<IconCalendar size="3.5rem" color="white" />}
-      //       name="event"
-      //       id="event"
-      //       cubeColor="green"
-      //     />
-      //   ),
-      //   onClick: () => {
-      //     navigate('/events');
-      //   },
-      // },
+      {
+        group: 'Pages',
+        id: 'events',
+        label: 'Event',
+        description: 'Memories Created',
+        leftSection: (
+          <MenuItem
+            icon={<IconCalendar size="3.5rem" color="white" />}
+            name="event"
+            id="event"
+            cubeColor="green"
+          />
+        ),
+        onClick: () => {
+          navigate('/events');
+        },
+      },
       {
         group: 'Pages',
         id: 'blogs',
@@ -155,7 +156,11 @@ const useSpotlightModuleActions = () => {
           />
         ),
         onClick: () => {
-          navigate('https://mya88.vercel.app/');
+          window.open(
+            'https://mya88.vercel.app/',
+            '_blank',
+            'noopener, noreferrer'
+          );
         },
       },
       {
@@ -182,7 +187,11 @@ const useSpotlightModuleActions = () => {
           />
         ),
         onClick: () => {
-          navigate('https://myapoll.vercel.app/');
+          window.open(
+            'https://myapoll.vercel.app/',
+            '_blank',
+            'noopener, noreferrer'
+          );
         },
       },
     ],

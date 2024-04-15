@@ -14,7 +14,7 @@ const CTFTimeBadge = ({ link }: CTFTimeBadgeProps) => (
     <StaticImage
       src="../images/ctftime-logo.svg"
       alt="ctftime"
-      width={72}
+      width={78}
       placeholder="blurred"
     />
   </a>

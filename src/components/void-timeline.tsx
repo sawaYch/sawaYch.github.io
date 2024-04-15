@@ -18,7 +18,6 @@ const IndentText = ({ children }: PropsWithChildren) => (
 );
 
 export interface VoidTimeItemProps {
-  time: string;
   title: string;
   body: string | ReactElement;
   order?: number;
@@ -28,13 +27,11 @@ export interface VoidTimeItemProps {
 const VoidTimeline = () => {
   const timelineData: VoidTimeItemProps[] = [
     {
-      time: 'Unknown',
       title: 'Born',
       body: 'A wild little Sawa was born! 👶',
       icon: <IconEggCracked />,
     },
     {
-      time: 'Aug. 2020',
       title: 'Graduate from University',
       body: (
         <>
@@ -48,8 +45,7 @@ const VoidTimeline = () => {
       icon: <IconSchool />,
     },
     {
-      time: 'Jul. 2020 - June. 2023',
-      title: 'Analyst Programmer',
+      title: 'Full Stack Analyst Programmer',
       body: (
         <ul className="list-disc">
           <li className="ml-2">React.js and React Native developer</li>
@@ -163,10 +159,18 @@ const VoidTimeline = () => {
                   layout="position"
                   viewport={{ once: true }}
                 >
-                  <Text c="dimmed" size="sm">
-                    {data.time}
-                  </Text>
-                  <Text size="md" mt={4}>
+                  <Text
+                    size="xl"
+                    fw={900}
+                    variant="gradient"
+                    gradient={{
+                      from: '#6272a4',
+                      to: 'CornflowerBlue',
+                      deg: 90,
+                    }}
+                    mt={4}
+                    className="select-none"
+                  >
                     {data.title}
                   </Text>
                   <div className="m-4 text-xs">{data.body}</div>

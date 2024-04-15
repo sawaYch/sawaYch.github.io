@@ -1,10 +1,6 @@
 import React, { PropsWithChildren, ReactElement } from 'react';
 import cn from 'classnames';
-import {
-  IconSquareX,
-  IconWindowMaximize,
-  IconWindowMinimize,
-} from '@tabler/icons-react';
+import { IconX, IconSquares, IconMinus } from '@tabler/icons-react';
 
 interface PaneContainerProps {
   withFrame?: boolean;
@@ -27,9 +23,9 @@ const PaneContainer = React.forwardRef<
         >
           <div className="flex flex-col">
             <div className="flex items-center justify-end w-full h-4 pr-1 bg-dracula-blue gap-x-1">
-              <IconWindowMinimize />
-              <IconWindowMaximize />
-              <IconSquareX />
+              <IconMinus size={12} />
+              <IconSquares size={12} />
+              <IconX size={12} />
             </div>
             <div className="p-4">{props.children}</div>
           </div>

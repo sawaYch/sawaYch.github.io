@@ -1,15 +1,42 @@
 /* eslint-disable react/style-prop-object */
-import { PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { Card, Tabs } from '@mantine/core';
-import { StaticImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import {
   IconCalendarFilled,
   IconFlagFilled,
   IconSchool,
 } from '@tabler/icons-react';
+import { PageProps, graphql } from 'gatsby';
 import PaneContainer from '../components/pane-container';
 import CTFTimeBadge from '../components/ctftime-badge';
 import SectionTitle from '../components/section-title';
+import * as classes from '../styles/VoidTab.module.css';
+
+export const query = graphql`
+  query AllFileAndSiteData {
+    allFile(
+      filter: {
+        extension: { regex: "/(png)/" }
+        relativeDirectory: { eq: "event-image" }
+      }
+    ) {
+      edges {
+        node {
+          id
+          name
+          childImageSharp {
+            gatsbyImageData(
+              width: 196
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+            )
+          }
+        }
+      }
+    }
+  }
+`;
 
 const TabItemContainer = ({ children }: PropsWithChildren) => (
   <div className="grid grid-cols-1 gap-2 p-2 overflow-auto sm:grid-cols-2 h-fit auto-rows-max auto-cols-max">
@@ -31,7 +58,9 @@ const CardContent = ({ children }: PropsWithChildren) => (
   <div className="font-normal text-gray-400">{children}</div>
 );
 
-const EventPage = () => {
+const EventPage: FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
+  data,
+}) => {
   const universityEventData = [
     {
       title: 'HKUST Robotics Team, Robocon - War Dragon team',
@@ -70,6 +99,7 @@ const EventPage = () => {
 
   const ctfEventData = [
     {
+      id: 'hkcert23',
       title: 'HKCert CTF 2023 - Open Division',
       content: (
         <>
@@ -83,8 +113,10 @@ const EventPage = () => {
           </StyledUnorderedList>
         </>
       ),
+      bannerImageUrl: '../images/ctf/hkcert23-banner.png',
     },
     {
+      id: 'sekaictf23',
       title: 'SEKAI CTF 2023',
       content: (
         <>
@@ -98,8 +130,10 @@ const EventPage = () => {
           </StyledUnorderedList>
         </>
       ),
+      bannerImageUrl: '../images/ctf/sekaictf23-banner.jpg',
     },
     {
+      id: 'hkcert22',
       title: 'HKCert CTF 2022 - Open Division',
       content: (
         <>
@@ -113,8 +147,10 @@ const EventPage = () => {
           </StyledUnorderedList>
         </>
       ),
+      bannerImageUrl: '../images/ctf/sekaictf23-banner.jpg',
     },
     {
+      id: 'hkcert21',
       title: 'HKCert CTF 2021 - Open Division',
       content: (
         <>
@@ -128,8 +164,10 @@ const EventPage = () => {
           </StyledUnorderedList>
         </>
       ),
+      bannerImageUrl: '../images/ctf/sekaictf23-banner.jpg',
     },
     {
+      id: 'hkcert20',
       title: 'HKCert CTF 2020 - Open Division',
       content: (
         <>
@@ -144,11 +182,12 @@ const EventPage = () => {
           </StyledUnorderedList>
         </>
       ),
+      bannerImageUrl: '../images/ctf/sekaictf23-banner.jpg',
     },
   ];
 
   return (
-    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center !w-3/4 pt-10">
+    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center w-full pt-10">
       <SectionTitle
         icon={
           <IconCalendarFilled
@@ -158,44 +197,76 @@ const EventPage = () => {
         }
         text="Memories Created"
       />
-      <Tabs defaultValue="CTF">
+      <Tabs
+        variant="unstyled"
+        defaultValue="CTF"
+        className="w-5/6 min-w-5/6 max-w-5/6"
+        classNames={classes}
+      >
         <Tabs.List>
-          <Tabs.Tab value="CTF" leftSection={<IconFlagFilled />}>
-            Gallery
+          <Tabs.Tab
+            value="CTF"
+            leftSection={<IconFlagFilled />}
+            className="mantine-focus-never"
+          >
+            CTF
           </Tabs.Tab>
-          <Tabs.Tab value="Tertiary" leftSection={<IconSchool />}>
-            Messages
+          <Tabs.Tab
+            value="Tertiary"
+            leftSection={<IconSchool />}
+            className="mantine-focus-never"
+          >
+            Tertiary
           </Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="CTF">
           <TabItemContainer>
-            {ctfEventData.map((it) => (
-              <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Card.Section>
-                  <StaticImage
-                    src="../images/vtuber-cube-icon.png"
-                    alt={it.title}
-                    placeholder="blurred"
-                  />
-                </Card.Section>
-
+            {ctfEventData.map((it) => {
+              const imageNode = data.allFile.edges.find((queryData) =>
+                queryData.node.name.includes(it.id)
+              );
+              return (
+                <Card
+                  key={it.id}
+                  shadow="sm"
+                  padding="lg"
+                  radius="md"
+                  withBorder
+                >
+                  <Card.Section className="flex items-center self-center justify-center w-[120%] max-h-[120px] mb-4 bg-[#000000]">
+                    {imageNode?.node?.childImageSharp?.gatsbyImageData && (
+                      <GatsbyImage
+                        className="pointer-events-none select-none"
+                        image={imageNode.node.childImageSharp.gatsbyImageData}
+                        alt={it.title}
+                      />
+                    )}
+                  </Card.Section>
+                  <CardTitle>{it.title}</CardTitle>
+                  <CardContent>{it.content}</CardContent>
+                </Card>
+              );
+            })}
+          </TabItemContainer>
+        </Tabs.Panel>
+        <Tabs.Panel value="Tertiary">
+          <TabItemContainer>
+            {universityEventData.map((it) => (
+              <Card
+                shadow="sm"
+                padding="lg"
+                radius="md"
+                withBorder
+                key={it.title}
+              >
                 <CardTitle>{it.title}</CardTitle>
                 <CardContent>{it.content}</CardContent>
               </Card>
             ))}
           </TabItemContainer>
         </Tabs.Panel>
-        <Tabs.Panel value="Tertiary">
-          <TabItemContainer>
-            {universityEventData.map((it) => (
-              <Card key={it.title} className="!w-full !h-fit">
-                <CardTitle>{it.title}</CardTitle>
-                <CardContent>{it.content}</CardContent>
-              </Card>
-            ))}
-          </TabItemContainer>{' '}
-        </Tabs.Panel>
       </Tabs>
+      <div className="h-[4rem]" />
     </PaneContainer>
   );
 };

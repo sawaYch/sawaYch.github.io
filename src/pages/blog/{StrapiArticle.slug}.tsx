@@ -532,6 +532,7 @@ const Post: React.FC<PageProps<Queries.BlogPostQuery>> = ({
                 </ReactMarkdown>
                 <hr className="h-1 mx-auto my-4 border-0 rounded w-[80vw] md:my-10 bg-dracula-dark" />
                 <Comments />
+                <div className="h-[2rem]" />
               </motion.div>
             </>
           )}

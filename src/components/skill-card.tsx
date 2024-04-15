@@ -35,7 +35,7 @@ const SkillCardItem = ({ title, content, icon }: SkillCardItemProps) => (
 
 const skillData: SkillCardItemProps[] = [
   {
-    title: 'FullStack',
+    title: 'Full- Stack',
     content:
       'Proficient in front-end and back-end development, capable of creating dynamic web applications with user-friendly interfaces.',
     icon: (
