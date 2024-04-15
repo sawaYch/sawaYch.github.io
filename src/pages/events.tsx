@@ -1,6 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import { FC, PropsWithChildren } from 'react';
-import { Card, Tabs } from '@mantine/core';
+import { Card, Tabs, Text } from '@mantine/core';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import {
   IconCalendarFilled,
@@ -10,8 +10,8 @@ import {
 import { PageProps, graphql } from 'gatsby';
 import PaneContainer from '../components/pane-container';
 import CTFTimeBadge from '../components/ctftime-badge';
-import SectionTitle from '../components/section-title';
 import * as classes from '../styles/VoidTab.module.css';
+import VoidHeading from '../components/void-heading';
 
 export const query = graphql`
   query AllFileAndSiteData {
@@ -187,15 +187,12 @@ const EventPage: FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
   ];
 
   return (
-    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center w-full pt-10">
-      <SectionTitle
-        icon={
-          <IconCalendarFilled
-            size="2rem"
-            className="z-50 ml-2 text-dracula-buffy-200"
-          />
-        }
-        text="Memories Created"
+    <PaneContainer className="!bg-transparent !border-0 flex flex-col !items-center !justify-center w-full">
+      <VoidHeading
+        icon={<IconCalendarFilled size="3.5rem" />}
+        text="Event"
+        color="green"
+        extra={<Text c="dimmed">Memories Created</Text>}
       />
       <Tabs
         variant="unstyled"

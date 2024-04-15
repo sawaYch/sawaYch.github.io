@@ -18,6 +18,7 @@ import {
   MouseEventHandler,
   useRef,
 } from 'react';
+import { Text } from '@mantine/core';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -37,6 +38,7 @@ import Spinner from '../components/spinner';
 import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
 import getImageUrl from '../utils/getImageUrl';
+import VoidHeading from '../components/void-heading';
 
 export const galleryQuery = graphql`
   query GalleryPage {
@@ -123,18 +125,12 @@ const GalleryPage = ({
 
   return (
     <>
-      <div className="flex items-center justify-center pt-10">
-        <div className="w-fit">
-          <div className="-mx-10 h-[1.5rem] -mb-8 bg-dracula-yellow-400/30 -skew-x-12 backdrop-blur-sm" />
-          <div className="flex">
-            <h2 className="z-50 !text-dracula-yellow-100">Gallery</h2>{' '}
-            <IconPhoto
-              size="2rem"
-              className="z-50 ml-2 text-dracula-dark-200"
-            />
-          </div>
-        </div>
-      </div>
+      <VoidHeading
+        icon={<IconPhoto size="3.5rem" />}
+        text="Gallery"
+        color="yellow"
+        extra={<Text c="dimmed">Draw Something!</Text>}
+      />
       <motion.div
         variants={variants}
         initial="closed"

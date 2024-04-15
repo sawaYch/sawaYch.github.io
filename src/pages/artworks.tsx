@@ -18,6 +18,7 @@ import {
   MouseEventHandler,
   useRef,
 } from 'react';
+import { Text } from '@mantine/core';
 import {
   TransformWrapper,
   TransformComponent,
@@ -37,6 +38,7 @@ import LazyImg from '../components/lazyload-img';
 import ImagePanControls from '../components/image-pan-control';
 import SEOHead from '../components/seo-head';
 import getImageUrl from '../utils/getImageUrl';
+import VoidHeading from '../components/void-heading';
 
 export const artworkQuery = graphql`
   query ArtworkPage {
@@ -128,21 +130,12 @@ const ArtworksPage = ({
         imageHeight="480"
         imageWidth="1200"
       />
-      <div
-        id="artwork-page-heading"
-        className="flex items-center justify-center pt-10"
-      >
-        <div className="w-fit">
-          <div className="-mx-10 h-[1.5rem] -mb-8 bg-dracula-buffy-400/30 -skew-x-12 backdrop-blur-sm" />
-          <div className="flex">
-            <h2 className="z-50 !text-dracula-buffy-100">Artworks</h2>{' '}
-            <IconBrush
-              size="2rem"
-              className="z-50 ml-2 text-dracula-dark-200"
-            />
-          </div>
-        </div>
-      </div>
+      <VoidHeading
+        icon={<IconBrush size="3.5rem" />}
+        text="Artwork"
+        color="buffy"
+        extra={<Text c="dimmed">Photo of random goods...?</Text>}
+      />
       <motion.div
         id="artwork-page-container"
         variants={variants}
