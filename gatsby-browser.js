@@ -31,7 +31,10 @@ export const wrapPageElement = ({ element, props }) => {
     >
       <Layout
         {...props}
-        style={{ ...mantineCoreStyle, ...mantineSpotLightStyle }}
+        style={{
+          ...mantineCoreStyle,
+          ...mantineSpotLightStyle,
+        }}
       >
         {element}
       </Layout>

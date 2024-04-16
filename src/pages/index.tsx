@@ -4,6 +4,8 @@ import CharacterCard from '../components/character-card';
 import Banner from '../components/banner';
 import VoidTimeline from '../components/void-timeline';
 import SkillCard from '../components/skill-card';
+import PinnedProject from '../components/pinned-project';
+import LatestPost from '../components/latest-post';
 
 export interface DataProps {
   site: {
@@ -36,6 +38,8 @@ const IndexPage = () => {
       <Banner />
       <CharacterCard />
       <SkillCard />
+      <LatestPost />
+      <PinnedProject />
       <VoidTimeline />
     </>
   );
