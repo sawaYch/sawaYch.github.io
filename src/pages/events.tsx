@@ -27,7 +27,7 @@ export const query = graphql`
           name
           childImageSharp {
             gatsbyImageData(
-              width: 196
+              width: 240
               placeholder: BLURRED
               formats: [AUTO, WEBP]
             )
@@ -230,7 +230,7 @@ const EventPage: FC<PageProps<Queries.AllFileAndSiteDataQuery>> = ({
                   radius="md"
                   withBorder
                 >
-                  <Card.Section className="flex items-center self-center justify-center w-[120%] max-h-[120px] mb-4 bg-[#000000]">
+                  <Card.Section className="flex items-center self-center justify-center w-[120%] mb-4 bg-[#222222]">
                     {imageNode?.node?.childImageSharp?.gatsbyImageData && (
                       <GatsbyImage
                         className="pointer-events-none select-none"

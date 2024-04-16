@@ -103,6 +103,7 @@ const Powerline = ({ onAppIconClick, location }: PowerlineProps) => {
           <button
             onClick={onAppIconClick}
             type="button"
+            aria-label="powerline-button"
             className="flex items-center justify-center w-12 bg-dracula-dark"
           >
             <svg width="0" height="0">

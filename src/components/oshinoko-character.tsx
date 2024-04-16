@@ -244,7 +244,7 @@ const StatChart = forwardRef<IStatChartHandler, StatChartProps>(
                 pointLabels: {
                   font: {
                     size: 14,
-                    weight: '700',
+                    weight: 700,
                   },
                   color: '#ddd',
                 },

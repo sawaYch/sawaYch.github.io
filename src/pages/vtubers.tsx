@@ -4,7 +4,7 @@ import { PageProps, graphql } from 'gatsby';
 import Oshinoko from '../components/oshinoko';
 
 export const query = graphql`
-  query AllFileAndSiteData {
+  query VtuberImageFiles {
     allFile(
       filter: {
         extension: { regex: "/(png)/" }
