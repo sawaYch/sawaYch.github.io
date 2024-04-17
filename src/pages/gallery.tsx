@@ -129,7 +129,7 @@ const GalleryPage = ({
         icon={<IconPhoto size="3.5rem" />}
         text="Gallery"
         color="yellow"
-        extra={<Text c="dimmed">Draw Something!</Text>}
+        extra={<Text c="dimmed">Photo of random goods...?</Text>}
       />
       <motion.div
         variants={variants}

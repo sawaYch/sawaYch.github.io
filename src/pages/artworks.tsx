@@ -134,7 +134,7 @@ const ArtworksPage = ({
         icon={<IconBrush size="3.5rem" />}
         text="Artwork"
         color="buffy"
-        extra={<Text c="dimmed">Photo of random goods...?</Text>}
+        extra={<Text c="dimmed">Draw Something!</Text>}
       />
       <motion.div
         id="artwork-page-container"
