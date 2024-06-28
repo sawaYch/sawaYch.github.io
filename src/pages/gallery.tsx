@@ -90,7 +90,15 @@ export const galleryQuery = graphql`
 const GalleryPage = ({
   ...queryResponse
 }: PageProps<Queries.GalleryPageQuery>) => {
-  const data = queryResponse.data.allStrapiGallery.nodes;
+  const data = useMemo(() => {
+    const d: GalleryData[] = queryResponse.data.allStrapiGallery
+      .nodes as unknown as GalleryData[];
+    return d.map((it) => {
+      const dd = it;
+      dd.image = [...it.image.sort((a, b) => a.name.localeCompare(b.name))];
+      return dd;
+    });
+  }, [queryResponse.data.allStrapiGallery.nodes]);
 
   const variants = useMemo(
     () => ({
