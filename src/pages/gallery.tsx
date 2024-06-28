@@ -111,7 +111,9 @@ const GalleryPage = ({
 
   const handleOpenFullImage = useCallback((d: GalleryData) => {
     setPreviewCurrentPage(1);
-    setGallery(d);
+    const dGallery: GalleryData = d;
+    dGallery.image = [...d.image.sort((a, b) => a.name.localeCompare(b.name))];
+    setGallery(dGallery);
   }, []);
 
   const onArtworkClose: MouseEventHandler<HTMLButtonElement> =
