@@ -35,7 +35,11 @@ const CodeCopyToolbar = ({ lang, text }: CodeCopyToolbarProps) => {
         className="absolute h-[1.5rem] transition-all rounded-full top-2 right-1"
         onClick={handleCopy}
       >
-        {isCopy ? <IconClipboardCheck /> : <IconClipboard />}
+        {isCopy ? (
+          <IconClipboardCheck size={14} />
+        ) : (
+          <IconClipboard size={14} />
+        )}
       </Button>
       <Badge
         color="violet"
