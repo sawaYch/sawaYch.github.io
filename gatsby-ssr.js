@@ -11,7 +11,7 @@ export const onPreRenderHTML = ({
   const headComponents = getHeadComponents();
   replaceHeadComponents([
     ...headComponents,
-    <ColorSchemeScript key="color-scheme-script" />,
+    <ColorSchemeScript key="color-scheme-script" defaultColorScheme='dark'/>,
   ]);
 };
 
@@ -27,7 +27,7 @@ export const wrapPageElement = ({ element, props }) => {
   // Apply the layout component to other pages
   return (
     <MantineProvider
-      defaultColorScheme="dark"
+      defaultColorScheme="dark"   
       theme={MantineTheme}
       withCSSVariables
       withGlobalStyles
