@@ -45,7 +45,7 @@ const VoidTimeline = () => {
       icon: <IconSchool />,
     },
     {
-      title: 'Full Stack Analyst Programmer',
+      title: 'Full Stack Analyst Programmer - Software Vendor',
       body: (
         <ul className="list-disc">
           <li className="ml-2">React.js and React Native developer</li>
@@ -99,6 +99,31 @@ const VoidTimeline = () => {
         </ul>
       ),
     },
+    {
+      title:
+        'Full Stack Software Developer of Smart Infrastructure, Regional Solution & Services',
+      body: (
+        <ul className="list-disc">
+          <li className="ml-2">React.js, React Native, Angular developer</li>
+          <IndentText>Firebase messaging, VoIP, OpenTok</IndentText>
+          <li className="ml-2">NodeJS developer</li>
+          <IndentText>Express.JS, MongoDb, Mongoose, Redis</IndentText>
+          <li className="ml-2">Experience in Amazon Web Services (AWS)</li>
+          <IndentText>EC2, S3, API Gateway, CloudFront, IAM, EKS</IndentText>
+          <li className="ml-2">
+            Experience in TeamCity Pipeline tasks automation
+          </li>
+          <li className="ml-2">Experience in excel data automation</li>
+          Participate in Following Projects
+          <IndentText>
+            👩‍💼 Data Automation of Electrical Device Sensors
+          </IndentText>
+          <IndentText>
+            ⛑️ Smart Maintenance Ticket System for Engineer & Back office
+          </IndentText>
+        </ul>
+      ),
+    },
   ];
   return (
     <>
@@ -128,7 +153,12 @@ const VoidTimeline = () => {
           whileInView="onscreen"
           viewport={{ once: true }}
         >
-          <Timeline active={2} bulletSize={30} lineWidth={3} color="#6272a4">
+          <Timeline
+            active={timelineData.length - 1}
+            bulletSize={30}
+            lineWidth={3}
+            color="#6272a4"
+          >
             {timelineData.map((data, index) => (
               <Timeline.Item
                 key={data.title}
